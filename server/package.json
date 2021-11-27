@@ -4,6 +4,9 @@
   "description": "Express backend",
   "main": "index.js",
   "scripts": {
+    "client": "cd ../client && yarn start",
+    "server": "nodemon index.ts",
+    "dev": "run-p client server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
