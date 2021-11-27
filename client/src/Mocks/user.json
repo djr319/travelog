@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "first name": "Ivan",
+    "second name": "Car",
+    "username": "urisk",
+    "interests": "vegan food, cycling, hiking",
+    "email": "test1@gmail.com",
+    "password": "testpass1"
+  },
+  {
+    "id": 2,
+    "first name": "David",
+    "second name": "Ryan",
+    "username": "dave",
+    "interests": "aviation, board games",
+    "email": "test2@gmail.com",
+    "password": "testpass2"
+  }
+]
