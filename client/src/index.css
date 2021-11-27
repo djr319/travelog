@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background: #84C1F8;
+  color: black;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+button, button:active, button:visited, button:focus, button:hover {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: #4C8AB9;
+  color: white;
+}
+
+a:active {
+  transition: 200ms, ease;
+}
