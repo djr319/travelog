@@ -1,8 +1,8 @@
 [
   {
     "id": 1,
-    "first name": "Ivan",
-    "second name": "Car",
+    "firstName": "Ivan",
+    "secondName": "Car",
     "username": "urisk",
     "interests": "vegan food, cycling, hiking",
     "email": "test1@gmail.com",
@@ -10,8 +10,8 @@
   },
   {
     "id": 2,
-    "first name": "David",
-    "second name": "Ryan",
+    "firstName": "David",
+    "secondName": "Ryan",
     "username": "dave",
     "interests": "aviation, board games",
     "email": "test2@gmail.com",

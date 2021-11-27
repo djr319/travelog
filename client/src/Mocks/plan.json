@@ -1,6 +1,7 @@
 {
   "city": "Berlin",
-  "date": "2021-11-16T21:13:16.879Z",
+  "dateFrom": "2021-11-16T21:13:16.879Z",
+  "dateTo": "2021-11-23T21:13:16.879Z",
   "visits": "Berlin TV Tower",
   "tags": [
     "berlin", "tower"
