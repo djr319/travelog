@@ -10,7 +10,7 @@ render(
     <BrowserRouter>
       <App />
       <Routes>
-        <Route path="/" element={<Dashboard />}>
+        <Route path="/" /* element={<Dashboard />} */>
           {/* <Route path="/profile" element={<Dashboard />} />
         <Route path="/planning" element={<Dashboard />} />
         <Route path="/trips" element={<Dashboard />} />

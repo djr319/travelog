@@ -1,3 +1,4 @@
+import NavBar from 'Components/NavBar/NavBar';
 import React from 'react';
 import {
   BrowserRouter,
@@ -11,7 +12,7 @@ export default function App() {
   return (
     <div className="App">
       <NavBar />
-      <Outlet />
+      {/* <Outlet /> */}
     </div>
   );
 }
