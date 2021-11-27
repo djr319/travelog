@@ -1,3 +1,24 @@
 .navbar {
   width: 90%;
 }
+.navbar .nav-select li {
+  width: 25%;
+  list-style: none;
+  position: relative;
+  text-align: right;
+}
+.navbar .nav-select li Link {
+  background: #001b34;
+  border-right: 1px solid #eee;
+  color: #fff;
+  display: block;
+  height: 2rem;
+  line-height: 2rem;
+  text-decoration: none;
+  width: 100%;
+}
+.navbar .nav-select:active {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}

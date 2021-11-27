@@ -1,14 +1,20 @@
+import { Link, BrowserRouter } from 'react-router-dom';
+import './NavBar.css';
+
+
 export default function NavBar (): JSX.Element {
 	return (
 		<div className='navbar'>
-			<select id="nav-select">
-        <option value="">Navigation</option>
-				<option value="profile">Profile</option>
-				<option value="trips">Trips</option>
-				<option value="journal">Journal</option>
-				<option value="notes">Notes</option>
-				<option value="logout">Logout</option>
-			</select>
+      <BrowserRouter>
+			<nav className="nav-select">
+        <li>Navigation</li>
+				<li><Link to="/profile">Profile</Link></li>
+				<li><Link to="/trips">Trips</Link></li>
+				<li><Link to="/journal">Journal</Link></li>
+				<li><Link to="/notes">Notes</Link></li>
+				<li><Link to="/logout">Logout</Link></li>
+			</nav>
+      </BrowserRouter>
 		</div>
 	);
 }
