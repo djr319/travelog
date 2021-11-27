@@ -1,13 +1,17 @@
 import React from 'react';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet
+} from "react-router-dom";
 import './App.css';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <NavBar />
-      <Dashboard />
+      <Outlet />
     </div>
   );
 }
-
-export default App;
