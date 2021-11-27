@@ -1,4 +1,5 @@
-const Express = require("express");
+import Express from 'express';
+
 const app = Express();
 const PORT = 5000;
 
@@ -23,3 +24,4 @@ app.listen(PORT, () => {
 })
 //   } catch (error) { console.error(error); }
 // })()
+
