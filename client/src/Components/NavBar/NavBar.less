@@ -1,3 +1,4 @@
+// LINK https://webdesignday.jp/inspiration/technique/css/5793/
 .navbar {
   width: 90%;
 
@@ -6,7 +7,15 @@
       width: 25%;
       list-style: none;
       position: relative;
-      text-align: right;
+      
+      height: 0;
+      overflow: hidden;
+      transition: .5s;
+
+      &:hover {
+        height: 2rem;
+        overflow: visible;
+      }
 
       & Link {
         background: #001b34;
@@ -16,6 +25,7 @@
         height: 2rem;
         line-height: 2rem;
         text-decoration: none;
+        text-align: right;
         width: 100%;
       }
     }

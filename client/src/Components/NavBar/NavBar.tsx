@@ -7,7 +7,7 @@ export default function NavBar (): JSX.Element {
 		<div className='navbar'>
       <BrowserRouter>
 			<nav className="nav-select">
-        <li>Navigation</li>
+        <div>Navigation</div>
 				<li><Link to="/profile">Profile</Link></li>
 				<li><Link to="/trips">Trips</Link></li>
 				<li><Link to="/journal">Journal</Link></li>

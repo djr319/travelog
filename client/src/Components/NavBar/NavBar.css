@@ -6,6 +6,13 @@
   list-style: none;
   position: relative;
   text-align: right;
+  height: 0;
+  overflow: hidden;
+  transition: 0.5s;
+}
+.navbar .nav-select li:hover {
+  height: 2rem;
+  overflow: visible;
 }
 .navbar .nav-select li Link {
   background: #001b34;
