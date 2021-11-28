@@ -1,17 +1,19 @@
 :root {
   --navbar-color: #4E89BA;
   --bg-color: #84C1F8;
+  --navbar-height: 40px;
 }
 * {
   margin: 0;
   padding: 0;
+  z-index: 0;
   box-sizing: border-box;
 }
 body {
   margin-top: 0;
   height: 100vh;
   font-family: sans-serif;
-  background: var(--bg-color);
+  background: #84C1F8;
   color: black;
 }
 html {

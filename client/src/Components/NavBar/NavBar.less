@@ -1,57 +1,67 @@
 // LINK https://webdesignday.jp/inspiration/technique/css/5793/
 .navbar {
+  height: var(--navbar-height);
   display: flex;
-  justify-content: flex-end;
-  
-  & .nav-select {
-    margin: 1rem;
-    padding: 0.5rem;
-    width: 60%;
+  justify-content: space-between;
+  margin: 1rem;
+
+  & .navbar-circle {
+    width: var(--navbar-height);
     background-color: var(--navbar-color);
-    border-radius: 5px;
+    // border-radius: 50%;
+  }
 
-    & li {
-      list-style: none;
-      position: relative;
-
-      &:hover>ul>li {
-        height: 2rem;
-        overflow: visible;
-      }
-
-      & div {
-        border-right: 1px solid rgb(0, 0, 0);
-        color: rgb(0, 0, 0);
-        display: block;
-        height: 2rem;
-        line-height: 2rem;
-      }
-    }
-
-    & li li {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      
-      height: 0;
-      overflow: hidden;
-      transition: .5s;
-      
-      & a {
+  & .nav-select {
+    width: 60%;
+    height: 100%;
+    
+    & .nav-select__list {
+      background-color: var(--navbar-color);
+      border-radius: 5px;
+      padding: 0.5rem;
+  
+      & li {
         width: 100%;
-        border-top: 1px solid rgb(0, 0, 0);
-        border-right: 1px solid rgb(0, 0, 0);
-        text-decoration: none;
-        color: black;
-        height: 2rem;
-        line-height: 2rem;
-
-        &:hover {
-          background-color: var(--bg-color);
+        list-style: none;
+        position: relative;
+  
+        &:hover>ul>li {
+          height: 2rem;
+          overflow: visible;
         }
-
-        &:active {
-          background-color: transparent;
+  
+        & div {
+          color: rgb(0, 0, 0);
+          display: block;
+          height: 2rem;
+          line-height: 2rem;
+        }
+      }
+  
+      & li li {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+  
+        height: 0;
+        overflow: hidden;
+        transition: .5s;
+  
+        & a {
+          width: 100%;
+          border-top: 1px solid rgb(0, 0, 0);
+          text-decoration: none;
+          color: black;
+          height: 2rem;
+          line-height: 2rem;
+  
+          &:hover {
+            background-color: var(--bg-color);
+          }
+  
+          &:active {
+            background-color: var(--navbar-color);
+          }
         }
       }
     }
