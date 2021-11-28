@@ -4,7 +4,7 @@ import './NavBar.css';
 export default function NavBar (): JSX.Element {
 	return (
 		<div className='navbar'>
-			<img className='navbar-circle' />
+			<div className='navbar-circle'></div>
 			<div className='nav-select'>
 				<ul className='nav-select__list'>
 					<li>
