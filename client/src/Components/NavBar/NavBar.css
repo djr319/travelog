@@ -5,6 +5,10 @@
   align-items: center;
   margin: 1rem;
 }
+.navbar .navbar-circle,
+.navbar .nav-select .nav-select__list {
+  box-shadow: inset 3px 3px 5px #42749e, inset -3px -3px 5px #5a9ed6;
+}
 .navbar .navbar-circle {
   width: var(--navbar-height);
   height: var(--navbar-height);
