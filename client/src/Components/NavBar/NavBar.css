@@ -3,6 +3,10 @@
   justify-content: flex-end;
   margin: 1rem;
   padding: 0.5rem;
+  background-color: var(--navbar-color);
+}
+.navbar .nav-select {
+  width: 40%;
 }
 .navbar .nav-select li {
   list-style: none;
@@ -13,25 +17,26 @@
   overflow: visible;
 }
 .navbar .nav-select li div {
-  background: #001b34;
-  border-right: 1px solid #eee;
-  color: #fff;
+  border-right: 1px solid #000000;
+  color: #000000;
   display: block;
   height: 2rem;
-  line-height: 1rem;
-  text-decoration: none;
-  width: 100%;
+  line-height: 2rem;
 }
 .navbar .nav-select li li {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   height: 0;
   overflow: hidden;
   transition: 0.5s;
 }
-.navbar .nav-select li li Link {
-  border-top: 1px solid #eee;
-}
-.navbar .nav-select:active {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+.navbar .nav-select li li a {
+  width: 100%;
+  border-top: 1px solid #000000;
+  border-right: 1px solid #000000;
+  text-decoration: none;
+  color: black;
+  height: 2rem;
+  line-height: 2rem;
 }

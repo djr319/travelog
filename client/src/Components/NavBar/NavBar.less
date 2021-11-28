@@ -4,8 +4,11 @@
   justify-content: flex-end;
   margin: 1rem;
   padding: 0.5rem;
+  background-color: var(--navbar-color);
 
   & .nav-select {
+    width: 40%;
+
     & li {
       list-style: none;
       position: relative;
@@ -16,31 +19,32 @@
       }
 
       & div {
-        background: #001b34;
-        border-right: 1px solid #eee;
-        color: #fff;
+        border-right: 1px solid rgb(0, 0, 0);
+        color: rgb(0, 0, 0);
         display: block;
         height: 2rem;
-        line-height: 1rem;
-        text-decoration: none;
-        width: 100%;
+        line-height: 2rem;
       }
     }
 
     & li li {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      
       height: 0;
       overflow: hidden;
       transition: .5s;
-
-      & Link {
-        border-top: 1px solid #eee;
+      
+      & a {
+        width: 100%;
+        border-top: 1px solid rgb(0, 0, 0);
+        border-right: 1px solid rgb(0, 0, 0);
+        text-decoration: none;
+        color: black;
+        height: 2rem;
+        line-height: 2rem;
       }
     }
-  }
-
-  & .nav-select:active {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
   }
 }
