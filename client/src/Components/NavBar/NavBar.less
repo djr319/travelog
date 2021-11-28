@@ -1,32 +1,39 @@
 // LINK https://webdesignday.jp/inspiration/technique/css/5793/
 .navbar {
-  width: 90%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem;
+  padding: 0.5rem;
 
   & .nav-select {
     & li {
-      width: 25%;
       list-style: none;
       position: relative;
-      
-      height: 0;
-      overflow: hidden;
-      transition: .5s;
 
-      &:hover {
+      &:hover>ul>li {
         height: 2rem;
         overflow: visible;
       }
 
-      & Link {
+      & div {
         background: #001b34;
         border-right: 1px solid #eee;
         color: #fff;
         display: block;
         height: 2rem;
-        line-height: 2rem;
+        line-height: 1rem;
         text-decoration: none;
-        text-align: right;
         width: 100%;
+      }
+    }
+
+    & li li {
+      height: 0;
+      overflow: hidden;
+      transition: .5s;
+
+      & Link {
+        border-top: 1px solid #eee;
       }
     }
   }

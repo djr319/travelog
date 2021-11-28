@@ -29,7 +29,7 @@ render(
           />
         </Route>
       </Routes>
-    </BrowserRouter>,
+    </BrowserRouter>
   </StrictMode>,
   document.getElementById('root')
 );

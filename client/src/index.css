@@ -5,6 +5,8 @@
 }
 
 body {
+  margin-top: 0;
+  height: 100vh;
   font-family: sans-serif;
   background: #84C1F8;
   color: black;
