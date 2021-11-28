@@ -2,11 +2,13 @@
   --navbar-color: #4E89BA;
   --bg-color: #84C1F8;
   --navbar-height: 50px;
+  --base-layer: 0;
+  --priority-layer: 50;
 }
 * {
   margin: 0;
   padding: 0;
-  z-index: 0;
+  position: relative;
   box-sizing: border-box;
 }
 body {
@@ -15,6 +17,7 @@ body {
   font-family: sans-serif;
   background: #84C1F8;
   color: black;
+  z-index: var(--base-layer);
 }
 html {
   overflow-y: scroll;
