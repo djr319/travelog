@@ -2,12 +2,13 @@
 .navbar {
   display: flex;
   justify-content: flex-end;
-  margin: 1rem;
-  padding: 0.5rem;
-  background-color: var(--navbar-color);
-
+  
   & .nav-select {
-    width: 40%;
+    margin: 1rem;
+    padding: 0.5rem;
+    width: 60%;
+    background-color: var(--navbar-color);
+    border-radius: 5px;
 
     & li {
       list-style: none;
@@ -44,6 +45,14 @@
         color: black;
         height: 2rem;
         line-height: 2rem;
+
+        &:hover {
+          background-color: var(--bg-color);
+        }
+
+        &:active {
+          background-color: transparent;
+        }
       }
     }
   }

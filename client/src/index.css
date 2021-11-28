@@ -1,5 +1,6 @@
 :root {
   --navbar-color: #4E89BA;
+  --bg-color: #84C1F8;
 }
 * {
   margin: 0;
@@ -10,7 +11,7 @@ body {
   margin-top: 0;
   height: 100vh;
   font-family: sans-serif;
-  background: #84C1F8;
+  background: var(--bg-color);
   color: black;
 }
 html {
