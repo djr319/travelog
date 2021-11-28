@@ -4,12 +4,15 @@ import './NavBar.css';
 export default function NavBar (): JSX.Element {
 	return (
 		<div className='navbar'>
-			<div className='navbar-circle'></div>
+			<div className='navbar-circle' />
 			<div className='nav-select'>
 				<ul className='nav-select__list'>
 					<li>
 						<div>Navigation</div>
 						<ul>
+							<li>
+								<Link to='/'>Dashboard</Link>
+							</li>
 							<li>
 								<Link to='/profile'>Profile</Link>
 							</li>
