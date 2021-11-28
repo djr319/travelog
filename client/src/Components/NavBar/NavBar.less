@@ -1,0 +1,84 @@
+// LINK https://webdesignday.jp/inspiration/technique/css/5793/
+// LINK z-index parent conflicts
+// https://coliss.com/articles/build-websites/operation/css/4-reasons-z-index-isnt-working.html
+@navbar-color: var(--navbar-color);
+@bg-color: var(--bg-color);
+
+.navbar {
+  height: var(--navbar-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+  z-index: var(--priority-layer);
+
+  & .navbar-circle,
+  .nav-select .nav-select__list {
+    box-shadow: inset 3px 3px 5px #42749e,
+      inset -3px -3px 5px #5a9ed6;
+  }
+
+  & .navbar-circle {
+    width: var(--navbar-height);
+    height: var(--navbar-height);
+    background-color: @navbar-color;
+    border-radius: 50%;
+
+  }
+
+  & .nav-select {
+    width: 70%;
+    height: 100%;
+
+    & .nav-select__list {
+      background-color: @navbar-color;
+      border-radius: 5px;
+      padding: 0.5rem;
+
+      & li {
+        width: 100%;
+        list-style: none;
+        position: relative;
+
+        &:hover>ul>li {
+          height: 2rem;
+          overflow: visible;
+        }
+
+        & div {
+          color: rgb(0, 0, 0);
+          display: block;
+          height: 2rem;
+          line-height: 2rem;
+        }
+      }
+
+      & li li {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        height: 0;
+        overflow: hidden;
+        transition: .5s;
+
+        & a {
+          width: 100%;
+          border-top: 1px solid rgb(0, 0, 0);
+          text-decoration: none;
+          color: black;
+          height: 2rem;
+          line-height: 2rem;
+
+          &:hover {
+            background-color: @bg-color;
+          }
+
+          &:active {
+            background-color: @navbar-color;
+          }
+        }
+      }
+    }
+  }
+}
