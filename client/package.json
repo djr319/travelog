@@ -23,6 +23,7 @@
     "build": "react-scripts build",
     "server": "nodemon ../server/index",
     "dev": "run-p start server",
+    "lint": "eslint",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

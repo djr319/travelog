@@ -1,4 +1,5 @@
-import "./Dashboard.css";
+import './Dashboard.css';
+
 
 export default function Dashboard(): JSX.Element {
   return (
@@ -28,3 +29,4 @@ export default function Dashboard(): JSX.Element {
     </div>
   );
 }
+
