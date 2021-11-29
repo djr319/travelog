@@ -1,0 +1,15 @@
+.journal {
+  & .journal__form {
+    & .journal__form-textarea {
+      resize: none;
+
+      // NOTE style displayed when textarea is in invalid state
+      // e.g. empty, even though it's required
+      // LINK https://developer.mozilla.org/ja/docs/Web/HTML/Element/textarea
+      &:invalid {
+        background-color: rgb(255, 243, 243);
+        border-color: red;
+      }
+    }
+  }
+}

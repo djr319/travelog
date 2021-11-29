@@ -1,0 +1,7 @@
+.journal .journal__form .journal__form-textarea {
+  resize: none;
+}
+.journal .journal__form .journal__form-textarea:invalid {
+  background-color: #fff3f3;
+  border-color: red;
+}
