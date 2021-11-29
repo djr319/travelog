@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-import Dashboard from 'Components/Dashboard/Dashboard';
+import  { Dashboard, Journal } from 'Components/index';
 import { render } from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
@@ -15,11 +15,11 @@ render(
           {/* <Route path="/trips" element={<Trips />} /> */}
           {/* <Route path="/profile" element={<Dashboard />} />
         <Route path="/planning" element={<Dashboard />} />
-        <Route path="/journal" element={<Dashboard />} />
         <Route path="/notes" element={<Dashboard />} />
         <Route path="/route" element={<Dashboard />} />
         <Route path="/weather" element={<Dashboard />} />
         <Route path="/logout" element={<Dashboard />} /> */}
+				<Route path="/journal" element={<Journal />} />
           <Route
             path='*'
             element={
