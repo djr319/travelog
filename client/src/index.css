@@ -11,6 +11,7 @@
   --bg-color: #84C1F8;
   --navbar-height: 50px;
   --base-layer: 0;
+  --layer-1: 1;
   --priority-layer: 50;
 }
 #root {

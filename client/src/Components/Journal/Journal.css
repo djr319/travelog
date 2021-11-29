@@ -1,9 +1,46 @@
 .journal {
   height: 100%;
-  margin: 0.5rem;
+  padding: 0.5rem;
+}
+.journal .journal__menu {
+  height: 100%;
+  width: 50%;
+  position: absolute;
+  top: -10px;
+  z-index: var(--layer-1);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  transition: 0.5s;
+}
+.journal .journal__menu .journal__menu-button {
+  background-color: white;
+  padding: 0.25rem;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  transition: 0.5s;
+}
+.journal .journal__menu .journal__menu-select-container {
+  width: 80%;
+  display: flex;
+}
+.journal .journal__menu .journal__menu-select-container .journal__menu-select {
+  height: 100%;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.journal .journal__menu .journal__menu-select-container .journal__menu-select .journal__menu-select-entry {
+  width: 100%;
+  background-color: white;
+  padding: 0.25rem;
+  border: 1px solid black;
 }
 .journal .journal__form {
   height: 100%;
+  margin-top: 1.5rem;
 }
 .journal .journal__form .journal__form-textarea-container {
   height: 60%;
