@@ -1,72 +1,115 @@
-import { JournalAPI } from 'Services/index';
-import { useState } from 'react';
-import './Journal.css';
-import Arrow from 'Assets/arrow.svg';
+import { Journal as JournalType } from 'Types/index';
+import { useState, useEffect } from 'react';
 
-const MIN_LEN = 10;
-const MAX_LEN = 30;
+import { JournalAPI } from 'Services/index';
+import JournalMenu from './JournalMenu';
+import CreatePage from './CreatePage/CreatePage';
+import EditPage from './EditPage/EditPage';
+import ViewPage from './ViewPage/ViewPage';
+
+import './Journal.css';
 
 export default function Journal (): JSX.Element {
-	const [ review, setReview ] = useState('');
+	const [ journals, setJournals ] = useState<JournalType[]>([]);
+	const [ page, setPage ] = useState(
+		<CreatePage handleSubmit={handleSubmit} />
+	);
 
-	const [ menuPos, setMenuPos ] = useState(-105);
-	const [ arrowRot, setArrowRot ] = useState(180);
+	useEffect(() => {
+		(async () => {
+			const journals = await JournalAPI.getAllJournals();
+			// FIXME: remove check once API linked?
+			if (journals === undefined) {
+				setJournals([]);
+			} else {
+				setJournals(journals);
+			}
+		})();
+	}, []);
 
-	async function handleSubmit () {
+  function updateEntry (
+		e: React.FormEvent<HTMLFormElement>,
+    id: number,
+		review: string
+	) {
+		e.preventDefault();
+
+		JournalAPI.updateJournal(id, { review });
+
+    const journalsCopy = [...journals];
+    journalsCopy[id] = { review };
+
+    setJournals(journalsCopy);
+    setPage(<ViewPage
+      id={id}
+      text={review}
+      switchEditMode={switchEditMode}
+      deleteEntry={deleteEntry}
+    />);
+	}
+
+  function deleteEntry (e: React.MouseEvent<HTMLButtonElement>, id: number) {
+		e.preventDefault();
+
+    JournalAPI.deleteJournal(id);
+
+    const journalsCopy = [...journals];
+    journalsCopy.splice(id, 1);
+    
+    setJournals(journalsCopy);
+    setPage(<CreatePage handleSubmit={handleSubmit} />);
+	}
+
+	function handleSubmit (
+		e: React.FormEvent<HTMLFormElement>,
+		review: string
+	) {
+		e.preventDefault();
+
+    const nextJournalId = journals.length;
 		JournalAPI.addJournal({ review });
+		setJournals([ ...journals, { review } ]);
+		setPage(
+			<ViewPage
+				id={nextJournalId}
+				text={review}
+				switchEditMode={switchEditMode}
+				deleteEntry={deleteEntry}
+			/>
+		);
 	}
 
-	function toggleMenu () {
-		setMenuPos((prev) => {
-      if (prev >= 0) {
-        return -105;
-      }
-      return 0;
-    });
-		setArrowRot((prev) => 180 - prev);
+	function switchEditMode (
+		e: React.MouseEvent<HTMLButtonElement>,
+		id: number,
+		text: string
+	) {
+		e.preventDefault();
+
+		setPage(<EditPage id={id} text={text} updateEntry={updateEntry} />);
 	}
 
-	function onChange (e: React.FormEvent<HTMLTextAreaElement>) {
-		setReview(e.currentTarget.value);
+	function handleClick (
+		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+		id: number
+	) {
+		e.preventDefault();
+
+		// FIXME: using journals array index as id is not safe
+		setPage(
+			<ViewPage
+				id={id}
+				text={journals[id].review}
+				switchEditMode={switchEditMode}
+				deleteEntry={deleteEntry}
+			/>
+		);
 	}
 
 	return (
 		<div className='journal'>
-			<div className='journal__menu' style={{ left: menuPos }}>
-				<img
-					className='journal__menu-button'
-					src={Arrow}
-					onClick={toggleMenu}
-					style={{ transform: `rotate(${arrowRot}deg)` }}
-				/>
-				<div className='journal__menu-select-container'>
-					<div className='journal__menu-select'>
-						<div className='journal__menu-select-entry'>Journal 1</div>
-						<div className='journal__menu-select-entry'>Journal 2</div>
-					</div>
-					<div />
-				</div>
-			</div>
-			<form className='journal__form' onSubmit={handleSubmit}>
-				<div className='journal__form-textarea-container'>
-					<textarea
-						className='journal__form-textarea'
-						placeholder='Enter review description...'
-						required={true}
-						minLength={MIN_LEN}
-						maxLength={MAX_LEN}
-						name='review'
-						value={review}
-						onInput={onChange}
-					/>
-					{review.length < MIN_LEN ? (
-						'Insufficient characters.'
-					) : (
-						`${review.length}/${MAX_LEN} characters.`
-					)}
-				</div>
-				<button className='journal__form-submit' type='submit'>Add story</button>
-			</form>
+			<JournalMenu journals={journals} handleClick={handleClick} />
+			{page}
 		</div>
 	);
 }
