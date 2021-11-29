@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Express backend",
   "main": "index.js",
-  "scripts": {
+  "type": "module",
+    "scripts": {
     "client": "cd ../client && yarn start",
     "server": "nodemon index.ts",
     "dev": "run-p client server",
