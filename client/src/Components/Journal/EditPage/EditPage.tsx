@@ -8,13 +8,13 @@ const MAX_LEN = 30;
 type EditPageProps = {
 	id: number
 	text: string;
-	handleUpdate: (e: React.FormEvent<HTMLFormElement>, id: number, text: string) => void;
+	updateEntry: (e: React.FormEvent<HTMLFormElement>, id: number, text: string) => void;
 };
 
 export default function EditPage ({
 	id,
 	text: entryText,
-	handleUpdate
+	updateEntry
 }: EditPageProps): JSX.Element {
 	const [ text, setText ] = useState(entryText);
 
@@ -26,7 +26,7 @@ export default function EditPage ({
 	}
 
 	return (
-		<form className='journal__form' onSubmit={(e) => handleUpdate(e, id, text)}>
+		<form className='journal__form' onSubmit={(e) => updateEntry(e, id, text)}>
 			<div className='journal__form-textarea-container'>
 				<textarea
 					className='journal__form-textarea'

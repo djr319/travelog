@@ -33,7 +33,7 @@ export function updateJournal(id: string | number, update: Journal) {
   })
 }
 
-export function deleteJournal(id: string) {
+export function deleteJournal(id: string | number) {
   return fetchRequest(`${JOURNALS_URL}/${id}`, {
     method: 'DELETE'
   });

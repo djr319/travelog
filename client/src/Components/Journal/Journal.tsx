@@ -11,7 +11,6 @@ import './Journal.css';
 
 export default function Journal (): JSX.Element {
 	const [ journals, setJournals ] = useState<JournalType[]>([]);
-  console.log('journals', journals);
 	const [ page, setPage ] = useState(
 		<CreatePage handleSubmit={handleSubmit} />
 	);
@@ -28,7 +27,7 @@ export default function Journal (): JSX.Element {
 		})();
 	}, []);
 
-  function handleUpdate (
+  function updateEntry (
 		e: React.FormEvent<HTMLFormElement>,
     id: number,
 		review: string
@@ -47,6 +46,18 @@ export default function Journal (): JSX.Element {
       switchEditMode={switchEditMode}
       deleteEntry={deleteEntry}
     />);
+	}
+
+  function deleteEntry (e: React.MouseEvent<HTMLButtonElement>, id: number) {
+		e.preventDefault();
+
+    JournalAPI.deleteJournal(id);
+
+    const journalsCopy = [...journals];
+    journalsCopy.splice(id, 1);
+    
+    setJournals(journalsCopy);
+    setPage(<CreatePage handleSubmit={handleSubmit} />);
 	}
 
 	function handleSubmit (
@@ -75,16 +86,7 @@ export default function Journal (): JSX.Element {
 	) {
 		e.preventDefault();
 
-		setPage(<EditPage id={id} text={text} handleUpdate={handleUpdate} />);
-	}
-
-	function deleteEntry (e: React.MouseEvent<HTMLButtonElement>, id: number) {
-		e.preventDefault();
-
-    const journalsCopy = [...journals];
-    journalsCopy.splice(id, 1);
-    setJournals(journalsCopy);
-    setPage(<CreatePage handleSubmit={handleSubmit} />);
+		setPage(<EditPage id={id} text={text} updateEntry={updateEntry} />);
 	}
 
 	function handleClick (
