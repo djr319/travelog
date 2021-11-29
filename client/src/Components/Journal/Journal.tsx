@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { JournalAPI } from 'Services/index';
 import JournalMenu from './JournalMenu';
 import EditPage from './EditPage/EditPage';
-import ViewPage from './ViewPage';
+import ViewPage from './ViewPage/ViewPage';
 
 import './Journal.css';
 
