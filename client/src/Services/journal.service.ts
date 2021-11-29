@@ -38,3 +38,14 @@ export function deleteJournal(id: string) {
     method: 'DELETE'
   });
 }
+
+const JournalAPI = {
+  addJournal,
+  getAllJournals,
+  getOneJournal,
+  getPublicJournals,
+  updateJournal,
+  deleteJournal
+}
+
+export default JournalAPI
