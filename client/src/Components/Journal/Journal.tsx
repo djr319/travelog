@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { JournalAPI } from 'Services/index';
-import { Journal } from 'Types/index';
+import { Journal as JournalType } from 'Types/index';
 import Arrow from 'Assets/arrow.svg';
 import './Journal.css';
 
@@ -8,7 +8,7 @@ const MIN_LEN = 10;
 const MAX_LEN = 30;
 
 export default function Journal (): JSX.Element {
-	const [ journals, setJournals ] = useState<Journal[]>([]);
+	const [ journals, setJournals ] = useState<JournalType[]>([]);
 	const [ review, setReview ] = useState('');
 
 	const [ menuPos, setMenuPos ] = useState(-105);
@@ -17,13 +17,22 @@ export default function Journal (): JSX.Element {
 	useEffect(() => {
 		(async () => {
 			const journals = await JournalAPI.getAllJournals();
-			setJournals(journals);
+      // FIXME: remove check once API linked?
+      if (journals === undefined) {
+        setJournals([]);
+      } else {
+        setJournals(journals);
+      }
 		})();
 	}, []);
 
-	async function handleSubmit () {
+	async function handleSubmit (e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+		
+    setJournals([ ...journals, { review } ]);
+    setReview('');
+
 		await JournalAPI.addJournal({ review });
-		setJournals([ ...journals, { review } ]);
 	}
 
 	function toggleMenu () {
@@ -37,6 +46,8 @@ export default function Journal (): JSX.Element {
 	}
 
 	function onChange (e: React.FormEvent<HTMLTextAreaElement>) {
+    e.preventDefault();
+
 		setReview(e.currentTarget.value);
 	}
 
@@ -51,8 +62,7 @@ export default function Journal (): JSX.Element {
 				/>
 				<div className='journal__menu-select-container'>
 					<div className='journal__menu-select'>
-						<div className='journal__menu-select-entry'>Journal 1</div>
-						<div className='journal__menu-select-entry'>Journal 2</div>
+            {journals.map((entry) => <div className='journal__menu-select-entry'>{entry.review}</div>)}
 					</div>
 					<div />
 				</div>
