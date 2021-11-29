@@ -41,6 +41,12 @@ export default function Journal (): JSX.Element {
     journalsCopy[id] = { review };
 
     setJournals(journalsCopy);
+    setPage(<ViewPage
+      id={id}
+      text={review}
+      switchEditMode={switchEditMode}
+      deleteEntry={deleteEntry}
+    />);
 	}
 
 	function handleSubmit (
