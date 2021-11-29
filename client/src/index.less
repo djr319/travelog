@@ -1,16 +1,18 @@
-:root {
+:root{
   --navbar-color: #4E89BA;
   --bg-color: #84C1F8;
   --navbar-height: 50px;
   --base-layer: 0;
   --priority-layer: 50;
 }
+
 * {
   margin: 0;
   padding: 0;
   position: relative;
   box-sizing: border-box;
 }
+
 body {
   margin-top: 0;
   height: 100vh;
@@ -19,20 +21,19 @@ body {
   color: black;
   z-index: var(--base-layer);
 }
+
 html {
   overflow-y: scroll;
 }
-button,
-button:active,
-button:visited,
-button:focus,
-button:hover {
+
+button, button:active, button:visited, button:focus, button:hover {
   cursor: pointer;
   border: none;
   outline: none;
   background: #4C8AB9;
   color: white;
 }
+
 a:active {
   transition: 200ms, ease;
 }

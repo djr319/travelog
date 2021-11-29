@@ -2,12 +2,16 @@
 
 Final thesis project (Eloy, Anastasia, Ivan, David - Codeworks Remote CET September 2021)
 
+## Useful commands
+- To run front & backend: `npm run dev`
+
 ## Front End
 
-- client/travelog/
+- client/
 - To run: `npm start`
 - React
 - Typescript
+- dreams
 
 ## Back End
 

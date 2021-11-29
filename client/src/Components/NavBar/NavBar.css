@@ -1,0 +1,64 @@
+.navbar {
+  height: var(--navbar-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+  z-index: var(--priority-layer);
+}
+.navbar .navbar-circle,
+.navbar .nav-select .nav-select__list {
+  box-shadow: inset 3px 3px 5px #42749e, inset -3px -3px 5px #5a9ed6;
+}
+.navbar .navbar-circle {
+  width: var(--navbar-height);
+  height: var(--navbar-height);
+  background-color: var(--navbar-color);
+  border-radius: 50%;
+}
+.navbar .nav-select {
+  width: 70%;
+  height: 100%;
+}
+.navbar .nav-select .nav-select__list {
+  background-color: var(--navbar-color);
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+.navbar .nav-select .nav-select__list li {
+  width: 100%;
+  list-style: none;
+  position: relative;
+}
+.navbar .nav-select .nav-select__list li:hover > ul > li {
+  height: 2rem;
+  overflow: visible;
+}
+.navbar .nav-select .nav-select__list li div {
+  color: #000000;
+  display: block;
+  height: 2rem;
+  line-height: 2rem;
+}
+.navbar .nav-select .nav-select__list li li {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 0;
+  overflow: hidden;
+  transition: 0.5s;
+}
+.navbar .nav-select .nav-select__list li li a {
+  width: 100%;
+  border-top: 1px solid #000000;
+  text-decoration: none;
+  color: black;
+  height: 2rem;
+  line-height: 2rem;
+}
+.navbar .nav-select .nav-select__list li li a:hover {
+  background-color: var(--bg-color);
+}
+.navbar .nav-select .nav-select__list li li a:active {
+  background-color: var(--navbar-color);
+}

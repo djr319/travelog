@@ -1,26 +1,22 @@
-import Express from "express";
 
-const app = Express();
-const PORT = 5000;
+import express, { Application } from 'express';
+import cors from 'cors';
+import router from './router';
 
-// const router = require("./router");
-// const cors = require('cors');
+const app: Application = express();
+const PORT = 3001;
 
-// const db = require('./models/db')
+app.use(express.json());
+app.use(cors());
+app.use(router);
 
-// app.use(cors());
+(async function (): Promise<void> {
+  try {
+    app.listen(PORT, (): void => {
+      console.log(`Server is UP at http://localhost:${PORT}`);
+    });
+  } catch (err) {
+    console.error(err);
+  }
+})();
 
-app.get("/", (req, res) => {
-  res.send("Server is working");
-});
-
-// app.use(router);
-
-// (async function () {
-//   try {
-// await db;
-app.listen(PORT, () => {
-  console.log(`app listening on http://localhost:${PORT}  🚀`);
-});
-//   } catch (error) { console.error(error); }
-// })()
