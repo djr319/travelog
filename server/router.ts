@@ -5,24 +5,18 @@ const trip = require('./controllers/controller');
 
 router.post('/signup', trip.doSignUp);
 router.get('/login', trip.getLogin);
-router.get('/profile', trip.getProfile);
-
+router.get('/profile/:id', trip.getProfile);
 router.post('/trips', trip.addNewTrip);
-router.get('/trips', trip.getAllPersonalTrips);
-router.get('/trips/:id', trip.getOnePersonalTrip);
-// router.put('/trips/:id', trip.updateOnePersonalTrip);
-// router.delete('/trips/:id', trip.deleteOnePersonalTrip);
-
+router.get('/trips/:id', trip.getPersonalTrips);
+router.put('/trips/:id', trip.updateTrip);
+router.delete('/trips/:id', trip.deleteTrip);
 router.post('/journals', trip.addNewJournal);
-router.get('/journals', trip.getAllPersonalJournals);
-router.get('/journals/:id', trip.getOnePersonalJournal);
-router.get('/journals/collections', trip.getAllPublicJournals);
-// router.put('/journals/:id', trip.updateOnePersonalJournal);
-// router.delete('/journals/:id', trip.deleteOnePersonalJournal);
-
+router.get('/journals/:id', trip.getPersonalJournals);
+router.put('/journals/:id', trip.updateJournal);
+router.delete('/journals/:id', trip.deleteJournal);
 router.post('/notes', trip.addNewNote);
-router.get('/notes', trip.getAllPersonalNotes);
-// router.delete('/notes/:id', trip.deleteOnePersonalNote);
-
+router.get('/notes/:id', trip.getPersonalNotes);
+router.delete('/notes/:id', trip.deleteNote);
+router.get('/collections', trip.getPublicJournals);
 
 export default router;
