@@ -1,6 +1,6 @@
 import "./Dashboard.css";
 
-const Dashboard = () => {
+export default function Dashboard(): JSX.Element {
   return (
     <div className="dashboard">
       <div>Get the magic from your trips in an easy way</div>
@@ -27,6 +27,4 @@ const Dashboard = () => {
       </div>
     </div>
   );
-};
-
-export default Dashboard;
+}
