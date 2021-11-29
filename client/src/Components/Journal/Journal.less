@@ -1,14 +1,35 @@
 .journal {
-  & .journal__form {
-    & .journal__form-textarea {
-      resize: none;
+  height: 100%;
+  margin: 0.5rem;
 
-      // NOTE style displayed when textarea is in invalid state
-      // e.g. empty, even though it's required
-      // LINK https://developer.mozilla.org/ja/docs/Web/HTML/Element/textarea
-      &:invalid {
-        background-color: rgb(255, 243, 243);
-        border-color: red;
+  & .journal__form {
+    height: 100%;
+
+    & .journal__form-textarea-container {
+      height: 60%;
+      background-color: white;
+      padding: 0.5rem;
+
+      color: rgba(128, 128, 128, 0.561);
+      font-size: 0.75rem;
+      text-align: right;
+
+      border-radius: 5px;
+
+      & .journal__form-textarea {
+        width: 100%;
+        height: 95%;
+        resize: none;
+
+        border-radius: 3px;
+
+        // NOTE style displayed when textarea is in invalid state
+        // e.g. empty, even though it's required
+        // LINK https://developer.mozilla.org/ja/docs/Web/HTML/Element/textarea
+        &:invalid {
+          background-color: rgb(255, 243, 243);
+          border-color: red;
+        }
       }
     }
   }

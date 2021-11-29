@@ -1,7 +1,26 @@
-.journal .journal__form .journal__form-textarea {
-  resize: none;
+.journal {
+  height: 100%;
+  margin: 0.5rem;
 }
-.journal .journal__form .journal__form-textarea:invalid {
+.journal .journal__form {
+  height: 100%;
+}
+.journal .journal__form .journal__form-textarea-container {
+  height: 60%;
+  background-color: white;
+  padding: 0.5rem;
+  color: rgba(128, 128, 128, 0.561);
+  font-size: 0.75rem;
+  text-align: right;
+  border-radius: 5px;
+}
+.journal .journal__form .journal__form-textarea-container .journal__form-textarea {
+  width: 100%;
+  height: 95%;
+  resize: none;
+  border-radius: 3px;
+}
+.journal .journal__form .journal__form-textarea-container .journal__form-textarea:invalid {
   background-color: #fff3f3;
   border-color: red;
 }
