@@ -46,7 +46,7 @@ export default function TripsForm(): JSX.Element {
                     typeof event[0] === "string" &&
                     typeof event[1] === "string"
                   )
-                    setDates([event[0], event[1]]);
+                  setDates([event[0], event[1]]);
                 }}
               />
             </div>
