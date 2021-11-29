@@ -2,14 +2,8 @@
   "name": "travelog-server",
   "version": "1.0.0",
   "description": "Express backend",
-<<<<<<< HEAD
-  "main": "index.js",
-  "type": "module",
-    "scripts": {
-=======
   "main": "index.ts",
   "scripts": {
->>>>>>> dev
     "client": "cd ../client && yarn start",
     "server": "nodemon index.ts",
     "dev": "run-p client server",
