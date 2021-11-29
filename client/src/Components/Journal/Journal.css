@@ -1,0 +1,45 @@
+.journal {
+  height: 100%;
+  padding: 0.5rem;
+}
+.journal .journal__menu {
+  width: 50%;
+  position: absolute;
+  top: -10px;
+  z-index: var(--layer-1);
+  transition: 0.5s;
+}
+.journal .journal__menu .journal__menu-button {
+  position: absolute;
+  background-color: white;
+  padding: 0.25rem;
+  height: 60px;
+  width: 60px;
+  left: 85px;
+  border-radius: 50%;
+  z-index: var(--layer-2);
+  transition: 0.5s;
+}
+.journal .journal__menu .journal__menu-button:active {
+  background-color: grey;
+}
+.journal .journal__menu .journal__menu-select-container {
+  width: 100%;
+  display: flex;
+}
+.journal .journal__menu .journal__menu-select-container .journal__menu-select {
+  height: 100%;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 2rem;
+  font-size: 1.25rem;
+}
+.journal .journal__menu .journal__menu-select-container .journal__menu-select .journal__menu-select-entry {
+  width: 100%;
+  background-color: white;
+  padding: 0.25rem;
+  border: 1px solid black;
+  overflow-x: hidden;
+}
