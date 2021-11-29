@@ -12,7 +12,7 @@ render(
       <App />
       <Routes>
         <Route path='/' element={<Dashboard />}>
-          <Route path="/trips" element={<Trips />} />
+          {/* <Route path="/trips" element={<Trips />} /> */}
           {/* <Route path="/profile" element={<Dashboard />} />
         <Route path="/planning" element={<Dashboard />} />
         <Route path="/journal" element={<Dashboard />} />
