@@ -1,0 +1,106 @@
+.journal {
+  height: 100%;
+  padding: 0.5rem;
+  
+  & .journal__menu {
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    top: -10px;
+    z-index: var(--layer-1);
+
+    transition: 0.5s;
+
+    & .journal__menu-button {
+      position: absolute;
+
+      background-color: white;
+      padding: 0.25rem;
+      height: 60px;
+      width: 60px;
+      left: 85px;
+      border-radius: 50%;
+      z-index: var(--layer-2);
+
+      transition: 0.5s;
+
+      &:active {
+        background-color: grey;
+      }
+    }
+
+    & .journal__menu-select-container {
+      width: 100%;
+      display: flex;
+
+      & .journal__menu-select {
+        height: 100%;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 2rem;
+        font-size: 1.25rem;
+
+        & .journal__menu-select-entry {
+          width: 100%;
+          background-color: white;
+          padding: 0.25rem;
+          border: 1px solid black;
+        }
+      }
+    }
+  }
+
+  & .journal__form {
+    height: 100%;
+    margin-top: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & .journal__form-textarea-container {
+      height: 60%;
+      background-color: white;
+      padding: 0.5rem;
+
+      color: rgba(128, 128, 128, 0.561);
+      font-size: 0.75rem;
+      text-align: right;
+
+      border-radius: 5px;
+
+      & .journal__form-textarea {
+        width: 100%;
+        height: 95%;
+        padding: 0.25rem;
+        resize: none;
+        font-family: var(--journal-font);
+
+        border-radius: 3px;
+
+        // NOTE style displayed when textarea is in invalid state
+        // e.g. empty, even though it's required
+        // LINK https://developer.mozilla.org/ja/docs/Web/HTML/Element/textarea
+        &:invalid {
+          background-color: rgb(255, 243, 243);
+          border-color: red;
+        }
+      }
+    }
+
+    & .journal__form-submit {
+      margin-top: 1rem;
+      padding: 0.5rem;
+      border-radius: 10px;
+
+      line-height: 2rem;
+      font-size: 1.5rem;
+
+      &:active {
+        background-color: var(--bg-color);
+      }
+    }
+  }
+}
