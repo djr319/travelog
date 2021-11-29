@@ -1,28 +1,38 @@
+import { useState, useEffect } from 'react';
 import { JournalAPI } from 'Services/index';
-import { useState } from 'react';
-import './Journal.css';
+import { Journal } from 'Types/index';
 import Arrow from 'Assets/arrow.svg';
+import './Journal.css';
 
 const MIN_LEN = 10;
 const MAX_LEN = 30;
 
 export default function Journal (): JSX.Element {
+	const [ journals, setJournals ] = useState<Journal[]>([]);
 	const [ review, setReview ] = useState('');
 
 	const [ menuPos, setMenuPos ] = useState(-105);
 	const [ arrowRot, setArrowRot ] = useState(180);
 
+	useEffect(() => {
+		(async () => {
+			const journals = await JournalAPI.getAllJournals();
+			setJournals(journals);
+		})();
+	}, []);
+
 	async function handleSubmit () {
-		JournalAPI.addJournal({ review });
+		await JournalAPI.addJournal({ review });
+		setJournals([ ...journals, { review } ]);
 	}
 
 	function toggleMenu () {
 		setMenuPos((prev) => {
-      if (prev >= 0) {
-        return -105;
-      }
-      return 0;
-    });
+			if (prev >= 0) {
+				return -105;
+			}
+			return 0;
+		});
 		setArrowRot((prev) => 180 - prev);
 	}
 
@@ -65,7 +75,9 @@ export default function Journal (): JSX.Element {
 						`${review.length}/${MAX_LEN} characters.`
 					)}
 				</div>
-				<button className='journal__form-submit' type='submit'>Add story</button>
+				<button className='journal__form-submit' type='submit'>
+					Add story
+				</button>
 			</form>
 		</div>
 	);
