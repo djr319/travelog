@@ -1,3 +1,4 @@
+
 import NavBar from 'Components/NavBar/NavBar';
 // import React from 'react';
 import { Outlet } from 'react-router-dom';
@@ -8,6 +9,7 @@ export default function App(): JSX.Element {
     <div className='App'>
       <NavBar />
       <Outlet />
+
     </div>
   );
 }
