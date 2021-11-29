@@ -11,6 +11,7 @@ import './Journal.css';
 
 export default function Journal (): JSX.Element {
 	const [ journals, setJournals ] = useState<JournalType[]>([]);
+  console.log('journals', journals);
 	const [ page, setPage ] = useState(
 		<CreatePage handleSubmit={handleSubmit} />
 	);
@@ -38,7 +39,7 @@ export default function Journal (): JSX.Element {
 
     const journalsCopy = [...journals];
     journalsCopy[id] = { review };
-    console.log(journalsCopy);
+
     setJournals(journalsCopy);
 	}
 
@@ -48,8 +49,17 @@ export default function Journal (): JSX.Element {
 	) {
 		e.preventDefault();
 
+    const nextJournalId = journals.length;
 		JournalAPI.addJournal({ review });
 		setJournals([ ...journals, { review } ]);
+		setPage(
+			<ViewPage
+				id={nextJournalId}
+				text={review}
+				switchEditMode={switchEditMode}
+				deleteEntry={deleteEntry}
+			/>
+		);
 	}
 
 	function switchEditMode (
@@ -66,9 +76,9 @@ export default function Journal (): JSX.Element {
 		e.preventDefault();
 
     const journalsCopy = [...journals];
-    delete journalsCopy[id];
-    console.log(journalsCopy);
+    journalsCopy.splice(id, 1);
     setJournals(journalsCopy);
+    setPage(<CreatePage handleSubmit={handleSubmit} />);
 	}
 
 	function handleClick (
