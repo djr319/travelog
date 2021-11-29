@@ -1,4 +1,4 @@
-import Express from 'express';
+import Express from "express";
 
 const app = Express();
 const PORT = 5000;
@@ -10,9 +10,9 @@ const PORT = 5000;
 
 // app.use(cors());
 
-app.get('/', (req, res) => {
-  res.send('Server is working')
-})
+app.get("/", (req, res) => {
+  res.send("Server is working");
+});
 
 // app.use(router);
 
@@ -20,8 +20,7 @@ app.get('/', (req, res) => {
 //   try {
 // await db;
 app.listen(PORT, () => {
-  console.log(`app listening on http://localhost:${PORT}  🚀`)
-})
+  console.log(`app listening on http://localhost:${PORT}  🚀`);
+});
 //   } catch (error) { console.error(error); }
 // })()
-
