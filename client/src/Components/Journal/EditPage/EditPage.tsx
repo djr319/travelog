@@ -1,3 +1,4 @@
+import './EditPage.css';
 import { useState } from 'react';
 
 // NOTE min/max for entry text length
