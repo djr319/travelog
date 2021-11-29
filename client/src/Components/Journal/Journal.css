@@ -46,6 +46,9 @@
 .journal .journal__form {
   height: 100%;
   margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .journal .journal__form .journal__form-textarea-container {
   height: 60%;
@@ -67,4 +70,14 @@
 .journal .journal__form .journal__form-textarea-container .journal__form-textarea:invalid {
   background-color: #fff3f3;
   border-color: red;
+}
+.journal .journal__form .journal__form-submit {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  line-height: 2rem;
+  font-size: 1.5rem;
+}
+.journal .journal__form .journal__form-submit:active {
+  background-color: var(--bg-color);
 }

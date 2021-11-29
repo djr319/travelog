@@ -65,7 +65,7 @@ export default function Journal (): JSX.Element {
 						`${review.length}/${MAX_LEN} characters.`
 					)}
 				</div>
-				<button type='submit'>Add story</button>
+				<button className='journal__form-submit' type='submit'>Add story</button>
 			</form>
 		</div>
 	);
