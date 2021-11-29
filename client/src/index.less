@@ -1,4 +1,7 @@
-:root{
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+:root {
+  --journal-font: 'Indie Flower', cursive;
   --navbar-color: #4E89BA;
   --bg-color: #84C1F8;
   --navbar-height: 50px;
@@ -20,7 +23,9 @@
 body {
   margin-top: 0;
   height: 100vh;
-  font-family: sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background: #84C1F8;
   color: black;
   z-index: var(--base-layer);
@@ -30,7 +35,11 @@ html {
   overflow-y: scroll;
 }
 
-button, button:active, button:visited, button:focus, button:hover {
+button,
+button:active,
+button:visited,
+button:focus,
+button:hover {
   cursor: pointer;
   border: none;
   outline: none;
