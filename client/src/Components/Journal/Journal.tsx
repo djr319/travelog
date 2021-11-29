@@ -4,8 +4,28 @@ import { Journal as JournalType } from 'Types/index';
 import Arrow from 'Assets/arrow.svg';
 import './Journal.css';
 
+// NOTE min/max for entry text length
 const MIN_LEN = 10;
 const MAX_LEN = 30;
+
+type EntryProps = {
+	text: string;
+	id: number;
+	handleClick: (
+		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+		key: number
+	) => void;
+};
+
+function Entry ({ text, id, handleClick }: EntryProps): JSX.Element {
+	return (
+		<div
+			className='journal__menu-select-entry'
+			onClick={(e) => handleClick(e, id)}>
+			{text}
+		</div>
+	);
+}
 
 export default function Journal (): JSX.Element {
 	const [ journals, setJournals ] = useState<JournalType[]>([]);
@@ -17,20 +37,20 @@ export default function Journal (): JSX.Element {
 	useEffect(() => {
 		(async () => {
 			const journals = await JournalAPI.getAllJournals();
-      // FIXME: remove check once API linked?
-      if (journals === undefined) {
-        setJournals([]);
-      } else {
-        setJournals(journals);
-      }
+			// FIXME: remove check once API linked?
+			if (journals === undefined) {
+				setJournals([]);
+			} else {
+				setJournals(journals);
+			}
 		})();
 	}, []);
 
 	async function handleSubmit (e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-		
-    setJournals([ ...journals, { review } ]);
-    setReview('');
+		e.preventDefault();
+
+		setJournals([ ...journals, { review } ]);
+		setReview('');
 
 		await JournalAPI.addJournal({ review });
 	}
@@ -45,10 +65,19 @@ export default function Journal (): JSX.Element {
 		setArrowRot((prev) => 180 - prev);
 	}
 
-	function onChange (e: React.FormEvent<HTMLTextAreaElement>) {
-    e.preventDefault();
+	function handleChange (e: React.FormEvent<HTMLTextAreaElement>) {
+		e.preventDefault();
 
 		setReview(e.currentTarget.value);
+	}
+
+	function handleClick (
+		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+		id: number
+	) {
+		e.preventDefault();
+
+    setReview(journals[id].review);
 	}
 
 	return (
@@ -62,7 +91,15 @@ export default function Journal (): JSX.Element {
 				/>
 				<div className='journal__menu-select-container'>
 					<div className='journal__menu-select'>
-            {journals.map((entry) => <div className='journal__menu-select-entry'>{entry.review}</div>)}
+						<div className='journal__menu-select-entry'>Create story</div>
+						{journals.map((entry, i) => (
+							<Entry
+								key={i}
+								id={i}
+								text={entry.review}
+								handleClick={handleClick}
+							/>
+						))}
 					</div>
 					<div />
 				</div>
@@ -77,7 +114,7 @@ export default function Journal (): JSX.Element {
 						maxLength={MAX_LEN}
 						name='review'
 						value={review}
-						onInput={onChange}
+						onInput={handleChange}
 					/>
 					{review.length < MIN_LEN ? (
 						'Insufficient characters.'
