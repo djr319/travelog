@@ -1,7 +1,9 @@
 import { Journal as JournalType } from 'Types/index';
 import { useState, useEffect } from 'react';
+
 import { JournalAPI } from 'Services/index';
 import JournalMenu from './JournalMenu';
+import CreatePage from './CreatePage/CreatePage';
 import EditPage from './EditPage/EditPage';
 import ViewPage from './ViewPage/ViewPage';
 
@@ -10,10 +12,7 @@ import './Journal.css';
 export default function Journal (): JSX.Element {
 	const [ journals, setJournals ] = useState<JournalType[]>([]);
 	const [ page, setPage ] = useState(
-		<EditPage
-			text=''
-			handleSubmit={handleSubmit}
-		/>
+		<CreatePage handleSubmit={handleSubmit} />
 	);
 
 	useEffect(() => {
@@ -28,11 +27,48 @@ export default function Journal (): JSX.Element {
 		})();
 	}, []);
 
-	async function handleSubmit (e: React.FormEvent<HTMLFormElement>, review: string) {
+  function handleUpdate (
+		e: React.FormEvent<HTMLFormElement>,
+    id: number,
+		review: string
+	) {
 		e.preventDefault();
-    console.log('review', review);
+
+		JournalAPI.updateJournal(id, { review });
+
+    const journalsCopy = [...journals];
+    journalsCopy[id] = { review };
+    console.log(journalsCopy);
+    setJournals(journalsCopy);
+	}
+
+	function handleSubmit (
+		e: React.FormEvent<HTMLFormElement>,
+		review: string
+	) {
+		e.preventDefault();
+
 		JournalAPI.addJournal({ review });
 		setJournals([ ...journals, { review } ]);
+	}
+
+	function switchEditMode (
+		e: React.MouseEvent<HTMLButtonElement>,
+		id: number,
+		text: string
+	) {
+		e.preventDefault();
+
+		setPage(<EditPage id={id} text={text} handleUpdate={handleUpdate} />);
+	}
+
+	function deleteEntry (e: React.MouseEvent<HTMLButtonElement>, id: number) {
+		e.preventDefault();
+
+    const journalsCopy = [...journals];
+    delete journalsCopy[id];
+    console.log(journalsCopy);
+    setJournals(journalsCopy);
 	}
 
 	function handleClick (
@@ -41,13 +77,21 @@ export default function Journal (): JSX.Element {
 	) {
 		e.preventDefault();
 
-    setPage(<ViewPage text={journals[id].review} />);
+		// FIXME: using journals array index as id is not safe
+		setPage(
+			<ViewPage
+				id={id}
+				text={journals[id].review}
+				switchEditMode={switchEditMode}
+				deleteEntry={deleteEntry}
+			/>
+		);
 	}
 
 	return (
 		<div className='journal'>
 			<JournalMenu journals={journals} handleClick={handleClick} />
-      {page}
+			{page}
 		</div>
 	);
 }

@@ -1,4 +1,4 @@
-import './EditPage.css';
+import '../EditPage/EditPage.css';
 import { useState } from 'react';
 
 // NOTE min/max for entry text length
@@ -6,17 +6,13 @@ const MIN_LEN = 10;
 const MAX_LEN = 30;
 
 type EditPageProps = {
-	id: number
-	text: string;
-	handleUpdate: (e: React.FormEvent<HTMLFormElement>, id: number, text: string) => void;
+	handleSubmit: (e: React.FormEvent<HTMLFormElement>, text: string) => void;
 };
 
 export default function EditPage ({
-	id,
-	text: entryText,
-	handleUpdate
+	handleSubmit
 }: EditPageProps): JSX.Element {
-	const [ text, setText ] = useState(entryText);
+	const [ text, setText ] = useState('');
 
 	function updateReview (e: React.FormEvent<HTMLTextAreaElement>) {
 		e.preventDefault();
@@ -26,7 +22,7 @@ export default function EditPage ({
 	}
 
 	return (
-		<form className='journal__form' onSubmit={(e) => handleUpdate(e, id, text)}>
+		<form className='journal__form' onSubmit={(e) => handleSubmit(e, text)}>
 			<div className='journal__form-textarea-container'>
 				<textarea
 					className='journal__form-textarea'

@@ -24,7 +24,7 @@ export function getPublicJournals() {
   return fetchRequest(`${JOURNALS_URL}/collections`);
 }
 
-export function updateJournal(id: string, update: Journal) {
+export function updateJournal(id: string | number, update: Journal) {
   return fetchRequest(`${JOURNALS_URL}/${id}`, {
     method: 'PUT',
     mode: 'cors',
