@@ -19,16 +19,16 @@ render(
         <Route path="/route" element={<Dashboard />} />
         <Route path="/weather" element={<Dashboard />} />
         <Route path="/logout" element={<Dashboard />} /> */}
-					<Route path='journal' element={<Journal />} />
-					<Route
-						path='*'
-						element={
-							<main style={{ padding: '1rem' }}>
-								<p>We've wandered off the beaten track. Nothing here!</p>
-							</main>
-						}
-					/>
 				</Route>
+				<Route path='journal' element={<Journal />} />
+				<Route
+					path='*'
+					element={
+						<main style={{ padding: '1rem' }}>
+							<p>We've wandered off the beaten track. Nothing here!</p>
+						</main>
+					}
+				/>
 			</Routes>
 		</BrowserRouter>
 	</StrictMode>,
