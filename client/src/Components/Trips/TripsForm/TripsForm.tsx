@@ -1,13 +1,33 @@
 import "./TripsForm.css";
 import { SyntheticEvent, useState } from "react";
 import { DateRangePicker } from "rsuite";
+import { useNavigate } from "react-router-dom";
 import "rsuite/dist/rsuite.min.css";
+import tripsService from "../../../Services/trips.services";
 
 export default function TripsForm(): JSX.Element {
+  const navigate = useNavigate();
   const [destination, setDestination] = useState("");
-  const [dates, setDates] = useState<string[]>([]);
-  const [sights, setSights] = useState("");
-  const [tags, setTags] = useState("");
+  const [dates, setDates] = useState<Date[] | undefined>([]);
+  // const [sights, setSights] = useState<string[]>([]);
+  const [sights, setSights] = useState<string>("");
+
+  console.log("destination", destination);
+
+  console.log("sights", sights);
+  async function postTripHandler(
+    destination: string,
+    dateFrom: Date,
+    dateTo: Date,
+    visits: string
+  ) {
+    return await tripsService.addNewTrip({
+      destination,
+      dateFrom,
+      dateTo,
+      visits,
+    });
+  }
 
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
@@ -16,7 +36,17 @@ export default function TripsForm(): JSX.Element {
       alert("please fill in all the fields");
       return;
     }
+    console.log("dates", dates);
+    if (dates && dates.length)
+      postTripHandler(destination, dates[0], dates[1], sights);
     setDestination("");
+    navigate("/trip", {
+      state: {
+        destination,
+        dates: dates,
+        sights,
+      },
+    });
   };
 
   return (
@@ -29,7 +59,7 @@ export default function TripsForm(): JSX.Element {
               <h4>Make the plan</h4>
             </div>
             {/* -----------------CITY------------------- */}
-            <label>Country/City</label>
+            <label>City</label>
             <input
               type="text"
               placeholder="destination..."
@@ -41,13 +71,11 @@ export default function TripsForm(): JSX.Element {
             <h4>Departure</h4>
             <div className="dates">
               <DateRangePicker
-                onChange={(event) => {
-                  if (
-                    typeof event[0] === "string" &&
-                    typeof event[1] === "string"
-                  )
-                    setDates([event[0], event[1]]);
-                }}
+              // onChange={(event) => {
+              //   if (event.length === 2) {
+              //     return setDates([event[0], event[1]]);
+              //   }
+              // }}
               />
             </div>
             {/* --------------TO VISIT------------------ */}
@@ -56,40 +84,17 @@ export default function TripsForm(): JSX.Element {
             <div className="todo-list">
               <input
                 type="text"
-                placeholder="wish to visit..."
                 value={sights}
+                placeholder="wish to visit..."
                 onChange={(event) => setSights(event.target.value)}
-              ></input>
-            </div>
-            {/* ----------------------TAGS-------------------- */}
-            <label>Tags</label>
-            <h4>interested in getting a review for</h4>
-            <div className="tags-list">
-              <input
-                type="text"
-                placeholder="add tags..."
-                value={tags}
-                onChange={(event) => setTags(event.target.value)}
               ></input>
             </div>
           </div>
           <button type="submit">Upload</button>
         </form>
       </div>
+
+      <div></div>
     </div>
   );
 }
-
-//-------------------------TODO LATER-------------------
-// setSights((prev) => {
-//   if (prev) {
-//     return [...prev, event.target.value];
-//   } else {
-//     return [event.target.value];
-//   }
-// })
-// }
-// ></input>
-// <ul>
-// {sights && sights.length && sights.map(sight => <li>{sight}</li>)}
-// </ul>
