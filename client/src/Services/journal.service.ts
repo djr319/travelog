@@ -12,7 +12,7 @@ export function addJournal(journal: Journal): Promise<void> {
   })
 }
 
-export function getAllJournals(): Promise<Journal[]> {
+export function getAllJournals(id: string | number): Promise<Journal[]> {
   return fetchRequest(JOURNALS_URL);
 }
 

@@ -18,7 +18,7 @@ export default function Journal (): JSX.Element {
 
 	useEffect(() => {
 		(async () => {
-			const journals = await JournalAPI.getAllJournals();
+			const journals = await JournalAPI.getAllJournals('user_id');
 			// FIXME: remove check once API linked?
 			if (journals === undefined) {
 				setJournals([]);
