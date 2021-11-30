@@ -12,11 +12,11 @@ export function addJournal(journal: Journal): Promise<void> {
   })
 }
 
-export function getOwnJournals(id: string | number): Promise<Journal[]> {
+export function getOwnJournals(id: number): Promise<Journal[]> {
   return fetchRequest(`${JOURNALS_URL}/${id}`);
 }
 
-export function getJournal(id: string): Promise<Journal> {
+export function getJournal(id: number): Promise<Journal> {
   return fetchRequest(`${JOURNALS_URL}/${id}`);
 }
 
@@ -24,7 +24,7 @@ export function getPublicJournals(): Promise<Journal[]> {
   return fetchRequest(`${JOURNALS_URL}/collections`);
 }
 
-export function updateJournal(id: string | number, update: Journal): Promise<Journal> {
+export function updateJournal(id: number, update: Journal): Promise<Journal> {
   return fetchRequest(`${JOURNALS_URL}/${id}`, {
     method: 'PUT',
     mode: 'cors',
@@ -33,7 +33,7 @@ export function updateJournal(id: string | number, update: Journal): Promise<Jou
   })
 }
 
-export function deleteJournal(id: string | number): Promise<void> {
+export function deleteJournal(id: number): Promise<void> {
   return fetchRequest(`${JOURNALS_URL}/${id}`, {
     method: 'DELETE'
   });

@@ -19,19 +19,19 @@ export default function Journal (): JSX.Element {
 
 	// Queries
 	const query = useQuery('userJournals', async () => {
-		const data = await JournalAPI.getOwnJournals('user_id');
+		const data = await JournalAPI.getOwnJournals(0);
 		return data;
 	});
 
 	// Mutations
 	const updateJournal = useMutation(
-		({ id, review }: { id: string | number, review: string }) => {
+		({ id, review }: { id: number, review: string }) => {
 			return JournalAPI.updateJournal(id, { review });
 		}
 	);
 
 	const deleteJournal = useMutation(
-		({ id }: { id: string | number }) => {
+		({ id }: { id: number }) => {
 			return JournalAPI.deleteJournal(id);
 		}
 	);
