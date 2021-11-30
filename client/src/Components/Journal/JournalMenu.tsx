@@ -15,13 +15,14 @@ export default function JournalMenu ({
 	journals,
 	handleClick
 }: JournalMenuProps) {
-	const [ menuPos, setMenuPos ] = useState(-105);
+	const MENU_WIDTH = 150;
+	const [ menuPos, setMenuPos ] = useState(5 - MENU_WIDTH);
 	const [ arrowRot, setArrowRot ] = useState(180);
 
 	function toggleMenu () {
 		setMenuPos((prev) => {
 			if (prev >= 0) {
-				return -105;
+				return 5 - MENU_WIDTH;
 			}
 			return 0;
 		});
@@ -30,15 +31,16 @@ export default function JournalMenu ({
 
 	return (
 		<div className='journal__menu' style={{ left: menuPos }}>
-			<img
-				className='journal__menu-button'
-				src={Arrow}
-				onClick={toggleMenu}
-				style={{ transform: `rotate(${arrowRot}deg)` }}
-			/>
+			<div className='journal__menu-button-container'>
+				<img
+					className='journal__menu-button'
+					src={Arrow}
+					onClick={toggleMenu}
+					style={{ transform: `rotate(${arrowRot}deg)` }}
+				/>
+			</div>
 			<div className='journal__menu-select-container'>
 				<div className='journal__menu-select'>
-					<div className='journal__menu-select-entry'>Create story</div>
 					{journals.map((entry, i) => (
 						<MenuEntry
 							key={i}
@@ -47,8 +49,8 @@ export default function JournalMenu ({
 							handleClick={handleClick}
 						/>
 					))}
+					<div className={`journal__menu-select-entry new ${journals.length && 'last'}`}>New story</div>
 				</div>
-				<div />
 			</div>
 		</div>
 	);
