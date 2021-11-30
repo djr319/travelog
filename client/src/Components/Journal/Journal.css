@@ -5,6 +5,7 @@
 .journal .journal__menu {
   width: 150px;
   position: fixed;
+  margin-top: -15px;
   padding: 0.5rem;
   z-index: var(--layer-1);
   border-radius: 5px;
