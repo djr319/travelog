@@ -2,7 +2,7 @@ import { Journal as JournalType } from 'Types/index';
 import { useState, useEffect } from 'react';
 
 import { JournalAPI } from 'Services/index';
-import JournalMenu from './JournalMenu';
+import JournalMenu from './JournalMenu/JournalMenu';
 import CreatePage from './CreatePage/CreatePage';
 import EditPage from './EditPage/EditPage';
 import ViewPage from './ViewPage/ViewPage';
