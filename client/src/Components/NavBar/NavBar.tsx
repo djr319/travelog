@@ -2,6 +2,17 @@ import { Link } from 'react-router-dom';
 import './NavBar.css';
 // import Login from '../../Components/LoginButton/LoginButton';
 
+// TODO
+// <li>Profile</li>
+// <li>Planning</li>
+// <li>Trips</li>
+// <li>Journal</li>
+// <li>Notes</li>
+// <li>Route</li>
+// <li>Weather</li>
+// <li>Logout</li>
+
+
 export default function NavBar(): JSX.Element {
   return (
     <div className='navbar'>
