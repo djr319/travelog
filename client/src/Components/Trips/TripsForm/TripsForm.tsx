@@ -4,11 +4,10 @@ import { DateRangePicker } from "rsuite";
 import { useNavigate } from "react-router-dom";
 import "rsuite/dist/rsuite.min.css";
 import tripsService from "../../../Services/trips.services";
-
-export default function TripsForm(): JSX.Element {
+function TripsForm(): JSX.Element {
   const navigate = useNavigate();
   const [destination, setDestination] = useState("");
-  const [dates, setDates] = useState<Date[] | undefined>([]);
+  const [dates, setDates] = useState<string[]>([]);
   // const [sights, setSights] = useState<string[]>([]);
   const [sights, setSights] = useState<string>("");
 
@@ -17,8 +16,8 @@ export default function TripsForm(): JSX.Element {
   console.log("sights", sights);
   async function postTripHandler(
     destination: string,
-    dateFrom: Date,
-    dateTo: Date,
+    dateFrom: string,
+    dateTo: string,
     visits: string
   ) {
     return await tripsService.addNewTrip({
@@ -37,8 +36,7 @@ export default function TripsForm(): JSX.Element {
       return;
     }
     console.log("dates", dates);
-    if (dates && dates.length)
-      postTripHandler(destination, dates[0], dates[1], sights);
+    postTripHandler(destination, dates[0], dates[1], sights);
     setDestination("");
     navigate("/trip", {
       state: {
@@ -71,11 +69,15 @@ export default function TripsForm(): JSX.Element {
             <h4>Departure</h4>
             <div className="dates">
               <DateRangePicker
-              // onChange={(event) => {
-              //   if (event.length === 2) {
-              //     return setDates([event[0], event[1]]);
-              //   }
-              // }}
+                onChange={(event) => {
+                  if (
+                    typeof event[0] === "string" &&
+                    typeof event[1] === "string"
+                  ) {
+                    console.log(event);
+                    return setDates([event[0], event[1]]);
+                  }
+                }}
               />
             </div>
             {/* --------------TO VISIT------------------ */}
@@ -98,3 +100,5 @@ export default function TripsForm(): JSX.Element {
     </div>
   );
 }
+
+export default TripsForm;
