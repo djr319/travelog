@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Journal } from 'Types/index';
 import Arrow from 'Assets/arrow.svg';
-import Entry from './Entry';
+import MenuEntry from './MenuEntry';
 
 type JournalMenuProps = {
 	journals: Journal[];
@@ -40,7 +40,7 @@ export default function JournalMenu ({
 				<div className='journal__menu-select'>
 					<div className='journal__menu-select-entry'>Create story</div>
 					{journals.map((entry, i) => (
-						<Entry
+						<MenuEntry
 							key={i}
 							id={i}
 							text={entry.review}
