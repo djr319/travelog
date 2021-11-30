@@ -2,6 +2,7 @@ import { Journal as JournalType } from 'Types/index';
 import { useState, useEffect } from 'react';
 
 import { JournalAPI } from 'Services/index';
+import { JournalsList } from 'Components/index';
 import JournalMenu from './JournalMenu/JournalMenu';
 import CreatePage from './CreatePage/CreatePage';
 import EditPage from './EditPage/EditPage';
@@ -120,6 +121,7 @@ export default function Journal (): JSX.Element {
 				handleNew={handleNew}
 			/>
 			{page}
+			<JournalsList journals={journals} />
 		</div>
 	);
 }
