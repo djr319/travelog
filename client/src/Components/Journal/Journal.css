@@ -59,12 +59,14 @@
   background-color: black;
   color: white;
 }
-.journal .journal__menu .journal__menu-select-container .journal__menu-select > .journal__menu-select-entry {
-  border-top-left-radius: 5px;
+.journal .journal__menu .journal__menu-select-container .journal__menu-select .journal__menu-select-entry {
   border-top: 3px solid black;
   border-right: 3px solid black;
   border-left: 3px solid black;
 }
-.journal .journal__menu .journal__menu-select-container .journal__menu-select > .journal__menu-select-entry.last {
+.journal .journal__menu .journal__menu-select-container .journal__menu-select .journal__menu-select-entry:first-of-type {
+  border-top-left-radius: 5px;
+}
+.journal .journal__menu .journal__menu-select-container .journal__menu-select .journal__menu-select-entry:first-of-type.last {
   border-radius: 5px 0 0 5px;
 }

@@ -27,46 +27,45 @@ export default function Journal (): JSX.Element {
 		})();
 	}, []);
 
-  function updateEntry (
+	function updateEntry (
 		e: React.FormEvent<HTMLFormElement>,
-    id: number,
+		id: number,
 		review: string
 	) {
 		e.preventDefault();
 
 		JournalAPI.updateJournal(id, { review });
 
-    const journalsCopy = [...journals];
-    journalsCopy[id] = { review };
+		const journalsCopy = [ ...journals ];
+		journalsCopy[id] = { review };
 
-    setJournals(journalsCopy);
-    setPage(<ViewPage
-      id={id}
-      text={review}
-      switchEditMode={switchEditMode}
-      deleteEntry={deleteEntry}
-    />);
+		setJournals(journalsCopy);
+		setPage(
+			<ViewPage
+				id={id}
+				text={review}
+				switchEditMode={switchEditMode}
+				deleteEntry={deleteEntry}
+			/>
+		);
 	}
 
-  function deleteEntry (e: React.MouseEvent<HTMLButtonElement>, id: number) {
+	function deleteEntry (e: React.MouseEvent<HTMLButtonElement>, id: number) {
 		e.preventDefault();
 
-    JournalAPI.deleteJournal(id);
+		JournalAPI.deleteJournal(id);
 
-    const journalsCopy = [...journals];
-    journalsCopy.splice(id, 1);
-    
-    setJournals(journalsCopy);
-    setPage(<CreatePage handleSubmit={handleSubmit} />);
+		const journalsCopy = [ ...journals ];
+		journalsCopy.splice(id, 1);
+
+		setJournals(journalsCopy);
+		setPage(<CreatePage handleSubmit={handleSubmit} />);
 	}
 
-	function handleSubmit (
-		e: React.FormEvent<HTMLFormElement>,
-		review: string
-	) {
+	function handleSubmit (e: React.FormEvent<HTMLFormElement>, review: string) {
 		e.preventDefault();
 
-    const nextJournalId = journals.length;
+		const nextJournalId = journals.length;
 		JournalAPI.addJournal({ review });
 		setJournals([ ...journals, { review } ]);
 		setPage(
@@ -89,15 +88,11 @@ export default function Journal (): JSX.Element {
 		setPage(<EditPage id={id} text={text} updateEntry={updateEntry} />);
 	}
 
-	function handleNew (
-		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-	) {
+	function handleNew (e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 		e.preventDefault();
 
 		// FIXME: using journals array index as id is not safe
-		setPage(
-			<CreatePage handleSubmit={handleSubmit} />
-		);
+		setPage(<CreatePage handleSubmit={handleSubmit} />);
 	}
 
 	function handleClick (
@@ -119,7 +114,11 @@ export default function Journal (): JSX.Element {
 
 	return (
 		<div className='journal'>
-			<JournalMenu journals={journals} handleClick={handleClick} handleNew={handleNew} />
+			<JournalMenu
+				journals={journals}
+				handleClick={handleClick}
+				handleNew={handleNew}
+			/>
 			{page}
 		</div>
 	);
