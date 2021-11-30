@@ -1,4 +1,4 @@
-export { default as JournalAPI } from './journal.service';
+export { default as JournalAPI } from './journalService';
 
 const BASE_URL = 'http://localhost:3001'
 
