@@ -2,12 +2,16 @@ import { StrictMode } from 'react';
 import { Dashboard, Journal } from 'Components/index';
 import { render } from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import './index.css';
 import App from './App';
 // import reportWebVitals from './reportWebVitals';
 
+const queryClient = new QueryClient();
+
 render(
 	<StrictMode>
+		<QueryClientProvider client={queryClient}>
 		<BrowserRouter>
 			<App />
 			<Routes>
@@ -31,6 +35,7 @@ render(
 				/>
 			</Routes>
 		</BrowserRouter>
+		</QueryClientProvider>
 	</StrictMode>,
 	document.getElementById('root')
 );

@@ -1,3 +1,6 @@
+import {
+	useQuery,
+} from 'react-query';
 import { Journal as JournalType } from 'Types/index';
 import { useState, useEffect } from 'react';
 
@@ -16,9 +19,15 @@ export default function Journal (): JSX.Element {
 		<CreatePage handleSubmit={handleSubmit} />
 	);
 
+	// Queries
+	const query = useQuery('user-journals', async () => {
+		const data = await JournalAPI.getAllJournals('user_id');
+		return data;
+	});
+
 	useEffect(() => {
 		(async () => {
-			const journals = await JournalAPI.getAllJournals('user_id');
+			const journals = query.data;
 			// FIXME: remove check once API linked?
 			if (journals === undefined) {
 				setJournals([]);
