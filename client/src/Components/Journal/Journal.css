@@ -13,7 +13,7 @@
 .journal .journal__menu .journal__menu-button-container {
   position: absolute;
   top: 8px;
-  right: -42px;
+  right: -42.5px;
   z-index: var(--layer-2);
   border: solid 3px black;
   border-radius: 0 50% 50% 0;
@@ -46,7 +46,7 @@
   background-color: white;
   padding: 0.5rem;
   text-align: left;
-  overflow-x: scroll;
+  overflow-x: hidden;
 }
 .journal .journal__menu .journal__menu-select-container .journal__menu-select .journal__menu-select-entry.last {
   border-left: 3px solid black;
@@ -65,7 +65,7 @@
   border-right: 3px solid black;
   border-left: 3px solid black;
 }
-.journal .journal__menu .journal__menu-select-container .journal__menu-select > .journal__menu-select-entry .last {
+.journal .journal__menu .journal__menu-select-container .journal__menu-select > .journal__menu-select-entry.last {
   border-top-right-radius: 0;
   border-top-left-radius: 0;
 }
