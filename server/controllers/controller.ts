@@ -3,7 +3,7 @@ import { PrismaClient } from '../node_modules/.prisma/client/index';
 
 const prisma = new PrismaClient();
 
-const doSignUp = async (req: Request, res: Response): Promise<void> => {
+const signUp = async (req: Request, res: Response): Promise<void> => {
   try {
     const user = await prisma.user.create({data: req.body});
     res.status(200);
@@ -241,7 +241,7 @@ const getPublicJournals = async (req: Request, res: Response): Promise<void> => 
 }
 
 module.exports = {
-  doSignUp,
+  signUp,
   getLogin,
   getProfile,
   addNewTrip,
