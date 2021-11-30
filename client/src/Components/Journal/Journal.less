@@ -14,7 +14,7 @@
 
     & .journal__menu-button-container {
       position: absolute;
-      top: 0px;
+      top: 8px;
       right: -35px;
       
       border-radius: 0 50% 50% 0;
@@ -46,18 +46,20 @@
         flex-direction: column;
         align-items: flex-start;
         line-height: 2rem;
-        font-size: 1.75rem;
+        font-size: 1.5rem;
 
         & .journal__menu-select-entry {
           width: 100%;
           background-color: white;
-          padding: 0.25rem;
-          overflow-x: hidden;
+          padding: 0.5rem;
           border-radius: 5px;
-
-          text-align: left;
           
-          &:not(.new) {
+          text-align: left;
+          overflow-x: scroll;
+          
+          &.last, &:not(.new) {
+            border-left: 3px solid black;
+            border-right: 3px solid black;
             border-bottom: 3px solid black;
           }
 
@@ -73,6 +75,7 @@
 
         & > .journal__menu-select-entry {
           border-radius: 5px 5px 0 0;
+          border-top: 3px solid black;
         }
       }
     }
