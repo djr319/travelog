@@ -1,5 +1,32 @@
 .journals-list {
-  & .journals-list__entry {
-    background-color: white;
+  margin: 1rem;
+  margin-top: 2rem;
+
+  & h1,
+  h2,
+  h3 {
+    border-radius: 5px;
+    background: linear-gradient(145deg, #5393c7, #467ba7);
+    box-shadow: 2px 2px 5px #42749e,
+      -2px -2px 5px #5a9ed6;
+
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-weight: 100;
+  }
+
+  & .journals-list__list {
+    padding: 0.5rem;
+    margin-top: 1rem;
+
+    & .journals-list__entry {
+      padding: 0.5rem;
+      line-height: 2rem;
+      font-size: 1.5rem;
+      
+      border-radius: 5px;
+      background: white;
+      box-shadow: 0 0 0.75rem #42749e;
+    }
   }
 }
