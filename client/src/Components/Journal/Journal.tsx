@@ -1,6 +1,4 @@
-import {
-	useQuery,
-} from 'react-query';
+import { useQuery, useQueryClient, useMutation } from 'react-query';
 import { Journal as JournalType } from 'Types/index';
 import { useState, useEffect } from 'react';
 
@@ -19,11 +17,21 @@ export default function Journal (): JSX.Element {
 		<CreatePage handleSubmit={handleSubmit} />
 	);
 
+	// Access the client
+	const queryClient = useQueryClient();
+
 	// Queries
-	const query = useQuery('user-journals', async () => {
+	const query = useQuery('userJournals', async () => {
 		const data = await JournalAPI.getAllJournals('user_id');
 		return data;
 	});
+
+	// Mutations
+	const updateJournal = useMutation(
+		({ id, review }: { id: string | number; review: string }) => {
+			return JournalAPI.updateJournal(id, { review });
+		}
+	);
 
 	useEffect(() => {
 		(async () => {
@@ -44,7 +52,7 @@ export default function Journal (): JSX.Element {
 	) {
 		e.preventDefault();
 
-		JournalAPI.updateJournal(id, { review });
+		updateJournal.mutate({ id, review });
 
 		const journalsCopy = [ ...journals ];
 		journalsCopy[id] = { review };
