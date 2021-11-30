@@ -15,8 +15,10 @@
     & .journal__menu-button-container {
       position: absolute;
       top: 8px;
-      right: -35px;
+      right: -42px;
+      z-index: var(--layer-2);
       
+      border: solid 3px black;
       border-radius: 0 50% 50% 0;
       background-color: white;
       padding: 0.25rem;
@@ -26,10 +28,8 @@
       }
       
       & .journal__menu-button {
-        height: 48px;
-        width: 48px;
-  
-        z-index: var(--layer-2);
+        height: 2.5rem;
+        width: 2.5rem;
   
         transition: 0.5s;
       }
@@ -42,9 +42,11 @@
       & .journal__menu-select {
         height: 100%;
         width: 100%;
+
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+
         line-height: 2rem;
         font-size: 1.5rem;
 
@@ -52,19 +54,17 @@
           width: 100%;
           background-color: white;
           padding: 0.5rem;
-          border-radius: 5px;
           
           text-align: left;
           overflow-x: scroll;
           
-          &.last, &:not(.new) {
+          &.last {
             border-left: 3px solid black;
             border-right: 3px solid black;
             border-bottom: 3px solid black;
-          }
-
-          &.last {
-            border-radius: 0 0 5px 5px;
+            
+            border-bottom-right-radius: 5px; 
+            border-bottom-left-radius: 5px; 
           }
 
           &:hover {
@@ -74,8 +74,16 @@
         }
 
         & > .journal__menu-select-entry {
-          border-radius: 5px 5px 0 0;
+          border-top-left-radius: 5px; 
+
           border-top: 3px solid black;
+          border-right: 3px solid black;
+          border-left: 3px solid black;
+
+          & .last {
+            border-top-right-radius: 0; 
+            border-top-left-radius: 0; 
+          }
         }
       }
     }

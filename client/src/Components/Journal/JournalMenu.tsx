@@ -50,8 +50,7 @@ export default function JournalMenu ({
 						/>
 					))}
 					<div
-						className={`journal__menu-select-entry new ${journals.length &&
-							'last'}`}>
+						className={`journal__menu-select-entry new last`}>
 						New story
 					</div>
 				</div>
