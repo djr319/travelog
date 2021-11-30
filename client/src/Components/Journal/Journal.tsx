@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient, useMutation } from 'react-query';
+import { useQuery, useMutation } from 'react-query';
 import { Journal as JournalType } from 'Types/index';
 import { useState, useEffect } from 'react';
 
@@ -17,9 +17,6 @@ export default function Journal (): JSX.Element {
 		<CreatePage handleSubmit={handleSubmit} />
 	);
 
-	// Access the client
-	const queryClient = useQueryClient();
-
 	// Queries
 	const query = useQuery('userJournals', async () => {
 		const data = await JournalAPI.getOwnJournals('user_id');
@@ -28,8 +25,14 @@ export default function Journal (): JSX.Element {
 
 	// Mutations
 	const updateJournal = useMutation(
-		({ id, review }: { id: string | number; review: string }) => {
+		({ id, review }: { id: string | number, review: string }) => {
 			return JournalAPI.updateJournal(id, { review });
+		}
+	);
+
+	const deleteJournal = useMutation(
+		({ id }: { id: string | number }) => {
+			return JournalAPI.deleteJournal(id);
 		}
 	);
 
@@ -71,7 +74,7 @@ export default function Journal (): JSX.Element {
 	function deleteEntry (e: React.MouseEvent<HTMLButtonElement>, id: number) {
 		e.preventDefault();
 
-		JournalAPI.deleteJournal(id);
+		deleteJournal.mutate({id});
 
 		const journalsCopy = [ ...journals ];
 		journalsCopy.splice(id, 1);
