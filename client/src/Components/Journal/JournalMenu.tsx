@@ -14,7 +14,7 @@ type JournalMenuProps = {
 export default function JournalMenu ({
 	journals,
 	handleClick
-}: JournalMenuProps) {
+}: JournalMenuProps): JSX.Element {
 	const MENU_WIDTH = 150;
 	const [ menuPos, setMenuPos ] = useState(5 - MENU_WIDTH);
 	const [ arrowRot, setArrowRot ] = useState(180);
