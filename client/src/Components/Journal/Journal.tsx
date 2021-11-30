@@ -11,6 +11,8 @@ import ViewPage from './ViewPage/ViewPage';
 
 import './Journal.css';
 
+const USER_ID = 0;
+
 export default function Journal (): JSX.Element {
 	const [ journals, setJournals ] = useState<JournalType[]>([]);
 	const [ page, setPage ] = useState(
@@ -18,15 +20,15 @@ export default function Journal (): JSX.Element {
 	);
 
 	// Queries
-	const query = useQuery('userJournals', async () => {
-		const data = await JournalAPI.getOwnJournals(0);
+	const getJournals = useQuery('userJournals', async () => {
+		const data = await JournalAPI.getOwnJournals(USER_ID);
 		return data;
 	});
 
 	// Mutations
 	const updateJournal = useMutation(
 		({ id, review }: { id: number, review: string }) => {
-			return JournalAPI.updateJournal(id, { review });
+			return JournalAPI.updateJournal(id, { review, userId: USER_ID });
 		}
 	);
 
@@ -38,7 +40,7 @@ export default function Journal (): JSX.Element {
 
 	useEffect(() => {
 		(async () => {
-			const journals = query.data;
+			const journals = getJournals.data;
 			// FIXME: remove check once API linked?
 			if (journals === undefined) {
 				setJournals([]);
@@ -58,7 +60,7 @@ export default function Journal (): JSX.Element {
 		updateJournal.mutate({ id, review });
 
 		const journalsCopy = [ ...journals ];
-		journalsCopy[id] = { review };
+		journalsCopy[id] = { review, userId: USER_ID };
 
 		setJournals(journalsCopy);
 		setPage(
@@ -87,8 +89,8 @@ export default function Journal (): JSX.Element {
 		e.preventDefault();
 
 		const nextJournalId = journals.length;
-		JournalAPI.addJournal({ review });
-		setJournals([ ...journals, { review } ]);
+		JournalAPI.addJournal({ review, userId: USER_ID });
+		setJournals([ ...journals, { review, userId: USER_ID } ]);
 		setPage(
 			<ViewPage
 				id={nextJournalId}
