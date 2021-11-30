@@ -19,13 +19,13 @@ export default function JournalMenu ({
 	handleClick,
 	handleNew
 }: JournalMenuProps): JSX.Element {
-	const [ menuPos, setMenuPos ] = useState(5 - MENU_WIDTH);
+	const [ menuPos, setMenuPos ] = useState(-MENU_WIDTH);
 	const [ arrowRot, setArrowRot ] = useState(180);
 
 	function toggleMenu () {
 		setMenuPos((prev) => {
 			if (prev >= 0) {
-				return 5 - MENU_WIDTH;
+				return -MENU_WIDTH;
 			}
 			return 0;
 		});
