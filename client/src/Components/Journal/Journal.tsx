@@ -22,7 +22,7 @@ export default function Journal (): JSX.Element {
 
 	// Queries
 	const query = useQuery('userJournals', async () => {
-		const data = await JournalAPI.getAllJournals('user_id');
+		const data = await JournalAPI.getOwnJournals('user_id');
 		return data;
 	});
 

@@ -16,9 +16,9 @@ router.get('/trips/:id', trip.getTrip);
 router.post('/journals', trip.addJournal);
 router.get('/journals', trip.getOwnJournals);
 router.get('/journals/:id', trip.getJournal);
-router.get('/journals/collections', trip.getAllPublicJournals);
-// router.put('/journals/:id', trip.updateJournal);
-// router.delete('/journals/:id', trip.deleteJournal);
+router.get('/journals/collections', trip.getPublicJournals);
+router.put('/journals/:id', trip.updateJournal);
+router.delete('/journals/:id', trip.deleteJournal);
 
 router.post('/notes', trip.addNewNote);
 router.get('/notes', trip.getOwnNotes);

@@ -12,11 +12,11 @@ export function addJournal(journal: Journal): Promise<void> {
   })
 }
 
-export function getAllJournals(id: string | number): Promise<Journal[]> {
+export function getOwnJournals(id: string | number): Promise<Journal[]> {
   return fetchRequest(`${JOURNALS_URL}/${id}`);
 }
 
-export function getOneJournal(id: string): Promise<Journal> {
+export function getJournal(id: string): Promise<Journal> {
   return fetchRequest(`${JOURNALS_URL}/${id}`);
 }
 
@@ -41,8 +41,8 @@ export function deleteJournal(id: string | number): Promise<void> {
 
 const JournalAPI = {
   addJournal,
-  getAllJournals,
-  getOneJournal,
+  getOwnJournals,
+  getJournal,
   getPublicJournals,
   updateJournal,
   deleteJournal
