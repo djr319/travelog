@@ -9,7 +9,7 @@ export default function JournalsList ({
 }: JournalsListProps): JSX.Element {
 	return (
 		<div className='journals-list'>
-      <h1>Journals matching your interests</h1>
+      <h3>Journals matching your interests</h3>
 			{journals.map(({ review }) => (
 				<div className='journals-list__entry'>{review}</div>
 			))}
