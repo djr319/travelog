@@ -49,7 +49,11 @@ export default function JournalMenu ({
 							handleClick={handleClick}
 						/>
 					))}
-					<div className={`journal__menu-select-entry new ${journals.length && 'last'}`}>New story</div>
+					<div
+						className={`journal__menu-select-entry new ${journals.length &&
+							'last'}`}>
+						New story
+					</div>
 				</div>
 			</div>
 		</div>
