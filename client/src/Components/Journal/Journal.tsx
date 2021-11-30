@@ -89,6 +89,17 @@ export default function Journal (): JSX.Element {
 		setPage(<EditPage id={id} text={text} updateEntry={updateEntry} />);
 	}
 
+	function handleNew (
+		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+	) {
+		e.preventDefault();
+
+		// FIXME: using journals array index as id is not safe
+		setPage(
+			<CreatePage handleSubmit={handleSubmit} />
+		);
+	}
+
 	function handleClick (
 		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
 		id: number
@@ -108,7 +119,7 @@ export default function Journal (): JSX.Element {
 
 	return (
 		<div className='journal'>
-			<JournalMenu journals={journals} handleClick={handleClick} />
+			<JournalMenu journals={journals} handleClick={handleClick} handleNew={handleNew} />
 			{page}
 		</div>
 	);

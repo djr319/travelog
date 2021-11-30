@@ -9,11 +9,13 @@ type JournalMenuProps = {
 		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
 		key: number
 	) => void;
+	handleNew: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
 export default function JournalMenu ({
 	journals,
-	handleClick
+	handleClick,
+	handleNew
 }: JournalMenuProps): JSX.Element {
 	const MENU_WIDTH = 150;
 	const [ menuPos, setMenuPos ] = useState(5 - MENU_WIDTH);
@@ -50,7 +52,8 @@ export default function JournalMenu ({
 						/>
 					))}
 					<div
-						className={`journal__menu-select-entry new last`}>
+						className={`journal__menu-select-entry new last`}
+						onClick={handleNew}>
 						New story
 					</div>
 				</div>
