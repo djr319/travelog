@@ -3,7 +3,7 @@ import { Journal } from 'Types/index';
 
 const JOURNALS_URL = '/journals';
 
-export function addJournal(journal: Journal) {
+export function addJournal(journal: Journal): Promise<void> {
   return fetchRequest(JOURNALS_URL, {
     method: 'POST',
     mode: 'cors',
@@ -12,19 +12,19 @@ export function addJournal(journal: Journal) {
   })
 }
 
-export function getAllJournals(): Promise<Journal[]> {
-  return fetchRequest(JOURNALS_URL);
-}
-
-export function getOneJournal(id: string) {
+export function getAllJournals(id: string | number): Promise<Journal[]> {
   return fetchRequest(`${JOURNALS_URL}/${id}`);
 }
 
-export function getPublicJournals() {
+export function getOneJournal(id: string): Promise<Journal> {
+  return fetchRequest(`${JOURNALS_URL}/${id}`);
+}
+
+export function getPublicJournals(): Promise<Journal[]> {
   return fetchRequest(`${JOURNALS_URL}/collections`);
 }
 
-export function updateJournal(id: string | number, update: Journal) {
+export function updateJournal(id: string | number, update: Journal): Promise<Journal> {
   return fetchRequest(`${JOURNALS_URL}/${id}`, {
     method: 'PUT',
     mode: 'cors',
@@ -33,7 +33,7 @@ export function updateJournal(id: string | number, update: Journal) {
   })
 }
 
-export function deleteJournal(id: string | number) {
+export function deleteJournal(id: string | number): Promise<void> {
   return fetchRequest(`${JOURNALS_URL}/${id}`, {
     method: 'DELETE'
   });

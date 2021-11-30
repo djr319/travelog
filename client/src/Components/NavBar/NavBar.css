@@ -8,7 +8,8 @@
 }
 .navbar .navbar-circle,
 .navbar .nav-select .nav-select__list {
-  box-shadow: inset 3px 3px 5px #42749e, inset -3px -3px 5px #5a9ed6;
+  background: linear-gradient(145deg, #5393c7, #467ba7);
+  box-shadow: 3px 3px 5px #42749e, -3px -3px 5px #5a9ed6;
 }
 .navbar .navbar-circle {
   width: var(--navbar-height);
@@ -35,10 +36,14 @@
   overflow: visible;
 }
 .navbar .nav-select .nav-select__list li div {
-  color: #000000;
   display: block;
   height: 2rem;
+}
+.navbar .nav-select .nav-select__list li div,
+.navbar .nav-select .nav-select__list li a {
+  color: #ffffff;
   line-height: 2rem;
+  font-size: 1.5rem;
 }
 .navbar .nav-select .nav-select__list li li {
   display: flex;
@@ -52,9 +57,7 @@
   width: 100%;
   border-top: 1px solid #000000;
   text-decoration: none;
-  color: black;
   height: 2rem;
-  line-height: 2rem;
 }
 .navbar .nav-select .nav-select__list li li a:hover {
   background-color: var(--bg-color);

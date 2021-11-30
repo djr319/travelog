@@ -1,4 +1,4 @@
-import NavBar from "Components/NavBar/NavBar";
+import { NavBar } from "Components/index";
 
 // import React from 'react';
 import { Outlet } from "react-router-dom";

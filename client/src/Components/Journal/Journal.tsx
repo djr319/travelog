@@ -2,7 +2,8 @@ import { Journal as JournalType } from 'Types/index';
 import { useState, useEffect } from 'react';
 
 import { JournalAPI } from 'Services/index';
-import JournalMenu from './JournalMenu';
+import { JournalsList } from 'Components/index';
+import JournalMenu from './JournalMenu/JournalMenu';
 import CreatePage from './CreatePage/CreatePage';
 import EditPage from './EditPage/EditPage';
 import ViewPage from './ViewPage/ViewPage';
@@ -17,7 +18,7 @@ export default function Journal (): JSX.Element {
 
 	useEffect(() => {
 		(async () => {
-			const journals = await JournalAPI.getAllJournals();
+			const journals = await JournalAPI.getAllJournals('user_id');
 			// FIXME: remove check once API linked?
 			if (journals === undefined) {
 				setJournals([]);
@@ -27,46 +28,45 @@ export default function Journal (): JSX.Element {
 		})();
 	}, []);
 
-  function updateEntry (
+	function updateEntry (
 		e: React.FormEvent<HTMLFormElement>,
-    id: number,
+		id: number,
 		review: string
 	) {
 		e.preventDefault();
 
 		JournalAPI.updateJournal(id, { review });
 
-    const journalsCopy = [...journals];
-    journalsCopy[id] = { review };
+		const journalsCopy = [ ...journals ];
+		journalsCopy[id] = { review };
 
-    setJournals(journalsCopy);
-    setPage(<ViewPage
-      id={id}
-      text={review}
-      switchEditMode={switchEditMode}
-      deleteEntry={deleteEntry}
-    />);
+		setJournals(journalsCopy);
+		setPage(
+			<ViewPage
+				id={id}
+				text={review}
+				switchEditMode={switchEditMode}
+				deleteEntry={deleteEntry}
+			/>
+		);
 	}
 
-  function deleteEntry (e: React.MouseEvent<HTMLButtonElement>, id: number) {
+	function deleteEntry (e: React.MouseEvent<HTMLButtonElement>, id: number) {
 		e.preventDefault();
 
-    JournalAPI.deleteJournal(id);
+		JournalAPI.deleteJournal(id);
 
-    const journalsCopy = [...journals];
-    journalsCopy.splice(id, 1);
-    
-    setJournals(journalsCopy);
-    setPage(<CreatePage handleSubmit={handleSubmit} />);
+		const journalsCopy = [ ...journals ];
+		journalsCopy.splice(id, 1);
+
+		setJournals(journalsCopy);
+		setPage(<CreatePage handleSubmit={handleSubmit} />);
 	}
 
-	function handleSubmit (
-		e: React.FormEvent<HTMLFormElement>,
-		review: string
-	) {
+	function handleSubmit (e: React.FormEvent<HTMLFormElement>, review: string) {
 		e.preventDefault();
 
-    const nextJournalId = journals.length;
+		const nextJournalId = journals.length;
 		JournalAPI.addJournal({ review });
 		setJournals([ ...journals, { review } ]);
 		setPage(
@@ -89,6 +89,13 @@ export default function Journal (): JSX.Element {
 		setPage(<EditPage id={id} text={text} updateEntry={updateEntry} />);
 	}
 
+	function handleNew (e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+		e.preventDefault();
+
+		// FIXME: using journals array index as id is not safe
+		setPage(<CreatePage handleSubmit={handleSubmit} />);
+	}
+
 	function handleClick (
 		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
 		id: number
@@ -108,8 +115,13 @@ export default function Journal (): JSX.Element {
 
 	return (
 		<div className='journal'>
-			<JournalMenu journals={journals} handleClick={handleClick} />
+			<JournalMenu
+				journals={journals}
+				handleClick={handleClick}
+				handleNew={handleNew}
+			/>
 			{page}
+			<JournalsList journals={journals} />
 		</div>
 	);
 }

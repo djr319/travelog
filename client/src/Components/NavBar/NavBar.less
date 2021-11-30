@@ -14,8 +14,9 @@
 
   & .navbar-circle,
   .nav-select .nav-select__list {
-    box-shadow: inset 3px 3px 5px #42749e,
-      inset -3px -3px 5px #5a9ed6;
+    background: linear-gradient(145deg, #5393c7, #467ba7);
+    box-shadow:  3px 3px 5px #42749e,
+             -3px -3px 5px #5a9ed6;
   }
 
   & .navbar-circle {
@@ -46,10 +47,14 @@
         }
 
         & div {
-          color: rgb(0, 0, 0);
           display: block;
           height: 2rem;
+        }
+
+        & div, a {
+          color: rgb(255, 255, 255);
           line-height: 2rem;
+          font-size: 1.5rem;
         }
       }
 
@@ -66,9 +71,7 @@
           width: 100%;
           border-top: 1px solid rgb(0, 0, 0);
           text-decoration: none;
-          color: black;
           height: 2rem;
-          line-height: 2rem;
 
           &:hover {
             background-color: @bg-color;
