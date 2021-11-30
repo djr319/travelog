@@ -1,7 +1,10 @@
-import { useEffect, useState } from 'react';
+import Dashboard from 'Components/Dashboard/Dashboard';
+import Journal from 'Components/Journal/Journal';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 const firebaseConfig = {
   // apiKey: process.env.FIREBASE_AUTH_KEY,
@@ -146,3 +149,27 @@ export default SignInScreen;
 //     </div>
 //   );
 // }
+
+<BrowserRouter>
+
+  <Routes>
+    <Route path='/' element={<Dashboard />}>
+      {/* <Route path="/trips" element={<Trips />} /> */}
+      {/* <Route path="/profile" element={<Dashboard />} />
+  <Route path="/planning" element={<Dashboard />} />
+  <Route path="/notes" element={<Dashboard />} />
+  <Route path="/route" element={<Dashboard />} />
+  <Route path="/weather" element={<Dashboard />} />
+  <Route path="/logout" element={<Dashboard />} /> */}
+    </Route>
+    <Route path='journal' element={<Journal />} />
+    <Route
+      path='*'
+      element={
+        <main style={{ padding: '1rem' }}>
+          <p>We've wandered off the beaten track. Nothing here!</p>
+        </main>
+      }
+    />
+  </Routes>
+</BrowserRouter>
