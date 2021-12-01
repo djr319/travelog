@@ -1,5 +1,7 @@
-import Dashboard from 'Components/Dashboard/Dashboard';
-import Journal from 'Components/Journal/Journal';
+import Dashboard from './Components/Dashboard/Dashboard';
+import TripsForm from './Components/TripsForm/TripsForm';
+import NavBar from './Components/NavBar/NavBar'
+import { Journal } from './Components/index';
 
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase/compat/app';
@@ -74,18 +76,18 @@ export default function SignInScreen(): JSX.Element {
       {/* <UserContext.Provider value={user}> */}
       <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
       <BrowserRouter>
+        <NavBar />
         <Routes>
-          <Route path='/' element={<Dashboard />}>
-            {/* <Route path="/trips" element={<Trips />} /> */}
-            {/*
-            <Route path="/profile" element={<Dashboard />} />
-            <Route path="/planning" element={<Dashboard />} />
-            <Route path="/notes" element={<Dashboard />} />
-            <Route path="/route" element={<Dashboard />} />
-            <Route path="/weather" element={<Dashboard />} />
-            <Route path="/logout" element={<Dashboard />} />
-            */}
-          </Route>
+          <Route path='/' element={<Dashboard />} />
+          <Route path="/trips" element={<TripsForm />} />
+          {/*
+          <Route path="/profile" element={<Dashboard />} />
+          <Route path="/planning" element={<Dashboard />} />
+          <Route path="/notes" element={<Dashboard />} />
+          <Route path="/route" element={<Dashboard />} />
+          <Route path="/weather" element={<Dashboard />} />
+          <Route path="/logout" element={<Dashboard />} />
+          */}
           <Route path='journal' element={<Journal />} />
           <Route
             path='*'

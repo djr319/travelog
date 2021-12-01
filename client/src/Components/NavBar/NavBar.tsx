@@ -27,17 +27,17 @@ export default function NavBar(): JSX.Element {
               </li>
               {/* <li>
                 <Link to='/profile'>Profile</Link>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <Link to='/trips'>Trips</Link>
-              </li>
+              </li> */}
               <li>
                 <Link to='/journal'>Journal</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to='/notes'>Notes</Link>
-              </li>
-              <li>
+              </li> */}
+              {/* <li>
                 <Link to='/logout'>Logout</Link>
               </li> */}
               {/* <li>
