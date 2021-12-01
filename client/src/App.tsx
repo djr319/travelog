@@ -5,14 +5,13 @@ import {
   NavBar
 } from 'Components';
 
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { UserProvider } from 'Context';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { User } from 'Types';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import FirebaseAuth, { auth } from 'Components/FirebaseAuth/FirebaseAuth';
 
 // firebase config

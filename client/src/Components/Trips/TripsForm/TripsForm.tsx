@@ -8,7 +8,7 @@ import tripsService from 'Services/trips.service';
 export default function TripsForm(): JSX.Element {
   const navigate = useNavigate();
   const [destination, setDestination] = useState("");
-  const [dates, setDates] = useState<Date[] | undefined>([]);
+  const [dates] = useState<Date[] | undefined>([]);
   // const [sights, setSights] = useState<string[]>([]);
   const [sights, setSights] = useState<string>("");
 

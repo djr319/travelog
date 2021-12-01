@@ -1,9 +1,8 @@
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import React, { useEffect, useState, Dispatch, SetStateAction } from 'react';
 // import { User } from 'Types';
-import { Dashboard, NavBar } from 'Components';
+import { Dashboard } from 'Components';
 
 // firebase config
 const firebaseConfig = {
@@ -31,10 +30,6 @@ const uiConfig = {
 export const auth = firebase.auth();
 
 // // --------
-
-type FirebaseAuthProps = {
-  authService: firebase.auth.Auth;
-}
 
 export default function FirebaseAuth() {
 
