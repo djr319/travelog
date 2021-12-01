@@ -5,9 +5,16 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/indieflower/v12/m8JVjfNVeKWVnh3QMuKkFcZlbg.ttf) format('truetype');
 }
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v18/JTURjIg1_i6t8kCHKm45_cJD7g4.ttf) format('truetype');
+}
 :root {
   --journal-font: 'Indie Flower', cursive;
-  --navbar-color: #4E89BA;
+  --navbar-color: #0c2e49;
   --bg-color: #84C1F8;
   --navbar-height: 50px;
   --base-layer: 0;
@@ -27,7 +34,7 @@
 body {
   margin-top: 0;
   height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Comforter Brush', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #84C1F8;
