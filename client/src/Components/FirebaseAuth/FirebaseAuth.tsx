@@ -1,7 +1,6 @@
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-// import { User } from 'Types';
 import { Dashboard } from 'Components';
 
 // firebase config
@@ -29,13 +28,9 @@ const uiConfig = {
 
 export const auth = firebase.auth();
 
-// // --------
+// --------
 
 export default function FirebaseAuth() {
-
-  // Listen to the Firebase Auth state and set the local state.
-
-
   // logged out render
   return (
     <div>
@@ -44,6 +39,4 @@ export default function FirebaseAuth() {
       <Dashboard />
     </div>
   );
-
-  // return (<div>Some text we don't want to see</div>);
 }
