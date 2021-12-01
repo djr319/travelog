@@ -1,4 +1,4 @@
-import fetchRequest from './index';
+import { fetchRequest } from './index';
 import { Journal } from 'Types/index';
 
 const JOURNALS_URL = '/journals';
