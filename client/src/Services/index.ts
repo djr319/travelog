@@ -1,5 +1,6 @@
 export { default as JournalAPI } from './journal.service';
 export { default as TripsAPI } from './trips.service';
+export { default as FirebaseAPI } from './firebase.service';
 
 const BASE_URL = 'http://localhost:3001'
 

@@ -7,32 +7,12 @@ import {
 
 import { UserProvider } from 'Context';
 import 'firebase/compat/auth';
-import { User } from 'Types';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import FirebaseAuth, { auth } from 'Components/FirebaseAuth/FirebaseAuth';
+import { FirebaseAPI } from 'Services';
+import { StyledFirebaseAuth } from 'react-firebaseui';
 
-
-function formatUser() {
-  const user: User = {
-    authenticated: false,
-    userName: '',
-    uid: '',
-    photoURL: '',
-  };
-
-  const maybeUser = auth.currentUser;
-
-  if (maybeUser !== null) {
-    user.authenticated = true;
-    user.userName = maybeUser.displayName || '';
-    user.uid = maybeUser.uid;
-    user.photoURL = maybeUser.photoURL || '';
-  }
-
-  return user;
-}
 
 export default function App(): JSX.Element {
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
@@ -44,13 +24,18 @@ export default function App(): JSX.Element {
     return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
   }, []);
 
+  const { auth, uiConfig } = FirebaseAPI.getConfig();
+
   if (!isSignedIn) {
     return (
-      <FirebaseAuth />
+      <div>
+      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
+      <Dashboard />
+    </div>
     );
   }
 
-  const user = formatUser();
+  const user = FirebaseAPI.formatUser(auth);
   
   return (
 

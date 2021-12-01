@@ -1,7 +1,6 @@
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import { Dashboard } from 'Components';
+import { User } from 'Types';
 
 // firebase config
 const firebaseConfig = {
@@ -26,17 +25,36 @@ const uiConfig = {
   },
 };
 
-export const auth = firebase.auth();
-
-// --------
-
-export default function FirebaseAuth() {
-  // logged out render
-  return (
-    <div>
-      {/* <Login /> */}
-      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
-      <Dashboard />
-    </div>
-  );
+function getConfig() {
+  return {
+    auth: firebase.auth(),
+    uiConfig
+  }
 }
+
+function formatUser(auth: firebase.auth.Auth) {
+  const user: User = {
+    authenticated: false,
+    userName: '',
+    uid: '',
+    photoURL: '',
+  };
+
+  const maybeUser = auth.currentUser;
+
+  if (maybeUser !== null) {
+    user.authenticated = true;
+    user.userName = maybeUser.displayName || '';
+    user.uid = maybeUser.uid;
+    user.photoURL = maybeUser.photoURL || '';
+  }
+
+  return user;
+}
+
+const FirebaseApi = {
+  getConfig,
+  formatUser
+}
+
+export default FirebaseApi;
