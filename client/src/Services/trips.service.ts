@@ -1,13 +1,14 @@
-import fetchRequest from "./index";
+import { fetchRequest } from "./index";
+import { Trip } from 'Types';
 
 const TRIPS_URL = "/trips";
 
-async function addNewTrip(trips: any): Promise<any> {
+async function addNewTrip(trip: Trip): Promise<Trip[]> {
   return fetchRequest(TRIPS_URL, {
     method: "POST",
     mode: "cors",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(trips),
+    body: JSON.stringify(trip),
   });
 }
 

@@ -3,24 +3,24 @@ import { SyntheticEvent, useState } from "react";
 import { DateRangePicker } from "rsuite";
 import { useNavigate } from "react-router-dom";
 import "rsuite/dist/rsuite.min.css";
-import tripsService from "../../../Services/trips.services";
-function TripsForm(): JSX.Element {
+import { TripsAPI } from 'Services';
+
+export default function TripsForm(): JSX.Element {
   const navigate = useNavigate();
   const [destination, setDestination] = useState("");
   const [dates, setDates] = useState<string[]>([]);
-
   const [sights, setSights] = useState<string>("");
 
-  console.log("destination", destination);
+  // console.log("destination", destination);
 
-  console.log("sights", sights);
+  // console.log("sights", sights); 
   async function postTripHandler(
     destination: string,
     dateFrom: string,
     dateTo: string,
     visits: string
   ) {
-    return await tripsService.addNewTrip({
+    return await TripsAPI.addNewTrip({
       destination,
       dateFrom,
       dateTo,
@@ -35,7 +35,7 @@ function TripsForm(): JSX.Element {
       alert("please fill in all the fields");
       return;
     }
-    console.log("dates", dates);
+    // console.log("dates", dates);
     postTripHandler(destination, dates[0], dates[1], sights);
     setDestination("");
     navigate("/trip", {
@@ -99,5 +99,3 @@ function TripsForm(): JSX.Element {
     </div>
   );
 }
-
-export default TripsForm;

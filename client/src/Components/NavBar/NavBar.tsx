@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from 'Context';
 import './NavBar.css';
 // import Login from '../../Components/LoginButton/LoginButton';
 
@@ -14,9 +16,12 @@ import './NavBar.css';
 
 
 export default function NavBar(): JSX.Element {
+  const { photoURL } = useContext(UserContext);
+
   return (
     <div className='navbar'>
-      <div className='navbar-circle' />
+      {<img className='navbar-circle' src={photoURL} />
+      }
       <div className='nav-select'>
         <ul className='nav-select__list'>
           <li>
