@@ -3,10 +3,11 @@ import { SyntheticEvent, useState } from "react";
 // import { DateRangePicker } from "rsuite";
 import { useNavigate } from "react-router-dom";
 // import "rsuite/dist/rsuite.min.css";
-import tripsService from "../../../Services/trips.services";
+import tripsService from "Services/trips.service";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { DateRangePicker, DateRange } from "materialui-daterange-picker";
+import format from "date-fns/format";
 
 function TripsForm(): JSX.Element {
   const navigate = useNavigate();
@@ -19,8 +20,8 @@ function TripsForm(): JSX.Element {
 
   async function postTripHandler(
     destination: string,
-    dateFrom: Date,
-    dateTo: Date,
+    dateFrom: string,
+    dateTo: string,
     visits: string
   ) {
     return await tripsService.addNewTrip({
@@ -42,8 +43,8 @@ function TripsForm(): JSX.Element {
     if (dateRange.startDate && dateRange.endDate) {
       postTripHandler(
         destination,
-        dateRange.startDate,
-        dateRange.endDate,
+        format(dateRange.startDate, "Do MMM yyyy"),
+        format(dateRange.endDate, "Do MMM yyyy"),
         visits
       );
       setDestination("");

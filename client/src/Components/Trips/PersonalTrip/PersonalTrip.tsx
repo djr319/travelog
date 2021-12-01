@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { Link } from "react-router-dom";
-import tripsService from "../../../Services/trips.services";
+import tripsService from "Services/trips.service";
 import { Trip } from "../ListofTrips/ListOfTrips";
 
 type TripProps = {

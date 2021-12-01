@@ -13,7 +13,6 @@ import "firebase/compat/auth";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import PersonalTrip from "Components/Trips/PersonalTrip/PersonalTrip";
 
 // firebase config
 const firebaseConfig = {
