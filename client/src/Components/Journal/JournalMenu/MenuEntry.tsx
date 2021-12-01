@@ -1,4 +1,4 @@
-type EntryProps = {
+type MenuEntryProps = {
 	text: string;
 	id: number;
 	handleClick: (
@@ -7,7 +7,7 @@ type EntryProps = {
 	) => void;
 };
 
-export default function Entry ({ text, id, handleClick }: EntryProps): JSX.Element {
+export default function MenuEntry ({ text, id, handleClick }: MenuEntryProps): JSX.Element {
 	return (
 		<div
 			className='journal__menu-select-entry'

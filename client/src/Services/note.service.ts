@@ -1,4 +1,4 @@
-import fetchRequest from './index';
+import { fetchRequest } from 'Services';
 import { Note } from 'Types/index';
 
 const NOTES_URL = '/notes';
