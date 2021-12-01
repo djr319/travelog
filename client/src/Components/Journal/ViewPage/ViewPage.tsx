@@ -16,7 +16,7 @@ export default function ViewPage ({
 	text,
 	switchEditMode,
 	deleteEntry
-}: InputPageProps) {
+}: InputPageProps): JSX.Element {
 	return (
 		<div className='journal__view'>
 			<div className='journal__view-text'>{text}</div>
