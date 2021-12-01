@@ -1,6 +1,6 @@
 export type Trip = {
   destination: string,
-  dateFrom: Date,
-  dateTo: Date,
+  dateFrom: string,
+  dateTo: string,
   visits: string,
 }
