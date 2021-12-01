@@ -9,6 +9,7 @@ import {
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
+import { UserContext, UserProvider } from 'Context';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
@@ -35,19 +36,14 @@ const uiConfig = {
   },
 };
 
-// interface User {
-//   authenticated: boolean,
-//   userName: string,
-//   uid: string
-// }
+interface User {
+  authenticated: boolean,
+  userName: string,
+  uid: string;
+  photoURL: string;
+}
 
-// const UserContext = React.createContext({
-//   authenticated: false,
-//   userName: "",
-//   uid: ""
-// })
-
-export default function SignInScreen(): JSX.Element {
+export default function App(): JSX.Element {
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
   // Listen to the Firebase Auth state and set the local state.
   useEffect(() => {
@@ -65,25 +61,34 @@ export default function SignInScreen(): JSX.Element {
     );
   }
 
-  // let user: User;
+  const user: User = {
+    authenticated: false,
+    userName: '',
+    uid: '',
+    photoURL: '',
+  };
 
-  // if (firebase.auth().currentUser !== null) {
-  //   user.authenticated = true;
-  //   user.userName = firebase.auth().currentUser.displayName;
-  //   user.uid = firebase.auth().currentUser.uid
-  // }
+  const auth = firebase.auth();
+  const maybeUser = auth.currentUser;
+
+  if (maybeUser !== null) {
+    user.authenticated = true;
+    user.userName = maybeUser.displayName || '';
+    user.uid = maybeUser.uid;
+    user.photoURL = maybeUser.photoURL || '';
+  }
 
   return (
 
     <div>
-      {/* <UserContext.Provider value={user}> */}
-      <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
-      <BrowserRouter>
-        <NavBar />
-        <Routes>
-          <Route path='/' element={<Dashboard />} />
-          <Route path="/trips" element={<TripsForm />} />
-          {/*
+      <UserProvider value={user}>
+        <a onClick={() => auth.signOut()}>Sign-out</a>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            <Route path='/' element={<Dashboard />} />
+            <Route path="/trips" element={<TripsForm />} />
+            {/*
           <Route path="/profile" element={<Dashboard />} />
           <Route path="/planning" element={<Dashboard />} />
           <Route path="/notes" element={<Dashboard />} />
@@ -91,19 +96,19 @@ export default function SignInScreen(): JSX.Element {
           <Route path="/weather" element={<Dashboard />} />
           <Route path="/logout" element={<Dashboard />} />
           */}
-          <Route path='journal' element={<Journal />} />
-          <Route
-            path='*'
-            element={
-              <main style={{ padding: '1rem' }}>
-                <p>We've wandered off the beaten track. Nothing here!</p>
-                <p>{"User: " + firebase.auth().currentUser?.displayName}</p>
-              </main>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-      {/* </UserContext.Provider > */}
+            <Route path='journal' element={<Journal />} />
+            <Route
+              path='*'
+              element={
+                <main style={{ padding: '1rem' }}>
+                  <p>We've wandered off the beaten track. Nothing here!</p>
+                  <p>{"User: " + firebase.auth().currentUser?.displayName}</p>
+                </main>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </UserProvider >
     </div >
   );
 }
