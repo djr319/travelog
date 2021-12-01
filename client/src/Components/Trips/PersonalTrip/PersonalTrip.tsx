@@ -1,29 +1,31 @@
+import { Dispatch, SetStateAction } from "react";
 import { Link } from "react-router-dom";
+import tripsService from "../../../Services/trips.services";
+import { Trip } from "../ListofTrips/ListOfTrips";
 
 type TripProps = {
-  trip: { id: string; destination: string; dateFrom: string; dateTo: string };
+  trip: Trip;
+  setTrips: Dispatch<SetStateAction<Trip[]>>;
 };
 
 const PersonalTrip = (props: TripProps): JSX.Element => {
   const { id, destination, dateFrom, dateTo } = props.trip;
-  // const deleteHandler = async () => {
-  //   await tripsService.deleteOnePersonalTrip(trip.id);
-  //   setTrip((prev) =>
-  //     prev.filter((notDeletedTrip) => notDeletedTrip._id !== trip.id)
-  //   );
-  //   setFilteredTrip((prev) =>
-  //     prev.filter((notDeletedTrip) => notDeletedTrip._id !== trip.id)
-  //   );
-  // };
+
+  const deleteHandler = async () => {
+    await tripsService.deleteOnePersonalTrip(props.trip.id);
+    props.setTrips((prev) =>
+      prev.filter((notDeletedTrip: Trip) => notDeletedTrip.id !== props.trip.id)
+    );
+  };
 
   return (
     <div>
-      <img>Book</img>
-      <Link to={`/viewTrip/${id}`} state={props.trip}>
+      {/* <img></img> */}
+      <Link to={`/trip/${id}`} state={props.trip}>
         <p>{`${destination} & ${dateFrom}-${dateTo}`}</p>
       </Link>
       {/* ---------------------DELETE----------------------------- */}
-      {/* <div className="trip_delete">
+      <div className="trip_delete">
         <button
           className="delete_btn"
           onClick={() => {
@@ -35,7 +37,7 @@ const PersonalTrip = (props: TripProps): JSX.Element => {
             ❌
           </span>
         </button>
-      </div> */}
+      </div>
     </div>
   );
 };
