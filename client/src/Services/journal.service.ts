@@ -1,9 +1,9 @@
-import fetchRequest from './index';
+import { fetchRequest } from './index';
 import { Journal } from 'Types/index';
 
 const JOURNALS_URL = '/journals';
 
-export function addJournal(journal: Journal): Promise<void> {
+export function addJournal(journal: Journal): Promise<Journal> {
   return fetchRequest(JOURNALS_URL, {
     method: 'POST',
     mode: 'cors',

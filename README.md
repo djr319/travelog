@@ -18,3 +18,4 @@ Final thesis project (Eloy, Anastasia, Ivan, David - Codeworks Remote CET Septem
 - server/
 - To run: `nodemon`
 - Express
+- BaaS (Backend as a service) - Firebase for authentication
