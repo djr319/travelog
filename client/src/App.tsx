@@ -6,7 +6,6 @@ import {
 } from 'Components';
 
 import { UserProvider } from 'Context';
-import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { User } from 'Types';
 
@@ -14,24 +13,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import FirebaseAuth, { auth } from 'Components/FirebaseAuth/FirebaseAuth';
 
-// firebase config
 
-export default function App(): JSX.Element {
-  const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
-  // Listen to the Firebase Auth state and set the local state.
-  useEffect(() => {
-    const unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {
-      setIsSignedIn(!!user);
-    });
-    return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
-  }, []);
-
-  if (!isSignedIn) {
-    return (
-      <FirebaseAuth />
-    );
-  }
-
+function formatUser() {
   const user: User = {
     authenticated: false,
     userName: '',
@@ -48,6 +31,27 @@ export default function App(): JSX.Element {
     user.photoURL = maybeUser.photoURL || '';
   }
 
+  return user;
+}
+
+export default function App(): JSX.Element {
+  const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
+  // Listen to the Firebase Auth state and set the local state.
+  useEffect(() => {
+    const unregisterAuthObserver = auth.onAuthStateChanged(user => {
+      setIsSignedIn(!!user);
+    });
+    return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
+  }, []);
+
+  if (!isSignedIn) {
+    return (
+      <FirebaseAuth />
+    );
+  }
+
+  const user = formatUser();
+  
   return (
 
     <div>
@@ -72,7 +76,7 @@ export default function App(): JSX.Element {
               element={
                 <main style={{ padding: '1rem' }}>
                   <p>We've wandered off the beaten track. Nothing here!</p>
-                  <p>{"User: " + firebase.auth().currentUser?.displayName}</p>
+                  <p>{"User: " + auth.currentUser?.displayName}</p>
                 </main>
               }
             />
