@@ -1,7 +1,10 @@
-import Dashboard from './Components/Dashboard/Dashboard';
-import TripsForm from './Components/TripsForm/TripsForm';
-import NavBar from './Components/NavBar/NavBar'
-import { Journal } from './Components/index';
+import {
+  Dashboard,
+  Journal,
+  JournalsList,
+  TripsForm,
+  NavBar
+} from './Components/index';
 
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase/compat/app';
