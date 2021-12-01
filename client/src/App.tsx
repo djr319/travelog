@@ -4,12 +4,13 @@ import {
   JournalsList,
   TripsForm,
   NavBar
-} from './Components/index';
+} from 'Components';
 
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import { UserContext, UserProvider } from 'Context';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import { UserContext, UserProvider } from 'Context';
+import { User } from 'Types';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
@@ -36,12 +37,7 @@ const uiConfig = {
   },
 };
 
-interface User {
-  authenticated: boolean,
-  userName: string,
-  uid: string;
-  photoURL: string;
-}
+const auth = firebase.auth();
 
 export default function App(): JSX.Element {
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
@@ -57,6 +53,7 @@ export default function App(): JSX.Element {
     return (
       <div>
         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+        <Dashboard />
       </div>
     );
   }
@@ -68,7 +65,6 @@ export default function App(): JSX.Element {
     photoURL: '',
   };
 
-  const auth = firebase.auth();
   const maybeUser = auth.currentUser;
 
   if (maybeUser !== null) {
