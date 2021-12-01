@@ -8,7 +8,7 @@ function TripsForm(): JSX.Element {
   const navigate = useNavigate();
   const [destination, setDestination] = useState("");
   const [dates, setDates] = useState<string[]>([]);
-  // const [sights, setSights] = useState<string[]>([]);
+
   const [sights, setSights] = useState<string>("");
 
   console.log("destination", destination);
@@ -74,7 +74,6 @@ function TripsForm(): JSX.Element {
                     typeof event[0] === "string" &&
                     typeof event[1] === "string"
                   ) {
-                    console.log(event);
                     return setDates([event[0], event[1]]);
                   }
                 }}
