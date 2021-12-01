@@ -1,4 +1,4 @@
-import fetchRequest from "./index";
+import { fetchRequest } from "./index";
 import { Trip } from 'Types';
 
 const TRIPS_URL = "/trips";
