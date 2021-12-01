@@ -34,12 +34,9 @@ export const auth = firebase.auth();
 
 type FirebaseAuthProps = {
   authService: firebase.auth.Auth;
-  setAuthService: Dispatch<SetStateAction<firebase.auth.Auth>>;
-  setSignedIn: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function FirebaseAuth(
-  { authService, setAuthService, setSignedIn }: FirebaseAuthProps) {
+export default function FirebaseAuth() {
 
   // Listen to the Firebase Auth state and set the local state.
 
@@ -48,7 +45,7 @@ export default function FirebaseAuth(
   return (
     <div>
       {/* <Login /> */}
-      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={authService} />
+      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
       <Dashboard />
     </div>
   );

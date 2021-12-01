@@ -1,43 +1,21 @@
 import {
   Dashboard,
   Journal,
-  JournalsList,
   TripsForm,
   NavBar
 } from 'Components';
 
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import { UserContext, UserProvider } from 'Context';
+import { UserProvider } from 'Context';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import { User } from 'Types';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import FirebaseAuth, { auth } from 'Components/FirebaseAuth/FirebaseAuth';
 
 // firebase config
-const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_AUTH_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_AUTH_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_AUTH_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_AUTH_MSG_SEND_ID,
-  appId: process.env.REACT_APP_FIREBASE_AUTH_APP_ID
-};
-firebase.initializeApp(firebaseConfig);
-const uiConfig = {
-  signInFlow: 'popup',
-  signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID
-  ],
-  callbacks: {
-    // Avoid redirects after sign-in.
-    signInSuccessWithAuthResult: () => false,
-  },
-};
-
-const auth = firebase.auth();
 
 export default function App(): JSX.Element {
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
@@ -51,10 +29,7 @@ export default function App(): JSX.Element {
 
   if (!isSignedIn) {
     return (
-      <div>
-        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-        <Dashboard />
-      </div>
+      <FirebaseAuth />
     );
   }
 

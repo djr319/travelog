@@ -3,7 +3,7 @@ import { SyntheticEvent, useState } from "react";
 import { DateRangePicker } from "rsuite";
 import { useNavigate } from "react-router-dom";
 import "rsuite/dist/rsuite.min.css";
-import tripsService from "../../../Services/trips.services";
+import tripsService from 'Services/trips.service';
 
 export default function TripsForm(): JSX.Element {
   const navigate = useNavigate();
