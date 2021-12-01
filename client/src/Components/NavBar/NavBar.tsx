@@ -1,7 +1,5 @@
-import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { UserContext } from 'Context';
-import './NavBar.css';
+import { Link } from "react-router-dom";
+import "./NavBar.css";
 // import Login from '../../Components/LoginButton/LoginButton';
 
 // TODO
@@ -14,30 +12,26 @@ import './NavBar.css';
 // <li>Weather</li>
 // <li>Logout</li>
 
-
 export default function NavBar(): JSX.Element {
-  const { photoURL } = useContext(UserContext);
-
   return (
-    <div className='navbar'>
-      {<img className='navbar-circle' src={photoURL} />
-      }
-      <div className='nav-select'>
-        <ul className='nav-select__list'>
+    <div className="navbar">
+      <div className="navbar-circle" />
+      <div className="nav-select">
+        <ul className="nav-select__list">
           <li>
             <div>Navigation</div>
             <ul>
               <li>
-                <Link to='/'>Dashboard</Link>
+                <Link to="/">Dashboard</Link>
               </li>
               {/* <li>
                 <Link to='/profile'>Profile</Link>
               </li> */}
-              {/* <li>
-                <Link to='/trips'>Trips</Link>
-              </li> */}
               <li>
-                <Link to='/journal'>Journal</Link>
+                <Link to="/trips">Trips</Link>
+              </li>
+              <li>
+                <Link to="/journal">Journal</Link>
               </li>
               {/* <li>
                 <Link to='/notes'>Notes</Link>

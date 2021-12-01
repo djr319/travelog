@@ -1,26 +1,30 @@
 import "./TripsForm.css";
 import { SyntheticEvent, useState } from "react";
-import { DateRangePicker } from "rsuite";
+// import { DateRangePicker } from "rsuite";
 import { useNavigate } from "react-router-dom";
-import "rsuite/dist/rsuite.min.css";
-import { TripsAPI } from 'Services';
+// import "rsuite/dist/rsuite.min.css";
+import tripsService from "Services/trips.service";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { DateRangePicker, DateRange } from "materialui-daterange-picker";
+import format from "date-fns/format";
 
-export default function TripsForm(): JSX.Element {
+function TripsForm(): JSX.Element {
   const navigate = useNavigate();
   const [destination, setDestination] = useState("");
-  const [dates, setDates] = useState<string[]>([]);
-  const [sights, setSights] = useState<string>("");
+  const [visits, setVisits] = useState("");
 
-  // console.log("destination", destination);
+  const [isOpen, setIsOpen] = useState(false);
+  const [dateRange, setDateRange] = useState<DateRange>({});
+  const toggle = () => setIsOpen(!isOpen);
 
-  // console.log("sights", sights); 
   async function postTripHandler(
     destination: string,
     dateFrom: string,
     dateTo: string,
     visits: string
   ) {
-    return await TripsAPI.addNewTrip({
+    return await tripsService.addNewTrip({
       destination,
       dateFrom,
       dateTo,
@@ -32,24 +36,36 @@ export default function TripsForm(): JSX.Element {
     event.preventDefault();
 
     if (!destination) {
-      alert("please fill in all the fields");
+      alert("please fill  in all the fields");
       return;
     }
-    // console.log("dates", dates);
-    postTripHandler(destination, dates[0], dates[1], sights);
-    setDestination("");
-    navigate("/trip", {
-      state: {
+
+    if (dateRange.startDate && dateRange.endDate) {
+      postTripHandler(
         destination,
-        dates: dates,
-        sights,
-      },
-    });
+        format(dateRange.startDate, "Do MMM yyyy"),
+        format(dateRange.endDate, "Do MMM yyyy"),
+        visits
+      );
+      setDestination("");
+      navigate("/trip", {
+        state: {
+          destination,
+          dateRange,
+          visits,
+        },
+      });
+    }
+  };
+
+  const handleTextEditor = (e: any) => {
+    setVisits(e);
   };
 
   return (
     <div>
       <header>Add next trip!</header>
+
       <div className="form-container">
         <form className="add-trip-form" onSubmit={handleSubmit}>
           <div className="form-control">
@@ -67,20 +83,29 @@ export default function TripsForm(): JSX.Element {
             {/* ------------------DATES----------------------------------- */}
             <label>Dates</label>
             <h4>Departure</h4>
+
             <div className="dates">
               <DateRangePicker
+                open={isOpen}
+                toggle={toggle}
+                onChange={(range) => setDateRange(range)}
+              />
+              {/* <DateRangePicker
                 onChange={(event) => {
                   if (
                     typeof event[0] === "string" &&
                     typeof event[1] === "string"
-                  ) {
-                    return setDates([event[0], event[1]]);
-                  }
-                }}
-              />
+                    ) {
+                      return setDates([event[0], event[1]]);
+                    }
+                  }}
+                /> */}
+              <div aria-label="toggle dates button" onClick={toggle}>
+                {isOpen ? "Close" : "Set Dates"}
+              </div>
             </div>
             {/* --------------TO VISIT------------------ */}
-            <label>Wish List</label>
+            {/* <label>Wish List</label>
             <h4>To visit</h4>
             <div className="todo-list">
               <input
@@ -89,8 +114,20 @@ export default function TripsForm(): JSX.Element {
                 placeholder="wish to visit..."
                 onChange={(event) => setSights(event.target.value)}
               ></input>
-            </div>
+            </div>*/}
           </div>
+          {/* -----------------rich text editor-------------------- */}
+          <div className="rich-text-editor">
+            <h4>To visit</h4>
+            <ReactQuill
+              placeholder="wish to visit"
+              modules={TripsForm.modules}
+              formats={TripsForm.formats}
+              onChange={handleTextEditor}
+              value={visits}
+            />
+          </div>
+
           <button type="submit">Upload</button>
         </form>
       </div>
@@ -99,3 +136,33 @@ export default function TripsForm(): JSX.Element {
     </div>
   );
 }
+
+TripsForm.modules = {
+  toolbar: [
+    [{ header: "1" }, { header: "2" }, { header: [3, 4, 5, 6] }, { font: [] }],
+    [{ size: [] }],
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [{ list: "ordered" }, { list: "bullet" }],
+    ["link", "image", "video"],
+    ["clean"],
+    ["code-block"],
+  ],
+};
+
+TripsForm.formats = [
+  "header",
+  "font",
+  "size",
+  "bold",
+  "italic",
+  "underline",
+  "strike",
+  "blockquote",
+  "list",
+  "bullet",
+  "link",
+  "image",
+  "video",
+  "code-block",
+];
+export default TripsForm;
