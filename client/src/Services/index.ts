@@ -1,4 +1,5 @@
 export { default as JournalAPI } from './journal.service';
+export { default as NoteAPI} from './note.service';
 
 const BASE_URL = 'http://localhost:3001'
 

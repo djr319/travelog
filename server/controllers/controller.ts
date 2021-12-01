@@ -203,7 +203,8 @@ const getPersonalNotes = async (req: Request, res: Response): Promise<void> => {
       }
   });
     res.status(200);
-    res.send(user);
+    const result = user ? user.notes : [];
+    res.send(result);
   } catch (err) {
     console.error('error', err);
     res.sendStatus(500);
