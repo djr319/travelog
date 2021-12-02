@@ -5,7 +5,8 @@ const mockUser: User = {
   authenticated: false,
   userName: "",
   uid: "",
-  photoURL: ""
+  photoURL: "",
+  email: ''
 };
 
 

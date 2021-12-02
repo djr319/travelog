@@ -3,13 +3,14 @@ import { UserProvider } from "Context";
 import "firebase/compat/auth";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FirebaseAPI } from "Services";
+import { FirebaseAPI, UserAPI } from "Services";
 import { StyledFirebaseAuth } from "react-firebaseui";
 
 export default function App(): JSX.Element {
 
   const { auth, uiConfig } = FirebaseAPI.getConfig();
   const user = FirebaseAPI.formatUser(auth);
+  UserAPI.checkUser(user);
 
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
   // Listen to the Firebase Auth state and set the local state.

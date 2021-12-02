@@ -3,8 +3,7 @@ import express from 'express';
 const router = express.Router();
 import controller from './controllers/controller';
 
-router.post('/signup', controller.createUser);
-router.get('/login', controller.getLogin);
+router.post('/user', controller.checkUser);
 router.get('/profile/:id', controller.getProfile);
 router.post('/trips', controller.addNewTrip);
 router.get('/trips/:id', controller.getPersonalTrips);
