@@ -35,17 +35,17 @@ export default function ListOfTrips (): JSX.Element {
 	const [ trips, setTrips ] = useState(mockTrips);
 	return (
 		<h4>
-			<ul className='list-container'>
-				{trips.map((trip) => (
-					<PersonalTrip trip={trip} setTrips={setTrips} key={trip.id} />
-				)) ? (
-					trips
+			<div className='list-container'>
+				{trips.length ? (
+					trips.map((trip) => (
+						<PersonalTrip trip={trip} setTrips={setTrips} key={trip.id} />
+					))
 				) : (
 					<p>there no trips planned yet</p>
 				)}
-			</ul>
+			</div>
 
-			<Link to='/form'>Add Trip</Link>
+			<Link to='/trips-form'>Add Trip</Link>
 		</h4>
 	);
 }

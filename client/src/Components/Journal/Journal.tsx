@@ -1,5 +1,6 @@
 import { Journal as JournalType } from 'Types/index';
-import { useState, useEffect } from 'react';
+import { useContext, useState, useEffect } from 'react';
+import { UserContext } from 'Context';
 
 import { JournalAPI } from 'Services/index';
 import { JournalsList } from 'Components/index';
@@ -15,10 +16,12 @@ export default function Journal (): JSX.Element {
 	const [ page, setPage ] = useState(
 		<CreatePage handleSubmit={handleSubmit} />
 	);
+	
+	const { uid } = useContext(UserContext);
 
 	useEffect(() => {
 		(async () => {
-			const journals = await JournalAPI.getAllJournals('user_id');
+			const journals = await JournalAPI.getAllJournals(uid);
 			// FIXME: remove check once API linked?
 			if (journals === undefined) {
 				setJournals([]);
@@ -35,7 +38,7 @@ export default function Journal (): JSX.Element {
 	) {
 		e.preventDefault();
 
-		JournalAPI.updateJournal(id, { review });
+		JournalAPI.updateJournal(uid, id, { review });
 
 		const journalsCopy = [ ...journals ];
 		journalsCopy[id] = { review };
@@ -54,7 +57,7 @@ export default function Journal (): JSX.Element {
 	function deleteEntry (e: React.MouseEvent<HTMLButtonElement>, id: number) {
 		e.preventDefault();
 
-		JournalAPI.deleteJournal(id);
+		JournalAPI.deleteJournal(uid, id);
 
 		const journalsCopy = [ ...journals ];
 		journalsCopy.splice(id, 1);
@@ -67,7 +70,7 @@ export default function Journal (): JSX.Element {
 		e.preventDefault();
 
 		const nextJournalId = journals.length;
-		JournalAPI.addJournal({ review });
+		JournalAPI.addJournal(uid, { review });
 		setJournals([ ...journals, { review } ]);
 		setPage(
 			<ViewPage
