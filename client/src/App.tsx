@@ -22,6 +22,8 @@ import { StyledFirebaseAuth } from 'react-firebaseui';
 
 export default function App(): JSX.Element {
 
+  const { auth, uiConfig } = FirebaseAPI.getConfig();
+
   const [notes, setNotes] = useState<Note[]>([]);
   const [id, setId] = useState(1); // Need to be changed once we have functional auth
 
@@ -57,7 +59,7 @@ export default function App(): JSX.Element {
   }
 
 
-  const { auth, uiConfig } = FirebaseAPI.getConfig();
+  
 
   if (!isSignedIn) {
     return (
