@@ -3,7 +3,7 @@ import { Note } from 'Types/index';
 
 const NOTES_URL = '/notes';
 
-export function addNote (note: Note) {
+export function addNote (note: Note): Promise<Note> {
   return fetchRequest(NOTES_URL, {
     method: 'POST',
     mode: 'cors',
@@ -16,7 +16,7 @@ export function getPersonalNotes (id: number): Promise<Note[]> {
   return fetchRequest(`${NOTES_URL}/${id}`);
 }
 
-export function deleteNote (id: number) {
+export function deleteNote (id: number): Promise<void> {
   return fetchRequest(`${NOTES_URL}/${id}`, {
     method: 'DELETE'
   });
