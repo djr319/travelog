@@ -6,5 +6,6 @@ export { default as Notes } from './Notes/Notes';
 export { default as TripsForm } from './Trips/TripsForm/TripsForm';
 export { default as Journal } from './Journal/Journal';
 export { default as NavBar } from './NavBar/NavBar';
+export { default as Footer } from './Footer/Footer';
 export { default as ListOfTrips } from './Trips/ListofTrips/ListOfTrips';
 export { default as ViewPersonalTrip } from './Trips/ViewTrip/ViewTrip';
