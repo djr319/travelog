@@ -13,7 +13,7 @@ router.delete('/trips/:id', trip.deleteTrip);
 router.post('/journals', trip.addNewJournal);
 router.get('/journals/:id', trip.getPersonalJournals);
 router.put('/journals/:id', trip.updateJournal);
-router.delete('/journals/:id', trip.deleteJournal);
+router.delete('/journals/:uid/:id', trip.deleteJournal);
 router.post('/notes', trip.addNewNote);
 router.get('/notes/:id', trip.getPersonalNotes);
 router.delete('/notes/:id', trip.deleteNote);

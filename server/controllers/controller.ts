@@ -17,7 +17,6 @@ const createUser = async (req: Request, res: Response): Promise<void> => {
       photoURL,
       email
     };
-    // @ts-ignore
     const user = await prisma.user.create({ data });
     res.status(200);
     res.send(user);
@@ -29,11 +28,10 @@ const createUser = async (req: Request, res: Response): Promise<void> => {
 
 const getLogin = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { username, password } = req.body;
+    const { uid } = req.body;
     const user = await prisma.user.findMany({
       where: {
-        username: username,
-        password: password
+        uid,
       },
       include: {
         plans: true,
@@ -51,10 +49,10 @@ const getLogin = async (req: Request, res: Response): Promise<void> => {
 
 const getProfile = async (req: Request, res: Response): Promise<void> => {
   try {
-    const id = +req.params.id;
+    const uid = req.params.uid;
     const user = await prisma.user.findUnique({
       where: {
-        id: id
+        uid
       },
       select: {
         firstName: true,
@@ -83,10 +81,10 @@ const addNewTrip = async (req: Request, res: Response): Promise<void> => {
 
 const getPersonalTrips = async (req: Request, res: Response): Promise<void> => {
   try {
-    const id = +req.params.id;
+    const uid = req.params.uid;
     const user = await prisma.user.findUnique({
       where: {
-        id: id
+        uid
       },
       select: {
         plans: true
@@ -148,10 +146,10 @@ const getPersonalJournals = async (
   res: Response
 ): Promise<void> => {
   try {
-    const id = +req.params.id;
+    const uid = req.params.uid;
     const user = await prisma.user.findUnique({
       where: {
-        id: id
+        uid
       },
       select: {
         journals: true
@@ -210,10 +208,10 @@ const addNewNote = async (req: Request, res: Response): Promise<void> => {
 
 const getPersonalNotes = async (req: Request, res: Response): Promise<void> => {
   try {
-    const id = +req.params.id;
+    const uid = req.params.uid;
     const user = await prisma.user.findUnique({
       where: {
-        id: id
+        uid
       },
       select: {
         notes: true
@@ -230,11 +228,12 @@ const getPersonalNotes = async (req: Request, res: Response): Promise<void> => {
 
 const deleteNote = async (req: Request, res: Response): Promise<void> => {
   try {
-    const id = +req.params.id;
-    await prisma.note.delete({
+    const { uid, id } = req.params;
+    await prisma.note.deleteMany({
       where: {
-        id: id
-      }
+        uid,
+        id: Number(id)
+      },
     });
     res.sendStatus(204);
   } catch (err) {

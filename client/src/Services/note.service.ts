@@ -12,12 +12,12 @@ export function addNote (note: Note): Promise<Note> {
   })
 }
 
-export function getPersonalNotes (id: number): Promise<Note[]> {
-  return fetchRequest(`${NOTES_URL}/${id}`);
+export function getPersonalNotes (uid: string): Promise<Note[]> {
+  return fetchRequest(`${NOTES_URL}/${uid}`);
 }
 
-export function deleteNote (id: number): Promise<void> {
-  return fetchRequest(`${NOTES_URL}/${id}`, {
+export function deleteNote (uid: string, noteId: number): Promise<void> {
+  return fetchRequest(`${NOTES_URL}/${uid}/${noteId}`, {
     method: 'DELETE'
   });
 }

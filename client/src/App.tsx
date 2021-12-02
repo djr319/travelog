@@ -1,12 +1,9 @@
-import { Dashboard, Journal, TripsForm, NavBar, Notes } from "Components";
+import { Dashboard, Journal, TripsForm, NavBar, Notes, ListOfTrips, ViewPersonalTrip } from "Components";
 import { Note } from 'Types';
 import { NoteAPI } from 'Services';
 import { NoteContext, NotesContext } from './Context/Context';
-// import Notes from './Components/Notes/Notes';
 import { UserProvider } from "Context";
 import "firebase/compat/auth";
-import ListOfTrips from "Components/Trips/ListofTrips/ListOfTrips";
-import ViewPersonalTrip from "Components/Trips/ViewTrip/ViewTrip";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FirebaseAPI } from "Services";
@@ -15,9 +12,9 @@ import { StyledFirebaseAuth } from "react-firebaseui";
 export default function App(): JSX.Element {
 
   const { auth, uiConfig } = FirebaseAPI.getConfig();
+  const user = FirebaseAPI.formatUser(auth);
 
   const [notes, setNotes] = useState<Note[]>([]);
-  const [id, setId] = useState(1); // Need to be changed once we have functional auth
 
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
   // Listen to the Firebase Auth state and set the local state.
@@ -52,7 +49,7 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     (async () => {
-      const notes = await NoteAPI.getPersonalNotes(id);
+      const notes = await NoteAPI.getPersonalNotes(user.uid);
       const sortedNotes = notes.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
       setNotes(sortedNotes);
     })();
@@ -66,13 +63,11 @@ export default function App(): JSX.Element {
   }
 
   async function deleteNote (id: number): Promise<void> {
-    await NoteAPI.deleteNote(id);
+    await NoteAPI.deleteNote(user.uid, id);
     const filteredNotes = notes.filter(note => note.id !== id);
     setNotes(filteredNotes);
   }
 
-
-  
 
   if (!isSignedIn) {
     return (
@@ -82,8 +77,6 @@ export default function App(): JSX.Element {
       </div>
     );
   }
-
-  const user = FirebaseAPI.formatUser(auth);
 
   return (
     <div>
