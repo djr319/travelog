@@ -53,7 +53,7 @@ export default function JournalMenu ({
 						/>
 					))}
 					<div
-						className={`journal__menu-select-entry new last`}
+						className={`journal__menu-select-entry last`}
 						onClick={handleNew}>
 						New story
 					</div>
