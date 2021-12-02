@@ -1,25 +1,44 @@
 import './Notes.css';
-import { useContext, useState } from 'react';
-import { NoteContext, NotesContext } from './../../Context/Context';
+import { NoteAPI} from 'Services';
+import { useContext, useState, useEffect } from 'react';
+import { UserContext } from 'Context';
+import { Note } from 'Types';
 
 function Notes (): JSX.Element {
 
   const [note, setNote] = useState('');
-  // const [id, setId] = useState(9); // Not needed as db is giving id automatically
-  const [createdAt, setCreatedAt] = useState(new Date());
-  const [userId, setUserId] = useState(1); // Need to be changed once we have functional auth
+  const [notes, setNotes] = useState<Note[]>([]);
+  const { uid } = useContext(UserContext);
 
-  const { addNote, deleteNote } = useContext(NoteContext);
-  const notes = useContext(NotesContext);
+  useEffect(() => {
+    (async () => {
+      const notes = await NoteAPI.getPersonalNotes(uid);
+      const sortedNotes = notes.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      setNotes(sortedNotes);
+    })();
+	}, []);
+
+  function addNote (uid: string, note: string): void {
+    NoteAPI.addNote(uid, note)
+      .then(newNote => setNotes([...notes, newNote]
+        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+      ));
+  }
+
+  async function deleteNote (uid: string, id: number): Promise<void> {
+    await NoteAPI.deleteNote(uid, id);
+    const filteredNotes = notes.filter(note => note.id !== id);
+    setNotes(filteredNotes);
+  }
 
   function handleAddNote (e: React.SyntheticEvent) {
     e.preventDefault();
-    addNote({note, createdAt, userId});
+    addNote(uid, note);
     setNote('');
   }
 
-  function handleDeleteNote (id: number | undefined) {
-    id && deleteNote(id);
+  function handleDeleteNote (id: number) {
+    return deleteNote(uid, id);
   }
 
   return (

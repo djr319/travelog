@@ -8,13 +8,13 @@ datasource db {
 }
 
 model User {
-  id Int @id @default(autoincrement())
-  firstName String 
-  lastName String
+  uid String @id
+  firstName String @default("")
+  lastName String @default("")
   username String
-  interests String[]
+  photoURL String @default("")
   email String @unique
-  password String @unique 
+  interests String[]
   plans Plan[]
   journals Journal[]
   notes Note[]
@@ -28,22 +28,22 @@ model Plan {
   visit String[]
   tags String[]
   createdAt DateTime @default(now())
-  userId Int
-  users User @relation(fields: [userId], references: [id])
+  uid String
+  users User @relation(fields: [uid], references: [uid])
 }
 
 model Journal {
   id Int @id @default(autoincrement())
   review String
   createdAt DateTime @default(now())
-  userId Int
-  users User @relation(fields: [userId], references: [id])
+  uid String
+  users User @relation(fields: [uid], references: [uid])
 }
 
 model Note {
   id Int @id @default(autoincrement())
   note String
   createdAt DateTime @default(now())
-  userId Int
-  users User @relation(fields: [userId], references: [id])
+  uid String
+  users User @relation(fields: [uid], references: [uid])
 }
