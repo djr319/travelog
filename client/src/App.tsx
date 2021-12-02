@@ -1,53 +1,122 @@
 import {
   Dashboard,
   Journal,
+  JournalsList,
   TripsForm,
-  NavBar
-} from 'Components';
+  NavBar,
+} from "./Components/index";
+import ViewPersonalTrip from "Components/Trips/ViewTrip/ViewTrip";
+import ListOfTrips from "Components/Trips/ListofTrips/ListOfTrips";
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
-import { UserProvider } from 'Context';
-import 'firebase/compat/auth';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { FirebaseAPI } from 'Services';
-import { StyledFirebaseAuth } from 'react-firebaseui';
+// firebase config
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_FIREBASE_AUTH_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_AUTH_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_AUTH_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_AUTH_MSG_SEND_ID,
+  appId: process.env.REACT_APP_FIREBASE_AUTH_APP_ID,
+};
+firebase.initializeApp(firebaseConfig);
+const uiConfig = {
+  signInFlow: "popup",
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+  ],
+  callbacks: {
+    // Avoid redirects after sign-in.
+    signInSuccessWithAuthResult: () => false,
+  },
+};
 
+// interface User {
+//   authenticated: boolean,
+//   userName: string,
+//   uid: string
+// }
 
-export default function App(): JSX.Element {
+// const UserContext = React.createContext({
+//   authenticated: false,
+//   userName: "",
+//   uid: ""
+// })
+
+export default function SignInScreen(): JSX.Element {
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
+
+  const mockTrips = [
+    {
+      id: "string",
+      destination: "Rome",
+      dateFrom: "Monday",
+      dateTo: "Friday",
+      visits: "string",
+      createdAt: "string",
+    },
+    {
+      id: "string",
+      destination: "Rome",
+      dateFrom: "Monday",
+      dateTo: "Friday",
+      visits: "string",
+      createdAt: "string",
+    },
+  ];
+  const [trips, SetTrips] = useState(mockTrips);
+
   // Listen to the Firebase Auth state and set the local state.
   useEffect(() => {
-    const unregisterAuthObserver = auth.onAuthStateChanged(user => {
-      setIsSignedIn(!!user);
-    });
+    const unregisterAuthObserver = firebase
+      .auth()
+      .onAuthStateChanged((user) => {
+        setIsSignedIn(!!user);
+      });
     return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
   }, []);
-
-  const { auth, uiConfig } = FirebaseAPI.getConfig();
 
   if (!isSignedIn) {
     return (
       <div>
-      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
-      <Dashboard />
-    </div>
+        <StyledFirebaseAuth
+          uiConfig={uiConfig}
+          firebaseAuth={firebase.auth()}
+        />
+      </div>
     );
   }
 
-  const user = FirebaseAPI.formatUser(auth);
-  
-  return (
+  // let user: User;
 
+  // if (firebase.auth().currentUser !== null) {
+  //   user.authenticated = true;
+  //   user.userName = firebase.auth().currentUser.displayName;
+  //   user.uid = firebase.auth().currentUser.uid
+  // }
+
+  return (
     <div>
-      <UserProvider value={user}>
-        <a onClick={() => auth.signOut()}>Sign-out</a>
-        <BrowserRouter>
-          <NavBar />
-          <Routes>
-            <Route path='/' element={<Dashboard />} />
-            <Route path="/trips" element={<TripsForm />} />
-            {/*
+      {/* <UserContext.Provider value={user}> */}
+      <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
+      <BrowserRouter>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route
+            path="/trips"
+            element={<ListOfTrips trips={trips} setTrips={SetTrips} />}
+          />
+
+          <Route path="/form" element={<TripsForm />} />
+          <Route path="/trip" element={<ViewPersonalTrip />} />
+          <Route path="/trip/:id" element={<ViewPersonalTrip />} />
+          {/*
           <Route path="/profile" element={<Dashboard />} />
           <Route path="/planning" element={<Dashboard />} />
           <Route path="/notes" element={<Dashboard />} />
@@ -55,19 +124,19 @@ export default function App(): JSX.Element {
           <Route path="/weather" element={<Dashboard />} />
           <Route path="/logout" element={<Dashboard />} />
           */}
-            <Route path='journal' element={<Journal />} />
-            <Route
-              path='*'
-              element={
-                <main style={{ padding: '1rem' }}>
-                  <p>We've wandered off the beaten track. Nothing here!</p>
-                  <p>{"User: " + auth.currentUser?.displayName}</p>
-                </main>
-              }
-            />
-          </Routes>
-        </BrowserRouter>
-      </UserProvider >
-    </div >
+          <Route path="journal" element={<Journal />} />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>We've wandered off the beaten track. Nothing here!</p>
+                <p>{"User: " + firebase.auth().currentUser?.displayName}</p>
+              </main>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+      {/* </UserContext.Provider > */}
+    </div>
   );
 }

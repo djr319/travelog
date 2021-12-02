@@ -2,6 +2,7 @@ import "./Dashboard.css";
 import { useState } from "react";
 import { SliderData } from "./SliderData";
 import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
+import { TripsForm } from "Components";
 
 export default function Dashboard(): JSX.Element {
   const [current, setCurrent] = useState(0);
