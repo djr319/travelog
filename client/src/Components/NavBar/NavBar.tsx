@@ -20,42 +20,6 @@ import "./NavBar.css";
 // GrChatOption
 // GrChat
 // GrImage
-
-
-// <div className="navbar">
-// <div className="navbar-circle" />
-// <div className="nav-select">
-//   <ul className="nav-select__list">
-//     <li>
-//       <div className="title">Navigation</div>
-//       <ul>
-//         <li>
-//           <Link to="/">Dashboard</Link>
-//         </li>
-//         {/* <li>
-//           <Link to='/profile'>Profile</Link>
-//         </li> */}
-//         <li>
-//           <Link to="/trips">Trips</Link>
-//         </li>
-//         <li>
-//           <Link to="/journal">Journal</Link>
-//         </li>
-//         {/* <li>
-//           <Link to='/notes'>Notes</Link>
-//         </li> */}
-//         {/* <li>
-//           <Link to='/logout'>Logout</Link>
-//         </li> */}
-//         {/* <li>
-//           <Login />
-//         </li> */}
-//       </ul>
-//     </li>
-//   </ul>
-// </div>
-// </div>
-// );
 // GrChatOption
 
 // https://react-icons.github.io/react-icons/icons?name=gr
@@ -67,7 +31,6 @@ import "./NavBar.css";
 //     },
 //   },
 // });
-
 
 export default function NavBar(): JSX.Element {
   return (
@@ -83,7 +46,7 @@ export default function NavBar(): JSX.Element {
         <ul className="nav-select__list">
           <li>
             <Link to='/profile'><GrUser /></Link>
-          </li>
+          </li >
           <li>
             <Link to="/trips"><GrMapLocation /></Link>
           </li>
@@ -96,7 +59,10 @@ export default function NavBar(): JSX.Element {
           <li>
             <GrLogout />
           </li>
-        </ul>
+          {/* <li>
+                <Link to='/notes'>Notes</Link>
+              </li> */}
+        </ul >
       </div >
     </div >
     // </ThemeContext.Provider>
