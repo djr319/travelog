@@ -174,7 +174,7 @@ const getPersonalJournals = async (
 			}
 		});
 		res.status(200);
-		res.send(user);
+		res.send(user!.journals);
 	} catch (err) {
 		console.error('error', err);
 		res.sendStatus(500);
