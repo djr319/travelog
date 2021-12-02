@@ -5,19 +5,19 @@ const prisma = new PrismaClient();
 
 const checkUser = async (req: Request, res: Response): Promise<void> => {
 	try {
-		console.log('check user', req.body);
-		const { uid, userName, photoURL, email } = req.body;
+    const { uid, userName, photoURL, email } = req.body;
 		const data = {
-			uid,
+      uid,
 			username: userName,
 			photoURL,
 			email
 		};
 		let user = await prisma.user.findFirst({
-			where: {
-				uid
+      where: {
+        uid
 			}
 		});
+    console.log(user);
 		if (user === null) {
 			user = await prisma.user.create({ data });
 		}

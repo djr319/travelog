@@ -2,13 +2,15 @@ import { fetchRequest } from 'Services';
 import { User } from 'Types';
 
 function checkUser(user: User) {
-  return fetchRequest('/user', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(user)
-  });
+  if (user.authenticated) {
+    return fetchRequest('/user', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+  }
 }
 
 const UserAPI = {

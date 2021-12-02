@@ -7,34 +7,13 @@ import { FirebaseAPI, UserAPI } from "Services";
 import { StyledFirebaseAuth } from "react-firebaseui";
 
 export default function App(): JSX.Element {
-
   const { auth, uiConfig } = FirebaseAPI.getConfig();
   const user = FirebaseAPI.formatUser(auth);
   UserAPI.checkUser(user);
 
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
+  
   // Listen to the Firebase Auth state and set the local state.
-
-  const mockTrips = [
-    {
-      id: "string",
-      destination: "Rome",
-      dateFrom: "Monday",
-      dateTo: "Friday",
-      visits: "string",
-      createdAt: "string",
-    },
-    {
-      id: "string",
-      destination: "Rome",
-      dateFrom: "Monday",
-      dateTo: "Friday",
-      visits: "string",
-      createdAt: "string",
-    },
-  ];
-  const [trips, SetTrips] = useState(mockTrips);
-
   useEffect(() => {
     const unregisterAuthObserver = auth.onAuthStateChanged((user) => {
       setIsSignedIn(!!user);
@@ -61,7 +40,7 @@ export default function App(): JSX.Element {
             <Route path="/" element={<Dashboard />} />
             <Route
               path="/trips"
-              element={<ListOfTrips trips={trips} setTrips={SetTrips} />}
+              element={<ListOfTrips />}
             />
             <Route path="/trips" element={<TripsForm />} />
             <Route path="/trip" element={<ViewPersonalTrip />} />
