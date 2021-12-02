@@ -1,14 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
+@bg: #84C1F8;
+@navbar-color: #0c2e49;
+@navbar-height: 50px;
+@bg-color: @bg;
+@base-layer: 0;
+@layer-1: 1;
+@layer-2: 2;
+@priority-layer: 50;
+
 :root {
   --journal-font: 'Indie Flower', cursive;
-  --navbar-color: #0c2e49;
-  --bg-color: #84C1F8;
   --navbar-height: 50px;
+  --navbar-color: @navbar-color;
+  --bg-color: @bg-color;
   --base-layer: 0;
   --layer-1: 1;
   --layer-2: 2;
   --priority-layer: 50;
+  @navbar-color: #0c2e49;
+  @navbar-height: 50px;
+  @bg-color: @bg;
+  @base-layer: 0;
+  @layer-1: 1;
+  @layer-2: 2;
+  @priority-layer: 50;
 }
 
 #root {
@@ -28,7 +44,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #84C1F8;
+  background: @bg;
   color: black;
   z-index: var(--base-layer);
 }

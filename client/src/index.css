@@ -7,9 +7,9 @@
 }
 :root {
   --journal-font: 'Indie Flower', cursive;
-  --navbar-color: #4E89BA;
-  --bg-color: #84C1F8;
   --navbar-height: 50px;
+  --navbar-color: #0c2e49;
+  --bg-color: #84C1F8;
   --base-layer: 0;
   --layer-1: 1;
   --layer-2: 2;

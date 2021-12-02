@@ -51,7 +51,7 @@ export default function App(): JSX.Element {
             path="/trips"
             element={<ListOfTrips />}
           />
-          <Route path="/trips" element={<TripsForm />} />
+          <Route path="/trips-form" element={<TripsForm />} />
           <Route path="/trip" element={<ViewPersonalTrip />} />
           <Route path="/trip/:id" element={<ViewPersonalTrip />} />
           {/*
@@ -63,7 +63,7 @@ export default function App(): JSX.Element {
           <Route path="/logout" element={<Dashboard />} />
         */}
 
-          <Route path='journal' element={<Journal />} />
+          <Route path='/journal' element={<Journal />} />
           <Route path="/notes" element={<Notes />} />
           <Route
             path="*"

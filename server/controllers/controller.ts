@@ -5,19 +5,21 @@ const prisma = new PrismaClient();
 
 const checkUser = async (req: Request, res: Response): Promise<void> => {
 	try {
-    const { uid, userName, photoURL, email } = req.body;
+		const { uid, userName, photoURL, email } = req.body;
 		const data = {
-      uid,
+			uid,
 			username: userName,
 			photoURL,
 			email
 		};
-		let user = await prisma.user.findFirst({
-      where: {
-        uid
-			}
+		let user = await prisma.user.upsert({
+			where: {
+				uid,
+			},
+			update: data,
+			create: data,
 		});
-    
+
 		if (user === null) {
 			user = await prisma.user.create({ data });
 		}
@@ -135,7 +137,20 @@ const deleteTrip = async (req: Request, res: Response): Promise<void> => {
 
 const addNewJournal = async (req: Request, res: Response): Promise<void> => {
 	try {
-		const trip = await prisma.journal.create({ data: req.body });
+		const { uid } = req.params;
+		const { review } = req.body;
+		const trip = await prisma.user.update({
+			where: {
+				uid
+			},
+			data: {
+				journals: {
+					create: {
+						review
+					}
+				}
+			}
+		});
 		res.status(201);
 		res.send(trip);
 	} catch (err) {
@@ -159,7 +174,7 @@ const getPersonalJournals = async (
 			}
 		});
 		res.status(200);
-		res.send(user);
+		res.send(user!.journals);
 	} catch (err) {
 		console.error('error', err);
 		res.sendStatus(500);
@@ -168,11 +183,23 @@ const getPersonalJournals = async (
 
 const updateJournal = async (req: Request, res: Response): Promise<void> => {
 	try {
-		const id = +req.params.id;
-		const trip = await prisma.journal.update({
-			data: req.body,
+		const { uid, id } = req.params;
+		const { review } = req.body;
+		const trip = await prisma.user.update({
 			where: {
-				id: id
+				uid
+			},
+			data: {
+				journals: {
+					update: {
+						where: {
+							id: Number(id)
+						},
+						data: {
+							review
+						}
+					}
+				}
 			}
 		});
 		res.status(200);
@@ -185,11 +212,18 @@ const updateJournal = async (req: Request, res: Response): Promise<void> => {
 
 const deleteJournal = async (req: Request, res: Response): Promise<void> => {
 	try {
-		const id = +req.params.id;
-		await prisma.journal.delete({
+		const { uid, id } = req.params;
+		await prisma.user.update({
 			where: {
-				id: id
-			}
+				uid
+			},
+			data: {
+				journals: {
+					deleteMany: {
+						id: Number(id),
+					},
+				},
+			},
 		});
 		res.sendStatus(204);
 	} catch (err) {

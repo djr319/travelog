@@ -15,8 +15,8 @@ export default function JournalsList ({
 		<div className='journals-list'>
 			<h3>Journals matching your interests</h3>
 			<div className='journals-list__list'>
-				{journals.map(({ review }) => (
-					<div className='journals-list__entry'>{review}</div>
+				{journals.map(({ review }, i) => (
+					<div key={i} className='journals-list__entry'>{review}</div>
 				))}
 			</div>
 		</div>

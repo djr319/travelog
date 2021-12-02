@@ -1,3 +1,4 @@
 export type Journal = {
-  review: string
+  id: number;
+  review: string;
 }
