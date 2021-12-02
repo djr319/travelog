@@ -1,5 +1,5 @@
 import { fetchRequest } from "./index";
-import { Trip } from 'Types';
+import { Trip } from "Types";
 
 const TRIPS_URL = "/trips";
 
@@ -19,15 +19,6 @@ export function getOnePersonalTrip(id: string) {
 export function getAllPersonalTrips(id: string | number): Promise<any> {
   return fetchRequest(`${TRIPS_URL}/${id}`);
 }
-// async function getAllPersonalTrips(body) {
-// const {
-//   destination,
-//    dates,
-//      sights,
-//      tags
-// } = body;
-
-// }
 
 // export function updateJournal(id: string | number, update: Trip): Promise<Trip> {
 //   return fetchRequest(`${TRIPS_URL}/${id}`, {
