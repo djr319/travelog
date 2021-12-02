@@ -1,7 +1,4 @@
 import { Dashboard, Journal, TripsForm, NavBar, Notes, ListOfTrips, ViewPersonalTrip } from "Components";
-import { Note } from 'Types';
-import { NoteAPI } from 'Services';
-import { NoteContext, NotesContext } from './Context/Context';
 import { UserProvider } from "Context";
 import "firebase/compat/auth";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -13,8 +10,6 @@ export default function App(): JSX.Element {
 
   const { auth, uiConfig } = FirebaseAPI.getConfig();
   const user = FirebaseAPI.formatUser(auth);
-
-  const [notes, setNotes] = useState<Note[]>([]);
 
   const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
   // Listen to the Firebase Auth state and set the local state.
@@ -46,29 +41,6 @@ export default function App(): JSX.Element {
     return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
   }, []);
 
-
-  useEffect(() => {
-    (async () => {
-      const notes = await NoteAPI.getPersonalNotes(user.uid);
-      const sortedNotes = notes.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-      setNotes(sortedNotes);
-    })();
-	}, []);
-  
-  function addNote (uid: string, note: Note): void {
-    NoteAPI.addNote(uid, note)
-      .then(newNote => setNotes([...notes, newNote]
-        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-      ));
-  }
-
-  async function deleteNote (uid: string, id: number): Promise<void> {
-    await NoteAPI.deleteNote(user.uid, id);
-    const filteredNotes = notes.filter(note => note.id !== id);
-    setNotes(filteredNotes);
-  }
-
-
   if (!isSignedIn) {
     return (
       <div>
@@ -82,8 +54,6 @@ export default function App(): JSX.Element {
     <div>
       <UserProvider value={user}>
         <a onClick={() => auth.signOut()}>Sign-out</a>
-      <NoteContext.Provider value={{deleteNote, addNote}} >
-      <NotesContext.Provider value={notes} > 
         <BrowserRouter>
           <NavBar />
           <Routes>
@@ -115,8 +85,6 @@ export default function App(): JSX.Element {
             />
           </Routes>
         </BrowserRouter>
-      </NotesContext.Provider>
-      </NoteContext.Provider>
       </UserProvider >
     </div >
   );
