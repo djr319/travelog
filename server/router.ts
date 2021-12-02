@@ -1,22 +1,22 @@
 import express from 'express';
 
 const router = express.Router();
-const trip = require('./controllers/controller');
+import controller from './controllers/controller';
 
-router.post('/signup', trip.doSignUp);
-router.get('/login', trip.getLogin);
-router.get('/profile/:id', trip.getProfile);
-router.post('/trips', trip.addNewTrip);
-router.get('/trips/:id', trip.getPersonalTrips);
-router.put('/trips/:id', trip.updateTrip);
-router.delete('/trips/:id', trip.deleteTrip);
-router.post('/journals', trip.addNewJournal);
-router.get('/journals/:id', trip.getPersonalJournals);
-router.put('/journals/:id', trip.updateJournal);
-router.delete('/journals/:uid/:id', trip.deleteJournal);
-router.post('/notes', trip.addNewNote);
-router.get('/notes/:id', trip.getPersonalNotes);
-router.delete('/notes/:id', trip.deleteNote);
-router.get('/collections', trip.getPublicJournals);
+router.post('/signup', controller.createUser);
+router.get('/login', controller.getLogin);
+router.get('/profile/:id', controller.getProfile);
+router.post('/trips', controller.addNewTrip);
+router.get('/trips/:id', controller.getPersonalTrips);
+router.put('/trips/:id', controller.updateTrip);
+router.delete('/trips/:id', controller.deleteTrip);
+router.post('/journals', controller.addNewJournal);
+router.get('/journals/:id', controller.getPersonalJournals);
+router.put('/journals/:id', controller.updateJournal);
+router.delete('/journals/:uid/:id', controller.deleteJournal);
+router.post('/notes', controller.addNewNote);
+router.get('/notes/:id', controller.getPersonalNotes);
+router.delete('/notes/:id', controller.deleteNote);
+router.get('/collections', controller.getPublicJournals);
 
 export default router;

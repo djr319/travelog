@@ -217,6 +217,7 @@ const getPersonalNotes = async (req: Request, res: Response): Promise<void> => {
         notes: true
       }
     });
+    console.log(user)
     res.status(200);
     const result = user ? user.notes : [];
     res.send(result);
@@ -260,7 +261,7 @@ const getPublicJournals = async (
   }
 };
 
-module.exports = {
+const controller = {
   createUser,
   getLogin,
   getProfile,
@@ -277,3 +278,5 @@ module.exports = {
   deleteNote,
   getPublicJournals
 };
+
+export default controller;
