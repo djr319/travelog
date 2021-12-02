@@ -1,4 +1,5 @@
 export { default as JournalAPI } from './journal.service';
+export { default as NoteAPI} from './note.service';
 export { default as TripsAPI } from './trips.service';
 export { default as FirebaseAPI } from './firebase.service';
 
