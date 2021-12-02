@@ -1,6 +1,6 @@
 import { Dashboard, Journal, TripsForm, NavBar, Notes } from "Components";
-import { Note } from 'Types/index';
-import { NoteAPI } from 'Services/index';
+import { Note } from 'Types';
+import { NoteAPI } from 'Services';
 import { NoteContext, NotesContext } from './Context/Context';
 // import Notes from './Components/Notes/Notes';
 import { UserProvider } from "Context";
