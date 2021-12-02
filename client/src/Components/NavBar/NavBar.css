@@ -11,6 +11,7 @@
   transition-duration: 0.5s;
   border-left: none;
   overflow: hidden;
+  margin-bottom: 1.5rem;
   width: 3rem;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
@@ -44,19 +45,24 @@
   height: 100%;
 }
 .navbar ul {
-  font-size: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 3rem;
+  margin: 0 1.5rem;
+}
+@media screen and (min-width: 768px) {
+  .navbar ul {
+    font-size: 2rem;
+  }
 }
 .navbar li {
   list-style: none;
   display: inline;
+  text-align: center ;
   width: 2rem;
   height: 2rem;
   margin: 10px;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 50%;
   background-color: var(--travelog-light-blue);
 }
@@ -64,6 +70,7 @@
   .navbar li {
     width: 4rem;
     height: 4rem;
+    padding: 1rem;
   }
 }
 .navbar li:hover .react-icons {
