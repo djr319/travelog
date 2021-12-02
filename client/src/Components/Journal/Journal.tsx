@@ -21,7 +21,7 @@ export default function Journal (): JSX.Element {
 
 	// Queries
 	const getJournals = useQuery('userJournals', async () => {
-		const data = await JournalAPI.getAllJournals(USER_ID);
+		const data = await JournalAPI.getOwnJournals(USER_ID);
 		return data;
 	});
 
