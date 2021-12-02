@@ -11,7 +11,7 @@ import { FirebaseAPI, UserAPI } from "Services";
 import { Dashboard, Journal, TripsForm, NavBar, Notes, ListOfTrips, ViewPersonalTrip, Footer } from "Components";
 
 import logo from './Assets/logo.jpg';
-import './app.css';
+import './App.css';
 
 // NOTE loads firebase's authorization service
 const { auth, uiConfig } = FirebaseAPI.getConfig();
