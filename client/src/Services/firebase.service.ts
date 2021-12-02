@@ -33,12 +33,13 @@ function getConfig() {
   }
 }
 
-function formatUser(auth: firebase.auth.Auth) {
+function formatUser(auth: firebase.auth.Auth): User {
   const user: User = {
     authenticated: false,
     userName: '',
     uid: '',
     photoURL: '',
+    email: '',
   };
 
   const maybeUser = auth.currentUser;
@@ -48,6 +49,7 @@ function formatUser(auth: firebase.auth.Auth) {
     user.userName = maybeUser.displayName || '';
     user.uid = maybeUser.uid;
     user.photoURL = maybeUser.photoURL || '';
+    user.email = maybeUser.email || '';
   }
 
   return user;
