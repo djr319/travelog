@@ -24,9 +24,9 @@ export default function NavBar(): JSX.Element {
               <li>
                 <Link to="/">Dashboard</Link>
               </li>
-              {/* <li>
-                <Link to='/profile'>Profile</Link>
-              </li> */}
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
               <li>
                 <Link to="/trips">Trips</Link>
               </li>
