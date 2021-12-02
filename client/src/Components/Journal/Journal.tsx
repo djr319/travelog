@@ -10,13 +10,19 @@ import EditPage from './EditPage/EditPage';
 import ViewPage from './ViewPage/ViewPage';
 
 import './Journal.css';
+import ar from 'date-fns/esm/locale/ar/index.js';
+
+function getFreeJournalId (journals: JournalType[]) {
+	const maxId = Math.max(...journals.map((journal) => journal.id));
+	return maxId + 1;
+}
 
 export default function Journal (): JSX.Element {
 	const [ journals, setJournals ] = useState<JournalType[]>([]);
 	const [ page, setPage ] = useState(
 		<CreatePage handleSubmit={handleSubmit} />
 	);
-	
+
 	const { uid } = useContext(UserContext);
 
 	useEffect(() => {
@@ -38,10 +44,11 @@ export default function Journal (): JSX.Element {
 	) {
 		e.preventDefault();
 
-		JournalAPI.updateJournal(uid, id, { review });
+		JournalAPI.updateJournal(uid, { id, review });
 
-		const journalsCopy = [ ...journals ];
-		journalsCopy[id] = { review };
+		const journalsCopy = [...journals];
+		const journalCopy = journalsCopy.find((journal) => journal.id === id);
+		if (journalCopy) journalCopy.review = review;
 
 		setJournals(journalsCopy);
 		setPage(
@@ -59,8 +66,9 @@ export default function Journal (): JSX.Element {
 
 		JournalAPI.deleteJournal(uid, id);
 
+		const index = journals.findIndex((journal) => journal.id === id);
 		const journalsCopy = [ ...journals ];
-		journalsCopy.splice(id, 1);
+		journalsCopy.splice(index, 1);
 
 		setJournals(journalsCopy);
 		setPage(<CreatePage handleSubmit={handleSubmit} />);
@@ -70,8 +78,8 @@ export default function Journal (): JSX.Element {
 		e.preventDefault();
 
 		const nextJournalId = journals.length;
-		JournalAPI.addJournal(uid, { review });
-		setJournals([ ...journals, { review } ]);
+		JournalAPI.addJournal(uid, { id: getFreeJournalId(journals), review });
+		setJournals([ ...journals, { id: getFreeJournalId(journals), review } ]);
 		setPage(
 			<ViewPage
 				id={nextJournalId}
@@ -106,10 +114,13 @@ export default function Journal (): JSX.Element {
 		e.preventDefault();
 
 		// FIXME: using journals array index as id is not safe
+		const journal = journals.find((journal) => journal.id === id);
+		if (journal === undefined) return;
+		
 		setPage(
 			<ViewPage
-				id={id}
-				text={journals[id].review}
+				id={journal.id}
+				text={journal.review}
 				switchEditMode={switchEditMode}
 				deleteEntry={deleteEntry}
 			/>

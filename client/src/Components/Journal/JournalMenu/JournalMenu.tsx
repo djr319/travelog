@@ -44,10 +44,10 @@ export default function JournalMenu ({
 			</div>
 			<div className='journal__menu-select-container'>
 				<div className='journal__menu-select'>
-					{journals.map((entry, i) => (
+					{journals.map((entry) => (
 						<MenuEntry
-							key={i}
-							id={i}
+							key={entry.id}
+							id={entry.id}
 							text={entry.review}
 							handleClick={handleClick}
 						/>

@@ -24,8 +24,8 @@ export function getPublicJournals(): Promise<Journal[]> {
   return fetchRequest(`${JOURNALS_URL}/collections`);
 }
 
-export function updateJournal(uid: string, id: string | number, update: Journal): Promise<Journal> {
-  return fetchRequest(`${JOURNALS_URL}/${uid}/${id}`, {
+export function updateJournal(uid: string, update: Journal): Promise<Journal> {
+  return fetchRequest(`${JOURNALS_URL}/${uid}/${update.id}`, {
     method: 'PUT',
     mode: 'cors',
     headers: { 'Content-Type': 'application/json' },

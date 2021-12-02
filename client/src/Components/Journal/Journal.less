@@ -1,3 +1,5 @@
+@import "../../index.less";
+
 .journal {
   height: 70%;
   padding: 0.5rem;
@@ -6,7 +8,7 @@
     width: 150px;
     position: fixed;
     margin-top: -15px;
-    z-index: @layer-1;
+    z-index: var(--layer-1);
 
     border-radius: 5px;
     transition: 0.5s;
@@ -15,9 +17,9 @@
       position: absolute;
       top: 0px;
       right: -50.5px;
-      z-index: @layer-2;
+      z-index: var(--layer-2);
       
-      border: solid 3px @navbar-color;
+      border: solid 3px var(--navbar-color);
       border-radius: 0 50% 50% 0;
       background-color: white;
       padding: 0.25rem;
@@ -40,7 +42,6 @@
       display: flex;
 
       & .journal__menu-select {
-        height: 3.4rem;
         width: 100%;
 
         display: flex;
@@ -51,6 +52,7 @@
         font-size: 1.5rem;
 
         & .journal__menu-select-entry {
+          height: 3.4rem;
           width: 100%;
           background-color: white;
           padding: 0.5rem 0.25rem 0.5rem 0.25rem;
