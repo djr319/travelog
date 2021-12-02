@@ -26,8 +26,9 @@ const uiConfig = {
 };
 
 function getConfig() {
+  const auth = firebase.auth();
   return {
-    auth: firebase.auth(),
+    auth,
     uiConfig
   }
 }
