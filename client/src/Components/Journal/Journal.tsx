@@ -10,7 +10,6 @@ import EditPage from './EditPage/EditPage';
 import ViewPage from './ViewPage/ViewPage';
 
 import './Journal.css';
-import ar from 'date-fns/esm/locale/ar/index.js';
 
 function getFreeJournalId (journals: JournalType[]) {
 	const maxId = Math.max(...journals.map((journal) => journal.id));
