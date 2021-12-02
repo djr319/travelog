@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import PersonalTrip from '../PersonalTrip/PersonalTrip';
 import './ListOfTrips.css';
 import { Link } from 'react-router-dom';

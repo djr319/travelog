@@ -17,7 +17,7 @@ const checkUser = async (req: Request, res: Response): Promise<void> => {
         uid
 			}
 		});
-    console.log(user);
+    
 		if (user === null) {
 			user = await prisma.user.create({ data });
 		}

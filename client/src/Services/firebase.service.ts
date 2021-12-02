@@ -33,7 +33,7 @@ function getConfig() {
   }
 }
 
-function formatUser(auth: firebase.auth.Auth) {
+function formatUser(auth: firebase.auth.Auth): User {
   const user: User = {
     authenticated: false,
     userName: '',
