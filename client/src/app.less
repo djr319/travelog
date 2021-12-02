@@ -1,0 +1,27 @@
+@import './ruleset.less';
+
+.app {
+    .small-screen({
+      margin-top: 0rem;
+    });
+
+    .large-screen ({
+      margin-top: 1rem;
+      min-height: 70vh;
+    });
+
+  background: white;
+  padding-bottom: 1rem;
+  box-shadow: 1px 1px 7px var(--travelog-light-blue);
+};
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0.5rem;
+
+  .logo {
+    height: 5.5rem;
+  }
+}

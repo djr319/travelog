@@ -1,87 +1,100 @@
 // LINK (jp) https://webdesignday.jp/inspiration/technique/css/5793/
 // LINK z-index parent conflicts
 // (jp) https://coliss.com/articles/build-websites/operation/css/4-reasons-z-index-isnt-working.html
+
+@import "../../ruleset.less";
+
+@travelog-light-blue: var(--travelog-light-blue);
+@travelog-mid-blue: var(--travelog-mid-blue);
+@travelog-blue: var(--travelog-blue);
+@dusty-blue: var(--travelog-dusty-blue);
 @navbar-color: var(--navbar-color);
-@bg-color: var(--bg-color);
+@travelog-green: var(--travelog-green);
+
+:root {
+  --navbar-height: 3rem;
+}
 
 .navbar {
-  height: var(--navbar-height);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 1rem;
   z-index: var(--priority-layer);
+  background: @travelog-blue;
+  transition-property: width;
+  transition-duration: 0.5s;
+  border-left: none;
+  overflow: hidden;
 
-  & .navbar-circle,
-  .nav-select .nav-select__list {
-    background: linear-gradient(145deg, #5393c7, #467ba7);
-    box-shadow:  3px 3px 5px #42749e,
-             -3px -3px 5px #5a9ed6;
+  width: 3rem; //  img width + 1rem
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  border: 3px solid @dusty-blue;
+
+  .large-screen({
+    width: 4.5rem; //  img width + 1rem
+    border-top-right-radius: 4rem;
+    border-bottom-right-radius: 4rem;
+    border: 3px solid @dusty-blue;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+  });
+
+  .react-icons {
+    vertical-align: middle;
+    height: 2rem;
+    .large-screen({
+      height: 4rem;
+    });
   }
 
-  & .navbar-circle {
-    width: var(--navbar-height);
-    height: var(--navbar-height);
-    background-color: @navbar-color;
-    border-radius: 50%;
-
+  &:hover {
+    width: 90%;
+    overflow: visible;
   }
-
-  & .nav-select {
-    width: 70%;
+  .nav-select {
+    width: 100%;
     height: 100%;
+  }
+  ul {
+    font-size: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3rem;
+  }
 
-    & .nav-select__list {
-      background-color: @navbar-color;
-      border-radius: 5px;
-      padding: 0.5rem;
+  li {
+    list-style: none;
+    display: inline;
+    width: 2rem;
+    height: 2rem;
+    margin: 10px;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: @travelog-light-blue;
 
-      & li {
-        width: 100%;
-        list-style: none;
-        position: relative;
+    .large-screen({
+      width: 4rem;
+      height: 4rem;
+    });
 
-        &:hover>ul>li {
-          height: 2rem;
-          overflow: visible;
-        }
-
-        & div {
-          display: block;
-          height: 2rem;
-        }
-
-        & div, a {
-          color: rgb(255, 255, 255);
-          line-height: 2rem;
-          font-size: 1.5rem;
-        }
+    &:hover {
+      .react-icons {
+        color: red;
       }
 
-      & li li {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-
-        height: 0;
-        overflow: hidden;
-        transition: .5s;
-
-        & a {
-          width: 100%;
-          border-top: 1px solid rgb(0, 0, 0);
-          text-decoration: none;
-          height: 2rem;
-
-          &:hover {
-            background-color: @bg-color;
-          }
-
-          &:active {
-            background-color: @navbar-color;
-          }
-        }
-      }
     }
+  }
+
+  img {
+    display: inline;
+    border-radius: 50%;
+    margin: 0.5rem;
+    height: 2rem;
+
+    .large-screen ({
+      height: 3rem;
+    })
   }
 }

@@ -40,10 +40,6 @@ export default function Dashboard(): JSX.Element {
           );
         })}
       </section>
-      {/* <div className="sign-in-buttons">
-        <button className="sign-up">Sign up</button>
-        <button className="log-in">Log In</button>
-      </div> */}
     </div>
   );
 }

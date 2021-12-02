@@ -1,0 +1,12 @@
+.large-screen(@rules) {
+  @media screen and (min-width: 768px) {@rules();}
+}
+
+.small-screen(@rules) {
+  @media screen and (max-width: 767px) {@rules();}
+}
+
+@glow-text: {
+  text-shadow: 0px 0px 2px #0c2e49;
+  color: white;
+};

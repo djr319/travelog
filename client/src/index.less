@@ -1,18 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Montserrat:wght@400&display=swap');
+
+@import './ruleset.less';
+
+// @travelog-dark-blue: #557689;
+// @travelog-blue: #4c8ab9;
+// @travelog-mid-blue: #84c1f8;
+// @travelog-light-blue: #cfeaff;
+// @travelog-green: #98e27f;
+// @navbar-color: #0c2e49;
 
 :root {
   --journal-font: 'Indie Flower', cursive;
-  --navbar-color: #0c2e49;
-  --bg-color: #84C1F8;
-  --navbar-height: 50px;
   --base-layer: 0;
   --layer-1: 1;
   --layer-2: 2;
   --priority-layer: 50;
-}
-
-#root {
-  height: 100%;
+  --travelog-dusty-blue: #557689;
+  --travelog-blue: #4c8ab9;
+  --travelog-mid-blue: #84c1f8;
+  --travelog-light-blue: #cfeaff;
+  --travelog-green: #98e27f;
+  --navbar-color: #0c2e49;
 }
 
 * {
@@ -25,31 +33,42 @@
 body {
   margin-top: 0;
   height: 100vh;
-  font-family: 'Comforter Brush', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #84C1F8;
-  color: black;
+  background: var(--travelog-dusty-blue);
+  color: var(--navbar-color);
   z-index: var(--base-layer);
 }
 
-
-html {
-  overflow-y: scroll;
+.wrapper {
+  min-width:200px;
+  max-width:700px;
+  margin: 0 auto;
 }
 
-button,
-button:active,
-button:visited,
-button:focus,
-button:hover {
-  cursor: pointer;
-  border: none;
-  outline: none;
-  background: #4C8AB9;
-  color: white;
+.logo {
+  height: 2rem;
+  border-radius: 5px;
 }
 
-a:active {
-  transition: 200ms, ease;
+b {
+  font-weight: bold;
 }
+
+// button,
+// button:active,
+// button:visited,
+// button:focus,
+// button:hover {
+//   cursor: pointer;
+//   border: none;
+//   outline: none;
+//   background: var(--travelog-blue);
+//   color: white;
+// }
+
+// a:active {
+//   transition: 200ms, ease;
+// }

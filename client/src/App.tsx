@@ -4,6 +4,7 @@ import {
   JournalsList,
   TripsForm,
   NavBar,
+  Footer
 } from "./Components/index";
 import ViewPersonalTrip from "Components/Trips/ViewTrip/ViewTrip";
 import ListOfTrips from "Components/Trips/ListofTrips/ListOfTrips";
@@ -13,6 +14,8 @@ import "firebase/compat/auth";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import logo from './Assets/logo.jpg';
+import './app.css';
 
 // firebase config
 const firebaseConfig = {
@@ -83,11 +86,19 @@ export default function SignInScreen(): JSX.Element {
 
   if (!isSignedIn) {
     return (
-      <div>
-        <StyledFirebaseAuth
-          uiConfig={uiConfig}
-          firebaseAuth={firebase.auth()}
-        />
+      <div className="not-logged-in">
+        <div className="auth-wrapper">
+          <img src={logo} alt="Travelog logo" className="logo" />
+          <StyledFirebaseAuth
+            uiConfig={uiConfig}
+            firebaseAuth={firebase.auth()}
+          />
+        </div>
+
+        <div className="app">
+          <Dashboard />
+        </div>
+        <Footer />
       </div>
     );
   }
@@ -101,22 +112,23 @@ export default function SignInScreen(): JSX.Element {
   // }
 
   return (
-    <div>
-      {/* <UserContext.Provider value={user}> */}
-      <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
-      <BrowserRouter>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route
-            path="/trips"
-            element={<ListOfTrips trips={trips} setTrips={SetTrips} />}
-          />
+    <div className="wrapper">
+      <div className="app">
+        {/* <UserContext.Provider value={user}> */}
+        <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route
+              path="/trips"
+              element={<ListOfTrips trips={trips} setTrips={SetTrips} />}
+            />
 
-          <Route path="/form" element={<TripsForm />} />
-          <Route path="/trip" element={<ViewPersonalTrip />} />
-          <Route path="/trip/:id" element={<ViewPersonalTrip />} />
-          {/*
+            <Route path="/form" element={<TripsForm />} />
+            <Route path="/trip" element={<ViewPersonalTrip />} />
+            <Route path="/trip/:id" element={<ViewPersonalTrip />} />
+            {/*
           <Route path="/profile" element={<Dashboard />} />
           <Route path="/planning" element={<Dashboard />} />
           <Route path="/notes" element={<Dashboard />} />
@@ -124,19 +136,21 @@ export default function SignInScreen(): JSX.Element {
           <Route path="/weather" element={<Dashboard />} />
           <Route path="/logout" element={<Dashboard />} />
           */}
-          <Route path="journal" element={<Journal />} />
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>We've wandered off the beaten track. Nothing here!</p>
-                <p>{"User: " + firebase.auth().currentUser?.displayName}</p>
-              </main>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-      {/* </UserContext.Provider > */}
+            <Route path="journal" element={<Journal />} />
+            <Route
+              path="*"
+              element={
+                <main style={{ padding: "1rem" }}>
+                  <p>We've wandered off the beaten track. Nothing here!</p>
+                  <p>{"User: " + firebase.auth().currentUser?.displayName}</p>
+                </main>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+        {/* </UserContext.Provider > */}
+      </div>
+      <Footer />
     </div>
   );
 }
