@@ -55,14 +55,14 @@ export default function App(): JSX.Element {
     })();
 	}, []);
   
-  function addNote (note: Note): void {
-    NoteAPI.addNote(note)
+  function addNote (uid: string, note: Note): void {
+    NoteAPI.addNote(uid, note)
       .then(newNote => setNotes([...notes, newNote]
         .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
       ));
   }
 
-  async function deleteNote (id: number): Promise<void> {
+  async function deleteNote (uid: string, id: number): Promise<void> {
     await NoteAPI.deleteNote(user.uid, id);
     const filteredNotes = notes.filter(note => note.id !== id);
     setNotes(filteredNotes);

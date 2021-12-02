@@ -2,10 +2,10 @@ export type Note = {
   id?: number
   note: string
   createdAt: Date
-  userId: number
+  uid: string
 }
 
 export type NoteFunction = {
-  deleteNote: (id: number) => Promise<void>
-  addNote: (note: Note) => void
+  deleteNote: (uid: string, id: number) => Promise<void>
+  addNote: (uid: string, note: Note) => void
 }

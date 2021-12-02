@@ -1,5 +1,6 @@
 import './Notes.css';
 import { useContext, useState } from 'react';
+import { UserContext } from 'Context';
 import { NoteContext, NotesContext } from './../../Context/Context';
 
 function Notes (): JSX.Element {
@@ -7,19 +8,18 @@ function Notes (): JSX.Element {
   const [note, setNote] = useState('');
   // const [id, setId] = useState(9); // Not needed as db is giving id automatically
   const [createdAt, setCreatedAt] = useState(new Date());
-  const [userId, setUserId] = useState(1); // Need to be changed once we have functional auth
-
+  const { uid } = useContext(UserContext);
   const { addNote, deleteNote } = useContext(NoteContext);
   const notes = useContext(NotesContext);
 
   function handleAddNote (e: React.SyntheticEvent) {
     e.preventDefault();
-    addNote({note, createdAt, userId});
+    addNote(uid, {note, createdAt, uid});
     setNote('');
   }
 
   function handleDeleteNote (id: number | undefined) {
-    id && deleteNote(id);
+    id && deleteNote(uid, id);
   }
 
   return (
