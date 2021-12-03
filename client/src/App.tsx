@@ -52,7 +52,6 @@ export default function App(): JSX.Element {
             uiConfig={uiConfig}
             firebaseAuth={firebase.auth()}
           />
-          {/* was auth(auth) */}
         </div>
 
         <div className="app">
