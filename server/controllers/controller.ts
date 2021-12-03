@@ -234,7 +234,22 @@ const deleteJournal = async (req: Request, res: Response): Promise<void> => {
 
 const addNewNote = async (req: Request, res: Response): Promise<void> => {
 	try {
-		const trip = await prisma.note.create({ data: req.body });
+		const { uid } = req.params;
+		const { id, note } = req.body;
+		console.log('REQ BODY: ', req.body)
+		const trip = await prisma.user.update({ 
+			where: {
+				uid
+			},
+			data: {
+				notes: {
+					create: {
+						note: note
+					}
+				},
+			}
+		});
+		console.log('TRIP: ', trip)
 		res.status(201);
 		res.send(trip);
 	} catch (err) {
@@ -246,6 +261,7 @@ const addNewNote = async (req: Request, res: Response): Promise<void> => {
 const getPersonalNotes = async (req: Request, res: Response): Promise<void> => {
 	try {
 		const uid = req.params.uid;
+		console.log('UID', uid, typeof uid)
 		const user = await prisma.user.findUnique({
 			where: {
 				uid

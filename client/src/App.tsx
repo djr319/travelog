@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 
-import { Dashboard, Journal, TripsForm, NavBar, Notes, ListOfTrips, ViewPersonalTrip, Chat } from "Components";
 
-=======
 import { useEffect, useState } from "react";
->>>>>>> dev
 import { UserProvider } from "Context";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -25,6 +21,7 @@ import {
   Notes,
   ListOfTrips,
   ViewPersonalTrip,
+  Chat,
   Footer,
 } from "Components";
 
@@ -93,26 +90,9 @@ export default function App(): JSX.Element {
           <Route path="/logout" element={<Dashboard />} />
         */}
 
-<<<<<<< HEAD
-          <Route path='journal' element={<Journal />} />
-          <Route path="/notes" element={<Notes />} />
-          <Route path="/chat" element={<Chat />} />
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>We've wandered off the beaten track. Nothing here!</p>
-                <p>{"User: " + auth.currentUser?.displayName}</p>
-              </main>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-    </UserProvider >
-
-=======
               <Route path="/journal" element={<Journal />} />
               <Route path="/notes" element={<Notes />} />
+              <Route path="/chat" element={<Chat />} />
               <Route
                 path="*"
                 element={
@@ -128,6 +108,5 @@ export default function App(): JSX.Element {
       </div>
       <Footer />
     </div>
->>>>>>> dev
   );
 }

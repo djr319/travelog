@@ -13,8 +13,8 @@ router.post('/journals/:uid', controller.addNewJournal);
 router.get('/journals/:uid', controller.getPersonalJournals);
 router.put('/journals/:uid/:id', controller.updateJournal);
 router.delete('/journals/:uid/:id', controller.deleteJournal);
-router.post('/notes', controller.addNewNote);
-router.get('/notes/:id', controller.getPersonalNotes);
+router.post('/notes/:uid', controller.addNewNote);
+router.get('/notes/:uid', controller.getPersonalNotes);
 router.delete('/notes/:id', controller.deleteNote);
 router.get('/collections', controller.getPublicJournals);
 

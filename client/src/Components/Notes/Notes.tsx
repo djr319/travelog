@@ -40,12 +40,12 @@ function Notes (): JSX.Element {
   function handleDeleteNote (id: number) {
     return deleteNote(uid, id);
   }
-
+  console.log('NOTES: ', notes)
   return (
     <div className="notes-container">
       <div className="notes-published">
         <div className="notes-list">
-          {notes.map(note => (<div className="note-item" key={note.id}>
+          {notes.length && notes.map(note => (<div className="note-item" key={note.id}>
           {note.note}
           <button className="delete-note" onClick={() => handleDeleteNote(note.id)}>Delete</button>
           </div>))}
