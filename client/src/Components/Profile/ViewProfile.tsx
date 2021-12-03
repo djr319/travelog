@@ -1,29 +1,61 @@
-import { Profile } from "Types";
+import { UserContext } from "Context";
+import { useContext, useState } from "react";
+import { useLocation } from "react-router";
 
-export default function ViewProfile({
-  picture,
-  email,
-  username,
-  firstname,
-  lastname,
-  interests,
-}: Profile) {
+type ViewProfile = {
+  firstname: string;
+  lastname: string;
+  interests: string;
+};
+export default function ViewProfile() {
+  const [profile, setProfile] = useState<ViewProfile>({
+    firstname: "",
+    lastname: "",
+    interests: "",
+  });
+  const { userName, uid, photoURL, email } = useContext(UserContext);
+
+  const { state } = useLocation();
+  if (state.firstname && state.firstname && state.interests) {
+    const { firstname, lastname, interests } = state;
+
+    return (
+      <div className="profile-view-container">
+        <h2>Profile</h2>
+
+        <h4>Profile picture</h4>
+        <img src={photoURL} alt="" />
+
+        <h4>Email address</h4>
+        <p>{email}</p>
+        <h4>Username</h4>
+        <p>{userName}</p>
+        <h4>First name</h4>
+        <p>{firstname}</p>
+        <h4>Last name</h4>
+        <p>{lastname}</p>
+        <h4>Interests</h4>
+        <p>{interests}</p>
+      </div>
+    );
+  }
   return (
     <div className="profile-view-container">
       <h2>Profile</h2>
 
       <h4>Profile picture</h4>
-      <p>{picture}</p>
+      <img src={photoURL} alt="" />
+
       <h4>Email address</h4>
       <p>{email}</p>
       <h4>Username</h4>
-      <p>{username}</p>
+      <p>{userName}</p>
       <h4>First name</h4>
-      <p>{firstname}</p>
+      <p>{profile.firstname}</p>
       <h4>Last name</h4>
-      <p>{lastname}</p>
+      <p>{profile.lastname}</p>
       <h4>Interests</h4>
-      <p>{interests}</p>
+      <p>{profile.interests}</p>
     </div>
   );
 }
