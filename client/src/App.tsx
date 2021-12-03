@@ -11,8 +11,8 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 
 
 // NOTE loads firebase's authorization service
-const { auth, uiConfig } = FirebaseAPI.getConfig();
 
+const { auth, uiConfig } = FirebaseAPI.getConfig();
 
 const queryClient = new QueryClient();
 
