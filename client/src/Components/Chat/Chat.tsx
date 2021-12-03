@@ -1,8 +1,8 @@
 import './Chat.css';
 import { useState, useEffect, useContext } from "react";
 import { io, Socket } from "socket.io-client";
-import { Message } from '../../Types/Message.type';
-import { User } from '../../Types/User.type';
+import { Message } from 'Types/Message.type';
+// import { User } from 'Types/User.type';
 import { UserContext } from 'Context';
 // import ScrollToBottom from 'react-scroll-to-bottom';
 
@@ -27,7 +27,7 @@ const CHATS = {
 
 function Chat () {
 
-  const { uid, authenticated, userName, photoURL } = useContext(UserContext);
+  const { uid, userName, photoURL } = useContext(UserContext);
 
   // const [loggedIn, setLoggedIn] = useState(authenticated);
   // const [username, setUsername] = useState("");
