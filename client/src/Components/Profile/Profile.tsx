@@ -1,6 +1,12 @@
-import { SyntheticEvent, useState } from "react";
+import { UserContext } from "Context";
+import { SyntheticEvent, useState, useContext, useEffect } from "react";
 import profileService from "Services/profile.service";
+<<<<<<< HEAD
 import "./profile.css";
+=======
+import "./Profile.css";
+import { useNavigate } from "react-router";
+>>>>>>> dev
 
 export default function Profile(): JSX.Element {
   const [picture, setPicture] = useState("");
@@ -9,6 +15,16 @@ export default function Profile(): JSX.Element {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [interests, setInterests] = useState("");
+
+  const navigate = useNavigate();
+
+  const { userName, uid, photoURL, email: userEmail } = useContext(UserContext);
+
+  useEffect(() => {
+    setPicture(photoURL);
+    setUsername(userName);
+    setEmail(userEmail);
+  }, []);
 
   async function postProfileHandler(
     picture: string,
@@ -38,11 +54,27 @@ export default function Profile(): JSX.Element {
       lastname,
       interests
     );
+    setPicture("");
+    setEmail("");
+    setUsername("");
+    setFirstname("");
+    setLastname("");
+    setInterests("");
+    navigate("/viewProfile", {
+      state: {
+        firstname,
+        lastname,
+        interests,
+      },
+    });
   };
   return (
-    <div className="profile-page-container" onSubmit={handleSubmit}>
-      <form className="profile-form">
+    <div className="profile-page-container">
+      <form className="profile-form" onSubmit={handleSubmit}>
         <h3>My profile</h3>
+        {/* ---------------------profile picture----------- */}
+        <label>Profile Picture</label>
+        <img src={picture} alt="" />
         {/* --------------------usename------------------- */}
         <label>Username</label>
         <input
@@ -50,14 +82,6 @@ export default function Profile(): JSX.Element {
           placeholder="username..."
           value={username}
           onChange={(event) => setUsername(event.target.value)}
-        ></input>
-        {/* ---------------------profile picture----------- */}
-        <label>Profile Picture</label>
-        <input
-          type="text"
-          placeholder="picture..."
-          value={picture}
-          onChange={(event) => setPicture(event.target.value)}
         ></input>
         {/* -------------------------email------------------ */}
         <label>Email address</label>
