@@ -1,6 +1,6 @@
 import { SyntheticEvent, useState } from "react";
 import profileService from "Services/profile.service";
-import "./Profile.css";
+import "./profile.css";
 
 export default function Profile(): JSX.Element {
   const [picture, setPicture] = useState("");
