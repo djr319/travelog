@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 // import { StyledFirebaseAuth } from "react-firebaseui";
 import firebase from "firebase/compat/app";
+
 import "firebase/compat/auth";
 import { FirebaseAPI, UserAPI } from "Services";
 
@@ -19,12 +20,14 @@ import {
   ListOfTrips,
   ViewPersonalTrip,
   Footer,
+  Chat,
 } from "Components";
 
 import logo from "./Assets/logo.jpg";
 import "./App.css";
 
 // NOTE loads firebase's authorization service
+
 const { auth, uiConfig } = FirebaseAPI.getConfig();
 
 export default function App(): JSX.Element {
@@ -86,9 +89,9 @@ export default function App(): JSX.Element {
           <Route path="/weather" element={<Dashboard />} />
           <Route path="/logout" element={<Dashboard />} />
         */}
-
               <Route path="/journal" element={<Journal />} />
               <Route path="/notes" element={<Notes />} />
+              <Route path="/chat" element={<Chat />} />
               <Route
                 path="*"
                 element={

@@ -3,7 +3,7 @@ import { Note } from 'Types';
 
 const NOTES_URL = '/notes';
 
-export function addNote (uid: string, note: string): Promise<Note> {
+export function addNote (uid: string, note: string): Promise<Note[]> {
   return fetchRequest(`${NOTES_URL}/${uid}`, {
     method: 'POST',
     mode: 'cors',
