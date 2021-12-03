@@ -1,12 +1,8 @@
 import { UserContext } from "Context";
 import { SyntheticEvent, useState, useContext, useEffect } from "react";
 import profileService from "Services/profile.service";
-<<<<<<< HEAD
-import "./profile.css";
-=======
 import "./Profile.css";
 import { useNavigate } from "react-router";
->>>>>>> dev
 
 export default function Profile(): JSX.Element {
   const [picture, setPicture] = useState("");
