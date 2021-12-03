@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { UserProvider } from "Context";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import "firebase/compat/auth";
 import { FirebaseAPI, UserAPI } from "Services";
 import { StyledFirebaseAuth } from "react-firebaseui";
