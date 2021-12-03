@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { UserProvider } from "Context";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// import { StyledFirebaseAuth } from "react-firebaseui";
 import "firebase/compat/auth";
 import { FirebaseAPI, UserAPI } from "Services";
 import { StyledFirebaseAuth } from "react-firebaseui";
@@ -87,7 +86,6 @@ export default function App(): JSX.Element {
           <Route path="/weather" element={<Dashboard />} />
           <Route path="/logout" element={<Dashboard />} />
         */}
-
               <Route path="/journal" element={<Journal />} />
               <Route path="/notes" element={<Notes />} />
               <Route path="/chat" element={<Chat />} />
