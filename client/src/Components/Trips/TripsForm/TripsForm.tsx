@@ -21,7 +21,7 @@ function TripsForm(): JSX.Element {
   const toggle = () => setIsOpen(!isOpen);
 
   useEffect(() => {
-    if (state.trip) {
+    if (state) {
       const { destination: place, visits: sights } = state.trip;
       setDestination(place);
       setVisits(sights);
@@ -163,7 +163,7 @@ function TripsForm(): JSX.Element {
             />
           </div>
 
-          <button type="submit">{state.trip ? "Update" : "Upload"}</button>
+          <button type="submit">{state ? "Update" : "Upload"}</button>
         </form>
       </div>
 
