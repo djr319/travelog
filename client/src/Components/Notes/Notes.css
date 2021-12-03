@@ -41,4 +41,12 @@
 .note-item {
   margin: 10px;
   border: 2px solid black;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.note-item span {
+  flex-grow: 1;
+  text-align: center;
 }
