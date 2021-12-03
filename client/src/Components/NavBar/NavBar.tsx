@@ -59,9 +59,6 @@ export default function NavBar(): JSX.Element {
           <li>
             <GrLogout />
           </li>
-          {/* <li>
-                <Link to='/notes'>Notes</Link>
-              </li> */}
         </ul >
       </div >
     </div >
