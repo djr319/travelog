@@ -6,9 +6,13 @@ const MIN_LEN = 10;
 const MAX_LEN = 30;
 
 type EditPageProps = {
-	id: number
+	id: number;
 	text: string;
-	updateEntry: (e: React.FormEvent<HTMLFormElement>, id: number, text: string) => void;
+	updateEntry: (
+		e: React.FormEvent<HTMLFormElement>,
+		id: number,
+		text: string
+	) => void;
 };
 
 export default function EditPage ({

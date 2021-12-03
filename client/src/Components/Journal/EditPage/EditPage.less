@@ -7,7 +7,7 @@
   flex-direction: column;
   align-items: center;
 
-  & .journal__form-textarea-container {
+  .journal__form-textarea-container {
     height: 100%;
     background-color: white;
     padding: 0.5rem;
@@ -25,7 +25,7 @@
       padding: 0.25rem;
       resize: none;
 
-      font-family: var(--journal-font);
+      font-family: @journal-font;
       font-size: 1.25rem;
 
       border-radius: 3px;
@@ -49,7 +49,7 @@
     font-size: 1.5rem;
 
     &:active {
-      background-color: var(--bg-color);
+      background-color: @bg-color;
     }
   }
 }

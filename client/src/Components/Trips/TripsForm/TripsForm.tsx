@@ -1,7 +1,8 @@
 import "./TripsForm.css";
-import { SyntheticEvent, useState } from "react";
+import { SyntheticEvent, useEffect, useState } from "react";
 // import { DateRangePicker } from "rsuite";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router";
 // import "rsuite/dist/rsuite.min.css";
 import tripsService from "Services/trips.service";
 import ReactQuill from "react-quill";
@@ -10,14 +11,22 @@ import { DateRangePicker, DateRange } from "materialui-daterange-picker";
 import format from "date-fns/format";
 
 function TripsForm(): JSX.Element {
+  const { state } = useLocation();
   const navigate = useNavigate();
   const [destination, setDestination] = useState("");
+  const [dateRange, setDateRange] = useState<DateRange>({});
   const [visits, setVisits] = useState("");
 
   const [isOpen, setIsOpen] = useState(false);
-  const [dateRange, setDateRange] = useState<DateRange>({});
   const toggle = () => setIsOpen(!isOpen);
 
+  useEffect(() => {
+    if (state) {
+      const { destination: place, visits: sights } = state.trip;
+      setDestination(place);
+      setVisits(sights);
+    }
+  }, []);
   async function postTripHandler(
     destination: string,
     dateFrom: string,
@@ -25,6 +34,21 @@ function TripsForm(): JSX.Element {
     visits: string
   ) {
     return await tripsService.addNewTrip({
+      destination,
+      dateFrom,
+      dateTo,
+      visits,
+    });
+  }
+
+  async function updateTripHandler(
+    id: string | number,
+    destination: string,
+    dateFrom: string,
+    dateTo: string,
+    visits: string
+  ) {
+    return await tripsService.updateTrip(id, {
       destination,
       dateFrom,
       dateTo,
@@ -41,12 +65,23 @@ function TripsForm(): JSX.Element {
     }
 
     if (dateRange.startDate && dateRange.endDate) {
-      postTripHandler(
-        destination,
-        format(dateRange.startDate, "Do MMM yyyy"),
-        format(dateRange.endDate, "Do MMM yyyy"),
-        visits
-      );
+      if (!state.trip) {
+        postTripHandler(
+          destination,
+          format(dateRange.startDate, "Do MMM yyyy"),
+          format(dateRange.endDate, "Do MMM yyyy"),
+          visits
+        );
+      }
+      if (state.trip) {
+        updateTripHandler(
+          state.trip.id,
+          destination,
+          format(dateRange.startDate, "Do MMM yyyy"),
+          format(dateRange.endDate, "Do MMM yyyy"),
+          visits
+        );
+      }
       setDestination("");
       navigate("/trip", {
         state: {
@@ -58,15 +93,14 @@ function TripsForm(): JSX.Element {
     }
   };
 
-  const handleTextEditor = (e: any) => {
+  const handleTextEditor = (e: string) => {
     setVisits(e);
   };
 
   return (
-    <div>
-      <header>Add next trip!</header>
+    <div className="form-container">
+      <h1>Add next trip!</h1>
 
-      <div className="form-container">
         <form className="add-trip-form" onSubmit={handleSubmit}>
           <div className="form-control">
             <div>
@@ -128,12 +162,9 @@ function TripsForm(): JSX.Element {
             />
           </div>
 
-          <button type="submit">Upload</button>
+          <button type="submit">{state ? "Update" : "Upload"}</button>
         </form>
       </div>
-
-      <div></div>
-    </div>
   );
 }
 

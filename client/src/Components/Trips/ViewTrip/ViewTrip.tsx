@@ -1,11 +1,12 @@
 import "./ViewTrip.css";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 // import tripsService, { getOnePersonalTrip } from "Services/trips.services";
 import { useState } from "react";
 import { Trip } from "../ListofTrips/ListOfTrips";
 import format from "date-fns/format";
 
 export default function ViewPersonalTrip(): JSX.Element {
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const [trip, setTrip] = useState<Trip>();
@@ -17,6 +18,14 @@ export default function ViewPersonalTrip(): JSX.Element {
   const { state } = useLocation();
   if (state.dateRange) {
     const { destination, dateRange, visits } = state;
+    setTrip({
+      id: "",
+      destination,
+      dateFrom: dateRange.startDate,
+      dateTo: dateRange.endDate,
+      visits,
+      createdAt: "",
+    });
     return (
       <div className="trip_view-container">
         <h6>{destination}</h6>
@@ -33,6 +42,9 @@ export default function ViewPersonalTrip(): JSX.Element {
       <h6>{"JSON.stringify(dateRange.startDate)"}</h6>
       <h6>{"JSON.stringify(dateRange.endDate)"}</h6>
       <div>{"visits"}</div>
+      <button onClick={() => navigate("/updateTrip", { state: { trip } })}>
+        Update
+      </button>
     </div>
   );
 }

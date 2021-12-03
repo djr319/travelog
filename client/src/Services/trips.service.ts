@@ -20,14 +20,14 @@ export function getAllPersonalTrips(id: string | number): Promise<Trip[]> {
   return fetchRequest(`${TRIPS_URL}/${id}`);
 }
 
-// export function updateJournal(id: string | number, update: Trip): Promise<Trip> {
-//   return fetchRequest(`${TRIPS_URL}/${id}`, {
-//     method: 'PUT',
-//     mode: 'cors',
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify(update)
-//   })
-// }
+export function updateTrip(id: string | number, update: Trip): Promise<Trip> {
+  return fetchRequest(`${TRIPS_URL}/${id}`, {
+    method: "PUT",
+    mode: "cors",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(update),
+  });
+}
 async function deleteOnePersonalTrip(id: string): Promise<void> {
   await fetchRequest(`${TRIPS_URL}/SSS/${id}`, {
     method: "DELETE",
@@ -36,10 +36,9 @@ async function deleteOnePersonalTrip(id: string): Promise<void> {
 
 const tripsService = {
   addNewTrip,
-
   getAllPersonalTrips,
   getOnePersonalTrip,
-  // updateOnePersonalTrip,
+  updateTrip,
   deleteOnePersonalTrip,
 };
 
