@@ -1,5 +1,5 @@
 
-import { Dashboard, Journal, TripsForm, NavBar, Notes, ListOfTrips, ViewPersonalTrip } from "Components";
+import { Dashboard, Journal, TripsForm, NavBar, Notes, ListOfTrips, ViewPersonalTrip, Chat } from "Components";
 
 import { UserProvider } from "Context";
 import "firebase/compat/auth";
@@ -65,6 +65,7 @@ export default function App(): JSX.Element {
 
           <Route path='journal' element={<Journal />} />
           <Route path="/notes" element={<Notes />} />
+          <Route path="/chat" element={<Chat />} />
           <Route
             path="*"
             element={
