@@ -73,9 +73,6 @@
     padding: 1rem;
   }
 }
-.navbar li:hover .react-icons {
-  color: red;
-}
 .navbar img {
   display: inline;
   border-radius: 50%;
