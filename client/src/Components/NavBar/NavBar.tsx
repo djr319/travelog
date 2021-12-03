@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { GrUser, GrMapLocation, GrBook, GrNotes, GrLogout } from "react-icons/gr";
+import { GrUser, GrMapLocation, GrBook, GrNotes, GrChat } from "react-icons/gr";
 // import { ThemeProvider } from 'styled-components';
 // import { base, deepMerge } from 'grommet-icons';
 import logo from 'Assets/logo.jpg';
@@ -57,7 +57,7 @@ export default function NavBar(): JSX.Element {
             <Link to='/notes'><GrNotes /></Link>
           </li>
           <li>
-            <GrLogout />
+          <Link to='/chat'><GrChat /></Link>
           </li>
         </ul >
       </div >
