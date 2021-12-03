@@ -34,20 +34,18 @@ const mockTrips: Trip[] = [
 export default function ListOfTrips(): JSX.Element {
   const [trips, setTrips] = useState(mockTrips);
   return (
-    <h4>
-      <div className="list-container">
-        <ul className="list-trips">
-          {trips.length ? (
-            trips.map((trip) => (
-              <PersonalTrip trip={trip} setTrips={setTrips} key={trip.id} />
-            ))
-          ) : (
-            <p>there no trips planned yet</p>
-          )}
-        </ul>
-
-        <Link to="/form">Add Trip</Link>
+      <div className='list-container'>
+        {trips.length ? (
+          trips.map((trip) => (
+            <PersonalTrip trip={trip} setTrips={setTrips} key={trip.id} />
+          ))
+        ) : (
+          <p>Time to plan your first trip!</p>
+        )}
+      <Link to='/form'>
+        <div className="book empty">Add trip</div>
+      </Link>
       </div>
-    </h4>
+
   );
 }

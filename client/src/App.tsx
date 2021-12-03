@@ -3,15 +3,15 @@ import { UserProvider } from "Context";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from 'react-query';
 // import { StyledFirebaseAuth } from "react-firebaseui";
-import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { FirebaseAPI, UserAPI } from "Services";
 import { StyledFirebaseAuth } from "react-firebaseui";
-import Profile from "Components/Profile/Profile";
+
 import ViewProfile from "Components/Profile/ViewProfile";
 
 import {
   Dashboard,
+  Profile,
   Journal,
   TripsForm,
   NavBar,
@@ -19,6 +19,7 @@ import {
   ListOfTrips,
   ViewPersonalTrip,
   Footer,
+  Chat,
 } from "Components";
 
 import logo from "./Assets/logo.jpg";
@@ -50,7 +51,7 @@ export default function App(): JSX.Element {
           <img src={logo} alt="Travelog logo" className="logo" />
           <StyledFirebaseAuth
             uiConfig={uiConfig}
-            firebaseAuth={firebase.auth()}
+            firebaseAuth={auth}
           />
         </div>
 
@@ -92,6 +93,7 @@ export default function App(): JSX.Element {
 
               <Route path="/journal" element={<Journal />} />
               <Route path="/notes" element={<Notes />} />
+              <Route path="/chat" element={<Chat />} />
               <Route
                 path="*"
                 element={
