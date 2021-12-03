@@ -41,7 +41,7 @@ export default function EditPage ({
 				)}
 			</div>
 			<button className='journal__form-submit' type='submit'>
-				Add story
+				Save story
 			</button>
 		</form>
 	);

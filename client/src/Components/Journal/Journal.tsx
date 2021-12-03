@@ -1,6 +1,12 @@
 import { useQuery, useMutation } from 'react-query';
 import { Journal as JournalType } from 'Types/index';
-import { useState, useEffect } from 'react';
+import {
+	useContext,
+	useState,
+	useEffect,
+} from 'react';
+import { UserContext } from 'Context';
+import { JournalProvider } from './journal.context';
 
 import { JournalAPI } from 'Services/index';
 import { JournalsList } from 'Components/index';
@@ -11,46 +17,46 @@ import ViewPage from './ViewPage/ViewPage';
 
 import './Journal.css';
 
-const USER_ID = 0;
+function getFreeJournalId(journals: JournalType[]) {
+	const maxId = Math.max(-1, ...journals.map((journal) => journal.id));
+	return maxId + 1;
+}
 
-export default function Journal (): JSX.Element {
-	const [ journals, setJournals ] = useState<JournalType[]>([]);
-	const [ page, setPage ] = useState(
+export default function Journal(): JSX.Element {
+	const [journals, setJournals] = useState<JournalType[]>([]);
+	const [page, setPage] = useState(
 		<CreatePage handleSubmit={handleSubmit} />
 	);
 
 	// Queries
 	const getJournals = useQuery('userJournals', async () => {
-		const data = await JournalAPI.getOwnJournals(USER_ID);
+		const data = await JournalAPI.getOwnJournals(uid);
 		return data;
 	});
 
 	// Mutations
 	const updateJournal = useMutation(
 		({ id, review }: { id: number, review: string }) => {
-			return JournalAPI.updateJournal(id, { review, userId: USER_ID });
+			return JournalAPI.updateJournal(uid, { review, id });
 		}
 	);
 
 	const deleteJournal = useMutation(
 		({ id }: { id: number }) => {
-			return JournalAPI.deleteJournal(id);
+			return JournalAPI.deleteJournal(uid, id);
 		}
 	);
+
+	const { uid } = useContext(UserContext);
 
 	useEffect(() => {
 		(async () => {
 			const journals = getJournals.data;
-			// FIXME: remove check once API linked?
-			if (journals === undefined) {
-				setJournals([]);
-			} else {
-				setJournals(journals);
-			}
+			if (journals) setJournals(journals);
 		})();
 	}, []);
 
-	function updateEntry (
+	function updateEntry(
 		e: React.FormEvent<HTMLFormElement>,
 		id: number,
 		review: string
@@ -59,10 +65,12 @@ export default function Journal (): JSX.Element {
 
 		updateJournal.mutate({ id, review });
 
-		const journalsCopy = [ ...journals ];
-		journalsCopy[id] = { review, userId: USER_ID };
+		setJournals((prev) => {
+			const journalCopy = prev.find((journal) => journal.id === id);
+			if (journalCopy) journalCopy.review = review;
+			return prev;
+		});
 
-		setJournals(journalsCopy);
 		setPage(
 			<ViewPage
 				id={id}
@@ -73,27 +81,31 @@ export default function Journal (): JSX.Element {
 		);
 	}
 
-	function deleteEntry (e: React.MouseEvent<HTMLButtonElement>, id: number) {
+	function deleteEntry(e: React.MouseEvent<HTMLButtonElement>, id: number) {
 		e.preventDefault();
 
-		deleteJournal.mutate({id});
-
-		const journalsCopy = [ ...journals ];
-		journalsCopy.splice(id, 1);
-
-		setJournals(journalsCopy);
 		setPage(<CreatePage handleSubmit={handleSubmit} />);
+
+		deleteJournal.mutate({ id });
+
+		setJournals((prev) => {
+			const index = prev.findIndex((journal) => journal.id === id);
+			if (index > -1) prev.splice(index, 1);
+			return prev;
+		});
 	}
 
-	function handleSubmit (e: React.FormEvent<HTMLFormElement>, review: string) {
+	function handleSubmit(e: React.FormEvent<HTMLFormElement>, review: string) {
 		e.preventDefault();
 
-		const nextJournalId = journals.length;
-		JournalAPI.addJournal({ review, userId: USER_ID });
-		setJournals([ ...journals, { review, userId: USER_ID } ]);
+		const id = getFreeJournalId(journals);
+
+		JournalAPI.addJournal(uid, { id, review });
+		setJournals((prev) => [...prev, { id, review }]);
+
 		setPage(
 			<ViewPage
-				id={nextJournalId}
+				id={id}
 				text={review}
 				switchEditMode={switchEditMode}
 				deleteEntry={deleteEntry}
@@ -101,7 +113,7 @@ export default function Journal (): JSX.Element {
 		);
 	}
 
-	function switchEditMode (
+	function switchEditMode(
 		e: React.MouseEvent<HTMLButtonElement>,
 		id: number,
 		text: string
@@ -111,24 +123,30 @@ export default function Journal (): JSX.Element {
 		setPage(<EditPage id={id} text={text} updateEntry={updateEntry} />);
 	}
 
-	function handleNew (e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+	/**
+	 ** Called on 'New story' menu button
+	 */
+	function handleNew(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 		e.preventDefault();
 
 		// FIXME: using journals array index as id is not safe
 		setPage(<CreatePage handleSubmit={handleSubmit} />);
 	}
 
-	function handleClick (
+	function handleClick(
 		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
 		id: number
 	) {
 		e.preventDefault();
 
 		// FIXME: using journals array index as id is not safe
+		const journal = journals.find((journal) => journal.id === id);
+		if (journal === undefined) return;
+
 		setPage(
 			<ViewPage
-				id={id}
-				text={journals[id].review}
+				id={journal.id}
+				text={journal.review}
 				switchEditMode={switchEditMode}
 				deleteEntry={deleteEntry}
 			/>
@@ -137,13 +155,15 @@ export default function Journal (): JSX.Element {
 
 	return (
 		<div className='journal'>
-			<JournalMenu
-				journals={journals}
-				handleClick={handleClick}
-				handleNew={handleNew}
-			/>
-			{page}
-			<JournalsList journals={journals} />
+			<JournalProvider value={{ journals, setJournals, page, setPage }}>
+				<JournalMenu
+					journals={journals}
+					handleClick={handleClick}
+					handleNew={handleNew}
+				/>
+				{page}
+				<JournalsList journals={journals} />
+			</JournalProvider>
 		</div>
 	);
 }

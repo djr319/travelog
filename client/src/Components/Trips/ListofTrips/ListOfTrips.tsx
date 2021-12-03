@@ -1,27 +1,51 @@
-import PersonalTrip from "../ViewTrip/ViewTrip";
-import "./ListOfTrips.css";
-type Trip = {
-  id: string;
-  destination: string;
-  dateFrom: string;
-  dateTo: string;
-  visit: string;
-  createdAt: string;
+import { useState } from 'react';
+import PersonalTrip from '../PersonalTrip/PersonalTrip';
+import './ListOfTrips.css';
+import { Link } from 'react-router-dom';
+
+export type Trip = {
+	id: string;
+	destination: string;
+	dateFrom: string;
+	dateTo: string;
+	visits: string;
+	createdAt: string;
 };
-const ListOfTrips = ({ trips }: { trips: Trip[] }): JSX.Element => {
-  const tripsList =
-    trips.length && trips.map((trip) => <PersonalTrip key={trip.id} />);
-  return (
-    <div>
-      <ul className="list-container">
-        {tripsList && tripsList.length ? (
-          tripsList
-        ) : (
-          <p>there no trips planned yet</p>
-        )}
-      </ul>
-      <button>Add Trip</button>
-    </div>
-  );
-};
-export default ListOfTrips;
+
+const mockTrips: Trip[] = [
+	{
+		id: 'string',
+		destination: 'Rome',
+		dateFrom: 'Monday',
+		dateTo: 'Friday',
+		visits: 'string',
+		createdAt: 'string'
+	},
+	{
+		id: 'string',
+		destination: 'Rome',
+		dateFrom: 'Monday',
+		dateTo: 'Friday',
+		visits: 'string',
+		createdAt: 'string'
+	}
+];
+
+export default function ListOfTrips (): JSX.Element {
+	const [ trips, setTrips ] = useState(mockTrips);
+	return (
+		<h4>
+			<div className='list-container'>
+				{trips.length ? (
+					trips.map((trip) => (
+						<PersonalTrip trip={trip} setTrips={setTrips} key={trip.id} />
+					))
+				) : (
+					<p>there no trips planned yet</p>
+				)}
+			</div>
+
+			<Link to='/trips-form'>Add Trip</Link>
+		</h4>
+	);
+}
