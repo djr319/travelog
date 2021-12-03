@@ -30,7 +30,7 @@ export default function Profile(): JSX.Element {
     lastname: string,
     interests: string
   ) {
-    return await profileService.addNewProfile({
+    return await profileService.addProfile({
       picture,
       email,
       username,

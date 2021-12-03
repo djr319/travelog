@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
 import { UserProvider } from "Context";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+// import { StyledFirebaseAuth } from "react-firebaseui";
+import firebase from "firebase/compat/app";
+
 import "firebase/compat/auth";
 import { FirebaseAPI, UserAPI } from "Services";
-import { StyledFirebaseAuth } from "react-firebaseui";
 
+import Profile from "Components/Profile/Profile";
 import ViewProfile from "Components/Profile/ViewProfile";
-
 import {
   Dashboard,
-  Profile,
   Journal,
   TripsForm,
   NavBar,
@@ -47,8 +51,9 @@ export default function App(): JSX.Element {
           <img src={logo} alt="Travelog logo" className="logo" />
           <StyledFirebaseAuth
             uiConfig={uiConfig}
-            firebaseAuth={auth}
+            firebaseAuth={firebase.auth()}
           />
+          {/* was auth(auth) */}
         </div>
 
         <div className="app">
@@ -77,8 +82,8 @@ export default function App(): JSX.Element {
               <Route path="/trip/:id" element={<ViewPersonalTrip />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/viewProfile" element={<ViewProfile />} />
-
               {/*
+          <Route path="/profile" element={<Dashboard />} />
 
           <Route path="/planning" element={<Dashboard />} />
           <Route path="/route" element={<Dashboard />} />
