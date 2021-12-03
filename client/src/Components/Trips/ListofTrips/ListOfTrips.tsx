@@ -42,7 +42,7 @@ export default function ListOfTrips(): JSX.Element {
         ) : (
           <p>Time to plan your first trip!</p>
         )}
-      <Link to='/trips-form'>
+      <Link to='/form'>
         <div className="book empty">Add trip</div>
       </Link>
       </div>

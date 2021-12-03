@@ -98,10 +98,9 @@ function TripsForm(): JSX.Element {
   };
 
   return (
-    <div>
-      <header>Add next trip!</header>
+    <div className="form-container">
+      <h1>Add next trip!</h1>
 
-      <div className="form-container">
         <form className="add-trip-form" onSubmit={handleSubmit}>
           <div className="form-control">
             <div>
@@ -166,9 +165,6 @@ function TripsForm(): JSX.Element {
           <button type="submit">{state ? "Update" : "Upload"}</button>
         </form>
       </div>
-
-      <div></div>
-    </div>
   );
 }
 
