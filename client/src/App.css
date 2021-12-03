@@ -1,3 +1,25 @@
-.App {
-  text-align: center;
+.app {
+  background: white;
+  padding-bottom: 1rem;
+  box-shadow: 1px 1px 7px var(--travelog-light-blue);
+}
+@media screen and (max-width: 767px) {
+  .app {
+    margin-top: 0rem;
+  }
+}
+@media screen and (min-width: 768px) {
+  .app {
+    margin-top: 1rem;
+    min-height: 70vh;
+  }
+}
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0.5rem;
+}
+.auth-wrapper .logo {
+  height: 5.5rem;
 }

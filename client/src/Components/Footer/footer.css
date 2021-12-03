@@ -1,0 +1,28 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 9px;
+  text-shadow: 0px 0px 4px white;
+  text-align: center;
+  background: var(--travelog-green);
+  color: var(--travelog-dark-blue);
+  padding: 1rem;
+  box-shadow: 1px 1px 7px var(--travelog-light-blue);
+}
+.text {
+  margin-left: 0.5rem;
+  text-align: left;
+  display: inline-block;
+}
+footer img {
+  filter: drop-shadow(0px 2px 1px grey);
+}
+.extended {
+  display: none;
+}
+@media screen and (min-width: 768px) {
+  .extended {
+    display: inline;
+  }
+}
