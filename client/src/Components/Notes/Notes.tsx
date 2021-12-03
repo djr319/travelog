@@ -52,7 +52,7 @@ function Notes (): JSX.Element {
         </div>
       </div>
       <form className="notes-add" onSubmit={handleAddNote}>
-        <input className="notes-input" type="text" placeholder="Enter notes..." onChange={(e) => setNote(e.target.value)}></input>
+        <input className="notes-input" type="text" placeholder="Enter notes..." value={note} onChange={(e) => setNote(e.target.value)}></input>
         <button className="add-note">Add</button>
       </form>
     </div>
