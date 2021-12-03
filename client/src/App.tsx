@@ -7,11 +7,12 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import { FirebaseAPI, UserAPI } from "Services";
 import { StyledFirebaseAuth } from "react-firebaseui";
-import Profile from "Components/Profile/Profile";
+
 import ViewProfile from "Components/Profile/ViewProfile";
 
 import {
   Dashboard,
+  Profile,
   Journal,
   TripsForm,
   NavBar,
@@ -47,9 +48,8 @@ export default function App(): JSX.Element {
           <img src={logo} alt="Travelog logo" className="logo" />
           <StyledFirebaseAuth
             uiConfig={uiConfig}
-            firebaseAuth={firebase.auth()}
+            firebaseAuth={auth}
           />
-          {/* was auth(auth) */}
         </div>
 
         <div className="app">

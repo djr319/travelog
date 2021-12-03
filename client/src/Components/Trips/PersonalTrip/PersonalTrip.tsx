@@ -19,10 +19,10 @@ const PersonalTrip = (props: TripProps): JSX.Element => {
   };
 
   return (
-    <div>
-      {/* <img></img> */}
+    <div className="book">
       <Link to={`/trip/${id}`} state={props.trip}>
-        <p>{`${destination} & ${dateFrom}-${dateTo}`}</p>
+        <h2>{destination}</h2>
+        <h3>{`${dateFrom}-${dateTo}`}</h3>
       </Link>
       {/* ---------------------DELETE----------------------------- */}
       <div className="trip_delete">
