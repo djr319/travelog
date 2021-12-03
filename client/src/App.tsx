@@ -1,14 +1,28 @@
-
-import { Dashboard, Journal, TripsForm, NavBar, Notes, ListOfTrips, ViewPersonalTrip } from "Components";
-
-import { UserProvider } from 'Context';
-import 'firebase/compat/auth';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { FirebaseAPI, UserAPI } from 'Services';
-import { StyledFirebaseAuth } from 'react-firebaseui';
+import { useEffect, useState } from "react";
+import { UserProvider } from "Context";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from 'react-query';
+// import { StyledFirebaseAuth } from "react-firebaseui";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import { FirebaseAPI, UserAPI } from "Services";
+import { StyledFirebaseAuth } from "react-firebaseui";
+import Profile from "Components/Profile/Profile";
+import ViewProfile from "Components/Profile/ViewProfile";
 
+import {
+  Dashboard,
+  Journal,
+  TripsForm,
+  NavBar,
+  Notes,
+  ListOfTrips,
+  ViewPersonalTrip,
+  Footer,
+} from "Components";
+
+import logo from "./Assets/logo.jpg";
+import "./App.css";
 
 // NOTE loads firebase's authorization service
 
@@ -31,9 +45,20 @@ export default function App(): JSX.Element {
 
   if (!isSignedIn) {
     return (
-      <div>
-        <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
-        <Dashboard />
+      <div className="not-logged-in">
+        <div className="auth-wrapper">
+          <img src={logo} alt="Travelog logo" className="logo" />
+          <StyledFirebaseAuth
+            uiConfig={uiConfig}
+            firebaseAuth={firebase.auth()}
+          />
+          {/* was auth(auth) */}
+        </div>
+
+        <div className="app">
+          <Dashboard />
+        </div>
+        <Footer />
       </div>
     );
   }
@@ -42,23 +67,23 @@ export default function App(): JSX.Element {
   UserAPI.checkUser(user);
 
   return (
+    <div className="wrapper">
+      <div className="app">
+        <UserProvider value={user}>
+          <a onClick={() => auth.signOut()}>Sign-out</a>
+          <BrowserRouter>
+          <QueryClientProvider client={queryClient}>
+            <NavBar />
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/trips" element={<ListOfTrips />} />
+              <Route path="/form" element={<TripsForm />} />
+              <Route path="/trip" element={<ViewPersonalTrip />} />
+              <Route path="/trip/:id" element={<ViewPersonalTrip />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/viewProfile" element={<ViewProfile />} />
 
-    <UserProvider value={user}>
-      <a onClick={() => auth.signOut()}>Sign-out</a>
-      <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route
-            path="/trips"
-            element={<ListOfTrips />}
-          />
-          <Route path="/trips-form" element={<TripsForm />} />
-          <Route path="/trip" element={<ViewPersonalTrip />} />
-          <Route path="/trip/:id" element={<ViewPersonalTrip />} />
-          {/*
-          <Route path="/profile" element={<Dashboard />} />
+              {/*
 
           <Route path="/planning" element={<Dashboard />} />
           <Route path="/route" element={<Dashboard />} />
@@ -66,21 +91,23 @@ export default function App(): JSX.Element {
           <Route path="/logout" element={<Dashboard />} />
         */}
 
-          <Route path='/journal' element={<Journal />} />
-          <Route path="/notes" element={<Notes />} />
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>We've wandered off the beaten track. Nothing here!</p>
-                <p>{"User: " + auth.currentUser?.displayName}</p>
-              </main>
-            }
-          />
-        </Routes>
-        </QueryClientProvider>
-      </BrowserRouter>
-    </UserProvider >
-
+              <Route path="/journal" element={<Journal />} />
+              <Route path="/notes" element={<Notes />} />
+              <Route
+                path="*"
+                element={
+                  <main style={{ padding: "1rem" }}>
+                    <p>We've wandered off the beaten track. Nothing here!</p>
+                    <p>{"User: " + auth.currentUser?.displayName}</p>
+                  </main>
+                }
+              />
+            </Routes>
+            </QueryClientProvider>
+          </BrowserRouter>
+        </UserProvider>
+      </div>
+      <Footer />
+    </div>
   );
 }
