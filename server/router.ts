@@ -15,7 +15,7 @@ router.put('/journals/:uid/:id', controller.updateJournal);
 router.delete('/journals/:uid/:id', controller.deleteJournal);
 router.post('/notes/:uid', controller.addNewNote);
 router.get('/notes/:uid', controller.getPersonalNotes);
-router.delete('/notes/:id', controller.deleteNote);
+router.delete('/notes/:uid/:id', controller.deleteNote);
 router.get('/collections', controller.getPublicJournals);
 
 export default router;

@@ -235,23 +235,24 @@ const deleteJournal = async (req: Request, res: Response): Promise<void> => {
 const addNewNote = async (req: Request, res: Response): Promise<void> => {
 	try {
 		const { uid } = req.params;
-		const { id, note } = req.body;
-		console.log('REQ BODY: ', req.body)
-		const trip = await prisma.user.update({ 
+		const { note } = req.body;
+		const trip = await prisma.user.update({
 			where: {
 				uid
 			},
 			data: {
 				notes: {
 					create: {
-						note: note
+						note
 					}
-				},
+				}
+			},
+			select: {
+				notes: true
 			}
 		});
-		console.log('TRIP: ', trip)
 		res.status(201);
-		res.send(trip);
+		res.send(trip.notes);
 	} catch (err) {
 		console.error('error', err);
 		res.sendStatus(500);
@@ -283,11 +284,17 @@ const getPersonalNotes = async (req: Request, res: Response): Promise<void> => {
 const deleteNote = async (req: Request, res: Response): Promise<void> => {
 	try {
 		const { uid, id } = req.params;
-		await prisma.note.deleteMany({
+		await prisma.user.update({
 			where: {
-				uid,
-				id: Number(id)
-			}
+				uid
+			},
+			data: {
+				notes: {
+					deleteMany: {
+						id: Number(id),
+					},
+				},
+			},
 		});
 		res.sendStatus(204);
 	} catch (err) {
