@@ -67,37 +67,41 @@ export default function Profile(): JSX.Element {
   return (
     <div className="profile-page-container">
       <form className="profile-form" onSubmit={handleSubmit}>
-        <h3>My profile</h3>
+        <h2 className="profile-title">My profile</h2>
         {/* ---------------------profile picture----------- */}
-        <label>Profile Picture</label>
-        <img src={picture} alt="" />
+        <label className="profile-label">Profile Picture</label>
+        <img className="profile-img" src={picture} alt="" />
         {/* --------------------usename------------------- */}
-        <label>Username</label>
+        <label className="profile-label">Username</label>
         <input
+          className="from-input"
           type="text"
           placeholder="username..."
           value={username}
           onChange={(event) => setUsername(event.target.value)}
         ></input>
         {/* -------------------------email------------------ */}
-        <label>Email address</label>
+        <label className="profile-label">Email address</label>
         <input
+          className="from-input"
           type="text"
           placeholder="email address..."
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         ></input>
         {/* ---------------first name------------------------ */}
-        <label>First Name</label>
+        <label className="profile-label">First Name</label>
         <input
+          className="from-input"
           type="text"
           placeholder="firstname..."
           value={firstname}
           onChange={(event) => setFirstname(event.target.value)}
         ></input>
         {/* ---------------last name------------------------ */}
-        <label>Last Name</label>
+        <label className="profile-label">Last Name</label>
         <input
+          className="from-input"
           type="text"
           placeholder="lastname..."
           value={lastname}
@@ -105,15 +109,18 @@ export default function Profile(): JSX.Element {
         ></input>
 
         {/* ---------------genenal interests------------------------ */}
-        <label>My Interests</label>
+        <label className="profile-label">My Interests</label>
         <input
+          className="from-input"
           type="text"
           placeholder="type few words about yourself..."
           value={interests}
           onChange={(event) => setInterests(event.target.value)}
         ></input>
 
-        <button type="submit">Save</button>
+        <button className="add-profile-button" type="submit">
+          Save
+        </button>
       </form>
     </div>
   );
