@@ -13,6 +13,7 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
 const uiConfig = {
   signInFlow: 'popup',
   signInOptions: [
@@ -25,7 +26,18 @@ const uiConfig = {
   },
 };
 
-function getConfig() {
+type Config = {
+  auth: firebase.auth.Auth
+  uiConfig: {
+    signInFlow: string,
+    signInOptions: string[],
+    callbacks: {
+      signInSuccessWithAuthResult: () => boolean;
+    }
+  }
+}
+
+function getConfig(): Config {
   const auth = firebase.auth();
   return {
     auth,

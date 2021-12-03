@@ -10,8 +10,8 @@ import { StyledFirebaseAuth } from "react-firebaseui";
 
 
 // NOTE loads firebase's authorization service
-const { auth, uiConfig } = FirebaseAPI.getConfig();
 
+const { auth, uiConfig } = FirebaseAPI.getConfig();
 
 export default function App(): JSX.Element {
   const user = FirebaseAPI.formatUser(auth);
