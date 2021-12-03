@@ -42,7 +42,7 @@ export default function Journal(): JSX.Element {
 
 	// Mutations
 	const updateJournal = useMutation(
-		({ id, review }: { id: number, review: string }) => {
+		({ id, uid, review }: { id: number, uid: string, review: string }) => {
 			return JournalAPI.updateJournal(uid, { review, id });
 		}
 	);
@@ -63,7 +63,7 @@ export default function Journal(): JSX.Element {
 	) {
 		e.preventDefault();
 
-		updateJournal.mutate({ id, review });
+		updateJournal.mutate({ id, uid, review });
 
 		setJournals((prev) => {
 			const journalCopy = prev.find((journal) => journal.id === id);
