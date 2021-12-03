@@ -3,8 +3,8 @@ import { Journal } from 'Types/index';
 
 const JOURNALS_URL = '/journals';
 
-export function addJournal(journal: Journal): Promise<Journal> {
-  return fetchRequest(JOURNALS_URL, {
+export function addJournal(uid: string, journal: Journal): Promise<Journal> {
+  return fetchRequest(`${JOURNALS_URL}/${uid}`, {
     method: 'POST',
     mode: 'cors',
     headers: { 'Content-Type': 'application/json' },
@@ -12,20 +12,20 @@ export function addJournal(journal: Journal): Promise<Journal> {
   })
 }
 
-export function getAllJournals(id: string | number): Promise<Journal[]> {
-  return fetchRequest(`${JOURNALS_URL}/${id}`);
+export function getAllJournals(uid: string): Promise<Journal[]> {
+  return fetchRequest(`${JOURNALS_URL}/${uid}`);
 }
 
-export function getOneJournal(id: string): Promise<Journal> {
-  return fetchRequest(`${JOURNALS_URL}/${id}`);
+export function getOneJournal(uid: string, id: string): Promise<Journal> {
+  return fetchRequest(`${JOURNALS_URL}/${uid}/${id}`);
 }
 
 export function getPublicJournals(): Promise<Journal[]> {
   return fetchRequest(`${JOURNALS_URL}/collections`);
 }
 
-export function updateJournal(id: string | number, update: Journal): Promise<Journal> {
-  return fetchRequest(`${JOURNALS_URL}/${id}`, {
+export function updateJournal(uid: string, update: Journal): Promise<Journal> {
+  return fetchRequest(`${JOURNALS_URL}/${uid}/${update.id}`, {
     method: 'PUT',
     mode: 'cors',
     headers: { 'Content-Type': 'application/json' },
@@ -33,8 +33,8 @@ export function updateJournal(id: string | number, update: Journal): Promise<Jou
   })
 }
 
-export function deleteJournal(id: string | number): Promise<void> {
-  return fetchRequest(`${JOURNALS_URL}/${id}`, {
+export function deleteJournal(uid: string, id: string | number): Promise<void> {
+  return fetchRequest(`${JOURNALS_URL}/${uid}/${id}`, {
     method: 'DELETE'
   });
 }

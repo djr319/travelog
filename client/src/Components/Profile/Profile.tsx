@@ -1,6 +1,8 @@
-import { SyntheticEvent, useState } from "react";
+import { UserContext } from "Context";
+import { SyntheticEvent, useState, useContext, useEffect } from "react";
 import profileService from "Services/profile.service";
 import "./Profile.css";
+import { useNavigate } from "react-router";
 
 export default function Profile(): JSX.Element {
   const [picture, setPicture] = useState("");
@@ -9,6 +11,16 @@ export default function Profile(): JSX.Element {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [interests, setInterests] = useState("");
+
+  const navigate = useNavigate();
+
+  const { userName, uid, photoURL, email: userEmail } = useContext(UserContext);
+
+  useEffect(() => {
+    setPicture(photoURL);
+    setUsername(userName);
+    setEmail(userEmail);
+  }, []);
 
   async function postProfileHandler(
     picture: string,
@@ -38,46 +50,58 @@ export default function Profile(): JSX.Element {
       lastname,
       interests
     );
+    setPicture("");
+    setEmail("");
+    setUsername("");
+    setFirstname("");
+    setLastname("");
+    setInterests("");
+    navigate("/viewProfile", {
+      state: {
+        firstname,
+        lastname,
+        interests,
+      },
+    });
   };
   return (
-    <div className="profile-page-container" onSubmit={handleSubmit}>
-      <form className="profile-form">
-        <h3>My profile</h3>
+    <div className="profile-page-container">
+      <form className="profile-form" onSubmit={handleSubmit}>
+        <h2 className="profile-title">My profile</h2>
+        {/* ---------------------profile picture----------- */}
+        <label className="profile-label">Profile Picture</label>
+        <img className="profile-img" src={picture} alt="" />
         {/* --------------------usename------------------- */}
-        <label>Username</label>
+        <label className="profile-label">Username</label>
         <input
+          className="from-input"
           type="text"
           placeholder="username..."
           value={username}
           onChange={(event) => setUsername(event.target.value)}
         ></input>
-        {/* ---------------------profile picture----------- */}
-        <label>Profile Picture</label>
-        <input
-          type="text"
-          placeholder="picture..."
-          value={picture}
-          onChange={(event) => setPicture(event.target.value)}
-        ></input>
         {/* -------------------------email------------------ */}
-        <label>Email address</label>
+        <label className="profile-label">Email address</label>
         <input
+          className="from-input"
           type="text"
           placeholder="email address..."
           value={email}
           onChange={(event) => setEmail(event.target.value)}
         ></input>
         {/* ---------------first name------------------------ */}
-        <label>First Name</label>
+        <label className="profile-label">First Name</label>
         <input
+          className="from-input"
           type="text"
           placeholder="firstname..."
           value={firstname}
           onChange={(event) => setFirstname(event.target.value)}
         ></input>
         {/* ---------------last name------------------------ */}
-        <label>Last Name</label>
+        <label className="profile-label">Last Name</label>
         <input
+          className="from-input"
           type="text"
           placeholder="lastname..."
           value={lastname}
@@ -85,15 +109,18 @@ export default function Profile(): JSX.Element {
         ></input>
 
         {/* ---------------genenal interests------------------------ */}
-        <label>My Interests</label>
+        <label className="profile-label">My Interests</label>
         <input
+          className="from-input"
           type="text"
           placeholder="type few words about yourself..."
           value={interests}
           onChange={(event) => setInterests(event.target.value)}
         ></input>
 
-        <button type="submit">Save</button>
+        <button className="add-profile-button" type="submit">
+          Save
+        </button>
       </form>
     </div>
   );

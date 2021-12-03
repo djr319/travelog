@@ -1,0 +1,39 @@
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #84c1f8;
+  border-radius: 6px;
+  padding-bottom: 5px;
+  margin: 15px;
+}
+.add-profile-button {
+  background-color: #4c8ab9;
+  border: 2px solid #0c2e49;
+  border-radius: 35px;
+  color: #cfeaff;
+  width: 100px;
+  height: 30px;
+}
+.profile-title {
+  margin-bottom: 15px;
+}
+.from-input {
+  border: 2px solid #98e27f;
+  border-radius: 7px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 10px;
+  width: 50%;
+}
+.profile-label {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  padding-top: 15px;
+}
+.profile-img {
+  border: 50px solid #0c2e49;
+  border-radius: 55px;
+}
