@@ -29,10 +29,16 @@ export default function Journal(): JSX.Element {
 	);
 
 	// Queries
-	const getJournals = useQuery('userJournals', async () => {
+	const getJournals = useQuery('getOwnJournals', async () => {
 		const data = await JournalAPI.getOwnJournals(uid);
+		setJournals(data);
 		return data;
 	});
+
+	useEffect(() => {
+		const { data } = getJournals;
+		if (data) setJournals(data);
+	}, []);
 
 	// Mutations
 	const updateJournal = useMutation(
@@ -49,12 +55,6 @@ export default function Journal(): JSX.Element {
 
 	const { uid } = useContext(UserContext);
 
-	useEffect(() => {
-		(async () => {
-			const journals = getJournals.data;
-			if (journals) setJournals(journals);
-		})();
-	}, []);
 
 	function updateEntry(
 		e: React.FormEvent<HTMLFormElement>,
