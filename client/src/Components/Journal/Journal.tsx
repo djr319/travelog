@@ -137,6 +137,7 @@ export default function Journal (): JSX.Element {
 				handleNew={handleNew}
 			/>
 			{page}
+			{/* TODO: use properly matched journals*/}
 			<JournalsList journals={journals} />
 		</div>
 	);
