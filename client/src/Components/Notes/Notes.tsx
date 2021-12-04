@@ -1,4 +1,4 @@
-import './Notes.css';
+import './notes.css';
 import { NoteAPI } from 'Services';
 import { useContext, useState, useEffect } from 'react';
 import { UserContext } from 'Context';

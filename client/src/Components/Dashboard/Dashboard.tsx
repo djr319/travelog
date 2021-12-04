@@ -18,7 +18,7 @@ export default function Dashboard(): JSX.Element {
 
   return (
     <div className="dashboard">
-      <div>Get the magic from your trips in an easy way</div>
+      <div>Chat. Plan. Enjoy....</div>
 
       <section className="slider">
         <FaArrowAltCircleLeft className="left-arrow" onClick={prevSlide} />

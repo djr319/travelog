@@ -1,11 +1,13 @@
 .app {
-  background: white;
+  background: #ffffff url('Assets/logo/logo-faint.png') no-repeat left top;
+  background-size: 150%, 150%;
+  background-position: top -200px left -200px;
   padding-bottom: 1rem;
   box-shadow: 1px 1px 7px var(--travelog-light-blue);
 }
 @media screen and (max-width: 767px) {
   .app {
-    margin-top: 0rem;
+    min-height: calc(100vh - var(--footer-height));
   }
 }
 @media screen and (min-width: 768px) {

@@ -3,7 +3,7 @@ import { Profile } from "Types";
 
 const PROFILE_URL = "/profile";
 
-async function addNewProfile(profile: Profile): Promise<Profile> {
+async function addProfile(profile: Profile): Promise<Profile> {
   return fetchRequest(PROFILE_URL, {
     method: "POST",
     mode: "cors",
@@ -11,12 +11,13 @@ async function addNewProfile(profile: Profile): Promise<Profile> {
     body: JSON.stringify(profile),
   });
 }
+
 export function getProfile(id: string) {
   return fetchRequest(`${PROFILE_URL}/${id}`);
 }
 
 const profileService = {
-  addNewProfile,
+  addProfile,
   getProfile,
 };
 

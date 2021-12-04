@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import { UserProvider } from "Context";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+
+// import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+// import { StyledFirebaseAuth } from "react-firebaseui";
+import firebase from "firebase/compat/app";
+
 import "firebase/compat/auth";
 import { FirebaseAPI, UserAPI } from "Services";
 import { StyledFirebaseAuth } from "react-firebaseui";
-import ViewProfile from "Components/Profile/ViewProfile";
 
+import Profile from "Components/Profile/Profile";
+import ViewProfile from "Components/Profile/ViewProfile";
 import {
+  Header,
   Dashboard,
-  Profile,
   Journal,
   TripsForm,
   NavBar,
@@ -20,7 +27,7 @@ import {
   Footer
 } from "Components";
 
-import logo from "./Assets/logo.jpg";
+import logo from "./Assets/logo/logo.jpg";
 import "./App.css";
 import WeatherDay from "Components/Weather/WeatherDay";
 
@@ -48,8 +55,9 @@ export default function App(): JSX.Element {
           <img src={logo} alt="Travelog logo" className="logo" />
           <StyledFirebaseAuth
             uiConfig={uiConfig}
-            firebaseAuth={auth}
+            firebaseAuth={firebase.auth()}
           />
+          {/* was auth(auth) */}
         </div>
 
         <div className="app">
@@ -67,8 +75,8 @@ export default function App(): JSX.Element {
     <div className="wrapper">
       <div className="app">
         <UserProvider value={user}>
-          <a onClick={() => auth.signOut()}>Sign-out</a>
           <BrowserRouter>
+            <Header />
             <NavBar />
             <Routes>
               <Route path="/" element={<Dashboard />} />
@@ -78,8 +86,8 @@ export default function App(): JSX.Element {
               <Route path="/trip/:id" element={<ViewPersonalTrip />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/viewProfile" element={<ViewProfile />} />
-
               {/*
+          <Route path="/profile" element={<Dashboard />} />
 
           <Route path="/planning" element={<Dashboard />} />
           <Route path="/route" element={<Dashboard />} />

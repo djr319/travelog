@@ -2,7 +2,7 @@
 
 .app {
     .small-screen({
-      margin-top: 0rem;
+      min-height: ~"calc(100vh - var(--footer-height))";
     });
 
     .large-screen ({
@@ -10,7 +10,10 @@
       min-height: 70vh;
     });
 
-  background: white;
+    // linear-gradient(to bottom, rgba(255,255,0,0.5), rgba(0,0,255,0.5));
+  background: #ffffff url('Assets/logo/logo-faint.png') no-repeat left top;
+  background-size: 150%, 150%;
+  background-position: top -200px left -200px;
   padding-bottom: 1rem;
   box-shadow: 1px 1px 7px var(--travelog-light-blue);
 };

@@ -1,4 +1,4 @@
-import logo from 'Assets/logo.jpg';
+import logo from 'Assets/logo/logo.jpg';
 import './footer.css'
 
 export default function Footer(): JSX.Element {
