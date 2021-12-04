@@ -65,12 +65,14 @@ export default function Profile(): JSX.Element {
     });
   };
   return (
-    <div className="profile-page-container">
       <form className="profile-form" onSubmit={handleSubmit}>
         <h2 className="profile-title">My profile</h2>
+        <div className="profile-flex">
+          <div className="flex-item">
         {/* ---------------------profile picture----------- */}
         <label className="profile-label">Profile Picture</label>
-        <img className="profile-img" src={picture} alt="" />
+          <img className="profile-img" src={picture} alt="user profile picture" />
+
         {/* --------------------usename------------------- */}
         <label className="profile-label">Username</label>
         <input
@@ -79,7 +81,10 @@ export default function Profile(): JSX.Element {
           placeholder="username..."
           value={username}
           onChange={(event) => setUsername(event.target.value)}
-        ></input>
+          ></input>
+          </div>
+          <div className="flex-item">
+
         {/* -------------------------email------------------ */}
         <label className="profile-label">Email address</label>
         <input
@@ -117,11 +122,11 @@ export default function Profile(): JSX.Element {
           value={interests}
           onChange={(event) => setInterests(event.target.value)}
         ></input>
-
+        </div>
+</div>
         <button className="add-profile-button" type="submit">
           Save
         </button>
       </form>
-    </div>
   );
 }

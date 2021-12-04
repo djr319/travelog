@@ -13,7 +13,6 @@
   src: url(https://fonts.gstatic.com/s/montserrat/v18/JTUSjIg1_i6t8kCHKm45xW4.ttf) format('truetype');
 }
 :root {
-  --journal-font: 'Indie Flower', cursive;
   --base-layer: 0;
   --layer-1: 1;
   --layer-2: 2;
@@ -24,6 +23,7 @@
   --travelog-light-blue: #cfeaff;
   --travelog-green: #98e27f;
   --navbar-color: #0c2e49;
+  --footer-height: 4rem;
 }
 * {
   margin: 0;

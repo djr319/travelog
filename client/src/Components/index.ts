@@ -11,4 +11,4 @@ export { default as NavBar } from './NavBar/NavBar';
 export { default as Footer } from './Footer/Footer';
 export { default as ViewPersonalTrip } from './Trips/ViewTrip/ViewTrip';
 export { default as Chat } from './Chat/Chat';
-
+export { default as Header } from './Header/Header';

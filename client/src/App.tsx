@@ -13,6 +13,7 @@ import { FirebaseAPI, UserAPI } from "Services";
 import Profile from "Components/Profile/Profile";
 import ViewProfile from "Components/Profile/ViewProfile";
 import {
+  Header,
   Dashboard,
   Journal,
   TripsForm,
@@ -24,7 +25,7 @@ import {
   Chat,
 } from "Components";
 
-import logo from "./Assets/logo.jpg";
+import logo from "./Assets/logo/logo.jpg";
 import "./App.css";
 
 // NOTE loads firebase's authorization service
@@ -71,8 +72,8 @@ export default function App(): JSX.Element {
     <div className="wrapper">
       <div className="app">
         <UserProvider value={user}>
-          <a onClick={() => auth.signOut()}>Sign-out</a>
           <BrowserRouter>
+            <Header />
             <NavBar />
             <Routes>
               <Route path="/" element={<Dashboard />} />
