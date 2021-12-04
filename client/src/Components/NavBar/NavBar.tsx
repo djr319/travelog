@@ -59,10 +59,12 @@ export default function NavBar(): JSX.Element {
           <li>
           <Link to='/chat'><GrChat /></Link>
           </li>
+          <li>
+          <Link to='/weather'><GrChat /></Link>
+          </li>
         </ul >
       </div >
     </div >
     // </ThemeContext.Provider>
   );
 }
-
