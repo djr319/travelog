@@ -2,40 +2,63 @@ import { UserContext } from "Context";
 import { SyntheticEvent, useState, useContext, useEffect } from "react";
 import profileService from "Services/profile.service";
 import "./Profile.css";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 export default function Profile(): JSX.Element {
-  const [picture, setPicture] = useState("");
+  const [photoURL, setPhotoURL] = useState("");
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  const [firstname, setFirstname] = useState("");
-  const [lastname, setLastname] = useState("");
+  const [firstName, setFirstname] = useState("");
+  const [lastName, setLastname] = useState("");
   const [interests, setInterests] = useState("");
 
   const navigate = useNavigate();
 
-  const { userName, uid, photoURL, email: userEmail } = useContext(UserContext);
+  const { state } = useLocation();
+  const {
+    userName,
+    uid,
+    photoURL: pic,
+    email: userEmail,
+  } = useContext(UserContext);
 
   useEffect(() => {
-    setPicture(photoURL);
+    setPhotoURL(pic);
     setUsername(userName);
     setEmail(userEmail);
-  }, []);
 
+    if (state && state.profile) {
+      const {
+        profile: { firstName, lastName, interests },
+      } = state;
+      setFirstname(firstName);
+      setLastname(lastName);
+      setInterests(interests);
+    }
+  }, []);
+  // uid String @id
+  // firstName String @default("")
+  // lastName String @default("")
+  // username String
+  // photoURL String @default("")
+  // email String @unique
+  // interests String[]
   async function postProfileHandler(
-    picture: string,
-    email: string,
+    uid: string,
+    firstName: string,
+    lastName: string,
     username: string,
-    firstname: string,
-    lastname: string,
+    photoURL: string,
+    email: string,
     interests: string
   ) {
     return await profileService.addProfile({
-      picture,
-      email,
+      uid,
+      firstName,
+      lastName,
       username,
-      firstname,
-      lastname,
+      photoURL,
+      email,
       interests,
     });
   }
@@ -43,23 +66,24 @@ export default function Profile(): JSX.Element {
     event.preventDefault();
 
     postProfileHandler(
-      picture,
-      email,
+      uid,
+      firstName,
+      lastName,
       username,
-      firstname,
-      lastname,
+      photoURL,
+      email,
       interests
     );
-    setPicture("");
+    setPhotoURL("");
     setEmail("");
     setUsername("");
     setFirstname("");
     setLastname("");
     setInterests("");
-    navigate("/viewProfile", {
+    navigate("/Profile", {
       state: {
-        firstname,
-        lastname,
+        firstName,
+        lastName,
         interests,
       },
     });
@@ -70,7 +94,7 @@ export default function Profile(): JSX.Element {
         <h2 className="profile-title">My profile</h2>
         {/* ---------------------profile picture----------- */}
         <label className="profile-label">Profile Picture</label>
-        <img className="profile-img" src={picture} alt="" />
+        <img className="profile-img" src={photoURL} alt="" />
         {/* --------------------usename------------------- */}
         <label className="profile-label">Username</label>
         <input
@@ -95,7 +119,7 @@ export default function Profile(): JSX.Element {
           className="from-input"
           type="text"
           placeholder="firstname..."
-          value={firstname}
+          value={firstName}
           onChange={(event) => setFirstname(event.target.value)}
         ></input>
         {/* ---------------last name------------------------ */}
@@ -104,7 +128,7 @@ export default function Profile(): JSX.Element {
           className="from-input"
           type="text"
           placeholder="lastname..."
-          value={lastname}
+          value={lastName}
           onChange={(event) => setLastname(event.target.value)}
         ></input>
 

@@ -8,6 +8,7 @@ import tripsService from "Services/trips.service";
 // import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { DateRangePicker, DateRange } from "materialui-daterange-picker";
+
 import { UserContext } from "Context";
 import { useContext } from "react";
 
@@ -135,10 +136,12 @@ function TripsForm(): JSX.Element {
 
           <div className="dates">
             <DateRangePicker
+              wrapperClassName="dates"
               open={isOpen}
               toggle={toggle}
               onChange={(range) => setDateRange(range)}
             />
+
             {/* <DateRangePicker
                 onChange={(event) => {
                   if (
@@ -154,7 +157,7 @@ function TripsForm(): JSX.Element {
             </div>
           </div>
           {/* --------------TO VISIT------------------ */}
-          <label>Wish List</label>
+          {/* <label>Wish List</label>
           <h4>To visit</h4>
           <div className="todo-list">
             <input
@@ -163,23 +166,33 @@ function TripsForm(): JSX.Element {
               placeholder="wish to visit..."
               onChange={(event) => setVisits([event.target.value])}
             ></input>
-          </div>
-        </div>
-        {/* -----------------rich text editor-------------------- */}
-        {/* <div className="rich-text-editor">
+          </div> */}
+          {/* -----------------rich text editor-------------------- */}
+          {/* <div className="rich-text-editor">
           <h4>To visit</h4>
           <ReactQuill
-            placeholder="wish to visit"
-            modules={TripsForm.modules}
-            formats={TripsForm.formats}
-            onChange={(e) => {
-              const delta = e;
-              setVisits(delta);
-            }}
-            value={visits}
+          placeholder="wish to visit"
+          modules={TripsForm.modules}
+          formats={TripsForm.formats}
+          onChange={(e) => {
+            const delta = e;
+            setVisits(delta);
+          }}
+          value={visits}
           />
         </div> */}
-
+          {/* ----------------teaxt area-------------------- */}
+          <label>Wish List</label>
+          <h4>To visit</h4>
+          <textarea
+            className="journal__form-textarea"
+            placeholder="Enter review description..."
+            required={true}
+            name="review"
+            value={visit}
+            onChange={(event) => setVisits([event.target.value])}
+          />
+        </div>
         <button type="submit">{state ? "Update" : "Upload"}</button>
       </form>
     </div>

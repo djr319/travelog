@@ -51,6 +51,22 @@ const getLogin = async (req: Request, res: Response): Promise<void> => {
     res.sendStatus(500);
   }
 };
+const addProfile = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { uid } = req.body;
+    const trip = await prisma.user.update({
+      data: req.body,
+      where: {
+        uid: uid,
+      },
+    });
+    res.status(201);
+    res.send(trip);
+  } catch (err) {
+    console.error("error", err);
+    res.sendStatus(500);
+  }
+};
 
 const getProfile = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -324,6 +340,7 @@ const getPublicJournals = async (
 const controller = {
   checkUser,
   getLogin,
+  addProfile,
   getProfile,
   addNewTrip,
   getPersonalTrips,
