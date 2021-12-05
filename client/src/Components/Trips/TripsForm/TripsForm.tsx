@@ -1,130 +1,145 @@
 import "./TripsForm.css";
 import { SyntheticEvent, useEffect, useState } from "react";
 // import { DateRangePicker } from "rsuite";
+// import "rsuite/dist/rsuite.min.css";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router";
-// import "rsuite/dist/rsuite.min.css";
 import tripsService from "Services/trips.service";
-import ReactQuill from "react-quill";
+// import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { DateRangePicker, DateRange } from "materialui-daterange-picker";
-import format from "date-fns/format";
+import { UserContext } from "Context";
+import { useContext } from "react";
 
 function TripsForm(): JSX.Element {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const [destination, setDestination] = useState("");
+  const [city, setDestination] = useState("");
   const [dateRange, setDateRange] = useState<DateRange>({});
-  const [visits, setVisits] = useState("");
+  const [visit, setVisits] = useState([""]);
 
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+  const { uid, userName } = useContext(UserContext);
 
   useEffect(() => {
-    if (state) {
-      const { destination: place, visits: sights } = state.trip;
-      setDestination(place);
-      setVisits(sights);
+    if (state && state.trip) {
+      const { city, visit, dateFrom, dateTo } = state.trip;
+      setDestination(city);
+      setVisits(visit);
+      setDateRange({
+        startDate: new Date(dateFrom),
+        endDate: new Date(dateTo),
+      });
     }
   }, []);
   async function postTripHandler(
-    destination: string,
-    dateFrom: string,
-    dateTo: string,
-    visits: string
+    uid: string,
+    city: string,
+    dateFrom: Date,
+    dateTo: Date,
+    visit: string[],
+    users: string
   ) {
     return await tripsService.addNewTrip({
-      destination,
+      uid,
+      city,
       dateFrom,
       dateTo,
-      visits,
+      visit,
+      users,
     });
   }
 
   async function updateTripHandler(
-    id: string | number,
-    destination: string,
-    dateFrom: string,
-    dateTo: string,
-    visits: string
+    id: string,
+    uid: string,
+    city: string,
+    dateFrom: Date,
+    dateTo: Date,
+    visit: string[]
   ) {
     return await tripsService.updateTrip(id, {
-      destination,
+      uid,
+      city,
       dateFrom,
       dateTo,
-      visits,
+      visit,
     });
   }
 
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
 
-    if (!destination) {
+    if (!city) {
       alert("please fill  in all the fields");
       return;
     }
 
     if (dateRange.startDate && dateRange.endDate) {
-      if (!state.trip) {
+      if (!state) {
         postTripHandler(
-          destination,
-          format(dateRange.startDate, "Do MMM yyyy"),
-          format(dateRange.endDate, "Do MMM yyyy"),
-          visits
+          uid,
+          city,
+          dateRange.startDate,
+          dateRange.endDate,
+          visit,
+          userName
         );
-      }
-      if (state.trip) {
+      } else {
         updateTripHandler(
           state.trip.id,
-          destination,
-          format(dateRange.startDate, "Do MMM yyyy"),
-          format(dateRange.endDate, "Do MMM yyyy"),
-          visits
+          uid,
+          city,
+          dateRange.startDate,
+          dateRange.endDate,
+          visit
         );
       }
       setDestination("");
       navigate("/trip", {
         state: {
-          destination,
+          city,
           dateRange,
-          visits,
+          visit,
+          userName,
         },
       });
     }
   };
 
-  const handleTextEditor = (e: string) => {
-    setVisits(e);
-  };
+  // const handleTextEditor = (e: string) => {
+  //   setVisits(e);
+  // };
 
   return (
     <div className="form-container">
       <h1>Add next trip!</h1>
 
-        <form className="add-trip-form" onSubmit={handleSubmit}>
-          <div className="form-control">
-            <div>
-              <h4>Make the plan</h4>
-            </div>
-            {/* -----------------CITY------------------- */}
-            <label>City</label>
-            <input
-              type="text"
-              placeholder="destination..."
-              value={destination}
-              onChange={(event) => setDestination(event.target.value)}
-            ></input>
-            {/* ------------------DATES----------------------------------- */}
-            <label>Dates</label>
-            <h4>Departure</h4>
+      <form className="add-trip-form" onSubmit={handleSubmit}>
+        <div className="form-control">
+          <div>
+            <h4>Make the plan</h4>
+          </div>
+          {/* -----------------CITY------------------- */}
+          <label>City</label>
+          <input
+            type="text"
+            placeholder="destination..."
+            value={city}
+            onChange={(event) => setDestination(event.target.value)}
+          ></input>
+          {/* ------------------DATES----------------------------------- */}
+          <label>Dates</label>
+          <h4>Departure</h4>
 
-            <div className="dates">
-              <DateRangePicker
-                open={isOpen}
-                toggle={toggle}
-                onChange={(range) => setDateRange(range)}
-              />
-              {/* <DateRangePicker
+          <div className="dates">
+            <DateRangePicker
+              open={isOpen}
+              toggle={toggle}
+              onChange={(range) => setDateRange(range)}
+            />
+            {/* <DateRangePicker
                 onChange={(event) => {
                   if (
                     typeof event[0] === "string" &&
@@ -134,37 +149,40 @@ function TripsForm(): JSX.Element {
                     }
                   }}
                 /> */}
-              <div aria-label="toggle dates button" onClick={toggle}>
-                {isOpen ? "Close" : "Set Dates"}
-              </div>
+            <div aria-label="toggle dates button" onClick={toggle}>
+              {isOpen ? "Close" : "Set Dates"}
             </div>
-            {/* --------------TO VISIT------------------ */}
-            {/* <label>Wish List</label>
-            <h4>To visit</h4>
-            <div className="todo-list">
-              <input
-                type="text"
-                value={sights}
-                placeholder="wish to visit..."
-                onChange={(event) => setSights(event.target.value)}
-              ></input>
-            </div>*/}
           </div>
-          {/* -----------------rich text editor-------------------- */}
-          <div className="rich-text-editor">
-            <h4>To visit</h4>
-            <ReactQuill
-              placeholder="wish to visit"
-              modules={TripsForm.modules}
-              formats={TripsForm.formats}
-              onChange={handleTextEditor}
-              value={visits}
-            />
+          {/* --------------TO VISIT------------------ */}
+          <label>Wish List</label>
+          <h4>To visit</h4>
+          <div className="todo-list">
+            <input
+              type="text"
+              value={visit}
+              placeholder="wish to visit..."
+              onChange={(event) => setVisits([event.target.value])}
+            ></input>
           </div>
+        </div>
+        {/* -----------------rich text editor-------------------- */}
+        {/* <div className="rich-text-editor">
+          <h4>To visit</h4>
+          <ReactQuill
+            placeholder="wish to visit"
+            modules={TripsForm.modules}
+            formats={TripsForm.formats}
+            onChange={(e) => {
+              const delta = e;
+              setVisits(delta);
+            }}
+            value={visits}
+          />
+        </div> */}
 
-          <button type="submit">{state ? "Update" : "Upload"}</button>
-        </form>
-      </div>
+        <button type="submit">{state ? "Update" : "Upload"}</button>
+      </form>
+    </div>
   );
 }
 
