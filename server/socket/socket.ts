@@ -30,7 +30,8 @@ function socket({ io }: { io: Server }) {
         from: 'Demo User',
         to: 'all',
         message: messageData.message,
-        photo: messageData.photo,
+        // photo: messageData.photo,
+        photo: "https://firebasestorage.googleapis.com/v0/b/travelog-bf015.appspot.com/o/funny.jpg?alt=media&token=3f709f6f-d721-475b-bf85-bf1b37002a3d",
         date: messageData.date
       });
     });

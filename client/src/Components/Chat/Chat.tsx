@@ -99,10 +99,10 @@ function Chat () {
         {/* <ScrollToBottom className="message-container"> */}
           {messageList.map((messageContent) => {
             return (
-              <div className="message" id={userName === messageContent.from ? "me" : "you"}>
+              <div className={userName === messageContent.from ? "message me" : "message you"}>
 
                   <div className="message-data">
-                    <img className="photo" key={uid} src={messageContent.photo} alt="Profile picture" />
+                    <img className="photo" key={uid} src={messageContent.photo} alt="" />
                     <p className="user">{messageContent.from}</p>
                     <p className="time">{messageContent.date}</p>
                 </div>
