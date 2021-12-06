@@ -12,8 +12,9 @@ async function addProfile(profile: Profile): Promise<Profile> {
   });
 }
 
-export function getProfile(id: string) {
-  return fetchRequest(`${PROFILE_URL}/${id}`);
+export function getProfile(uid: string): Promise<Profile> {
+  console.log(uid);
+  return fetchRequest(`${PROFILE_URL}/${uid}`);
 }
 
 const profileService = {

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { UserProvider } from "Context";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 // import { StyledFirebaseAuth } from "react-firebaseui";
 import firebase from "firebase/compat/app";
@@ -81,8 +80,8 @@ export default function App(): JSX.Element {
               <Route path="/form" element={<TripsForm />} />
               <Route path="/trip" element={<ViewPersonalTrip />} />
               <Route path="/trip/:id" element={<ViewPersonalTrip />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/viewProfile" element={<ViewProfile />} />
+              <Route path="/profile" element={<ViewProfile />} />
+              <Route path="/updateProfile" element={<Profile />} />
               {/*
           <Route path="/profile" element={<Dashboard />} />
 
