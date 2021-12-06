@@ -8,7 +8,6 @@ import firebase from "firebase/compat/app";
 
 import "firebase/compat/auth";
 import { FirebaseAPI, UserAPI } from "Services";
-
 import Profile from "Components/Profile/Profile";
 import ViewProfile from "Components/Profile/ViewProfile";
 import {
@@ -20,8 +19,9 @@ import {
   Notes,
   ListOfTrips,
   ViewPersonalTrip,
-  Footer,
   Chat,
+  Weather,
+  Footer
 } from "Components";
 
 import logo from "./Assets/logo/logo.jpg";
@@ -93,6 +93,7 @@ export default function App(): JSX.Element {
               <Route path="/journal" element={<Journal />} />
               <Route path="/notes" element={<Notes />} />
               <Route path="/chat" element={<Chat />} />
+              <Route path="/weather" element={<Weather />} />
               <Route
                 path="*"
                 element={
