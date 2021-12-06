@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
 import { UserContext } from "Context";
 import logo from 'Assets/logo/travelog.png';
-import './Header.css'
-
+import './header.css';
+import firebase from "@firebase/app-compat";
 
 function dropDown() {
   document.getElementById("myDropdown")!.classList.toggle("show");
@@ -25,24 +25,33 @@ window.onclick = function (event) {
   }
 }
 
+
+
 export default function Header(): JSX.Element {
   const { photoURL } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const signOut = async (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    await firebase.auth().signOut().then(() => {
+      console.log("Successfully signed out.")
+    }).catch((error: any) => {
+      console.error("An error occurred", error)
+    });
+    navigate("/");
+  }
 
   return (
     <header className="header">
-
-
       <div className="dropdown">
         <div className="navbar-circle" onClick={dropDown}>
           <img className="profile-image" src={photoURL} alt="user profile picture" />
         </div>
-
         <div id="myDropdown" className="dropdown-content">
           <Link to='/profile'>Profile</Link>
-          <a href="#">Logout (TODO)</a> {/* <a onClick={() => auth.signOut()}> */}
+          <a href="#" onClick={signOut}>Logout</a>
         </div>
       </div>
-
       <div className="logo-container">
         <Link to='/'>
           <img src={logo} className="logo" alt="Travelog logo" />
