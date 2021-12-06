@@ -134,14 +134,23 @@ function TripsForm(): JSX.Element {
           <label>Dates</label>
           <h4>Departure</h4>
 
-          <div className="dates">
+          <div>
+            {/* ----------------------2-------------------- */}
             <DateRangePicker
               wrapperClassName="dates"
               open={isOpen}
               toggle={toggle}
               onChange={(range) => setDateRange(range)}
             />
+            <div
+              className="button-dates"
+              aria-label="toggle dates button"
+              onClick={toggle}
+            >
+              {isOpen ? "Close" : "Set Dates"}
+            </div>
 
+            {/* --------------1---------------------------- */}
             {/* <DateRangePicker
                 onChange={(event) => {
                   if (
@@ -152,9 +161,6 @@ function TripsForm(): JSX.Element {
                     }
                   }}
                 /> */}
-            <div aria-label="toggle dates button" onClick={toggle}>
-              {isOpen ? "Close" : "Set Dates"}
-            </div>
           </div>
           {/* --------------TO VISIT------------------ */}
           {/* <label>Wish List</label>
@@ -185,7 +191,7 @@ function TripsForm(): JSX.Element {
           <label>Wish List</label>
           <h4>To visit</h4>
           <textarea
-            className="journal__form-textarea"
+            className="trips_form-textarea"
             placeholder="Enter review description..."
             required={true}
             name="review"
