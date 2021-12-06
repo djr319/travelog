@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction } from "react";
 import { Link } from "react-router-dom";
 import tripsService from "Services/trips.service";
-import { Trip } from "../ListofTrips/ListOfTrips";
+import { Trip } from "Types";
+import moment from "moment";
 
 type TripProps = {
   trip: Trip;
@@ -9,20 +10,26 @@ type TripProps = {
 };
 
 const PersonalTrip = (props: TripProps): JSX.Element => {
-  const { id, destination, dateFrom, dateTo } = props.trip;
+  const { id, city, dateFrom, dateTo } = props.trip;
 
   const deleteHandler = async () => {
-    await tripsService.deleteOnePersonalTrip(props.trip.id);
-    props.setTrips((prev) =>
-      prev.filter((notDeletedTrip: Trip) => notDeletedTrip.id !== props.trip.id)
-    );
+    if (props.trip.id) {
+      await tripsService.deleteOnePersonalTrip(props.trip.id);
+      props.setTrips((prev) =>
+        prev.filter(
+          (notDeletedTrip: Trip) => notDeletedTrip.id !== props.trip.id
+        )
+      );
+    }
   };
-
+  // <p className="content_date">{moment(topic.published_at).format("MMM Do")}</p>
   return (
     <div className="book">
       <Link to={`/trip/${id}`} state={props.trip}>
-        <h2>{destination}</h2>
-        <h3>{`${dateFrom}-${dateTo}`}</h3>
+        <h2>{city}</h2>
+        <h3>{`${moment(dateFrom).format("MMM Do YY")}-${moment(dateTo).format(
+          "MMM Do YY"
+        )}`}</h3>
       </Link>
       {/* ---------------------DELETE----------------------------- */}
       <div className="trip_delete">
