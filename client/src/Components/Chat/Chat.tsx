@@ -73,7 +73,7 @@ function Chat () {
   }, [socket]);
 
   return (
-    <div className="chat-container">
+    <div className="chat">
       <div className="chat-header">
         <h2>Live Chat</h2>
       </div>

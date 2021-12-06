@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "Context";
 import logo from 'Assets/logo/travelog.png';
-import './header.css'
+import './Header.css'
 
 
 function dropDown() {
