@@ -90,27 +90,32 @@ function Chat () {
 
   return (
     <div className="chat">
-      <h2>Live Chat</h2>
+
+      <div className="chat-header">
+        <h2>Live Chat</h2>
+      </div>
+
       <div className="chat-body">
         {/* <ScrollToBottom className="message-container"> */}
           {messageList.map((messageContent) => {
             return (
-              <div className="message" id={userName === messageContent.from ? "me" : "you"}>
-                <div>
+              <div className={userName === messageContent.from ? "message me" : "message you"}>
+
                   <div className="message-data">
-                    <img className="photo" key={uid} src={messageContent.photo} alt="Profile picture" />
+                    <img className="photo" key={uid} src={messageContent.photo} alt="" />
                     <p className="user">{messageContent.from}</p>
                     <p className="time">{messageContent.date}</p>
-                  </div>
+                </div>
+
                   <div className="message-content">
                     <p>{messageContent.message}</p>
                   </div>
-                </div>
               </div>
             );
           })}
         {/* </ScrollToBottom> */}
       </div>
+
       <div className="chat-footer">
         <input
           type="text"
@@ -125,6 +130,7 @@ function Chat () {
         />
         <button onClick={sendMessage}>Send</button>
       </div>
+
     </div>
   );
 }
