@@ -1,7 +1,5 @@
 import "./TripsForm.css";
 import { SyntheticEvent, useEffect, useState } from "react";
-// import { DateRangePicker } from "rsuite";
-// import "rsuite/dist/rsuite.min.css";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router";
 import tripsService from "Services/trips.service";
@@ -29,8 +27,8 @@ function TripsForm(): JSX.Element {
       setDestination(city);
       setVisits(visit);
       setDateRange({
-        startDate: new Date(dateFrom),
-        endDate: new Date(dateTo),
+        startDate: dateFrom,
+        endDate: dateTo,
       });
     }
   }, []);
@@ -133,9 +131,7 @@ function TripsForm(): JSX.Element {
           {/* ------------------DATES----------------------------------- */}
           <label>Dates</label>
           <h4>Departure</h4>
-
           <div>
-            {/* ----------------------2-------------------- */}
             <DateRangePicker
               wrapperClassName="dates"
               open={isOpen}
@@ -149,31 +145,9 @@ function TripsForm(): JSX.Element {
             >
               {isOpen ? "Close" : "Set Dates"}
             </div>
-
-            {/* --------------1---------------------------- */}
-            {/* <DateRangePicker
-                onChange={(event) => {
-                  if (
-                    typeof event[0] === "string" &&
-                    typeof event[1] === "string"
-                    ) {
-                      return setDates([event[0], event[1]]);
-                    }
-                  }}
-                /> */}
           </div>
           {/* --------------TO VISIT------------------ */}
-          {/* <label>Wish List</label>
-          <h4>To visit</h4>
-          <div className="todo-list">
-            <input
-              type="text"
-              value={visit}
-              placeholder="wish to visit..."
-              onChange={(event) => setVisits([event.target.value])}
-            ></input>
-          </div> */}
-          {/* -----------------rich text editor-------------------- */}
+          {/* --------option1---------rich text editor-------------------- */}
           {/* <div className="rich-text-editor">
           <h4>To visit</h4>
           <ReactQuill
@@ -187,7 +161,7 @@ function TripsForm(): JSX.Element {
           value={visits}
           />
         </div> */}
-          {/* ----------------teaxt area-------------------- */}
+          {/* --------option2--------teaxt area-------------------- */}
           <label>Wish List</label>
           <h4>To visit</h4>
           <textarea
@@ -205,32 +179,32 @@ function TripsForm(): JSX.Element {
   );
 }
 
-TripsForm.modules = {
-  toolbar: [
-    [{ header: "1" }, { header: "2" }, { header: [3, 4, 5, 6] }, { font: [] }],
-    [{ size: [] }],
-    ["bold", "italic", "underline", "strike", "blockquote"],
-    [{ list: "ordered" }, { list: "bullet" }],
-    ["link", "image", "video"],
-    ["clean"],
-    ["code-block"],
-  ],
-};
+// TripsForm.modules = {
+//   toolbar: [
+//     [{ header: "1" }, { header: "2" }, { header: [3, 4, 5, 6] }, { font: [] }],
+//     [{ size: [] }],
+//     ["bold", "italic", "underline", "strike", "blockquote"],
+//     [{ list: "ordered" }, { list: "bullet" }],
+//     ["link", "image", "video"],
+//     ["clean"],
+//     ["code-block"],
+//   ],
+// };
 
-TripsForm.formats = [
-  "header",
-  "font",
-  "size",
-  "bold",
-  "italic",
-  "underline",
-  "strike",
-  "blockquote",
-  "list",
-  "bullet",
-  "link",
-  "image",
-  "video",
-  "code-block",
-];
+// TripsForm.formats = [
+//   "header",
+//   "font",
+//   "size",
+//   "bold",
+//   "italic",
+//   "underline",
+//   "strike",
+//   "blockquote",
+//   "list",
+//   "bullet",
+//   "link",
+//   "image",
+//   "video",
+//   "code-block",
+// ];
 export default TripsForm;
