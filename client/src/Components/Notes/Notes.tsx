@@ -1,16 +1,8 @@
-<<<<<<< HEAD
-import './Notes.css';
-import { NoteAPI } from 'Services';
-import { useContext, useState, useEffect } from 'react';
-import { UserContext } from 'Context';
-import { Note } from 'Types';
-=======
 import "./Notes.css";
 import { NoteAPI } from "Services";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "Context";
 import { Note } from "Types";
->>>>>>> dev
 
 function Notes(): JSX.Element {
   const [note, setNote] = useState("");
