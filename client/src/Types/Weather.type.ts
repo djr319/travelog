@@ -8,14 +8,8 @@ export type WeatherType = {
   clouds: number,
   humidity: number,
   wind_speed: number,
-  main: {
-    min: number,
-    max: number
-  },
-  weather: [{
-    id: number,
-    main: string,
-    icon: string}]
+  temp: WeatherData,
+  weather: WeatherConditions[]
 }
 
 export type WeatherData = {
