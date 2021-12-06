@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material/textfield": "^13.0.0",
+    "@mui/lab": "^5.0.0-alpha.58",
+    "@mui/material": "^5.2.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -16,11 +19,13 @@
     "firebaseui": "^6.0.0",
     "history": "^5.1.0",
     "materialui-daterange-picker": "^1.1.92",
+    "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-firebase-hooks": "^4.0.1",
     "react-firebaseui": "^6.0.0",
     "react-icons": "^4.3.1",
+    "react-open-weather": "^1.1.6",
     "react-quill": "^1.3.5",
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
@@ -61,6 +66,8 @@
     "@types/react-dates": "^21.8.3",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
-    "concurrently": "^6.4.0"
+    "concurrently": "^6.4.0",
+    "less": "^4.1.2",
+    "npm-run-all": "^4.1.5"
   }
 }

@@ -14,7 +14,6 @@ window.onclick = function (event) {
   const thisTarget = event.target as HTMLElement;
 
   if (!thisTarget.matches('.profile-image')) {
-    console.log("clicking anywhere: ", thisTarget);
     const dropdowns = document.getElementsByClassName("dropdown-content");
     let i;
     for (i = 0; i < dropdowns.length; i++) {

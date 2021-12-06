@@ -10,20 +10,20 @@ const SOCKET_URL = "http://localhost:3001";
 const socket: Socket = io(SOCKET_URL);
 socket.connect();
 
-const CHATS = {
-  connection: "connection",
-  disconnect: "disconnect",
-  CLIENT: {
-    CREATE_ROOM: "CREATE_ROOM",
-    SEND_MESSAGE: "SEND_MESSAGE",
-    JOIN_ROOM: "JOIN_ROOM"
-  },
-  SERVER: {
-    ROOM: "ROOM",
-    JOINED_ROOM: "JOINED_ROOM",
-    RECEIVE_MESSAGE: "RECEIVE_MESSAGE",
-  }
-};
+// const CHATS = {
+//   connection: "connection",
+//   disconnect: "disconnect",
+//   CLIENT: {
+//     CREATE_ROOM: "CREATE_ROOM",
+//     SEND_MESSAGE: "SEND_MESSAGE",
+//     JOIN_ROOM: "JOIN_ROOM"
+//   },
+//   SERVER: {
+//     ROOM: "ROOM",
+//     JOINED_ROOM: "JOINED_ROOM",
+//     RECEIVE_MESSAGE: "RECEIVE_MESSAGE",
+//   }
+// };
 
 function Chat () {
 
@@ -31,34 +31,35 @@ function Chat () {
 
   // const [loggedIn, setLoggedIn] = useState(authenticated);
   // const [username, setUsername] = useState("");
-  const [room, setRoom] = useState("");
+  // const [room, setRoom] = useState("");
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState<Message[]>([]);
-  const [showChat, setShowChat] = useState(false);
+  // const [showChat, setShowChat] = useState(false);
 
   // Check if the user is loggedIn -> fn
   // Create room on the journal page and pass roomId as room name
   // Add pop up window to annotate other user about the new room/chat
   // Implement joinRoom function
 
-  const joinRoom = () => {
-    if (userName !== "" && room !== "") {
-      socket.emit(CHATS.CLIENT.JOIN_ROOM, room);
-      setShowChat(true);
-    }
-  };
+  // const joinRoom = () => {
+  //   if (userName !== "" && room !== "") {
+  //     socket.emit(CHATS.CLIENT.JOIN_ROOM, room);
+  //     setShowChat(true);
+  //   }
+  // };
 
-  const sendMessage = async () => {
+  const sendMessage = () => {
+    console.log("message send fired");
     if (currentMessage !== "") {
       const messageData = {
-        room: room,
-        username: userName,
+        room: '0',
+        from: userName,
         message: currentMessage,
         photo: photoURL,
         date: `${new Date(Date.now()).getHours()}:${new Date(Date.now()).getMinutes()}`
       };
 
-      await socket.emit(CHATS.CLIENT.SEND_MESSAGE, messageData);
+      socket.emit("to-all", messageData);
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       setMessageList((list) => [...list, messageData]);
@@ -66,27 +67,46 @@ function Chat () {
     }
   };
 
+  // useEffect(() => {
+  //   socket.on(CHATS.SERVER.RECEIVE_MESSAGE, (message) => {
+  //     setMessageList((list) => [...list, message]);
+  //   });
+  // }, [socket]);
+
   useEffect(() => {
-    socket.on(CHATS.SERVER.RECEIVE_MESSAGE, (message) => {
+    socket.on('to-all', (messageData) => {
+      const message:Message = {
+        roomId:'0',
+        message: messageData.message,
+        from: messageData.from,
+        to: 'all',
+        photo:messageData.photo,
+        date: messageData.date
+      }
+
       setMessageList((list) => [...list, message]);
     });
   }, [socket]);
 
   return (
     <div className="chat">
+
       <div className="chat-header">
         <h2>Live Chat</h2>
       </div>
+
       <div className="chat-body">
         {/* <ScrollToBottom className="message-container"> */}
           {messageList.map((messageContent) => {
             return (
-              <div className="message" id={userName === messageContent.username ? "me" : "you"}>
+              <div className="message" id={userName === messageContent.from ? "me" : "you"}>
+
                   <div className="message-data">
                     <img className="photo" key={uid} src={messageContent.photo} alt="Profile picture" />
-                    <p className="user">{messageContent.username}</p>
+                    <p className="user">{messageContent.from}</p>
                     <p className="time">{messageContent.date}</p>
-                  </div>
+                </div>
+
                   <div className="message-content">
                     <p>{messageContent.message}</p>
                   </div>
@@ -95,6 +115,7 @@ function Chat () {
           })}
         {/* </ScrollToBottom> */}
       </div>
+
       <div className="chat-footer">
         <input
           type="text"
@@ -109,6 +130,7 @@ function Chat () {
         />
         <button onClick={sendMessage}>Send</button>
       </div>
+
     </div>
   );
 }

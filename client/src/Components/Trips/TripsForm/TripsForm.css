@@ -1,3 +1,22 @@
 .form-container {
   padding: 5rem;
 }
+
+.materialui-daterange-picker-MuiListItemText-root-272 {
+  display: none;
+  pointer-events: none;
+  cursor: default;
+  visibility: hidden;
+}
+
+.materialui-daterange-picker-MuiGrid-root-35 {
+  padding: 0px;
+  background-color: limegreen;
+}
+.button-dates {
+  background-color: mediumorchid;
+}
+.trips_form-textarea {
+  min-width: 400px;
+  min-height: 600px;
+}
