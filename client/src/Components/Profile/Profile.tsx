@@ -36,13 +36,7 @@ export default function Profile(): JSX.Element {
       setInterests(interests);
     }
   }, []);
-  // uid String @id
-  // firstName String @default("")
-  // lastName String @default("")
-  // username String
-  // photoURL String @default("")
-  // email String @unique
-  // interests String[]
+
   async function postProfileHandler(
     uid: string,
     firstName: string,
