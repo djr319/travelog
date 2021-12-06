@@ -7,16 +7,40 @@
   pointer-events: none;
   cursor: default;
   visibility: hidden;
+  background-color: transparent;
 }
 
 .materialui-daterange-picker-MuiGrid-root-35 {
-  padding: 0px;
-  background-color: limegreen;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  background-color: rgb(57, 57, 185);
 }
+
+/* .materialui-daterange-picker-MuiGrid-root-35.dateRangeContainer-1 {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+} */
 .button-dates {
   background-color: mediumorchid;
 }
-.trips_form-textarea {
-  min-width: 400px;
-  min-height: 600px;
+/* .materialui-daterange-picker-makeStyles-dateRangePickerContainer-1.dates {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }
+
+.materialui-daterange-picker-makeStyles-dateRangePicker-2.dates {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+
+  margin: 0px;
+}
+.materialui-daterange-picker-makeStyles-dateRangePickerContainer-1.materialui-daterange-picker-makeStyles-dateRangePicker-2.dates {
+  display: flex;
+  justify-content: left;
+  flex-direction: row;
+  background-color: mediumvioletred;
+} */
