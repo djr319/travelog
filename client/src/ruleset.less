@@ -2,11 +2,22 @@
   @media screen and (min-width: 768px) {@rules();}
 }
 
-.small-screen(@rules) {
-  @media screen and (max-width: 767px) {@rules();}
-}
+// syntax for reference:
+
+// .large-screen ({
+//   margin-top: 1rem;
+//   min-height: 70vh;
+// });
 
 @glow-text: {
   text-shadow: 0px 0px 2px #0c2e49;
   color: white;
 };
+
+// colors for local use in LESS:
+// @travelog-light-blue: var(--travelog-light-blue);
+// @travelog-mid-blue: var(--travelog-mid-blue);
+// @travelog-blue: var(--travelog-blue);
+// @dusty-blue: var(--travelog-dusty-blue);
+// @navbar-color: var(--navbar-color);
+// @travelog-green: var(--travelog-green);

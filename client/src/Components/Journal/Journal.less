@@ -1,10 +1,7 @@
-@import "../../index.less";
-
 .journal {
-  height: 70%;
-  padding: 0.5rem;
-  
-  & .journal__menu {
+  --journal-font: 'Indie Flower', cursive;
+
+  &__menu {
     width: 150px;
     position: fixed;
     margin-top: -15px;
@@ -13,31 +10,31 @@
     border-radius: 5px;
     transition: 0.5s;
 
-    & .journal__menu-button-container {
+    &-button-container {
       position: absolute;
       top: 0px;
       right: -55px;
       z-index: var(--layer-2);
-      
+
       border: solid 3px var(--navbar-color);
       border-radius: 50%;
       background-color: white;
       padding: 0.25rem;
       height: 3.6rem;
-      
+
       &:active {
         background-color: rgb(194, 194, 194);
       }
-      
+
       & .journal__menu-button {
         height: 2.5rem;
         width: 2.5rem;
-  
+
         transition: 0.5s;
       }
     }
 
-    & .journal__menu-select-container {
+    &-select-container {
       width: 100%;
       display: flex;
 
@@ -56,17 +53,17 @@
           width: 100%;
           background-color: white;
           padding: 0.5rem 0.25rem 0.5rem 0.25rem;
-          
+
           text-align: left;
           overflow-x: hidden;
-          
+
           &.last {
             border-left: 3px solid black;
             border-right: 3px solid black;
             border-bottom: 3px solid black;
-            
-            border-bottom-right-radius: 5px; 
-            border-bottom-left-radius: 5px; 
+
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
           }
 
           &:hover {
@@ -79,13 +76,13 @@
           border-top: 3px solid black;
           border-right: 3px solid black;
           border-left: 3px solid black;
-          
+
           // LINK https://developer.mozilla.org/ja/docs/Web/CSS/:first-of-type
           &:first-of-type {
-            border-top-left-radius: 5px; 
-            
+            border-top-left-radius: 5px;
+
             &.last {
-              border-radius: 5px 0 0 5px; 
+              border-radius: 5px 0 0 5px;
             }
           }
         }

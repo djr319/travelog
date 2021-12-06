@@ -13,7 +13,6 @@
   src: url(https://fonts.gstatic.com/s/montserrat/v18/JTUSjIg1_i6t8kCHKm45xW4.ttf) format('truetype');
 }
 :root {
-  --journal-font: 'Indie Flower', cursive;
   --base-layer: 0;
   --layer-1: 1;
   --layer-2: 2;
@@ -42,15 +41,44 @@ body {
   color: var(--navbar-color);
   z-index: var(--base-layer);
 }
-.wrapper {
-  min-width: 200px;
-  max-width: 700px;
-  margin: 0 auto;
+h1 {
+  padding-bottom: 1em;
 }
-.logo {
-  height: 2rem;
-  border-radius: 5px;
+h2 {
+  font-weight: 600;
+  background-color: #4C8AB9;
+  color: white;
+  text-align: center;
+  padding-bottom: 0.4em;
+}
+h3 {
+  padding-bottom: 1em;
+}
+h4 {
+  padding-bottom: 1em;
+}
+h5,
+h6 {
+  padding-bottom: 1em;
 }
 b {
   font-weight: bold;
+}
+button,
+button:active,
+button:visited,
+button:focus,
+button:hover {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: var(--travelog-green);
+  color: white;
+  border-radius: 1rem;
+  text-align: center;
+  line-height: 100%;
+  min-height: 2rem;
+}
+a:active {
+  transition: 200ms, ease;
 }

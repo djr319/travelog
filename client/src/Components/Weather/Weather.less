@@ -1,0 +1,42 @@
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 50%;
+  
+  .weather-items {
+    margin: 10px;
+    background-color: #84c1f8;
+    border-radius: 12px;
+
+    .weather-main {
+      display: flex;
+      flex-direction: row;
+      background-color: #4c8ab9;
+      border-radius: 12px 12px 0 0;
+      height: 100px;
+
+      .weather-icon {
+        min-width: 30%;
+      }
+
+      .weather-description {
+        padding: 40px 0;
+        color: white;
+        font-weight: bolder;
+        max-width: 70%;
+      }
+    }
+
+    .weather-data p {
+      text-align: center;
+      padding: 2px;
+
+    }
+
+    .weather-data .weather-date {
+      font-weight: 900;
+      font-size: larger;
+    }
+  }
+}

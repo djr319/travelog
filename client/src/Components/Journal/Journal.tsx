@@ -1,6 +1,11 @@
 import { Journal as JournalType } from 'Types/index';
-import { useContext, useState, useEffect } from 'react';
+import {
+	useContext,
+	useState,
+	useEffect,
+} from 'react';
 import { UserContext } from 'Context';
+import { JournalProvider } from './journal.context';
 
 import { JournalAPI } from 'Services/index';
 import { JournalsList } from 'Components/index';
@@ -18,7 +23,6 @@ function getFreeJournalId (journals: JournalType[]) {
 
 export default function Journal (): JSX.Element {
 	const [ journals, setJournals ] = useState<JournalType[]>([]);
-	console.log(journals);
 	const [ page, setPage ] = useState(
 		<CreatePage handleSubmit={handleSubmit} />
 	);
@@ -61,7 +65,7 @@ export default function Journal (): JSX.Element {
 		e.preventDefault();
 
 		setPage(<CreatePage handleSubmit={handleSubmit} />);
-		
+
 		JournalAPI.deleteJournal(uid, id);
 
 		setJournals((prev) => {
@@ -77,7 +81,7 @@ export default function Journal (): JSX.Element {
 		const id = getFreeJournalId(journals);
 
 		JournalAPI.addJournal(uid, { id, review });
-		setJournals((prev) =>	[ ...prev, { id, review } ]);
+		setJournals((prev) => [ ...prev, { id, review } ]);
 
 		setPage(
 			<ViewPage
@@ -131,14 +135,15 @@ export default function Journal (): JSX.Element {
 
 	return (
 		<div className='journal'>
-			<JournalMenu
-				journals={journals}
-				handleClick={handleClick}
-				handleNew={handleNew}
-			/>
-			{page}
-			{/* TODO: use properly matched journals*/}
-			<JournalsList journals={journals} />
+			<JournalProvider value={{ journals, setJournals, page, setPage }}>
+				<JournalMenu
+					journals={journals}
+					handleClick={handleClick}
+					handleNew={handleNew}
+				/>
+				{page}
+				<JournalsList journals={journals} />
+			</JournalProvider>
 		</div>
 	);
 }

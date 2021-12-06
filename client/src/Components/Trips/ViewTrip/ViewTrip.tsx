@@ -1,48 +1,54 @@
 import "./ViewTrip.css";
-import { useLocation, useParams, useNavigate } from "react-router-dom";
-// import tripsService, { getOnePersonalTrip } from "Services/trips.services";
-import { useState } from "react";
-import { Trip } from "../ListofTrips/ListOfTrips";
-import format from "date-fns/format";
+import { useLocation, useNavigate } from "react-router-dom";
+import moment from "moment";
+import { useContext, useEffect, useState } from "react";
+import { Trip } from "Types";
+
+import { UserContext } from "Context";
+// import { TripsAPI } from "Services";
 
 export default function ViewPersonalTrip(): JSX.Element {
-  const navigate = useNavigate();
-  const { id } = useParams();
-
   const [trip, setTrip] = useState<Trip>();
-
-  // na valw useEffect me call sto getOnePersonalTrip(id) me to id ws parametro
-  // gia na parw to trip kai meta antika8istw ta hardcoded values me
-  // trip.destination trip.dateTo trip.dateFrom etc..
-
+  const navigate = useNavigate();
+  const { uid } = useContext(UserContext);
   const { state } = useLocation();
-  if (state.dateRange) {
-    const { destination, dateRange, visits } = state;
+
+  useEffect(() => {
+    setTrip(state);
+  }, []);
+
+  if (state.dateRange && trip === undefined) {
+    const { city, dateRange, visit } = state;
     setTrip({
+      uid,
       id: "",
-      destination,
+      city,
       dateFrom: dateRange.startDate,
       dateTo: dateRange.endDate,
-      visits,
-      createdAt: "",
+      visit,
     });
     return (
       <div className="trip_view-container">
-        <h6>{destination}</h6>
-        <h6>{format(dateRange.startDate, "Do MMM yyyy")}</h6>
-        <h6>{format(dateRange.endDate, "Do MMM yyyy")}</h6>
-        <div>{visits}</div>
+        <h6>{city}</h6>
+        <h6>{moment(dateRange.startDate).format("MMM Do YY")}</h6>
+        <h6>{moment(dateRange.endDate).format("MMM Do YY")}</h6>
+        <div>{visit}</div>
       </div>
     );
   }
 
   return (
     <div className="trip_view-container">
-      <h6>{"destination"}</h6>
-      <h6>{"JSON.stringify(dateRange.startDate)"}</h6>
-      <h6>{"JSON.stringify(dateRange.endDate)"}</h6>
-      <div>{"visits"}</div>
-      <button onClick={() => navigate("/updateTrip", { state: { trip } })}>
+      <h5>Destination:</h5>
+      <p>{trip?.city}</p>
+      <h5>Dates:</h5>
+      <p>{`${moment(trip?.dateFrom).format("MMM Do YY")}-${moment(
+        trip?.dateTo
+      ).format("MMM Do YY")}`}</p>
+
+      <h5>Plan:</h5>
+      <div>{trip?.visit}</div>
+      <button onClick={() => navigate("/form", { state: { trip } })}>
         Update
       </button>
     </div>
