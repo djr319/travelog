@@ -1,5 +1,4 @@
 .chat {
-  margin: 2rem 1rem 1rem;
   border: 10px solid var(--travelog-blue);
   background: var(--travelog-blue);
 }
