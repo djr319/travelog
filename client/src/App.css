@@ -1,3 +1,8 @@
+.wrapper {
+  min-width: 200px;
+  max-width: 700px;
+  margin: 0 auto;
+}
 .app {
   background: #ffffff url('Assets/logo/logo-faint.png') no-repeat left top;
   background-size: 150%, 150%;
@@ -13,6 +18,10 @@
     background-size: 80%, 80%;
     box-shadow: 1px 1px 7px var(--travelog-light-blue);
   }
+}
+.logo {
+  height: 2rem;
+  border-radius: 5px;
 }
 .auth-wrapper {
   display: flex;

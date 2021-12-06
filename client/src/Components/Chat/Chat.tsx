@@ -82,7 +82,6 @@ function Chat () {
           {messageList.map((messageContent) => {
             return (
               <div className="message" id={userName === messageContent.username ? "me" : "you"}>
-                <div>
                   <div className="message-data">
                     <img className="photo" key={uid} src={messageContent.photo} alt="Profile picture" />
                     <p className="user">{messageContent.username}</p>
@@ -91,7 +90,6 @@ function Chat () {
                   <div className="message-content">
                     <p>{messageContent.message}</p>
                   </div>
-                </div>
               </div>
             );
           })}

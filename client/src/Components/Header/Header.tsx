@@ -44,9 +44,6 @@ export default function Header(): JSX.Element {
         </div>
       </div>
 
-
-
-
       <div className="logo-container">
         <Link to='/'>
           <img src={logo} className="logo" alt="Travelog logo" />
