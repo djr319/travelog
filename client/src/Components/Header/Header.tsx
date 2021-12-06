@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import React, { useContext } from "react";
 import { UserContext } from "Context";
 import logo from 'Assets/logo/travelog.png';
-import './header.css';
+import './Header.css';
 import firebase from "@firebase/app-compat";
 
 function dropDown() {
