@@ -36,6 +36,7 @@ function Weather () {
         })
         .catch(error => console.log(error));
     }
+
     getCurrentLocation()
     .then(geolocation => getCurrentWeather(geolocation))
     .catch(error => console.log(error));			
