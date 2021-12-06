@@ -131,7 +131,7 @@ function TripsForm(): JSX.Element {
           {/* ------------------DATES----------------------------------- */}
           <label>Dates</label>
           <h4>Departure</h4>
-          <div>
+          <div style={{}}>
             <DateRangePicker
               wrapperClassName="dates"
               open={isOpen}

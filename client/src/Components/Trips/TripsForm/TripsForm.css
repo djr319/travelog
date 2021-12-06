@@ -1,46 +1,20 @@
 .form-container {
   padding: 5rem;
 }
-
-.materialui-daterange-picker-MuiListItemText-root-272 {
-  display: none;
-  pointer-events: none;
-  cursor: default;
-  visibility: hidden;
-  background-color: transparent;
+.materialui-daterange-picker-MuiListItem-button-269 {
+  display: none !important;
+  pointer-events: none !important;
+  cursor: default !important;
+  visibility: hidden !important;
 }
-
 .materialui-daterange-picker-MuiGrid-root-35 {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
   background-color: rgb(57, 57, 185);
 }
 
-/* .materialui-daterange-picker-MuiGrid-root-35.dateRangeContainer-1 {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-} */
 .button-dates {
   background-color: mediumorchid;
 }
-/* .materialui-daterange-picker-makeStyles-dateRangePickerContainer-1.dates {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-}
 
-.materialui-daterange-picker-makeStyles-dateRangePicker-2.dates {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-
-  margin: 0px;
+.materialui-daterange-picker-MuiGrid-wrap-xs-nowrap-42 {
+  flex-wrap: wrap !important;
 }
-.materialui-daterange-picker-makeStyles-dateRangePickerContainer-1.materialui-daterange-picker-makeStyles-dateRangePicker-2.dates {
-  display: flex;
-  justify-content: left;
-  flex-direction: row;
-  background-color: mediumvioletred;
-} */
