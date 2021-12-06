@@ -20,12 +20,12 @@ function WeatherDay ({ weather }: WeatherDayProps) {
           </div>
         </div>)}
         <div className="weather-data">
+          <p className="weather-date">{moment.unix(weather.dt).format('LL')}</p>
           <p>Temperature:</p>
           <p>{'Min: ' + Math.floor(weather.temp.min)} / {'Max: ' + Math.floor(weather.temp.max)}</p>
           <p>Clouds: {weather.clouds + '%'}</p>
           <p>Humidity: {weather.humidity + '%'}</p>
           <p>Wind speed: {Math.floor(weather.wind_speed)}</p>
-          <p>{moment.unix(weather.dt).format('LL')}</p>
         </div>
       </div>
     </div>

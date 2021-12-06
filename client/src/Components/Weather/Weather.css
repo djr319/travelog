@@ -29,3 +29,7 @@
   text-align: center;
   padding: 2px;
 }
+.weather-info .weather-items .weather-data .weather-date {
+  font-weight: 900;
+  font-size: larger;
+}
