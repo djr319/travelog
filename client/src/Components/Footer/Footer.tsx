@@ -1,5 +1,5 @@
 import logo from 'Assets/logo/logo.jpg';
-import './Footer.css'
+import './footer.css'
 
 export default function Footer(): JSX.Element {
 
