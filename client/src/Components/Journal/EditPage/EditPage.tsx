@@ -1,6 +1,7 @@
 import "./EditPage.css";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { Journal } from "Types";
+import { PicturesUpload } from "Components";
 // NOTE min/max for entry text length
 const MIN_LEN = 10;
 const MAX_LEN = 30;
@@ -8,39 +9,43 @@ const MAX_LEN = 30;
 type EditPageProps = {
   id: number;
   text: string;
-  picture: Journal["picture"];
-  setPicture: Dispatch<SetStateAction<Journal["picture"]>>;
+  photoURL: string;
   updateEntry: (
     e: React.FormEvent<HTMLFormElement>,
     id: number,
     text: string,
-    picture: Journal["picture"]
+    photoURL: Journal["photoURL"]
   ) => void;
 };
 
 export default function EditPage({
   id,
   text: entryText,
-  picture,
-  setPicture,
+  photoURL,
   updateEntry,
 }: EditPageProps): JSX.Element {
   const [text, setText] = useState(entryText);
-
+  const [photo, setPhoto] = useState(photoURL);
   function updateReview(e: React.FormEvent<HTMLTextAreaElement>) {
     e.preventDefault();
 
     const text = e.currentTarget.value;
     setText(text);
-    setPicture(picture);
+    setPhoto(photo);
   }
 
   return (
     <form
       className="journal__form"
-      onSubmit={(e) => updateEntry(e, id, text, picture)}
+      onSubmit={(e) => updateEntry(e, id, text, photoURL)}
     >
       <div className="journal__form-textarea-container">
+        {/* <img
+          className="journal-picture"
+          src={photoURL}
+          alt="journal-picture"
+        ></img> */}
+        <PicturesUpload setPicture={setPhoto} />
         <textarea
           className="journal__form-textarea"
           placeholder="Enter review description..."

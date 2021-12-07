@@ -19,15 +19,9 @@ function getFreeJournalId(journals: JournalType[]) {
 
 export default function Journal(): JSX.Element {
   const [journals, setJournals] = useState<JournalType[]>([]);
-  const [picture, setPicture] = useState<JournalType["picture"]>("");
-  const [page, setPage] = useState(
-    <CreatePage
-      picture={picture}
-      setPicture={setPicture}
-      handleSubmit={handleSubmit}
-    />
-  );
 
+  const [page, setPage] = useState(<CreatePage handleSubmit={handleSubmit} />);
+  console.log("journals", journals);
   const { uid } = useContext(UserContext);
 
   useEffect(() => {
@@ -41,15 +35,18 @@ export default function Journal(): JSX.Element {
     e: React.FormEvent<HTMLFormElement>,
     id: number,
     review: string,
-    picture: string
+    photoURL: string
   ) {
     e.preventDefault();
 
-    JournalAPI.updateJournal(uid, { id, review, picture });
+    JournalAPI.updateJournal(uid, { id, review, photoURL });
 
     setJournals((prev) => {
       const journalCopy = prev.find((journal) => journal.id === id);
-      if (journalCopy) journalCopy.review = review;
+      if (journalCopy) {
+        journalCopy.review = review;
+        journalCopy.photoURL = photoURL;
+      }
       return prev;
     });
 
@@ -57,7 +54,7 @@ export default function Journal(): JSX.Element {
       <ViewPage
         id={id}
         text={review}
-        picture={picture}
+        photoURL={photoURL}
         switchEditMode={switchEditMode}
         deleteEntry={deleteEntry}
       />
@@ -67,13 +64,7 @@ export default function Journal(): JSX.Element {
   function deleteEntry(e: React.MouseEvent<HTMLButtonElement>, id: number) {
     e.preventDefault();
 
-    setPage(
-      <CreatePage
-        picture={picture}
-        setPicture={setPicture}
-        handleSubmit={handleSubmit}
-      />
-    );
+    setPage(<CreatePage handleSubmit={handleSubmit} />);
 
     JournalAPI.deleteJournal(uid, id);
 
@@ -87,20 +78,20 @@ export default function Journal(): JSX.Element {
   function handleSubmit(
     e: React.FormEvent<HTMLFormElement>,
     review: string,
-    picture: string
+    photoURL: string
   ) {
     e.preventDefault();
 
     const id = getFreeJournalId(journals);
-
-    JournalAPI.addJournal(uid, { id, review, picture });
-    setJournals((prev) => [...prev, { id, review, picture }]);
+    console.log("pic in journal", photoURL);
+    JournalAPI.addJournal(uid, { id, review, photoURL });
+    setJournals((prev) => [...prev, { id, review, photoURL }]);
 
     setPage(
       <ViewPage
         id={id}
         text={review}
-        picture={picture}
+        photoURL={photoURL}
         switchEditMode={switchEditMode}
         deleteEntry={deleteEntry}
       />
@@ -111,7 +102,7 @@ export default function Journal(): JSX.Element {
     e: React.MouseEvent<HTMLButtonElement>,
     id: number,
     text: string,
-    picture: string
+    photoURL: string
   ) {
     e.preventDefault();
 
@@ -119,8 +110,7 @@ export default function Journal(): JSX.Element {
       <EditPage
         id={id}
         text={text}
-        picture={picture}
-        setPicture={setPicture}
+        photoURL={photoURL}
         updateEntry={updateEntry}
       />
     );
@@ -133,13 +123,7 @@ export default function Journal(): JSX.Element {
     e.preventDefault();
 
     // FIXME: using journals array index as id is not safe
-    setPage(
-      <CreatePage
-        picture={picture}
-        setPicture={setPicture}
-        handleSubmit={handleSubmit}
-      />
-    );
+    setPage(<CreatePage handleSubmit={handleSubmit} />);
   }
 
   function handleClick(
@@ -156,11 +140,12 @@ export default function Journal(): JSX.Element {
       <ViewPage
         id={journal.id}
         text={journal.review}
-        picture={picture}
+        photoURL={journal.photoURL}
         switchEditMode={switchEditMode}
         deleteEntry={deleteEntry}
       />
     );
+    console.log("pic", journal.photoURL);
   }
 
   return (

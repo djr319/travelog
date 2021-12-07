@@ -3,13 +3,14 @@ import { getStorage } from "firebase/storage";
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDqD5GpJJmSyg5DFUpsn-FGZf2Obt3S5NM",
-  authDomain: "travelog-bf015.firebaseapp.com",
-  projectId: "travelog-bf015",
-  storageBucket: "travelog-bf015.appspot.com",
-  messagingSenderId: "461923860359",
-  appId: "1:461923860359:web:a28714532ba27210669d22",
+  apiKey: process.env.REACT_APP_FIREBASE_AUTH_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_AUTH_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_AUTH_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_AUTH_MSG_SEND_ID,
+  appId: process.env.REACT_APP_FIREBASE_AUTH_APP_ID,
 };
+
 const firebaseApp = initializeApp(firebaseConfig);
 
 const storage = getStorage(firebaseApp);

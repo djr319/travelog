@@ -7,23 +7,19 @@ import { Journal } from "Types";
 const MIN_LEN = 10;
 const MAX_LEN = 30;
 
-type EditPageProps = {
-  picture: Journal["picture"];
-  setPicture: Dispatch<SetStateAction<Journal["picture"]>>;
+type CreatePageProps = {
   handleSubmit: (
     e: React.FormEvent<HTMLFormElement>,
     text: string,
-    picture: string
+    photoURL: string
   ) => void;
 };
 
-export default function EditPage({
+export default function CreatePage({
   handleSubmit,
-  picture,
-  setPicture,
-}: EditPageProps): JSX.Element {
+}: CreatePageProps): JSX.Element {
   const [text, setText] = useState("");
-
+  const [photoURL, setPhotoURL] = useState<Journal["photoURL"]>("");
   function updateReview(e: React.FormEvent<HTMLTextAreaElement>) {
     e.preventDefault();
 
@@ -34,11 +30,11 @@ export default function EditPage({
   return (
     <form
       className="journal__form"
-      onSubmit={(e) => handleSubmit(e, text, picture)}
+      onSubmit={(e) => handleSubmit(e, text, photoURL)}
     >
       <div className="journal__form-textarea-container">
         <p>Pictures</p>
-        <PicturesUpload setPicture={setPicture} />
+        <PicturesUpload setPicture={setPhotoURL} />
         <textarea
           className="journal__form-textarea"
           placeholder="Enter review description..."

@@ -7,8 +7,7 @@ type JournalMenuProps = {
   journals: Journal[];
   handleClick: (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    key: number,
-    picture: string
+    key: number
   ) => void;
   handleNew: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
@@ -52,7 +51,6 @@ export default function JournalMenu({
                 key={entry.id}
                 id={entry.id}
                 text={entry.review}
-                picture={entry.picture}
                 handleClick={handleClick}
               />
             ))}

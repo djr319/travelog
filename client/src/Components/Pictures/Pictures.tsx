@@ -39,8 +39,6 @@ const PicturesUpload = ({ setPicture }: any) => {
           console.log(error);
         },
         () => {
-          // .ref("images")
-          // .child(image)
           getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
             setUrl(url);
             setPicture(url);
@@ -58,6 +56,7 @@ const PicturesUpload = ({ setPicture }: any) => {
 
       <div>
         <img
+          style={{ height: 300, width: 400 }}
           className="journal-picture"
           src={url || "http://via.placeholder.com/200x200"}
           alt="firebase-pic"

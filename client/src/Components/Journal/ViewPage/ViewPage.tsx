@@ -3,12 +3,12 @@ import "./ViewPage.css";
 type InputPageProps = {
   id: number;
   text: string;
-  picture: string;
+  photoURL: string;
   switchEditMode: (
     e: React.MouseEvent<HTMLButtonElement>,
     id: number,
     text: string,
-    picture: string
+    photoURL: string
   ) => void;
   deleteEntry: (e: React.MouseEvent<HTMLButtonElement>, id: number) => void;
 };
@@ -16,7 +16,7 @@ type InputPageProps = {
 export default function ViewPage({
   id,
   text,
-  picture,
+  photoURL,
   switchEditMode,
   deleteEntry,
 }: InputPageProps): JSX.Element {
@@ -25,13 +25,13 @@ export default function ViewPage({
       <div className="journal__view-text">{text}</div>
       <img
         className="journal-picture"
-        src={picture}
+        src={photoURL}
         alt="journal-picture"
       ></img>
       <div className="journal__view-buttons">
         <button
           className="journal__view-update"
-          onClick={(e) => switchEditMode(e, id, text, picture)}
+          onClick={(e) => switchEditMode(e, id, text, photoURL)}
         >
           Update
         </button>
