@@ -117,9 +117,9 @@ function TripsForm(): JSX.Element {
 
       <form className="add-trip-form" onSubmit={handleSubmit}>
         <div className="form-control">
-          <div>
+          {/* <div>
             <h4>Make the plan</h4>
-          </div>
+          </div> */}
           {/* -----------------CITY------------------- */}
           <label>City</label>
           <input
@@ -130,7 +130,7 @@ function TripsForm(): JSX.Element {
           ></input>
           {/* ------------------DATES----------------------------------- */}
           <label>Dates</label>
-          <h4>Departure</h4>
+          {/* <h4>Departure</h4> */}
           <div>
             <DateRangePicker
               wrapperClassName="dates"
@@ -163,7 +163,7 @@ function TripsForm(): JSX.Element {
         </div> */}
           {/* --------option2--------teaxt area-------------------- */}
           <label>Wish List</label>
-          <h4>To visit</h4>
+          {/* <h4>To visit</h4> */}
           <textarea
             className="trips_form-textarea"
             placeholder="Enter review description..."
