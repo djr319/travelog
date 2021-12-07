@@ -30,9 +30,9 @@ export default function Dashboard(): JSX.Element {
   return (
     <div className="dashboard">
       <div className="banner-text">
-        <p className="shift0">Chat.</p>
-        <p className="shift1">Plan.</p>
-        <p className="shift2">Enjoy...</p>
+        <p className="shift0">Plan.</p>
+        <p className="shift1">Travel.</p>
+        <p className="shift2">Explore...</p>
       </div>
 
       <section className="slider">
