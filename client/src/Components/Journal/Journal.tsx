@@ -32,17 +32,19 @@ export default function Journal (): JSX.Element {
 		return data;
 	});
 
-	function getMatches (tags: string[]) {
-		return useQuery('getMatches', async () => {
-			const data = await TagsAPI.getMatchingJournals(uid, tags);
-			setMatches(data);
-			return data;
-		});
-	}
-
 	// Mutations
 	const updateJournal = useMutation(
-		({ id, uid, review, tags }: { id: number; uid: string; review: string, tags: string[] }) => {
+		({
+			id,
+			uid,
+			review,
+			tags
+		}: {
+			id: number;
+			uid: string;
+			review: string;
+			tags: string[];
+		}) => {
 			return JournalAPI.updateJournal(uid, { review, id, tags });
 		}
 	);
@@ -64,7 +66,9 @@ export default function Journal (): JSX.Element {
 		e.preventDefault();
 
 		const tags = TagsAPI.parseTags(review);
-		getMatches(tags);
+		TagsAPI.getMatchingJournals(uid, tags).then((matches) =>
+			setMatches(matches)
+		);
 
 		updateJournal.mutate({ id, uid, review, tags });
 
@@ -106,7 +110,9 @@ export default function Journal (): JSX.Element {
 
 		const id = getFreeJournalId(journals);
 		const tags = TagsAPI.parseTags(review);
-		getMatches(tags);
+		TagsAPI.getMatchingJournals(uid, tags).then((matches) =>
+			setMatches(matches)
+		);
 
 		JournalAPI.addJournal(uid, { id, review, tags });
 		setJournals((prev) => [ ...prev, { id, review, tags } ]);
@@ -148,6 +154,9 @@ export default function Journal (): JSX.Element {
 
 		const journal = journals.find((journal) => journal.id === id);
 		if (journal === undefined) return;
+		TagsAPI.getMatchingJournals(uid, journal.tags).then((matches) =>
+			setMatches(matches)
+		);
 
 		setPage(
 			<ViewPage
