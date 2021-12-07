@@ -25,10 +25,6 @@
     height: calc(100vh - var(--header-height) - 2rem - var(--footer-height) - var(--navbar-height) - 9rem );
   }
 }
-.chat-scroll {
-  overflow: scroll;
-  scroll-behavior: smooth;
-}
 .chat .message {
   padding: 0.5rem 0;
   display: flex;

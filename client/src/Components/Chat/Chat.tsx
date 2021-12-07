@@ -3,7 +3,8 @@ import { useState, useEffect, useContext, useRef } from "react";
 import { io, Socket } from "socket.io-client";
 import { Message } from 'Types/Message.type';
 import moment from 'moment';
-
+import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
 // import { User } from 'Types/User.type';
 import { UserContext } from 'Context';
 
@@ -26,7 +27,7 @@ socket.connect();
 //   }
 // };
 
-function Chat () {
+function Chat() {
 
   const { uid, userName, photoURL } = useContext(UserContext);
 
@@ -85,8 +86,8 @@ function Chat () {
 
   useEffect(() => {
     socket.on('to-all', (messageData) => {
-      const message:Message = {
-        roomId:'0',
+      const message: Message = {
+        roomId: '0',
         message: messageData.message,
         from: messageData.from,
         to: 'all',
@@ -100,12 +101,12 @@ function Chat () {
 
   return (
     <div className="chat">
-        <h2>Live Chat</h2>
+      <h2>Live Chat</h2>
       <div className="chat-body">
-        <div className="chat-scroll">
-          {messageList.map((messageContent) => {
-            return (
-              <div className={userName === messageContent.from ? "message me" : "message you"}>
+          <SimpleBar style={{ height: '100%' }}>
+            {messageList.map((messageContent) => {
+              return (
+                <div className={userName === messageContent.from ? "message me" : "message you"}>
 
                   <div className="message-data">
                     <img className="photo" key={uid} src={messageContent.photo} alt="" />
@@ -115,11 +116,11 @@ function Chat () {
                   <div className="message-content">
                     <p>{messageContent.message}</p>
                   </div>
-              </div>
-            );
-          })}
-          <div ref={messagesEndRef} />
-        </div>
+                </div>
+              );
+            })}
+            <div ref={messagesEndRef} />
+          </SimpleBar>
       </div>
 
       <div className="chat-footer">
