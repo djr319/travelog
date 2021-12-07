@@ -36,6 +36,7 @@ model Journal {
   id Int @id @default(autoincrement())
   review String
   createdAt DateTime @default(now())
+  tags String[]
   uid String
   users User @relation(fields: [uid], references: [uid])
 }
