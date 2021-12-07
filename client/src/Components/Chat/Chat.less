@@ -32,7 +32,6 @@
     justify-content: flex-end;
     line-height: 1.25;
     word-wrap: break-word;
-
     background: #eee;
   }
 
@@ -40,18 +39,25 @@
     padding: 0.5rem 0;
     display: flex;
     flex-direction: column;
+    .large-screen({
+      font-size: 20px;
+    });
   }
 
   .message-data {
     display: flex;
     flex-direction: row;
-    font-size: 12px;
+    font-size: 80%;
   }
 
   .message-data .photo {
     width: 25px;
     height: 25px;
     border-radius: 50%;
+    .large-screen({
+      width: 40px;
+      height: 40px;
+    });
   }
 
   .message-data .user {
@@ -65,15 +71,20 @@
     margin: 0.1rem 0;
     position: relative;
     width: fit-content;
+    .large-screen({
+      max-width: 60%;
+    });
   }
 
   .me {
-
     align-items: flex-start;
 
     .message-content {
       align-self: flex-start;
       background-color: @travelog-green;
+      .large-screen({
+        margin-left: 1rem;
+      });
     }
 
     .message-data {
@@ -86,6 +97,9 @@
 
   .you {
     align-items: flex-end;
+    .large-screen({
+      margin-right: 1rem;
+    });
 
     .message-data {
       flex-direction: row-reverse;
