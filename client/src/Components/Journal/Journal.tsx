@@ -1,32 +1,28 @@
 import { useQuery, useMutation } from 'react-query';
 import { Journal as JournalType } from 'Types/index';
-import {
-	useContext,
-	useState,
-	useEffect,
-} from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { UserContext } from 'Context';
 import { JournalProvider } from './journal.context';
 
-import { JournalAPI } from 'Services/index';
+import { JournalAPI, TagsAPI } from 'Services/index';
 import { JournalsList } from 'Components/index';
 import JournalMenu from './JournalMenu/JournalMenu';
-import CreatePage from './CreatePage/CreatePage';
-import EditPage from './EditPage/EditPage';
-import ViewPage from './ViewPage/ViewPage';
+import { CreatePage, EditPage, ViewPage } from './index';
 
 import './Journal.css';
 
-function getFreeJournalId(journals: JournalType[]) {
+function getFreeJournalId (journals: JournalType[]) {
 	const maxId = Math.max(-1, ...journals.map((journal) => journal.id));
 	return maxId + 1;
 }
 
-export default function Journal(): JSX.Element {
-	const [journals, setJournals] = useState<JournalType[]>([]);
-	const [page, setPage] = useState(
+export default function Journal (): JSX.Element {
+	const [ journals, setJournals ] = useState<JournalType[]>([]);
+	const [ page, setPage ] = useState(
 		<CreatePage handleSubmit={handleSubmit} />
 	);
+
+	const { uid } = useContext(UserContext);
 
 	// Queries
 	const getJournals = useQuery('getOwnJournals', async () => {
@@ -35,28 +31,23 @@ export default function Journal(): JSX.Element {
 		return data;
 	});
 
+	// Mutations
+	const updateJournal = useMutation(
+		({ id, uid, review }: { id: number; uid: string; review: string }) => {
+			return JournalAPI.updateJournal(uid, { review, id });
+		}
+	);
+
+	const deleteJournal = useMutation(({ id }: { id: number }) => {
+		return JournalAPI.deleteJournal(uid, id);
+	});
+
 	useEffect(() => {
 		const { data } = getJournals;
 		if (data) setJournals(data);
 	}, []);
 
-	// Mutations
-	const updateJournal = useMutation(
-		({ id, uid, review }: { id: number, uid: string, review: string }) => {
-			return JournalAPI.updateJournal(uid, { review, id });
-		}
-	);
-
-	const deleteJournal = useMutation(
-		({ id }: { id: number }) => {
-			return JournalAPI.deleteJournal(uid, id);
-		}
-	);
-
-	const { uid } = useContext(UserContext);
-
-
-	function updateEntry(
+	function updateEntry (
 		e: React.FormEvent<HTMLFormElement>,
 		id: number,
 		review: string
@@ -81,7 +72,7 @@ export default function Journal(): JSX.Element {
 		);
 	}
 
-	function deleteEntry(e: React.MouseEvent<HTMLButtonElement>, id: number) {
+	function deleteEntry (e: React.MouseEvent<HTMLButtonElement>, id: number) {
 		e.preventDefault();
 
 		setPage(<CreatePage handleSubmit={handleSubmit} />);
@@ -95,14 +86,16 @@ export default function Journal(): JSX.Element {
 		});
 	}
 
-	function handleSubmit(e: React.FormEvent<HTMLFormElement>, review: string) {
+	function handleSubmit (e: React.FormEvent<HTMLFormElement>, review: string) {
 		e.preventDefault();
 
 		const id = getFreeJournalId(journals);
 
 		JournalAPI.addJournal(uid, { id, review });
-		setJournals((prev) => [...prev, { id, review }]);
+		setJournals((prev) => [ ...prev, { id, review } ]);
 
+		TagsAPI.parseTags(review);
+		
 		setPage(
 			<ViewPage
 				id={id}
@@ -113,7 +106,7 @@ export default function Journal(): JSX.Element {
 		);
 	}
 
-	function switchEditMode(
+	function switchEditMode (
 		e: React.MouseEvent<HTMLButtonElement>,
 		id: number,
 		text: string
@@ -126,20 +119,18 @@ export default function Journal(): JSX.Element {
 	/**
 	 ** Called on 'New story' menu button
 	 */
-	function handleNew(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+	function handleNew (e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 		e.preventDefault();
 
-		// FIXME: using journals array index as id is not safe
 		setPage(<CreatePage handleSubmit={handleSubmit} />);
 	}
 
-	function handleClick(
+	function handleClick (
 		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
 		id: number
 	) {
 		e.preventDefault();
 
-		// FIXME: using journals array index as id is not safe
 		const journal = journals.find((journal) => journal.id === id);
 		if (journal === undefined) return;
 

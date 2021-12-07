@@ -4,6 +4,7 @@ export { default as TripsAPI } from './trips.service';
 export { default as FirebaseAPI } from './firebase.service';
 export { default as UserAPI } from './user.service';
 export { default as ProfileAPI } from './profile.service';
+export { default as TagsAPI } from './tags.service';
 
 const BASE_URL = 'http://localhost:3001';
 
