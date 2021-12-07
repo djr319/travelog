@@ -5,10 +5,10 @@ const prisma = new PrismaClient();
 
 const checkUser = async (req: Request, res: Response): Promise<void> => {
 	try {
-		const { uid, userName, photoURL, email } = req.body;
+		const { uid, userName: username, photoURL, email } = req.body;
 		const data = {
 			uid,
-			username: userName,
+			username,
 			photoURL,
 			email
 		};

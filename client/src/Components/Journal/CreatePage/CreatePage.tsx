@@ -2,8 +2,8 @@ import '../EditPage/EditPage.css';
 import { useState } from 'react';
 
 // NOTE min/max for entry text length
-const MIN_LEN = 10;
-const MAX_LEN = 30;
+const MIN_LEN = 5;
+const MAX_LEN = 300;
 
 type EditPageProps = {
 	handleSubmit: (e: React.FormEvent<HTMLFormElement>, text: string) => void;

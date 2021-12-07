@@ -34,7 +34,8 @@ export default function Journal (): JSX.Element {
 	// Mutations
 	const updateJournal = useMutation(
 		({ id, uid, review }: { id: number; uid: string; review: string }) => {
-			return JournalAPI.updateJournal(uid, { review, id });
+			const tags = TagsAPI.parseTags(review);
+			return JournalAPI.updateJournal(uid, { review, id, tags });
 		}
 	);
 
@@ -90,11 +91,11 @@ export default function Journal (): JSX.Element {
 		e.preventDefault();
 
 		const id = getFreeJournalId(journals);
+		const tags = TagsAPI.parseTags(review);
 
-		JournalAPI.addJournal(uid, { id, review });
-		setJournals((prev) => [ ...prev, { id, review } ]);
+		JournalAPI.addJournal(uid, { id, review, tags });
+		setJournals((prev) => [ ...prev, { id, review, tags } ]);
 
-		TagsAPI.parseTags(review);
 		
 		setPage(
 			<ViewPage
