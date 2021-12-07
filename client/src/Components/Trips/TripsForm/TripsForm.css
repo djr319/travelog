@@ -1,5 +1,33 @@
 .form-container {
-  padding: 5rem;
+  padding: 1rem;
+}
+.form-container h1 {
+  text-align: center;
+}
+.form-container form {
+  border-radius: 1rem;
+  border: 3px solid var(--travelog-green);
+  padding: 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.form-container form .sendButton {
+  width: 7rem;
+  margin: 2rem auto 1rem;
+}
+.form-container label {
+  display: block;
+  margin: 1rem 0 0.3rem;
+  font-weight: bold;
+}
+.form-container input,
+.form-container textarea {
+  font-size: 1.5rem;
+  font-family: 'Indie Flower', cursive;
+  padding: 0.3rem;
+}
+.form-container textarea {
+  min-height: 5rem;
 }
 .materialui-daterange-picker-MuiListItem-button-269 {
   display: none !important;
@@ -7,14 +35,9 @@
   cursor: default !important;
   visibility: hidden !important;
 }
-.materialui-daterange-picker-MuiGrid-root-35 {
-  background-color: rgb(57, 57, 185);
-}
-
 .button-dates {
-  background-color: mediumorchid;
+  background-color: var(--travelog-green);
 }
-
 .materialui-daterange-picker-MuiGrid-wrap-xs-nowrap-42 {
   flex-wrap: wrap !important;
 }
