@@ -1,6 +1,6 @@
 import "../EditPage/EditPage.css";
-import { Dispatch, SetStateAction, useState } from "react";
-import PicturesUpload from "Components/Pictures/Pictures";
+import { useState } from "react";
+import { PicturesUpload } from "Components";
 import { Journal } from "Types";
 
 // NOTE min/max for entry text length

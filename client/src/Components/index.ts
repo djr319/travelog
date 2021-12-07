@@ -13,4 +13,4 @@ export { default as ViewPersonalTrip } from "./Trips/ViewTrip/ViewTrip";
 export { default as Chat } from "./Chat/Chat";
 export { default as Weather } from "./Weather/Weather";
 export { default as Header } from "./Header/Header";
-export { default as PicturesUpload } from "./Pictures/Pictures";
+export { default as PicturesUpload } from "./Pictures/PicturesUpload";
