@@ -39,15 +39,16 @@ export default function ViewPersonalTrip(): JSX.Element {
 
   return (
     <div className="trip_view-container">
-      <h5>Destination:</h5>
+      <h3>Destination:</h3>
       <p>{trip?.city}</p>
-      <h5>Dates:</h5>
+      <h3>Dates:</h3>
       <p>{`${moment(trip?.dateFrom).format("MMM Do YY")}-${moment(
         trip?.dateTo
       ).format("MMM Do YY")}`}</p>
 
-      <h5>Plan:</h5>
+      <h3>Plan:</h3>
       <div>{trip?.visit}</div>
+
       <button onClick={() => navigate("/form", { state: { trip } })}>
         Update
       </button>

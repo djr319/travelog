@@ -3,15 +3,12 @@
 }
 .footer {
   display: flex;
+  height: var(--footer-height);
   justify-content: center;
   align-items: center;
   font-size: 9px;
   text-shadow: 0px 0px 4px white;
-  text-align: center;
-  background: linear-gradient(0, var(--travelog-green), white);
-  color: var(--travelog-dark-blue);
-  padding: 1rem;
-  height: var(--footer-height);
+  background: var(--travelog-dusty-blue);
 }
 .text {
   margin-left: 0.5rem;
