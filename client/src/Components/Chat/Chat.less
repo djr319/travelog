@@ -11,7 +11,9 @@
   border: 10px solid var(--travelog-blue);
   background: var(--travelog-blue);
 
-  &-header {
+  h2 {
+    background-color: #4C8AB9;
+    color: white;
     height: 3rem;
   }
 
@@ -30,10 +32,15 @@
     justify-content: flex-end;
     line-height: 1.25;
     word-wrap: break-word;
-    overflow-y: scroll;
-    scroll-behavior: smooth;
+
     background: #eee;
   }
+
+  &-scroll {
+    overflow: scroll;
+    scroll-behavior: smooth;
+  }
+
 
   .message {
     padding: 0.5rem 0;

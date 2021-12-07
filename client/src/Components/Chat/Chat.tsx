@@ -1,11 +1,11 @@
 import './Chat.css';
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { io, Socket } from "socket.io-client";
 import { Message } from 'Types/Message.type';
 import moment from 'moment';
+
 // import { User } from 'Types/User.type';
 import { UserContext } from 'Context';
-// import ScrollToBottom from 'react-scroll-to-bottom';
 
 const SOCKET_URL = "http://localhost:3001";
 const socket: Socket = io(SOCKET_URL);
@@ -74,6 +74,15 @@ function Chat () {
   //   });
   // }, [socket]);
 
+  // https://stackoverflow.com/questions/55677600/typescript-how-to-pass-object-is-possibly-null-error
+  const messagesEndRef = useRef(document.createElement("div"))
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(scrollToBottom, [messageList]);
+
+
   useEffect(() => {
     socket.on('to-all', (messageData) => {
       const message:Message = {
@@ -91,13 +100,9 @@ function Chat () {
 
   return (
     <div className="chat">
-
-      <div className="chat-header">
         <h2>Live Chat</h2>
-      </div>
-
       <div className="chat-body">
-        {/* <ScrollToBottom className="message-container"> */}
+        <div className="chat-scroll">
           {messageList.map((messageContent) => {
             return (
               <div className={userName === messageContent.from ? "message me" : "message you"}>
@@ -113,7 +118,8 @@ function Chat () {
               </div>
             );
           })}
-        {/* </ScrollToBottom> */}
+          <div ref={messagesEndRef} />
+        </div>
       </div>
 
       <div className="chat-footer">
