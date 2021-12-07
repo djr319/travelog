@@ -5,7 +5,7 @@ import { UserContext } from 'Context';
 import { JournalProvider } from './journal.context';
 
 import { JournalAPI, TagsAPI } from 'Services/index';
-import { JournalsList } from 'Components/index';
+import { JournalsList } from 'Components';
 import JournalMenu from './JournalMenu/JournalMenu';
 import { CreatePage, EditPage, ViewPage } from './index';
 
@@ -38,14 +38,16 @@ export default function Journal (): JSX.Element {
 			id,
 			uid,
 			review,
+			photoURL,
 			tags
 		}: {
 			id: number;
 			uid: string;
 			review: string;
+			photoURL: string;
 			tags: string[];
 		}) => {
-			return JournalAPI.updateJournal(uid, { review, id, tags });
+			return JournalAPI.updateJournal(uid, { review, id, photoURL, tags });
 		}
 	);
 
@@ -61,7 +63,8 @@ export default function Journal (): JSX.Element {
 	function updateEntry (
 		e: FormEvent<HTMLFormElement>,
 		id: number,
-		review: string
+		review: string,
+		photoURL: string
 	) {
 		e.preventDefault();
 
@@ -70,7 +73,7 @@ export default function Journal (): JSX.Element {
 			setMatches(matches)
 		);
 
-		updateJournal.mutate({ id, uid, review, tags });
+		updateJournal.mutate({ id, uid, review, photoURL, tags });
 
 		setJournals((prev) => {
 			const journalCopy = prev.find((journal) => journal.id === id);
@@ -85,6 +88,7 @@ export default function Journal (): JSX.Element {
 			<ViewPage
 				id={id}
 				text={review}
+				photoURL={photoURL}
 				switchEditMode={switchEditMode}
 				deleteEntry={deleteEntry}
 			/>
@@ -105,7 +109,11 @@ export default function Journal (): JSX.Element {
 		});
 	}
 
-	function handleSubmit (e: React.FormEvent<HTMLFormElement>, review: string) {
+	function handleSubmit (
+		e: React.FormEvent<HTMLFormElement>,
+		review: string,
+		photoURL: string
+	) {
 		e.preventDefault();
 
 		const id = getFreeJournalId(journals);
@@ -114,13 +122,13 @@ export default function Journal (): JSX.Element {
 			setMatches(matches)
 		);
 
-		JournalAPI.addJournal(uid, { id, review, tags });
-		setJournals((prev) => [ ...prev, { id, review, tags } ]);
-
+		JournalAPI.addJournal(uid, { id, review, photoURL, tags });
+		setJournals((prev) => [ ...prev, { id, review, photoURL, tags } ]);
 		setPage(
 			<ViewPage
 				id={id}
 				text={review}
+				photoURL={photoURL}
 				switchEditMode={switchEditMode}
 				deleteEntry={deleteEntry}
 			/>
@@ -130,19 +138,28 @@ export default function Journal (): JSX.Element {
 	function switchEditMode (
 		e: React.MouseEvent<HTMLButtonElement>,
 		id: number,
-		text: string
+		text: string,
+		photoURL: string
 	) {
 		e.preventDefault();
 
-		setPage(<EditPage id={id} text={text} updateEntry={updateEntry} />);
+		setPage(
+			<EditPage
+				id={id}
+				text={text}
+				photoURL={photoURL}
+				updateEntry={updateEntry}
+			/>
+		);
 	}
 
 	/**
-	 ** Called on 'New story' menu button
-	 */
+   ** Called on 'New story' menu button
+   */
 	function handleNew (e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 		e.preventDefault();
 
+		// FIXME: using journals array index as id is not safe
 		setPage(<CreatePage handleSubmit={handleSubmit} />);
 	}
 
@@ -162,6 +179,7 @@ export default function Journal (): JSX.Element {
 			<ViewPage
 				id={journal.id}
 				text={journal.review}
+				photoURL={journal.photoURL}
 				switchEditMode={switchEditMode}
 				deleteEntry={deleteEntry}
 			/>
