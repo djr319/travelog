@@ -1,3 +1,4 @@
+@import "../../ruleset.less";
 
 @travelog-light-blue: var(--travelog-light-blue);
 @travelog-mid-blue: var(--travelog-mid-blue);
@@ -5,7 +6,6 @@
 @dusty-blue: var(--travelog-dusty-blue);
 @navbar-color: var(--navbar-color);
 @travelog-green: var(--travelog-green);
-
 
 .chat {
   border: 10px solid var(--travelog-blue);
@@ -19,6 +19,9 @@
     border: 1px solid @dusty-blue;
     position: relative;
     height: ~"calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height) - 9rem )";
+    .large-screen({
+      height: ~"calc(100vh - var(--header-height) - 2rem - var(--footer-height) - var(--navbar-height) - 9rem )";
+    });
     border-radius: 1rem;
     padding: 0.5rem 1rem;
 
