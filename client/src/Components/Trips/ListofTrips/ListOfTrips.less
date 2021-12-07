@@ -5,6 +5,7 @@
   gap: 1rem;
   justify-items: center;
 }
+
 .book {
   background-color: #8B0000;
   height: 12rem;
@@ -15,13 +16,21 @@
   text-align: center;
   border-bottom-right-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .delete-note {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0;
+  }
 }
-.book a {
-  text-decoration: none;
-  color: inherit;
-}
-.book .delete-note {
-  position: absolute;
-  right: 0.5rem;
-  bottom: 0;
-}
+
+// .book:hover {
+//   -webkit-transform: rotate3d(0,1,0,35deg);
+//   -moz-transform: rotate3d(0,1,0,35deg);
+//   transform: rotate3d(0,1,0,35deg);
+// }

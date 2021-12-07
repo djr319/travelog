@@ -2,19 +2,18 @@
   @media screen and (min-width: 768px) {@rules();}
 }
 
-.small-screen(@rules) {
-  @media screen and (max-width: 767px) {@rules();}
-}
-
 // syntax for reference:
-// .small-screen({
-//   min-height: ~"calc(100vh - var(--footer-height))";
-// });
 
 // .large-screen ({
 //   margin-top: 1rem;
 //   min-height: 70vh;
 // });
+
+// https://lesscss.org/features/#detached-rulesets-feature
+
+// .useWithinClass {
+//   @detached-ruleset();
+// }
 
 @glow-text: {
   text-shadow: 0px 0px 2px #0c2e49;
