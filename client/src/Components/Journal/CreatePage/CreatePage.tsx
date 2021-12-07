@@ -1,5 +1,9 @@
 import '../EditPage/EditPage.css';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+
+// CHECK THE IMPLEMENTATION OF NOTIFY
+// import toast from 'react-hot-toast';
+// import { UserContext } from 'Context';
 
 // NOTE min/max for entry text length
 const MIN_LEN = 10;
@@ -21,6 +25,11 @@ export default function EditPage ({
 		setText(text);
 	}
 
+
+	// !!! CHECK IF THE IMPLEMENTATION OF NOTIFY WORKS ONCE WE HAVE MORE USERS REGISTERED IN THE SAME DB
+	// const { uid } = useContext(UserContext);
+	// const notify = () => uid !== uid ? toast('New journal is published.') : null;
+
 	return (
 		<form className='journal__form' onSubmit={(e) => handleSubmit(e, text)}>
 			<div className='journal__form-textarea-container'>
@@ -40,7 +49,7 @@ export default function EditPage ({
 					`${text.length}/${MAX_LEN} characters.`
 				)}
 			</div>
-			<button className='journal__form-submit' type='submit'>
+			<button className='journal__form-submit' type='submit'> {/* onClick={notify} CHECK THE IMPLEMENTATION OF NOTIFY */}
 				Save story
 			</button>
 		</form>

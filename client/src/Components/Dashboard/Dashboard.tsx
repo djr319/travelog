@@ -4,7 +4,11 @@ import { SliderData } from "./SliderData";
 // import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 // import { TripsForm } from "Components";
 
+// CHECK THE IMPLEMENTATION OF NOTIFY
+// import { Toaster } from 'react-hot-toast';
+
 export default function Dashboard(): JSX.Element {
+
   const length = SliderData.length;
   // const [current, setCurrent] = useState(Math.floor(Math.random() * SliderData.length));
   const current = Math.floor(Math.random() * SliderData.length);
@@ -29,6 +33,7 @@ export default function Dashboard(): JSX.Element {
 
   return (
     <div className="dashboard">
+
       <div className="banner-text">
         <p className="shift0">Chat.</p>
         <p className="shift1">Plan.</p>
@@ -58,6 +63,20 @@ export default function Dashboard(): JSX.Element {
           {/* ); */}
         {/* })} */}
       </section>
+
+      {/* CHECK THE IMPLEMENTATION OF NOTIFY
+      <Toaster 
+      position="top-right"
+      reverseOrder={false}
+      gutter={8}
+      toastOptions={{
+        duration: 5000,
+        style: {
+          background: '#84c1f8',
+          color: 'white',
+        }}}
+      /> */}
+
     </div>
   );
 }

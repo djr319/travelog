@@ -68,6 +68,8 @@ function Chat () {
     }
   };
 
+
+
   // useEffect(() => {
   //   socket.on(CHATS.SERVER.RECEIVE_MESSAGE, (message) => {
   //     setMessageList((list) => [...list, message]);
@@ -84,18 +86,16 @@ function Chat () {
         photo: messageData.photo,
         date: messageData.date
       }
-
       setMessageList((list) => [...list, message]);
     });
   }, [socket]);
 
   return (
     <div className="chat">
-
       <div className="chat-header">
         <h2>Live Chat</h2>
       </div>
-
+      
       <div className="chat-body">
         {/* <ScrollToBottom className="message-container"> */}
           {messageList.map((messageContent) => {
@@ -110,6 +110,7 @@ function Chat () {
                   <div className="message-content">
                     <p>{messageContent.message}</p>
                   </div>
+                  
               </div>
             );
           })}
