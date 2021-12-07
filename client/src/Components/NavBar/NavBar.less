@@ -19,27 +19,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: var(--priority-layer);
   background: @travelog-blue;
-  transition-property: width;
-  transition-duration: 0.5s;
-  border-left: none;
-  overflow: hidden;
-  margin-bottom: 1.5rem;
-
-  width: 3rem; //  img width + 1rem
-  border-top-right-radius: 1rem;
-  border-bottom-right-radius: 1rem;
-  border: 3px solid @dusty-blue;
-
-  .large-screen({
-    width: 4.5rem; //  img width + 1rem
-    border-top-right-radius: 4rem;
-    border-bottom-right-radius: 4rem;
-    border: 3px solid @dusty-blue;
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
-  });
+  z-index: 20; // for future use
 
   .react-icons {
     vertical-align: middle;
@@ -49,10 +30,10 @@
     });
   }
 
-  &:hover {
-    width: 90%;
-    overflow: visible;
-  }
+  // &:hover {
+  //   width: 90%;
+  //   overflow: visible;
+  // }
   .nav-select {
     width: 100%;
     height: 100%;

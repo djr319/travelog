@@ -1,17 +1,21 @@
 @import '../../ruleset.less';
 
+:root {
+  --footer-height: 4rem;
+}
 .footer {
   display: flex;
+  height: var(--footer-height);
   justify-content: center;
   align-items: center;
   font-size: 9px;
   text-shadow: 0px 0px 4px white;
-  text-align: center;
-  background: var(--travelog-green);
-  color: var(--travelog-dark-blue);
-  // background: @travelog-green;
-  padding: 1rem;
-  box-shadow: 1px 1px 7px var(--travelog-light-blue);
+  background: var(--travelog-dusty-blue);
+
+  .large-screen ({
+    background: var(--travelog-green);
+    box-shadow: 1px 1px 7px var(--travelog-light-blue);
+  });
 }
 
 .text {
@@ -28,5 +32,5 @@ footer img {
   display: none;
   .large-screen ({
     display: inline;
-  })
+  });
 }

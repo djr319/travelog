@@ -1,6 +1,10 @@
 export type Trip = {
-  destination: string,
-  dateFrom: string,
-  dateTo: string,
-  visits: string,
-}
+  uid: string;
+  id?: string;
+  city: string;
+  dateFrom: Date;
+  dateTo: Date;
+  visit: string[];
+  createdAt?: Date;
+  users?: string;
+};

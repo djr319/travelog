@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import { GrUser, GrMapLocation, GrBook, GrNotes, GrChat } from "react-icons/gr";
+import { GrMapLocation, GrBook, GrNotes, GrChat, GrSun } from "react-icons/gr";
 // import { ThemeProvider } from 'styled-components';
 // import { base, deepMerge } from 'grommet-icons';
-import logo from 'Assets/logo.jpg';
 import "./NavBar.css";
 // import Login from '../../Components/LoginButton/LoginButton';
 
@@ -36,17 +35,9 @@ export default function NavBar(): JSX.Element {
   return (
     // <ThemeContext.Provider theme={theme}>
     <div className="navbar">
-      {/* <div className="navbar-circle">
 
-      </div> */}
-      <Link to="/">
-        <img src={logo} className="logo" alt="Travelog logo" />
-      </Link>
       <div className="nav-select">
         <ul className="nav-select__list">
-          <li>
-            <Link to='/profile'><GrUser /></Link>
-          </li >
           <li>
             <Link to="/trips"><GrMapLocation /></Link>
           </li>
@@ -59,10 +50,12 @@ export default function NavBar(): JSX.Element {
           <li>
           <Link to='/chat'><GrChat /></Link>
           </li>
+          <li>
+          <Link to='/weather'><GrSun/></Link>
+          </li>
         </ul >
       </div >
     </div >
     // </ThemeContext.Provider>
   );
 }
-

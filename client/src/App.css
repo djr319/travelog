@@ -1,20 +1,32 @@
-.app {
-  background: white;
-  padding-bottom: 1rem;
-  box-shadow: 1px 1px 7px var(--travelog-light-blue);
+.wrapper {
+  min-width: 200px;
+  max-width: 700px;
+  margin: 0 auto;
 }
-@media screen and (max-width: 767px) {
-  .app {
-    margin-top: 0rem;
-  }
+.app {
+  background: #ffffff url('Assets/logo/logo-faint.png') no-repeat left top;
+  background-size: 150%, 150%;
+  background-position: top 0px left -100px;
+  min-height: calc( 100vh - var(--footer-height));
 }
 @media screen and (min-width: 768px) {
   .app {
-    margin-top: 1rem;
     min-height: 70vh;
+    background-size: 120%, 120%;
+    background-position: top -50px left -100px;
+    box-shadow: 1px 1px 7px var(--travelog-light-blue);
   }
 }
+.logo {
+  height: 2rem;
+  border-radius: 5px;
+}
 .auth-wrapper {
+  position: absolute;
+  top: 0;
+  z-index: 50;
+  background: var(--travelog-dusty-blue);
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

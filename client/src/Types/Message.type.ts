@@ -1,7 +1,8 @@
 export type Message = {
   roomId: string,
   message: string,
-  username: string,
+  from: string,
+  to: string,
   photo: string,
   date: Date
 }
