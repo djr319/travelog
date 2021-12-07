@@ -114,6 +114,7 @@ export default function Journal (): JSX.Element {
 		review: string,
 		photoURL: string
 	) {
+		console.log(review, photoURL);
 		e.preventDefault();
 
 		const id = getFreeJournalId(journals);
@@ -170,11 +171,12 @@ export default function Journal (): JSX.Element {
 		e.preventDefault();
 
 		const journal = journals.find((journal) => journal.id === id);
+
 		if (journal === undefined) return;
 		TagsAPI.getMatchingJournals(uid, journal.tags).then((matches) =>
 			setMatches(matches)
 		);
-
+		console.log(journal.review, journal.photoURL);
 		setPage(
 			<ViewPage
 				id={journal.id}

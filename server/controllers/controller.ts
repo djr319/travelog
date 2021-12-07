@@ -156,6 +156,7 @@ const addNewJournal = async (req: Request, res: Response): Promise<void> => {
 	try {
 		const { uid } = req.params;
 		const { review, photoURL, tags } = req.body;
+		console.log(review, photoURL, tags);
 		const trip = await prisma.user.update({
 			where: {
 				uid
@@ -231,6 +232,7 @@ const updateJournal = async (req: Request, res: Response): Promise<void> => {
 	try {
 		const { uid, id } = req.params;
 		const { review, photoURL, tags } = req.body;
+		console.log(review, photoURL, tags);
 		const trip = await prisma.user.update({
 			where: {
 				uid
