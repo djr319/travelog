@@ -17,7 +17,7 @@ const PicturesUpload = ({ setPicture }: any) => {
 
   const handleChange = (event: any) => {
     if (event.target.files[0]) {
-      setImage(event.target.files[0]);
+      setImage(() => event.target.files[0]);
     }
   };
 

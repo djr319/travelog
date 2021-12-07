@@ -21,12 +21,12 @@ export default function Journal(): JSX.Element {
   const [journals, setJournals] = useState<JournalType[]>([]);
 
   const [page, setPage] = useState(<CreatePage handleSubmit={handleSubmit} />);
-  console.log("journals", journals);
   const { uid } = useContext(UserContext);
 
   useEffect(() => {
     (async () => {
       const journals = await JournalAPI.getAllJournals(uid);
+      console.log("journals", journals);
       setJournals(journals);
     })();
   }, []);
@@ -42,12 +42,17 @@ export default function Journal(): JSX.Element {
     JournalAPI.updateJournal(uid, { id, review, photoURL });
 
     setJournals((prev) => {
-      const journalCopy = prev.find((journal) => journal.id === id);
-      if (journalCopy) {
-        journalCopy.review = review;
-        journalCopy.photoURL = photoURL;
-      }
-      return prev;
+      return prev.map((journal) => {
+        if (journal.id === id) {
+          const journalCopy = { ...journal };
+          journalCopy.review = review;
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore:next-line
+          journalCopy.photoURL = URL;
+          return journalCopy;
+        }
+        return journal;
+      });
     });
 
     setPage(
@@ -69,6 +74,7 @@ export default function Journal(): JSX.Element {
     JournalAPI.deleteJournal(uid, id);
 
     setJournals((prev) => {
+      //TODO splice mutates state, dont use it (VIC)
       const index = prev.findIndex((journal) => journal.id === id);
       if (index > -1) prev.splice(index, 1);
       return prev;

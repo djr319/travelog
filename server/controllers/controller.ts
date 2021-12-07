@@ -193,6 +193,7 @@ const getPersonalJournals = async (
         photoURL: true,
       },
     });
+
     res.status(200);
     res.send(user!.journals);
   } catch (err) {
