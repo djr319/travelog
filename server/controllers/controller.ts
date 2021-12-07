@@ -203,11 +203,17 @@ const getMatchingJournals = async (
 	res: Response
 ): Promise<void> => {
 	try {
+		const { uid } = req.params;
 		const { tags } = req.params;
 		const journals = await prisma.journal.findMany({
 			where: {
-				tags: {
-					hasSome: tags
+				NOT: {
+					uid
+				},
+				AND: {
+					tags: {
+						hasSome: tags
+					}
 				}
 			}
 		});
