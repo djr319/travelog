@@ -1,5 +1,5 @@
 import "../EditPage/EditPage.css";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import PicturesUpload from "Components/Pictures/Pictures";
 import { Journal } from "Types";
 

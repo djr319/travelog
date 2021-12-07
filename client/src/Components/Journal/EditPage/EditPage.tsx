@@ -26,6 +26,7 @@ export default function EditPage({
 }: EditPageProps): JSX.Element {
   const [text, setText] = useState(entryText);
   const [photo, setPhoto] = useState(photoURL);
+  
   function updateReview(e: React.FormEvent<HTMLTextAreaElement>) {
     e.preventDefault();
 

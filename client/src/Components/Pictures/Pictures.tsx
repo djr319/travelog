@@ -22,6 +22,7 @@ const PicturesUpload = ({ setPicture }: any) => {
   };
 
   const handleUpload = () => {
+    console.log('kuso ga', image);
     if (image) {
       const storageRef = ref(storage, `images/${image}`);
 
