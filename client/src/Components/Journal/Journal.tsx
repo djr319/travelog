@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from 'react-query';
 import { Journal as JournalType } from 'Types/index';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, FormEvent } from 'react';
 import { UserContext } from 'Context';
 import { JournalProvider } from './journal.context';
 
@@ -18,6 +18,7 @@ function getFreeJournalId (journals: JournalType[]) {
 
 export default function Journal (): JSX.Element {
 	const [ journals, setJournals ] = useState<JournalType[]>([]);
+	const [ matches, setMatches ] = useState<JournalType[]>([]);
 	const [ page, setPage ] = useState(
 		<CreatePage handleSubmit={handleSubmit} />
 	);
@@ -31,10 +32,17 @@ export default function Journal (): JSX.Element {
 		return data;
 	});
 
+	function getMatches (tags: string[]) {
+		return useQuery('getMatches', async () => {
+			const data = await TagsAPI.getMatchingJournals(uid, tags);
+			setMatches(data);
+			return data;
+		});
+	}
+
 	// Mutations
 	const updateJournal = useMutation(
-		({ id, uid, review }: { id: number; uid: string; review: string }) => {
-			const tags = TagsAPI.parseTags(review);
+		({ id, uid, review, tags }: { id: number; uid: string; review: string, tags: string[] }) => {
 			return JournalAPI.updateJournal(uid, { review, id, tags });
 		}
 	);
@@ -49,17 +57,23 @@ export default function Journal (): JSX.Element {
 	}, []);
 
 	function updateEntry (
-		e: React.FormEvent<HTMLFormElement>,
+		e: FormEvent<HTMLFormElement>,
 		id: number,
 		review: string
 	) {
 		e.preventDefault();
 
-		updateJournal.mutate({ id, uid, review });
+		const tags = TagsAPI.parseTags(review);
+		getMatches(tags);
+
+		updateJournal.mutate({ id, uid, review, tags });
 
 		setJournals((prev) => {
 			const journalCopy = prev.find((journal) => journal.id === id);
-			if (journalCopy) journalCopy.review = review;
+			if (journalCopy) {
+				journalCopy.review = review;
+				journalCopy.tags = tags;
+			}
 			return prev;
 		});
 
@@ -92,11 +106,11 @@ export default function Journal (): JSX.Element {
 
 		const id = getFreeJournalId(journals);
 		const tags = TagsAPI.parseTags(review);
+		getMatches(tags);
 
 		JournalAPI.addJournal(uid, { id, review, tags });
 		setJournals((prev) => [ ...prev, { id, review, tags } ]);
 
-		
 		setPage(
 			<ViewPage
 				id={id}
@@ -154,7 +168,7 @@ export default function Journal (): JSX.Element {
 					handleNew={handleNew}
 				/>
 				{page}
-				<JournalsList journals={journals} />
+				<JournalsList journals={matches} />
 			</JournalProvider>
 		</div>
 	);
