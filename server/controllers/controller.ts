@@ -163,7 +163,7 @@ const addNewJournal = async (req: Request, res: Response): Promise<void> => {
 			data: {
 				journals: {
 					create: {
-						review, 
+						review,
 						tags
 					}
 				}
@@ -206,7 +206,6 @@ const getMatchingJournals = async (
 	try {
 		const { uid } = req.params;
 		const { tags } = req.body;
-		console.log(tags);
 		const journals = await prisma.journal.findMany({
 			where: {
 				NOT: {
@@ -219,7 +218,6 @@ const getMatchingJournals = async (
 				}
 			}
 		});
-		console.log(journals, await prisma.journal.findMany())
 		res.status(200);
 		res.send(journals);
 	} catch (err) {
@@ -243,7 +241,7 @@ const updateJournal = async (req: Request, res: Response): Promise<void> => {
 							id: Number(id)
 						},
 						data: {
-							review, 
+							review,
 							tags
 						}
 					}
