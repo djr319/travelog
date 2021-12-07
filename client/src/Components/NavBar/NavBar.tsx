@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { GrMapLocation, GrBook, GrNotes, GrChat } from "react-icons/gr";
+import { GrMapLocation, GrBook, GrNotes, GrChat, GrSun } from "react-icons/gr";
 // import { ThemeProvider } from 'styled-components';
 // import { base, deepMerge } from 'grommet-icons';
 import "./NavBar.css";
@@ -51,7 +51,7 @@ export default function NavBar(): JSX.Element {
           <Link to='/chat'><GrChat /></Link>
           </li>
           <li>
-          <Link to='/weather'><GrChat /></Link>
+          <Link to='/weather'><GrSun/></Link>
           </li>
         </ul >
       </div >

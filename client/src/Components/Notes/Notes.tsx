@@ -49,6 +49,7 @@ function Notes(): JSX.Element {
 
   return (
     <div className="notes-container">
+      <h3>My Notes...</h3>
       <div className="notes-published">
         <div className="notes-list">
           {notes.map((note) => (
@@ -58,7 +59,7 @@ function Notes(): JSX.Element {
                 className="delete-note"
                 onClick={() => handleDeleteNote(note.id)}
               >
-                Delete
+                ✗
               </button>
             </div>
           ))}
@@ -71,7 +72,7 @@ function Notes(): JSX.Element {
           placeholder="Enter notes..."
           value={note}
           onChange={(e) => setNote(e.target.value)}
-        />
+          />
         <button className="add-note">Add</button>
       </form>
     </div>

@@ -8,10 +8,6 @@
 
 
 .chat {
-  // display: flex;
-  // flex-direction: column;
-  // overflow-y: scroll;
-  margin: 2rem 1rem 1rem;
   border: 10px solid var(--travelog-blue);
   background: var(--travelog-blue);
 
@@ -31,7 +27,7 @@
     justify-content: flex-end;
     line-height: 1.25;
     word-wrap: break-word;
-    overflow-y: hidden;
+    overflow-y: scroll;
     scroll-behavior: smooth;
     background: #eee;
   }
@@ -104,6 +100,7 @@
 
   &-footer {
     display: flex;
+    align-items: center;
     padding-top: 0.5rem;
     gap: 0.5rem;
 
@@ -111,18 +108,19 @@
       width: 100%;
       height: 4rem;
       background: #eee;
-      box-sizing: border-box;
-      outline: 0;
+      border: 0;
       resize: none;
       border-radius: 0.8rem;
       font-size: 1rem;
-      padding: 0.8rem 4rem 1rem 1rem;
+      padding: 0.8rem 2rem 1rem 1rem;
       box-shadow: inset 0.2rem 0.2rem 0.7rem #aaa;
       white-space: pre-wrap;
      }
 
     button {
-      flex: 20%;
+      width: 6rem;
+      height: 4rem;
+      margin: 0;
     }
   }
 }
