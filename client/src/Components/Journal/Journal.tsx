@@ -76,13 +76,16 @@ export default function Journal (): JSX.Element {
 		updateJournal.mutate({ id, uid, review, photoURL, tags });
 
 		setJournals((prev) => {
-			const journalCopy = prev.find((journal) => journal.id === id);
-			if (journalCopy) {
-				journalCopy.review = review;
-				journalCopy.tags = tags;
-			}
-			return prev;
-		});
+      return prev.map((journal) => {
+        if (journal.id === id) {
+          const journalCopy = { ...journal };
+          journalCopy.review = review;
+          journalCopy.photoURL = photoURL;
+          return journalCopy;
+        }
+        return journal;
+      });
+    });
 
 		setPage(
 			<ViewPage
@@ -103,10 +106,10 @@ export default function Journal (): JSX.Element {
 		deleteJournal.mutate({ id });
 
 		setJournals((prev) => {
-			const index = prev.findIndex((journal) => journal.id === id);
-			if (index > -1) prev.splice(index, 1);
-			return prev;
-		});
+      return prev.filter((journal) => {
+        journal.id !== id
+      });
+    });
 	}
 
 	function handleSubmit (

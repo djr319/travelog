@@ -26,7 +26,7 @@ socket.connect();
 //   }
 // };
 
-function Chat () {
+function Chat (): JSX.Element {
 
   const { uid, userName, photoURL } = useContext(UserContext);
 

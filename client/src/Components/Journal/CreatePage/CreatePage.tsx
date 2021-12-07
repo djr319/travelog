@@ -1,6 +1,6 @@
 import "../EditPage/EditPage.css";
-import { useState } from "react";
-import PicturesUpload from "Components/Pictures/Pictures";
+import { useState, FormEvent } from "react";
+import { PicturesUpload } from "Components";
 import { Journal } from "Types";
 
 // NOTE min/max for entry text length
@@ -9,7 +9,7 @@ const MAX_LEN = 300;
 
 type CreatePageProps = {
   handleSubmit: (
-    e: React.FormEvent<HTMLFormElement>,
+    e: FormEvent<HTMLFormElement>,
     text: string,
     photoURL: string
   ) => void;
@@ -20,7 +20,7 @@ export default function CreatePage({
 }: CreatePageProps): JSX.Element {
   const [text, setText] = useState("");
   const [photoURL, setPhotoURL] = useState<Journal["photoURL"]>("");
-  function updateReview(e: React.FormEvent<HTMLTextAreaElement>) {
+  function updateReview(e: FormEvent<HTMLTextAreaElement>) {
     e.preventDefault();
 
     const text = e.currentTarget.value;

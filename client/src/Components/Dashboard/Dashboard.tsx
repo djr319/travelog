@@ -1,11 +1,10 @@
 import "./Dashboard.css";
-import { useState, useEffect } from "react";
 import { SliderData } from "./SliderData";
 // import { FaArrowAltCircleRight, FaArrowAltCircleLeft } from "react-icons/fa";
 // import { TripsForm } from "Components";
 
 export default function Dashboard(): JSX.Element {
-  const length = SliderData.length;
+  // const length = SliderData.length;
   // const [current, setCurrent] = useState(Math.floor(Math.random() * SliderData.length));
   const current = Math.floor(Math.random() * SliderData.length);
   console.log("current slide:  ", current);
