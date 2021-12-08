@@ -47,7 +47,9 @@ body {
 .wrapper h2 {
   font-weight: 600;
   text-align: center;
+  margin: 0.8rem 0 0;
   padding-bottom: 0.4em;
+  color: var(--travelog-dusty-blue);
 }
 .wrapper h3 {
   padding-bottom: 0.5em;

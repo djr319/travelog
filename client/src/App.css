@@ -11,19 +11,6 @@
   left: 0;
   width: 100vw;
 }
-.not-logged-in .dashboard {
-  position: absolute;
-  top: 0;
-  height: 100vh;
-  left: 0;
-  width: 100vw;
-}
-.not-logged-in .footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
 .app {
   background: #ffffff url('Assets/logo/logo-faint.png') no-repeat left top;
   background-size: 150%, 150%;

@@ -58,3 +58,10 @@
   height: calc(100vh - var(--footer-height));
   width: 100%;
 }
+.not-logged-in .dashboard {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  left: 0;
+  width: 100vw;
+}
