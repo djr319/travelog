@@ -56,7 +56,7 @@ const PicturesUpload = ({ setPicture }: any) => {
 
       <div>
         <img
-          style={{ height: 300, width: 400 }}
+          style={{ height: 200, width: 200 }}
           className="journal-picture"
           src={url || "http://via.placeholder.com/200x200"}
           alt="firebase-pic"

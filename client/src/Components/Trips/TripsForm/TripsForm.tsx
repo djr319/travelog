@@ -3,7 +3,6 @@ import { SyntheticEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router";
 import tripsService from "Services/trips.service";
-// import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { DateRangePicker, DateRange } from "materialui-daterange-picker";
 
@@ -107,105 +106,56 @@ function TripsForm(): JSX.Element {
     }
   };
 
-  // const handleTextEditor = (e: string) => {
-  //   setVisits(e);
-  // };
-
   return (
     <div className="form-container">
       <h3>Add next trip!</h3>
 
       <form className="add-trip-form" onSubmit={handleSubmit}>
+        {/* -----------------CITY------------------- */}
+        <label>City</label>
+        <input
+          type="text"
+          placeholder="destination..."
+          value={city}
+          onChange={(event) => setDestination(event.target.value)}
+        ></input>
+        {/* ------------------DATES----------------------------------- */}
+        <label>Dates</label>
+        <h4>Departure</h4>
 
-          {/* -----------------CITY------------------- */}
-          <label>City</label>
-          <input
-            type="text"
-            placeholder="destination..."
-            value={city}
-            onChange={(event) => setDestination(event.target.value)}
-          ></input>
-          {/* ------------------DATES----------------------------------- */}
-          <label>Dates</label>
-
-          <h4>Departure</h4>
-          
-
-          <div>
-
-            <DateRangePicker
-              wrapperClassName="dates"
-              open={isOpen}
-              toggle={toggle}
-              onChange={(range) => setDateRange(range)}
-            />
-            <div
-              className="button-dates"
-              aria-label="toggle dates button"
-              onClick={toggle}
-            >
-              {isOpen ? "Close" : "Set Dates"}
-            </div>
+        <div>
+          <DateRangePicker
+            wrapperClassName="dates"
+            open={isOpen}
+            toggle={toggle}
+            onChange={(range) => setDateRange(range)}
+          />
+          <div
+            className="button-dates"
+            aria-label="toggle dates button"
+            onClick={toggle}
+          >
+            {isOpen ? "Close" : "Set Dates"}
           </div>
-          {/* --------------TO VISIT------------------ */}
-          {/* --------option1---------rich text editor-------------------- */}
-          {/* <div className="rich-text-editor">
-          <h4>To visit</h4>
-          <ReactQuill
-          placeholder="wish to visit"
-          modules={TripsForm.modules}
-          formats={TripsForm.formats}
-          onChange={(e) => {
-            const delta = e;
-            setVisits(delta);
-          }}
-          value={visits}
-          />
-        </div> */}
-          {/* --------option2--------teaxt area-------------------- */}
-          <label>Wish List</label>
-          {/* <h4>To visit</h4> */}
-          <textarea
-            className="trips_form-textarea"
-            placeholder="Enter review description..."
-            required={true}
-            name="review"
-            value={visit}
-            onChange={(event) => setVisits([event.target.value])}
-          />
+        </div>
+        {/* --------------TO VISIT------------------ */}
+        <label>Wish List</label>
 
-        <button className="sendButton" type="submit">{state ? "Update" : "Upload"}</button>
+        <textarea
+          className="trips_form-textarea"
+          placeholder="Enter review description..."
+          required={true}
+          name="review"
+          value={visit}
+          onChange={(event) => setVisits([event.target.value])}
+        />
+
+        <button className="sendButton" type="submit">
+          {state ? "Update" : "Upload"}
+        </button>
       </form>
     </div>
   );
 }
 
-// TripsForm.modules = {
-//   toolbar: [
-//     [{ header: "1" }, { header: "2" }, { header: [3, 4, 5, 6] }, { font: [] }],
-//     [{ size: [] }],
-//     ["bold", "italic", "underline", "strike", "blockquote"],
-//     [{ list: "ordered" }, { list: "bullet" }],
-//     ["link", "image", "video"],
-//     ["clean"],
-//     ["code-block"],
-//   ],
-// };
-
-// TripsForm.formats = [
-//   "header",
-//   "font",
-//   "size",
-//   "bold",
-//   "italic",
-//   "underline",
-//   "strike",
-//   "blockquote",
-//   "list",
-//   "bullet",
-//   "link",
-//   "image",
-//   "video",
-//   "code-block",
-// ];
 export default TripsForm;
