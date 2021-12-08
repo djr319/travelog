@@ -15,6 +15,12 @@
     box-shadow: 1px 1px 7px var(--travelog-light-blue);
   }
 }
+@media screen and (min-width: 768px) {
+  .footer {
+    background: var(--travelog-green);
+    box-shadow: 1px 1px 7px var(--travelog-light-blue);
+  }
+}
 .text {
   margin-left: 0.5rem;
   text-align: left;
