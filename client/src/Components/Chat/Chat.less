@@ -8,25 +8,30 @@
 @travelog-green: var(--travelog-green);
 
 .chat {
-  border: 10px solid var(--travelog-blue);
-  background: var(--travelog-blue);
 
-  h2 {
-    background-color: #4C8AB9;
-    color: white;
-    height: 3rem;
+  .chat-wrapper{
+    padding: 1rem 0.7rem;
+    border-radius: 1rem;
+    background: @travelog-blue;
+
+    .large-screen ({
+      width: 30rem;
+      height: 25rem;
+      margin: 0rem auto;
+    });
   }
 
   &-body {
     position: relative;
-    height: ~"calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height) - 9.5rem )";
+    width: 100%;
+    height: ~"calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height) - 12rem )";
 
     .large-screen({
+      font-size: 0.5rem;
       height: ~"calc(100vh - var(--header-height) - 2rem - var(--footer-height) - var(--navbar-height) - 9rem )";
     });
-
+    padding: 0.7rem;
     border-radius: 1rem;
-    padding: 0.5rem 1rem;
 
     display: flex;
     flex-direction: column;
@@ -118,6 +123,7 @@
   }
 
   &-footer {
+    width: 100%;
     display: flex;
     align-items: center;
     padding-top: 0.5rem;

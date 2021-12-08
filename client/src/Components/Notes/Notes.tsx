@@ -51,7 +51,7 @@ function Notes(): JSX.Element {
 
   return (
     <div className="notes">
-      <h3>My Notes...</h3>
+      <h2>My Notes...</h2>
       <SimpleBar style={{ height: '100%' }}>
         <div className="notes-list">
           {notes.map((note) => (

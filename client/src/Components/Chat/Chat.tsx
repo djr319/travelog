@@ -103,7 +103,8 @@ function Chat() {
   return (
     <div className="chat">
       <h2>Live Chat</h2>
-      <div className="chat-body">
+      <div className="chat-wrapper">
+        <div className="chat-body">
           <SimpleBar style={{ height: '100%' }}>
             {messageList.map((messageContent) => {
               return (
@@ -122,24 +123,24 @@ function Chat() {
             })}
             <div ref={messagesEndRef} />
           </SimpleBar>
+        </div>
+        <div className="chat-footer">
+          <input
+            id="input"
+            type="text"
+            placeholder="Message..."
+            value={currentMessage}
+            onChange={(event) => {
+              setCurrentMessage(event.target.value);
+            }}
+            onKeyPress={(event) => {
+              event.key === "Enter" && sendMessage();
+            }}
+          />
+          <button onClick={sendMessage}>Send</button>
+        </div>
       </div>
-
-      <div className="chat-footer">
-        <input
-          id="input"
-          type="text"
-          placeholder="Message..."
-          value={currentMessage}
-          onChange={(event) => {
-            setCurrentMessage(event.target.value);
-          }}
-          onKeyPress={(event) => {
-            event.key === "Enter" && sendMessage();
-          }}
-        />
-        <button onClick={sendMessage}>Send</button>
-      </div>
-      </div>
+    </div>
   );
 }
 
