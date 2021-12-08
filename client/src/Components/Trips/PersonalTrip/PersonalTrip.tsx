@@ -36,22 +36,22 @@ const PersonalTrip = (props: TripProps): JSX.Element => {
                 <p>{moment(dateTo).format("MMM Do YYYY")}</p>
               </div>
             </div>
-          </div>
-          <div className="left-side">
-            <h2>{city}</h2>
+            <div className="left-side">
+              <h2>{city}</h2>
+            </div>
           </div>
         </div>
       </Link >
 
-        <button
-          className="delete"
-          onClick={() => {
-            if (window.confirm("Are you sure you wish to delete this trip?"))
-              deleteHandler();
-          }}
-        >
+      <button
+        className="delete"
+        onClick={() => {
+          if (window.confirm("Are you sure you wish to delete this trip?"))
+            deleteHandler();
+        }}
+      >
         ❌
-        </button>
+      </button>
     </div>
   );
 };
