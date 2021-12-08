@@ -66,6 +66,7 @@
 }
 .journal__menu-select-container .journal__menu-select .journal__menu-select-entry:first-of-type {
   border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 .journal__menu-select-container .journal__menu-select .journal__menu-select-entry:first-of-type.last {
   border-radius: 5px 0 0 5px;

@@ -1,6 +1,7 @@
 import { useState, FormEvent, MouseEvent } from 'react';
 import { PicturesUpload } from 'Components';
 import { Journal } from 'Types';
+import './JournalPage.css';
 
 // NOTE min/max for entry text length
 const MIN_LEN = 5;

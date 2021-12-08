@@ -1,0 +1,70 @@
+.journal__form {
+  height: 100%;
+  margin: 1rem;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.journal__form .journal__form-textarea-container {
+  height: 100%;
+  background-color: white;
+  padding: 0.5rem;
+  color: rgba(128, 128, 128, 0.561);
+  font-size: 0.75rem;
+  text-align: right;
+  overflow-y: scroll;
+  border-radius: 5px;
+}
+.journal__form .journal__form-textarea-container .journal__form-textarea {
+  width: 100%;
+  height: 95%;
+  padding: 0.25rem;
+  resize: none;
+  font-size: 1.25rem;
+  border-radius: 3px;
+}
+.journal__form .journal__form-textarea-container .journal__form-textarea:invalid {
+  background-color: #fff3f3;
+  border-color: red;
+}
+.journal__form .journal__form-submit {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  line-height: 2rem;
+  font-size: 1.5rem;
+}
+.journal__view {
+  height: 100%;
+  margin: 1.5rem;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.journal__view .journal__view-text {
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  resize: none;
+  background-color: black;
+  border: solid 1px black;
+  border-radius: 3px;
+  font-size: 1.5rem;
+  overflow-y: scroll;
+}
+.journal__view .journal__view-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.journal__view .journal__view-update,
+.journal__view .journal__view-delete {
+  width: 40%;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  line-height: 2rem;
+  font-size: 1.5rem;
+}
