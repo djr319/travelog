@@ -2,7 +2,9 @@
   border: 10px solid var(--travelog-blue);
   background: var(--travelog-blue);
 }
-.chat-header {
+.chat h2 {
+  background-color: #4C8AB9;
+  color: white;
   height: 3rem;
 }
 .chat-body {
@@ -16,24 +18,38 @@
   justify-content: flex-end;
   line-height: 1.25;
   word-wrap: break-word;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
   background: #eee;
+}
+@media screen and (min-width: 768px) {
+  .chat-body {
+    height: calc(100vh - var(--header-height) - 2rem - var(--footer-height) - var(--navbar-height) - 9rem );
+  }
 }
 .chat .message {
   padding: 0.5rem 0;
   display: flex;
   flex-direction: column;
 }
+@media screen and (min-width: 768px) {
+  .chat .message {
+    font-size: 20px;
+  }
+}
 .chat .message-data {
   display: flex;
   flex-direction: row;
-  font-size: 12px;
+  font-size: 80%;
 }
 .chat .message-data .photo {
   width: 25px;
   height: 25px;
   border-radius: 50%;
+}
+@media screen and (min-width: 768px) {
+  .chat .message-data .photo {
+    width: 40px;
+    height: 40px;
+  }
 }
 .chat .message-data .user {
   font-weight: bold;
@@ -46,12 +62,22 @@
   position: relative;
   width: fit-content;
 }
+@media screen and (min-width: 768px) {
+  .chat .message-content {
+    max-width: 60%;
+  }
+}
 .chat .me {
   align-items: flex-start;
 }
 .chat .me .message-content {
   align-self: flex-start;
   background-color: var(--travelog-green);
+}
+@media screen and (min-width: 768px) {
+  .chat .me .message-content {
+    margin-left: 1rem;
+  }
 }
 .chat .me .message-data {
   align-items: center;
@@ -61,6 +87,11 @@
 }
 .chat .you {
   align-items: flex-end;
+}
+@media screen and (min-width: 768px) {
+  .chat .you {
+    margin-right: 1rem;
+  }
 }
 .chat .you .message-data {
   flex-direction: row-reverse;

@@ -1,22 +1,30 @@
-.notes-container {
-  margin: 1rem;
-  display: inline-flex;
-  flex-direction: column;
-  height: ~"calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height) - 3rem)";
-  overflow:hidden;
+@import '../../ruleset.less';
 
-  .notes-published {
+.notes-container {
+  display: flex;
+  flex-direction: column;
+  .small-screen({
+    height: ~"calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height))";
+  });
+  overflow: hidden;
+
+  // .notes-published {
+  //   width: 100%;
+  //   overflow-y:scroll;
 
     .notes-list {
+      padding-bottom: 5rem;
       height: 100%;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-evenly;
-      overflow-y: scroll;
-      scroll-behavior: smooth;
+      .small-screen({
+        overflow-y: scroll;
+      });
     }
 
     .note-item {
+      cursor: pointer;
       width: 13rem;
       min-height: 13rem;
       height: 13rem;
@@ -28,8 +36,6 @@
       margin: 1.7rem;
       word-wrap: break-word;
       overflow: hidden;
-      overflow-y: scroll;
-      scroll-behavior: smooth;
       box-shadow: 5px 5px 7px rgba(33,33,33,.7);
       transform: rotate(-4deg);
       transition: transform .15s linear;
@@ -57,21 +63,27 @@
         box-shadow: 2px 2px 4px rgba(33,33,33,.7);
       }
     }
-  }
+  // }
 
-  .notes-add {
+  form.notes-add {
     display: flex;
     flex-direction: row;
     justify-content: center;
     border-radius: 1rem;
     align-items: center;
 
-    position: absolute;
-    bottom: 0rem;
-    left: 1rem;
-    right: 1rem;
-    border: none;
     background: rgba(255,255,255,0.7);
+
+    .small-screen({
+      position: absolute;
+      bottom: 0rem;
+      left: 1rem;
+      right: 1rem;
+    });
+
+    .large-screen({
+      margin-bottom: 1rem;
+    });
 
     .notes-input {
       width: 80%;

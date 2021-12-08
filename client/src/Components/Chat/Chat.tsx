@@ -1,11 +1,12 @@
 import './Chat.css';
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { io, Socket } from "socket.io-client";
 import { Message } from 'Types/Message.type';
 import moment from 'moment';
+import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
 // import { User } from 'Types/User.type';
 import { UserContext } from 'Context';
-// import ScrollToBottom from 'react-scroll-to-bottom';
 
 const SOCKET_URL = "http://localhost:3001";
 const socket: Socket = io(SOCKET_URL);
@@ -26,7 +27,7 @@ socket.connect();
 //   }
 // };
 
-function Chat () {
+function Chat() {
 
   const { uid, userName, photoURL } = useContext(UserContext);
 
@@ -65,6 +66,7 @@ function Chat () {
       // @ts-ignore
       setMessageList((list) => [...list, messageData]);
       setCurrentMessage("");
+      document.getElementById('input')?.focus();
     }
   };
 
@@ -76,10 +78,19 @@ function Chat () {
   //   });
   // }, [socket]);
 
+  // https://stackoverflow.com/questions/55677600/typescript-how-to-pass-object-is-possibly-null-error
+  const messagesEndRef = useRef(document.createElement("div"))
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(scrollToBottom, [messageList]);
+
+
   useEffect(() => {
     socket.on('to-all', (messageData) => {
-      const message:Message = {
-        roomId:'0',
+      const message: Message = {
+        roomId: '0',
         message: messageData.message,
         from: messageData.from,
         to: 'all',
@@ -92,15 +103,19 @@ function Chat () {
 
   return (
     <div className="chat">
+<<<<<<< HEAD
       <div className="chat-header">
         <h2>Live Chat</h2>
       </div>
       
+=======
+      <h2>Live Chat</h2>
+>>>>>>> dev
       <div className="chat-body">
-        {/* <ScrollToBottom className="message-container"> */}
-          {messageList.map((messageContent) => {
-            return (
-              <div className={userName === messageContent.from ? "message me" : "message you"}>
+          <SimpleBar style={{ height: '100%' }}>
+            {messageList.map((messageContent) => {
+              return (
+                <div className={userName === messageContent.from ? "message me" : "message you"}>
 
                   <div className="message-data">
                     <img className="photo" key={uid} src={messageContent.photo} alt="" />
@@ -110,15 +125,24 @@ function Chat () {
                   <div className="message-content">
                     <p>{messageContent.message}</p>
                   </div>
+<<<<<<< HEAD
                   
               </div>
             );
           })}
         {/* </ScrollToBottom> */}
+=======
+                </div>
+              );
+            })}
+            <div ref={messagesEndRef} />
+          </SimpleBar>
+>>>>>>> dev
       </div>
 
       <div className="chat-footer">
         <input
+          id="input"
           type="text"
           placeholder="Message..."
           value={currentMessage}
@@ -131,8 +155,7 @@ function Chat () {
         />
         <button onClick={sendMessage}>Send</button>
       </div>
-
-    </div>
+      </div>
   );
 }
 
