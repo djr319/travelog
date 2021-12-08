@@ -107,12 +107,9 @@ export default function Journal (): JSX.Element {
 	}
 
 	function handleSubmit (
-		e: React.FormEvent<HTMLFormElement>,
 		review: string,
 		photoURL: string
 	) {
-		e.preventDefault();
-
 		const id = getFreeJournalId(journals);
 		const tags = TagsAPI.parseTags(review);
 		TagsAPI.getMatchingJournals(uid, tags).then((matches) =>

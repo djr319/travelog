@@ -1,5 +1,5 @@
 import '../EditPage/EditPage.css';
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, MouseEvent } from 'react';
 import { PicturesUpload } from 'Components';
 import { Journal } from 'Types';
 
@@ -15,53 +15,56 @@ type JournalPageProps = {
 		review: string,
 		photoURL: string
 	) => void;
-	deleteEntry: (e: React.MouseEvent<HTMLButtonElement>, id: number) => void;
-	handleSubmit: (
-		e: React.FormEvent<HTMLFormElement>,
-		review: string,
-		photoURL: string
-	) => void;
+	deleteEntry: (e: MouseEvent<HTMLButtonElement>, id: number) => void;
+	handleSubmit: (review: string, photoURL: string) => void;
 };
 
 export default function JournalPage ({
-	journal, handleSubmit, updateEntry, deleteEntry
+	journal,
+	handleSubmit,
+	updateEntry,
+	deleteEntry
 }: JournalPageProps): JSX.Element {
 	const { id, review, photoURL } = journal;
 
-  const [ text, setText ] = useState(review);
-  const [ photo, setPhoto] = useState(photoURL);
+	const [ text, setText ] = useState(review);
+	const [ photo, setPhoto ] = useState(photoURL);
+	const [ inViewMode, setInViewMode ] = useState(false);
 
-	function switchEditMode (
-		e: React.MouseEvent<HTMLButtonElement>,
-	) {
+	function sendSubmit (e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
+
+		setInViewMode(true);
+		handleSubmit(text, photoURL);
 	}
 
-  function updateReview(e: React.FormEvent<HTMLTextAreaElement>) {
-    e.preventDefault();
+	function updateReview (e: React.FormEvent<HTMLTextAreaElement>) {
+		e.preventDefault();
 
-    const text = e.currentTarget.value;
-    setText(text);
-    setPhoto(photo);
-  }
+		const text = e.currentTarget.value;
+		setText(text);
+		setPhoto(photo);
+	}
 
 	return (
-		<form
-			className='journal__form'
-			onSubmit={(e) => handleSubmit(e, text, photoURL)}>
+		<form className='journal__form' onSubmit={sendSubmit}>
 			<div className='journal__form-textarea-container'>
 				<p>Pictures</p>
 				<PicturesUpload setPicture={setPhoto} />
-				<textarea
-					className='journal__form-textarea'
-					placeholder='Enter review description...'
-					required={true}
-					minLength={MIN_LEN}
-					maxLength={MAX_LEN}
-					name='review'
-					value={text}
-					onInput={updateReview}
-				/>
+				{inViewMode ? (
+					<div className='journal__view-text'>{text}</div>
+				) : (
+					<textarea
+						className='journal__form-textarea'
+						placeholder='Enter review description...'
+						required={true}
+						minLength={MIN_LEN}
+						maxLength={MAX_LEN}
+						name='review'
+						value={text}
+						onInput={updateReview}
+					/>
+				)}
 				{text.length < MIN_LEN ? (
 					'Insufficient characters.'
 				) : (
