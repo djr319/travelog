@@ -54,3 +54,17 @@
 .weather {
   padding: 0.5rem 1rem 1rem;
 }
+@media screen and (max-width: 767px) {
+  .chat,
+  .journal,
+  .journals-list,
+  .notes,
+  .profile,
+  .profile-view,
+  .trips,
+  .trip-list,
+  .view-trip,
+  .weather {
+    min-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height));
+  }
+}

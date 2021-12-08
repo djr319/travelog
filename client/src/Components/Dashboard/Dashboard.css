@@ -2,11 +2,6 @@
   height: calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height));
   overflow: hidden;
 }
-@media screen and (min-width: 768px) {
-  .dashboard {
-    height: calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height) - 3rem);
-  }
-}
 .dashboard .banner-text {
   font-size: 1.5rem;
   position: absolute;

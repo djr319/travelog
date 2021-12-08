@@ -52,6 +52,16 @@ function Notes(): JSX.Element {
   return (
     <div className="notes">
       <h2>My Notes...</h2>
+      <form className="notes-add" onSubmit={handleAddNote}>
+        <input
+          className="notes-input"
+          type="text"
+          placeholder="Enter notes..."
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+        />
+        <button>Add</button>
+      </form>
       <SimpleBar style={{ height: '100%' }}>
         <div className="notes-list">
           {notes.map((note) => (
@@ -70,16 +80,6 @@ function Notes(): JSX.Element {
         </div>
       </SimpleBar>
 
-      <form className="notes-add" onSubmit={handleAddNote}>
-        <input
-          className="notes-input"
-          type="text"
-          placeholder="Enter notes..."
-          value={note}
-          onChange={(e) => setNote(e.target.value)}
-        />
-        <button className="add-note">Add</button>
-      </form>
     </div>
   );
 }

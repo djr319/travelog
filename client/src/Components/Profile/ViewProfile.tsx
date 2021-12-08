@@ -32,22 +32,34 @@ export default function ViewProfile(): JSX.Element {
   }, []);
 
   return (
-    <div className="profile-view">
+    <div className="profile">
       <h2>Profile</h2>
-
-      <h4>Profile picture</h4>
       <img src={photoURL} alt="profile-picture" />
-      <h4>Email address</h4>
-      <p>{email}</p>
-      <h4>Username</h4>
-      <p>{userName}</p>
-      <h4>First name</h4>
-      <p>{profile.firstName}</p>
-      <h4>Last name</h4>
-      <p>{profile.lastName}</p>
-      <h4>Interests</h4>
-      <p>{profile.interests}</p>
 
+      <table>
+        <tr>
+          <td>Username:</td>
+          <td className="bold">{userName}</td>
+        </tr>
+        <tr>
+          <td>Email address:</td>
+          <td className="bold">{email}</td>
+        </tr>
+        <tr>
+          <td>First name:</td>
+          <td className="bold">{profile.firstName}</td>
+        </tr>
+        <tr>
+          <td>Last name:</td>
+          <td className="bold">{profile.lastName}</td>
+        </tr>
+        <tr>
+          <td colSpan={2}>Interests:</td>
+        </tr>
+        <tr>
+          <td className="bold" colSpan={2}>{profile.interests}</td>
+        </tr>
+    </table>
       <button
         onClick={() =>
           navigate("/updateProfile", {
