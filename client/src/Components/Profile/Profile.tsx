@@ -83,7 +83,7 @@ export default function Profile(): JSX.Element {
     });
   };
   return (
-    <form className="profile-form" onSubmit={handleSubmit}>
+    <form className="profile" onSubmit={handleSubmit}>
       <h2 className="profile-title">My profile</h2>
       <div className="profile-flex">
         <div className="flex-item">

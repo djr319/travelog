@@ -22,7 +22,12 @@
     width: 400px;
   }
 }
-.navbar li {
+.navbar .nav-select .tooltip {
+  position: relative;
+  top: 2rem;
+  background: white;
+}
+.navbar .nav-select li {
   list-style: none;
   display: inline;
   text-align: center ;
@@ -34,11 +39,33 @@
   background-color: var(--travelog-light-blue);
 }
 @media screen and (min-width: 768px) {
-  .navbar li {
+  .navbar .nav-select li {
     width: 4rem;
     height: 4rem;
     padding: 1rem;
   }
+}
+.navbar .nav-select [data-md-tooltip] {
+  position: relative;
+}
+.navbar .nav-select [data-md-tooltip]:before {
+  content: attr(data-md-tooltip);
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  padding: 8px;
+  transform: translateX(-50%) scale(0);
+  transition: transform 0.3s ease-in-out;
+  transform-origin: top;
+  background: var(--navbar-color);
+  color: white;
+  border-radius: 0.3rem;
+  font-size: 12px;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+}
+.navbar .nav-select [data-md-tooltip]:hover:before {
+  transform: translateX(-50%) scale(1);
 }
 .navbar img {
   display: inline;

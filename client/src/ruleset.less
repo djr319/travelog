@@ -1,4 +1,4 @@
-// @import '../../ruleset.less';
+
 
 .large-screen(@rules) {
   @media screen and (min-width: 768px) {@rules();}
@@ -9,6 +9,7 @@
 }
 // syntax for reference:
 
+// @import '../../ruleset.less';
 // .large-screen ({
 //   margin-top: 1rem;
 //   min-height: 70vh;
@@ -16,9 +17,6 @@
 
 // https://lesscss.org/features/#detached-rulesets-feature
 
-// .useWithinClass {
-//   @detached-ruleset();
-// }
 
 @glow-text: {
   text-shadow: 0px 0px 2px #0c2e49;

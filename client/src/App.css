@@ -44,7 +44,7 @@
 .auth-wrapper {
   position: absolute;
   top: 0;
-  z-index: 50;
+  z-index: 100;
   background: var(--travelog-dusty-blue);
   width: 100%;
   display: flex;
@@ -54,4 +54,17 @@
 }
 .auth-wrapper .logo {
   height: 5.5rem;
+}
+.chat,
+.dashboard,
+.journal,
+.journals-list,
+.notes,
+.profile,
+.profile-view,
+.trips,
+.trip-list,
+.view-trip,
+.weather {
+  margin: 1rem 0.5rem;
 }

@@ -28,23 +28,27 @@ function Weather () {
     function getCurrentWeather (geolocation: Geolocation) {
       const { latitude, longitude } = geolocation;
       const WEATHER_URL = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&exclude=minutely,alerts&units=metric&appid=${APIWeatherKey}`
-  
+
       fetch(WEATHER_URL)
         .then(res => res.json())
         .then(res => {
-          setWeatherData(res.daily)  
+          setWeatherData(res.daily)
         })
         .catch(error => console.log(error));
     }
 
     getCurrentLocation()
     .then(geolocation => getCurrentWeather(geolocation))
-    .catch(error => console.log(error));			
+    .catch(error => console.log(error));
   }, []);
-  
+
   return (
-    <div>
-      {weatherData && weatherData.map((day, index) => <WeatherDay weather={day} key={index}/>)}
+    <div className="weather">
+      <h2>Current Local Weather</h2>
+      <div className="weather-grid">
+      {weatherData && weatherData.map((day, index) =>
+        <WeatherDay weather={day} key={index} />)}
+        </div>
     </div>
   )
 }

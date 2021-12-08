@@ -34,7 +34,13 @@
       font-size: 2rem;
       width: 400px;
     });
-  }
+
+    .tooltip {
+      // display: hidden;
+      position: relative;
+      top: 2rem;
+      background: white;
+    }
 
   li {
     list-style: none;
@@ -52,12 +58,31 @@
       height: 4rem;
       padding: 1rem;
     });
+    }
 
-    &:hover {
-      .react-icons {
-        // not easy!
-      }
+    [data-md-tooltip] {
+      position: relative;
+    }
 
+    [data-md-tooltip]:before {
+        content: attr(data-md-tooltip);
+        position: absolute;
+        bottom: -35px;
+        left: 50%;
+        padding: 8px;
+        transform: translateX(-50%) scale(0);
+        transition: transform 0.3s ease-in-out;
+        transform-origin: top;
+        background: @navbar-color;
+        color: white;
+        border-radius: 0.3rem;
+        font-size: 12px;
+        font-family: Roboto,sans-serif;
+        font-weight: 400;
+    }
+
+    [data-md-tooltip]:hover:before {
+      transform: translateX(-50%) scale(1);
     }
   }
 

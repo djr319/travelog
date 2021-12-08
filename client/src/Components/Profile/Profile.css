@@ -1,40 +1,40 @@
-.profile-form {
+.profile {
   border: 3px solid #84c1f8;
   border-radius: 6px;
   margin: 0 1rem;
 }
-.profile-form h2 {
+.profile h2 {
   text-align: center;
 }
-.profile-form .profile-flex {
+.profile .profile-flex {
   display: flex;
   justify-content: center;
   gap: 3rem;
 }
-.profile-form .profile-flex img {
+.profile .profile-flex img {
   margin: auto;
 }
 @media screen and (max-width: 767px) {
-  .profile-form .profile-flex {
+  .profile .profile-flex {
     flex-direction: column;
     text-align: center;
     gap: 0rem;
   }
 }
-.profile-form .from-input {
+.profile .from-input {
   border: 2px solid #98e27f;
   border-radius: 7px;
   box-sizing: border-box;
   padding: 10px;
   margin: 0.3rem 1rem 1rem;
 }
-.profile-form .profile-label {
+.profile .profile-label {
   display: block;
   font-size: 15px;
   font-weight: 500;
   padding-top: 15px;
 }
-.profile-form .profile-img {
+.profile .profile-img {
   border: 5px solid #0c2e49;
   border-radius: 55px;
 }

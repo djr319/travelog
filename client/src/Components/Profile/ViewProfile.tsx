@@ -30,7 +30,7 @@ export default function ViewProfile() {
   const { state } = useLocation();
 
   return (
-    <div className="profile-view-container">
+    <div className="profile-view">
       <h2>Profile</h2>
 
       <h4>Profile picture</h4>

@@ -112,8 +112,8 @@ function TripsForm(): JSX.Element {
   // };
 
   return (
-    <div className="form-container">
-      <h3>Add next trip!</h3>
+    <div className="trip">
+      <h2>Add next trip!</h2>
 
       <form className="add-trip-form" onSubmit={handleSubmit}>
 
@@ -126,13 +126,9 @@ function TripsForm(): JSX.Element {
             onChange={(event) => setDestination(event.target.value)}
           ></input>
           {/* ------------------DATES----------------------------------- */}
-          <label>Dates</label>
-
-          <h4>Departure</h4>
-          
+        <label>Dates</label>
 
           <div>
-
             <DateRangePicker
               wrapperClassName="dates"
               open={isOpen}
@@ -164,7 +160,7 @@ function TripsForm(): JSX.Element {
         </div> */}
           {/* --------option2--------teaxt area-------------------- */}
           <label>Wish List</label>
-          {/* <h4>To visit</h4> */}
+
           <textarea
             className="trips_form-textarea"
             placeholder="Enter review description..."

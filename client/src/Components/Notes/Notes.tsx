@@ -50,7 +50,7 @@ function Notes(): JSX.Element {
   }
 
   return (
-    <div className="notes-container">
+    <div className="notes">
       <h3>My Notes...</h3>
       <SimpleBar style={{ height: '100%' }}>
         <div className="notes-list">

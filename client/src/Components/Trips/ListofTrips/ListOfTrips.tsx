@@ -46,7 +46,7 @@ export default function ListOfTrips(): JSX.Element {
   }, []);
 
   return (
-    <div className="list-container">
+    <div className="trip-list">
       {trips && trips.length ? (
         trips.map((trip) => (
           <PersonalTrip trip={trip} setTrips={setTrips} key={trip.id} />

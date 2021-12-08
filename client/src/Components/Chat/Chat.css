@@ -8,9 +8,8 @@
   height: 3rem;
 }
 .chat-body {
-  border: 1px solid var(--travelog-dusty-blue);
   position: relative;
-  height: calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height) - 9rem );
+  height: calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height) - 9.5rem );
   border-radius: 1rem;
   padding: 0.5rem 1rem;
   display: flex;
@@ -126,5 +125,4 @@
 .chat-footer button {
   width: 6rem;
   height: 4rem;
-  margin: 0;
 }
