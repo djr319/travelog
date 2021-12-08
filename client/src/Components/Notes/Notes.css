@@ -1,26 +1,14 @@
-.notes-container {
+.notes {
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
-@media screen and (max-width: 767px) {
-  .notes-container {
-    height: calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height));
-  }
-}
-.notes-container .notes-list {
-  padding-bottom: 5rem;
-  height: 100%;
+.notes .notes-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-@media screen and (max-width: 767px) {
-  .notes-container .notes-list {
-    overflow-y: scroll;
-  }
-}
-.notes-container .note-item {
+.notes .note-item {
   cursor: pointer;
   width: 13rem;
   min-height: 13rem;
@@ -37,63 +25,37 @@
   transform: rotate(-4deg);
   transition: transform 0.15s linear;
 }
-.notes-container .note-item:hover,
-.notes-container .note-item:focus {
+.notes .note-item:hover,
+.notes .note-item:focus {
   box-shadow: 10px 10px 7px rgba(0, 0, 0, 0.7);
   transform: scale(1.18);
   position: relative;
   z-index: 5;
 }
-.notes-container .note-item .delete-note {
+.notes .note-item .delete-note {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: 0.1rem;
+  right: 0.1rem;
   height: 1.3rem;
   min-height: 1.3rem;
   width: 1.3rem;
   padding: 0;
   border-radius: 50%;
-  color: red;
-  background: var(--travelog-blue);
+  color: white;
+  background: black;
   border: none;
   text-shadow: 0 0 3px black;
   box-shadow: 2px 2px 4px rgba(33, 33, 33, 0.7);
 }
-.notes-container form.notes-add {
+.notes form.notes-add {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  border-radius: 1rem;
   align-items: center;
+  margin: 0 auto;
+  border-radius: 1rem;
   background: rgba(255, 255, 255, 0.7);
+  padding: 0.7rem;
 }
-@media screen and (max-width: 767px) {
-  .notes-container form.notes-add {
-    position: absolute;
-    bottom: 0rem;
-    left: 1rem;
-    right: 1rem;
-  }
-}
-@media screen and (min-width: 768px) {
-  .notes-container form.notes-add {
-    margin-bottom: 1rem;
-  }
-}
-.notes-container form.notes-add .notes-input {
-  width: 80%;
-  border-radius: 8px;
-  border: 3px solid --var(--travelog-green);
-  padding: 0.5rem;
-}
-.notes-container form.notes-add .add-note {
-  min-height: 20px;
-  width: 50px;
-  border-radius: 10px;
-  font-size: 12px;
-  color: white;
-  background-color: #4c8ab9;
-  border: none;
-  margin: 0 0 0 6px;
-  box-shadow: 2px 2px 4px rgba(33, 33, 33, 0.7);
+.notes .notes-input {
+  margin-bottom: 0.3rem;
 }

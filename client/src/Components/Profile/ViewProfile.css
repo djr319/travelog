@@ -1,24 +1,31 @@
-.profile-view-container {
+.profile {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #84c1f8;
-  border-radius: 6px;
-  padding-bottom: 5px;
+}
+.profile img {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+}
+.profile .profile-title {
   margin: 15px;
 }
-.profile-title {
-  margin: 15px;
-}
-.profile-inputs {
+.profile .profile-inputs {
   background-color: white;
   height: 55px;
   border-radius: 15px;
   padding: 5px;
   width: 200px;
 }
-.profile-pic {
+.profile .profile-pic {
   border: 50px solid #0c2e49;
   border-radius: 55px;
+  margin: 2rem;
+  height: 5rem;
+  width: 5rem;
+}
+.profile .bold {
+  font-weight: bold;
 }

@@ -4,6 +4,7 @@
   min-width:200px;
   max-width:768px;
   margin: 0 auto;
+  min-height: 100vh;
 }
 
 .not-logged-in {
@@ -12,39 +13,19 @@
   height: 100vh;
   left: 0;
   width: 100vw;
-
-  .dashboard {
-    position:absolute;
-    top: 0;
-    height: 100vh;
-    left: 0;
-    width: 100vw;
-  }
-
-  .footer {
-    position:absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-
-
 }
 
 .app {
-      // linear-gradient(to bottom, rgba(255,255,0,0.5), rgba(0,0,255,0.5));
-      background: #ffffff url('Assets/logo/logo-faint.png') no-repeat left top;
-      background-size: 150%, 150%;
-      background-position: top 0px left -100px;
-      min-height: ~"calc( 100vh - var(--footer-height))";
-      // padding-bottom: 1rem;
+  background: #ffffff url('Assets/logo/logo-faint.png') no-repeat left top;
+  background-size: 150%, 150%;
+  background-position: top 0px left -100px;
+  min-height: ~"calc( 100vh - var(--footer-height))";
 
-    .large-screen ({
-      min-height: 70vh;
-      background-size: 120%, 120%;
-      background-position: top -50px left -100px;
-      box-shadow: 1px 1px 7px var(--travelog-light-blue);
-    });
+  .large-screen ({
+    background-size: 120%, 120%;
+    background-position: top -50px left -100px;
+    box-shadow: 1px 1px 7px var(--travelog-light-blue);
+  });
 };
 
 .logo {
@@ -55,7 +36,7 @@
 .auth-wrapper {
   position:absolute;
   top: 0;
-  z-index: 50;
+  z-index: 100;
   background: var(--travelog-dusty-blue);
   width: 100%;
   display: flex;
@@ -66,4 +47,21 @@
   .logo {
     height: 5.5rem;
   }
+}
+
+.chat,
+.journal,
+.journals-list,
+.notes,
+.profile,
+.profile-view,
+.trips,
+.trip-list,
+.view-trip,
+.weather {
+  padding: 0.5rem 1rem 1rem;
+  .small-screen({
+    min-height: ~"calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height))";
+  });
+
 }

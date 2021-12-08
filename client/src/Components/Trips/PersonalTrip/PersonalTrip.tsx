@@ -27,9 +27,8 @@ const PersonalTrip = (props: TripProps): JSX.Element => {
     <div className="book">
       <Link to={`/trip/${id}`} state={props.trip}>
         <h2>{city}</h2>
-        <h3>{`${moment(dateFrom).format("MMM Do YY")}-${moment(dateTo).format(
-          "MMM Do YY"
-        )}`}</h3>
+        <p>{moment(dateFrom).format("MMM Do YY")}</p>
+        <p>to {moment(dateTo).format("MMM Do YY")}</p>
       </Link>
       {/* ---------------------DELETE----------------------------- */}
       <div className="trip_delete">

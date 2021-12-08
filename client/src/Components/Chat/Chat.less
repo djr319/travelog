@@ -8,56 +8,54 @@
 @travelog-green: var(--travelog-green);
 
 .chat {
-  border: 10px solid var(--travelog-blue);
-  background: var(--travelog-blue);
+  display: flex;
+  flex-direction: column;
 
-  h2 {
-    background-color: #4C8AB9;
-    color: white;
-    height: 3rem;
+  .chat-wrapper{
+    height: ~"calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height) - 5rem)";
+    display: flex;
+    flex-direction: column;
+
+    .large-screen ({
+      font-size: 60%;
+      width: 25rem;
+      margin: 0rem auto;
+      display: flex;
+      flex-direction: column;
+    });
   }
 
   &-body {
-    border: 1px solid @dusty-blue;
     position: relative;
-    height: ~"calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height) - 9rem )";
-    .large-screen({
-      height: ~"calc(100vh - var(--header-height) - 2rem - var(--footer-height) - var(--navbar-height) - 9rem )";
-    });
+    width: 100%;
+    height: 100%;
     border-radius: 1rem;
-    padding: 0.5rem 1rem;
-
+    padding: 0.7rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     line-height: 1.25;
     word-wrap: break-word;
-    background: #eee;
+    background: rgba(200,200,200,0.4);
   }
 
   .message {
-    padding: 0.5rem 0;
+    padding: 0.5em 0;
     display: flex;
     flex-direction: column;
-    .large-screen({
-      font-size: 20px;
-    });
   }
 
   .message-data {
     display: flex;
     flex-direction: row;
-    font-size: 80%;
+    align-items: flex-end;
+    font-size: 70%;
   }
 
   .message-data .photo {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    .large-screen({
-      width: 40px;
-      height: 40px;
-    });
   }
 
   .message-data .user {
@@ -65,10 +63,10 @@
   }
 
   .message-content {
-    border-radius: 1.15rem;
+    border-radius: 1.15em;
     max-width: 75%;
-    padding: 0.5rem 0.875rem;
-    margin: 0.1rem 0;
+    padding: 0.5em 0.875em;
+    margin: 0.1em 0;
     position: relative;
     width: fit-content;
     .large-screen({
@@ -83,14 +81,14 @@
       align-self: flex-start;
       background-color: @travelog-green;
       .large-screen({
-        margin-left: 1rem;
+        margin-left: 1em;
       });
     }
 
     .message-data {
       align-items: center;
       * {
-        margin-right: 0.4rem;
+        margin-right: 0.4em;
       }
     }
   }
@@ -98,7 +96,7 @@
   .you {
     align-items: flex-end;
     .large-screen({
-      margin-right: 1rem;
+      margin-right: 1em;
     });
 
     .message-data {
@@ -106,7 +104,7 @@
       text-align: right;
       align-items: center;
       * {
-        margin-left: 0.4rem;
+        margin-left: 0.4em;
       }
     }
 
@@ -117,9 +115,11 @@
   }
 
   &-footer {
+    width: 100%;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    padding-top: 0.5rem;
+    margin-top: 0.5em;
     gap: 0.5rem;
 
      input {
@@ -128,17 +128,17 @@
       background: #eee;
       border: 0;
       resize: none;
+      font-size: 120%;
       border-radius: 0.8rem;
-      font-size: 1rem;
       padding: 0.8rem 2rem 1rem 1rem;
       box-shadow: inset 0.2rem 0.2rem 0.7rem #aaa;
       white-space: pre-wrap;
+      margin: 0;
      }
 
     button {
       width: 6rem;
       height: 4rem;
-      margin: 0;
     }
   }
 }

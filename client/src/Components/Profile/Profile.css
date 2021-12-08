@@ -1,49 +1,35 @@
-.profile-form {
-  border: 3px solid #84c1f8;
-  border-radius: 6px;
-  margin: 0 1rem;
-}
-.profile-form h2 {
-  text-align: center;
-}
-.profile-form .profile-flex {
+.profile .profile-flex {
   display: flex;
   justify-content: center;
   gap: 3rem;
 }
-.profile-form .profile-flex img {
-  margin: auto;
-}
 @media screen and (max-width: 767px) {
-  .profile-form .profile-flex {
+  .profile .profile-flex {
     flex-direction: column;
     text-align: center;
     gap: 0rem;
   }
 }
-.profile-form .from-input {
-  border: 2px solid #98e27f;
-  border-radius: 7px;
-  box-sizing: border-box;
-  padding: 10px;
-  margin: 0.3rem 1rem 1rem;
+.profile .profile-flex input {
+  width: 70%;
 }
-.profile-form .profile-label {
+.profile .profile-flex .profile-label {
   display: block;
   font-size: 15px;
   font-weight: 500;
   padding-top: 15px;
 }
-.profile-form .profile-img {
-  border: 5px solid #0c2e49;
-  border-radius: 55px;
+.profile .profile-flex .profile-img {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  margin: 1.5rem;
 }
-.add-profile-button {
-  background-color: #4c8ab9;
-  border: 2px solid #0c2e49;
-  border-radius: 35px;
-  color: #cfeaff;
-  width: 7rem;
-  height: 2rem;
-  margin: 1rem auto;
+.profile .center {
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  .profile .center {
+    margin-top: 2rem;
+  }
 }

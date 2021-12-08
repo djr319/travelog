@@ -27,17 +27,22 @@ export default function ListOfTrips(): JSX.Element {
   }, []);
 
   return (
-    <div className="list-container">
-      {trips && trips.length ? (
-        trips.map((trip) => (
-          <PersonalTrip trip={trip} setTrips={setTrips} key={trip.id} />
-        ))
-      ) : (
-        <p>Time to plan your first trip!</p>
-      )}
-      <Link to="/form">
-        <button>Add trip</button>
-      </Link>
+    <div className="trip-list">
+      <h2>My Trip Planning</h2>
+      <div className="trip-wrapper">
+
+        {trips && trips.length ? (
+          trips.map((trip) => (
+            <PersonalTrip trip={trip} setTrips={setTrips} key={trip.id} />
+          ))
+        ) : (
+          <p>Time to plan your first trip!</p>
+        )}
+        <Link to="/form" className="add-trip">
+          <button>Add trip</button>
+        </Link>
+
+      </div>
     </div>
   );
 }
