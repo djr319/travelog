@@ -30,7 +30,7 @@ export default function PicturesUpload ({
 
 	const handleUpload = () => {
 		if (image) {
-			const storageRef = ref(storage, `images/${image}`);
+			const storageRef = ref(storage, `images/${new Date()}`);
 
 			const uploadTask = uploadBytesResumable(storageRef, image);
 

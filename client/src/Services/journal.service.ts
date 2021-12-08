@@ -16,16 +16,16 @@ export function getOwnJournals(uid: string): Promise<Journal[]> {
   return fetchRequest(`${JOURNALS_URL}/${uid}`);
 }
 
-export function getJournal(uid: string, id: string): Promise<Journal> {
-  return fetchRequest(`${JOURNALS_URL}/${uid}/${id}`);
+export function getJournal(id: string): Promise<Journal> {
+  return fetchRequest(`${JOURNALS_URL}/${id}`);
 }
 
 export function getPublicJournals(): Promise<Journal[]> {
   return fetchRequest(`${JOURNALS_URL}/collections`);
 }
 
-export function deleteJournal(uid: string, id: string | number): Promise<void> {
-  return fetchRequest(`${JOURNALS_URL}/${uid}/${id}`, {
+export function deleteJournal(id: string): Promise<void> {
+  return fetchRequest(`${JOURNALS_URL}/${id}`, {
     method: 'DELETE'
   });
 }
