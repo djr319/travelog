@@ -66,11 +66,8 @@ export default function Journal (): JSX.Element {
 	}, []);
 
 	function updateEntry (
-		e: FormEvent<HTMLFormElement>,
 		{ id, review, photoURL }: JournalType
 	) {
-		e.preventDefault();
-
 		const tags = TagsAPI.parseTags(review);
 		TagsAPI.getMatchingJournals(uid, tags).then((matches) =>
 			setMatches(matches)
