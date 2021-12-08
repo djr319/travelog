@@ -1,10 +1,10 @@
 type MenuEntryProps = {
   text: string;
-  id: number;
+  id: string;
 
   handleClick: (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    key: number
+    id: string
   ) => void;
 };
 

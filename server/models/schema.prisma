@@ -33,7 +33,7 @@ model Plan {
 }
 
 model Journal {
-  id Int @id @default(autoincrement())
+  id String @id
   photoURL String @default("")
   review String
   createdAt DateTime @default(now())

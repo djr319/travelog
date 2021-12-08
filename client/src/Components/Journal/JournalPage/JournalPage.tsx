@@ -9,18 +9,16 @@ const MAX_LEN = 300;
 
 type JournalPageProps = {
 	journal: Journal;
-	updateEntry: (id: number, text: string, photo: string) => void;
-	deleteEntry: (e: MouseEvent<HTMLButtonElement>, id: number) => void;
-	handleSubmit: (review: string, photoURL: string) => void;
+	deleteEntry: (e: MouseEvent<HTMLButtonElement>, id: string) => void;
+	handleSubmit: (journal: Journal) => void;
 };
 
 export default function JournalPage ({
 	journal,
 	handleSubmit,
-	updateEntry,
 	deleteEntry
 }: JournalPageProps): JSX.Element {
-	const { id, review, photoURL } = journal;
+	const { id, uid, review, photoURL, tags } = journal;
 
 	const [ text, setText ] = useState('');
 	const [ photo, setPhoto ] = useState('');
@@ -41,8 +39,9 @@ export default function JournalPage ({
 	function sendSubmit (e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 
+		const journal = {id, uid, review: text, photoURL: photo, tags: []};
+		handleSubmit(journal);
 		setInViewMode(true);
-		handleSubmit(text, photo);
 	}
 
 	function updateReview (e: FormEvent<HTMLTextAreaElement>) {
@@ -56,8 +55,14 @@ export default function JournalPage ({
 	function sendUpdate (e: MouseEvent<HTMLButtonElement>) {
 		e.preventDefault();
 
-		updateEntry(id, text, photo);
+		const journal = {id, uid, review: text, photoURL: photo, tags: tags};
+		handleSubmit(journal);
 		setInViewMode(false);
+	}
+
+	function updatePhoto (url: string) {
+		console.log(url);
+		setPhoto(url);
 	}
 
 	return (
@@ -79,7 +84,7 @@ export default function JournalPage ({
 				</div>
 			) : (
 				<div>
-					<PicturesUpload setPicture={setPhoto} />
+					<PicturesUpload sendUrl={updatePhoto} />
 					<div className='journal__form-textarea-container'>
 						<textarea
 							className='journal__form-textarea'

@@ -7,7 +7,7 @@ type JournalMenuProps = {
   journals: Journal[];
   handleClick: (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    key: number
+    id: string
   ) => void;
   handleNew: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
