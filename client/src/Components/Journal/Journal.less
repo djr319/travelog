@@ -1,5 +1,11 @@
+@import '../../ruleset.less';
+
 .journal {
   --journal-font: 'Indie Flower', cursive;
+  min-height: ~"calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height))";
+  .large-screen({
+    min-height: ~"calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height) - 3rem)";
+  });
 
   &__menu {
     width: 150px;

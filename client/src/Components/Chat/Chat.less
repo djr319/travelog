@@ -1,0 +1,144 @@
+@import "../../ruleset.less";
+
+@travelog-light-blue: var(--travelog-light-blue);
+@travelog-mid-blue: var(--travelog-mid-blue);
+@travelog-blue: var(--travelog-blue);
+@dusty-blue: var(--travelog-dusty-blue);
+@navbar-color: var(--navbar-color);
+@travelog-green: var(--travelog-green);
+
+.chat {
+  border: 10px solid var(--travelog-blue);
+  background: var(--travelog-blue);
+
+  h2 {
+    background-color: #4C8AB9;
+    color: white;
+    height: 3rem;
+  }
+
+  &-body {
+    border: 1px solid @dusty-blue;
+    position: relative;
+    height: ~"calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height) - 9rem )";
+    .large-screen({
+      height: ~"calc(100vh - var(--header-height) - 2rem - var(--footer-height) - var(--navbar-height) - 9rem )";
+    });
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    line-height: 1.25;
+    word-wrap: break-word;
+    background: #eee;
+  }
+
+  .message {
+    padding: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
+    .large-screen({
+      font-size: 20px;
+    });
+  }
+
+  .message-data {
+    display: flex;
+    flex-direction: row;
+    font-size: 80%;
+  }
+
+  .message-data .photo {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    .large-screen({
+      width: 40px;
+      height: 40px;
+    });
+  }
+
+  .message-data .user {
+    font-weight: bold;
+  }
+
+  .message-content {
+    border-radius: 1.15rem;
+    max-width: 75%;
+    padding: 0.5rem 0.875rem;
+    margin: 0.1rem 0;
+    position: relative;
+    width: fit-content;
+    .large-screen({
+      max-width: 60%;
+    });
+  }
+
+  .me {
+    align-items: flex-start;
+
+    .message-content {
+      align-self: flex-start;
+      background-color: @travelog-green;
+      .large-screen({
+        margin-left: 1rem;
+      });
+    }
+
+    .message-data {
+      align-items: center;
+      * {
+        margin-right: 0.4rem;
+      }
+    }
+  }
+
+  .you {
+    align-items: flex-end;
+    .large-screen({
+      margin-right: 1rem;
+    });
+
+    .message-data {
+      flex-direction: row-reverse;
+      text-align: right;
+      align-items: center;
+      * {
+        margin-left: 0.4rem;
+      }
+    }
+
+    .message-content {
+      align-self: flex-end;
+      background-color: @travelog-mid-blue;
+    }
+  }
+
+  &-footer {
+    display: flex;
+    align-items: center;
+    padding-top: 0.5rem;
+    gap: 0.5rem;
+
+     input {
+      width: 100%;
+      height: 4rem;
+      background: #eee;
+      border: 0;
+      resize: none;
+      border-radius: 0.8rem;
+      font-size: 1rem;
+      padding: 0.8rem 2rem 1rem 1rem;
+      box-shadow: inset 0.2rem 0.2rem 0.7rem #aaa;
+      white-space: pre-wrap;
+     }
+
+    button {
+      width: 6rem;
+      height: 4rem;
+      margin: 0;
+    }
+  }
+}

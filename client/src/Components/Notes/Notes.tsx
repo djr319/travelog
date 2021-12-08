@@ -3,6 +3,8 @@ import { NoteAPI } from "Services";
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "Context";
 import { Note } from "Types";
+import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
 
 function Notes(): JSX.Element {
   const [note, setNote] = useState("");
@@ -50,9 +52,10 @@ function Notes(): JSX.Element {
   return (
     <div className="notes-container">
       <h3>My Notes...</h3>
-      <div className="notes-published">
+      <SimpleBar style={{ height: '100%' }}>
         <div className="notes-list">
           {notes.map((note) => (
+
             <div className="note-item" key={note.id}>
               <span>{note.note}</span>
               <button
@@ -62,9 +65,11 @@ function Notes(): JSX.Element {
                 ✗
               </button>
             </div>
+
           ))}
         </div>
-      </div>
+      </SimpleBar>
+
       <form className="notes-add" onSubmit={handleAddNote}>
         <input
           className="notes-input"
@@ -72,7 +77,7 @@ function Notes(): JSX.Element {
           placeholder="Enter notes..."
           value={note}
           onChange={(e) => setNote(e.target.value)}
-          />
+        />
         <button className="add-note">Add</button>
       </form>
     </div>

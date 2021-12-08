@@ -1,5 +1,5 @@
 import { fetchRequest } from './index';
-import { Journal } from 'Types/index';
+import { Journal } from 'Types';
 
 function parseTags (text: string): string[] {
 	const matches = text.match(/#\S+\b/g);
