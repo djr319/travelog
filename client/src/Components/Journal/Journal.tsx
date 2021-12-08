@@ -65,9 +65,7 @@ export default function Journal (): JSX.Element {
 		if (data) setJournals(data);
 	}, []);
 
-	function updateEntry (
-		{ id, review, photoURL }: JournalType
-	) {
+	function updateEntry (id: number, review: string, photoURL: string) {
 		const tags = TagsAPI.parseTags(review);
 		TagsAPI.getMatchingJournals(uid, tags).then((matches) =>
 			setMatches(matches)
@@ -128,10 +126,9 @@ export default function Journal (): JSX.Element {
 		id: number
 	) {
 		e.preventDefault();
-
-		const journal = journals.find((journal) => journal.id === id);
-
-		if (journal === undefined) return;
+		const journal = journals.find(
+			(journal) => journal.id === id
+		) as JournalType;
 
 		TagsAPI.getMatchingJournals(uid, journal.tags).then((matches) =>
 			setMatches(matches)
