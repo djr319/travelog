@@ -1,25 +1,7 @@
 import { Link } from "react-router-dom";
 import { GrMapLocation, GrBook, GrNotes, GrChat, GrSun } from "react-icons/gr";
-// import { ThemeProvider } from 'styled-components';
-// import { base, deepMerge } from 'grommet-icons';
+// import { base, deepMerge } from 'grommet-icons'; rquired to edit colors
 import "./NavBar.css";
-// import Login from '../../Components/LoginButton/LoginButton';
-
-// TODO
-// <li>Profile</li> < />
-// <li>Planning</li>GrCompliance GrPlan
-
-// <li>Notes</li>
-// <li>Route</li>GrMapLocation
-// <li>Weather</li>
-
-// GrCamera
-// GrNavigate
-// GrCatalogOption
-// GrChatOption
-// GrChat
-// GrImage
-// GrChatOption
 
 // https://react-icons.github.io/react-icons/icons?name=gr
 
@@ -35,9 +17,7 @@ export default function NavBar(): JSX.Element {
   return (
     // <ThemeContext.Provider theme={theme}>
     <div className="navbar">
-
-      <div className="nav-select">
-        <ul className="nav-select__list">
+        <ul className="nav-select">
           <li>
             <Link to="/trips"><GrMapLocation /></Link>
           </li>
@@ -55,7 +35,6 @@ export default function NavBar(): JSX.Element {
           </li>
         </ul >
       </div >
-    </div >
     // </ThemeContext.Provider>
   );
 }
