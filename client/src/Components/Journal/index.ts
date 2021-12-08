@@ -1,3 +1,2 @@
-export { default as ViewPage } from './ViewPage/ViewPage';
-export { default as CreatePage } from './CreatePage/CreatePage';
-export { default as EditPage } from './EditPage/EditPage';
+export { default as JournalPage } from './JournalPage/JournalPage';
+export { default as JournalMenu } from './JournalMenu/JournalMenu';

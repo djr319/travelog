@@ -3,7 +3,7 @@ import { Journal } from 'Types/index';
 
 const JOURNALS_URL = '/journals';
 
-export function addJournal(uid: string, journal: Journal): Promise<Journal> {
+export function submitJournal(uid: string, journal: Journal): Promise<Journal> {
   return fetchRequest(`${JOURNALS_URL}/${uid}`, {
     method: 'POST',
     mode: 'cors',
@@ -12,25 +12,16 @@ export function addJournal(uid: string, journal: Journal): Promise<Journal> {
   })
 }
 
-export function getAllJournals(uid: string): Promise<Journal[]> {
+export function getOwnJournals(uid: string): Promise<Journal[]> {
   return fetchRequest(`${JOURNALS_URL}/${uid}`);
 }
 
-export function getOneJournal(uid: string, id: string): Promise<Journal> {
+export function getJournal(uid: string, id: string): Promise<Journal> {
   return fetchRequest(`${JOURNALS_URL}/${uid}/${id}`);
 }
 
 export function getPublicJournals(): Promise<Journal[]> {
   return fetchRequest(`${JOURNALS_URL}/collections`);
-}
-
-export function updateJournal(uid: string, update: Journal): Promise<Journal> {
-  return fetchRequest(`${JOURNALS_URL}/${uid}/${update.id}`, {
-    method: 'PUT',
-    mode: 'cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(update)
-  })
 }
 
 export function deleteJournal(uid: string, id: string | number): Promise<void> {
@@ -40,11 +31,10 @@ export function deleteJournal(uid: string, id: string | number): Promise<void> {
 }
 
 const JournalAPI = {
-  addJournal,
-  getAllJournals,
-  getOneJournal,
+  submitJournal,
+  getOwnJournals,
+  getJournal,
   getPublicJournals,
-  updateJournal,
   deleteJournal
 }
 

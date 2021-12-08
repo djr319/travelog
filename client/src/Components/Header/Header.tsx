@@ -8,7 +8,8 @@ import firebase from "@firebase/app-compat";
 
 
 function dropDown() {
-  document.getElementById("myDropdown")!.classList.toggle("show");
+  const dropdown = document.getElementById("myDropdown") as HTMLDivElement;
+  dropdown.classList.toggle("show");
 }
 
 // Close the dropdown menu if the user clicks outside of it
@@ -27,8 +28,6 @@ window.onclick = function (event) {
   }
 };
 
-
-
 export default function Header(): JSX.Element {
   const { photoURL } = useContext(UserContext);
   const navigate = useNavigate();
@@ -37,7 +36,7 @@ export default function Header(): JSX.Element {
     e.preventDefault();
     await firebase.auth().signOut().then(() => {
       console.log("Successfully signed out.")
-    }).catch((error: any) => {
+    }).catch((error: Error) => {
       console.error("An error occurred", error)
     });
     navigate("/");

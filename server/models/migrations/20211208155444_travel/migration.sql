@@ -27,10 +27,11 @@ CREATE TABLE "Plan" (
 
 -- CreateTable
 CREATE TABLE "Journal" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "photoURL" TEXT NOT NULL DEFAULT E'',
     "review" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "tags" TEXT[],
     "uid" TEXT NOT NULL,
 
     CONSTRAINT "Journal_pkey" PRIMARY KEY ("id")

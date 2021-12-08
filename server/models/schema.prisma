@@ -33,10 +33,11 @@ model Plan {
 }
 
 model Journal {
-  id Int @id @default(autoincrement())
-  photoURL String  @default("")
+  id String @id
+  photoURL String @default("")
   review String
   createdAt DateTime @default(now())
+  tags String[]
   uid String
   users User @relation(fields: [uid], references: [uid])
 }
