@@ -18,7 +18,7 @@ export default function JournalsList({
         {journals &&
           journals.length &&
           journals.map(({ review }, i) => (
-            <div key={i} className="journals-list__entry">
+            <div key={review + i} className="journals-list__entry">
               {review}
             </div>
           ))}
