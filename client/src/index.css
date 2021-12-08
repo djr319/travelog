@@ -41,33 +41,33 @@ body {
   color: var(--navbar-color);
   z-index: var(--base-layer);
 }
-h1 {
+.wrapper h1 {
   padding-bottom: 1em;
 }
-h2 {
+.wrapper h2 {
   font-weight: 600;
   text-align: center;
   padding-bottom: 0.4em;
 }
-h3 {
+.wrapper h3 {
   padding-bottom: 0.5em;
   padding-top: 2rem;
 }
-h4 {
+.wrapper h4 {
   padding-bottom: 1em;
 }
-h5,
-h6 {
+.wrapper h5,
+.wrapper h6 {
   padding-bottom: 1em;
 }
-b {
+.wrapper b {
   font-weight: bold;
 }
-button,
-button:active,
-button:visited,
-button:focus,
-button:hover {
+.wrapper button,
+.wrapper button:active,
+.wrapper button:visited,
+.wrapper button:focus,
+.wrapper button:hover {
   cursor: pointer;
   border: none;
   outline: none;
@@ -80,6 +80,6 @@ button:hover {
   padding: 0.5rem;
   margin: 0.3rem;
 }
-a:active {
+.wrapper a:active {
   transition: 200ms, ease;
 }
