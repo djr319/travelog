@@ -16,11 +16,10 @@
   align-items: center;
   margin: 0 1.5rem;
 }
-@media screen and (min-width: 768px) {
-  .navbar .nav-select {
-    font-size: 2rem;
-    width: 400px;
-  }
+.navbar .tooltip {
+  position: relative;
+  top: 2rem;
+  background: white;
 }
 .navbar li {
   list-style: none;
@@ -33,11 +32,27 @@
   border-radius: 50%;
   background-color: var(--travelog-light-blue);
 }
-@media screen and (min-width: 768px) {
-  .navbar li {
-    width: 4rem;
-    height: 4rem;
-    padding: 1rem;
+@media (hover: hover) {
+  .navbar [data-md-tooltip] {
+    position: relative;
+  }
+  .navbar [data-md-tooltip]:before {
+    content: attr(data-md-tooltip);
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    padding: 8px;
+    transform: translateX(-50%) scale(0);
+    transition: transform 0.3s ease-in-out;
+    transform-origin: top;
+    background: var(--navbar-color);
+    color: white;
+    border-radius: 0.3rem;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  .navbar [data-md-tooltip]:hover:before {
+    transform: translateX(-50%) scale(1);
   }
 }
 .navbar img {
@@ -47,7 +62,9 @@
   height: 2rem;
 }
 @media screen and (min-width: 768px) {
-  .navbar img {
-    height: 3rem;
+}
+@media screen and (min-width: 768px) {
+  .navbar .nav-select {
+    width: 300px;
   }
 }

@@ -22,19 +22,13 @@ export default function JournalPage ({
 
 	const [ text, setText ] = useState('');
 	const [ photo, setPhoto ] = useState('');
-	const [ image, setImage ] = useState(<img />);
 	const [ inViewMode, setInViewMode ] = useState(!!review.length);
 
   useEffect(() => {
     setText(review);
     setPhoto(photoURL);
-    setImage(<img className='journal__photo' src={photoURL} alt='picture' />)
     setInViewMode(!!review.length);
   }, [review, photoURL])
-
-  useEffect(() => {
-    setImage(<img className='journal__photo' src={photo} alt='picture' />)
-  }, [photoURL])
 
 	function sendSubmit (e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
@@ -61,7 +55,6 @@ export default function JournalPage ({
 	}
 
 	function updatePhoto (url: string) {
-		console.log(url);
 		setPhoto(url);
 	}
 
@@ -71,7 +64,7 @@ export default function JournalPage ({
 
 			{inViewMode ? (
 				<div>
-					{image}
+					<img className='journal__photo' src={photoURL} alt='picture' />
 					<div className='journal__view-text'>{text}</div>
 					<button className='journal__view-update' onClick={sendUpdate}>
 						Update

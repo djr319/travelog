@@ -1,14 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Montserrat:wght@400&display=swap');
 
-@bg: #84C1F8;
-@navbar-color: #0c2e49;
-@navbar-height: 50px;
-@bg-color: @bg;
-@base-layer: 0;
-@layer-1: 1;
-@layer-2: 2;
-@priority-layer: 50;
-
 :root {
   --base-layer: 0;
   --layer-1: 1;
@@ -51,15 +42,18 @@ h1 {
 h2 {
   font-weight: 600;
   text-align: center;
+  margin: 0.8rem 0 0;
   padding-bottom: 0.4em;
+  color: var(--travelog-dusty-blue);
 }
 
 h3 {
+  padding-top:2rem;
   padding-bottom: 0.5em;
-  padding-top: 2rem;
 }
 
 h4 {
+  padding-top:1.5rem;
   padding-bottom: 1em;
 }
 
@@ -67,6 +61,13 @@ h5, h6 {
   padding-bottom: 1em;
 }
 
+table {
+  margin: 2rem 0 3rem;
+}
+
+td {
+  padding: 0.2rem 3rem 0.2rem 1rem;
+}
 label {
 
 }
@@ -76,7 +77,10 @@ textarea {
 }
 
 input {
-
+  border: 2px solid #98e27f;
+  border-radius: 1rem;
+  padding: 0.5rem 2rem;
+  margin: 0.3rem 1rem 1rem;
 }
 
 b {
@@ -97,7 +101,7 @@ button:hover {
   text-align: center;
   line-height: 100%;
   min-height: 2rem;
-  padding: 0.5rem;
+  padding: 0.5rem 2rem;
   margin: 0.3rem;
 }
 

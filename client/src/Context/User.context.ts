@@ -9,7 +9,6 @@ const mockUser: User = {
   email: ''
 };
 
-
 export const UserContext: React.Context<User> = React.createContext(mockUser)
 
 export const UserProvider = UserContext.Provider;

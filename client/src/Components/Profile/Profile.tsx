@@ -84,7 +84,7 @@ export default function Profile(): JSX.Element {
     });
   };
   return (
-    <form className="profile-form" onSubmit={handleSubmit}>
+    <form className="profile" onSubmit={handleSubmit}>
       <h2 className="profile-title">My profile</h2>
       <div className="profile-flex">
         <div className="flex-item">
@@ -96,7 +96,6 @@ export default function Profile(): JSX.Element {
           {/* --------------------usename------------------- */}
           <label className="profile-label">Username</label>
           <input
-            className="from-input"
             type="text"
             placeholder="username..."
             value={username}
@@ -107,7 +106,6 @@ export default function Profile(): JSX.Element {
           {/* -------------------------email------------------ */}
           <label className="profile-label">Email address</label>
           <input
-            className="from-input"
             type="text"
             placeholder="email address..."
             value={email}
@@ -116,7 +114,6 @@ export default function Profile(): JSX.Element {
           {/* ---------------first name------------------------ */}
           <label className="profile-label">First Name</label>
           <input
-            className="from-input"
             type="text"
             placeholder="firstname..."
             value={firstName}
@@ -125,27 +122,29 @@ export default function Profile(): JSX.Element {
           {/* ---------------last name------------------------ */}
           <label className="profile-label">Last Name</label>
           <input
-            className="from-input"
             type="text"
             placeholder="lastname..."
             value={lastName}
             onChange={(event) => setLastname(event.target.value)}
           ></input>
 
-          {/* ---------------genenal interests------------------------ */}
-          <label className="profile-label">My Interests</label>
+        </div>
+      </div>
+      {/* ---------------genenal interests------------------------ */}
+      <div className="center">
+        <label className="profile-label">My Interests</label>
+        <p>
           <input
-            className="from-input"
             type="text"
             placeholder="type few words about yourself..."
             value={interests}
             onChange={(event) => setInterests(event.target.value)}
           ></input>
-        </div>
+        </p>
+        <button type="submit">
+          Save
+        </button>
       </div>
-      <button className="add-profile-button" type="submit">
-        Save
-      </button>
     </form>
   );
 }

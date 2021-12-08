@@ -107,8 +107,8 @@ function TripsForm(): JSX.Element {
   };
 
   return (
-    <div className="form-container">
-      <h3>Add next trip!</h3>
+    <div className="trip">
+      <h2>Add next trip!</h2>
 
       <form className="add-trip-form" onSubmit={handleSubmit}>
         {/* -----------------CITY------------------- */}
@@ -121,7 +121,6 @@ function TripsForm(): JSX.Element {
         ></input>
         {/* ------------------DATES----------------------------------- */}
         <label>Dates</label>
-        <h4>Departure</h4>
 
         <div>
           <DateRangePicker

@@ -2,6 +2,7 @@
   min-width: 200px;
   max-width: 768px;
   margin: 0 auto;
+  min-height: 100vh;
 }
 .not-logged-in {
   position: absolute;
@@ -9,19 +10,6 @@
   height: 100vh;
   left: 0;
   width: 100vw;
-}
-.not-logged-in .dashboard {
-  position: absolute;
-  top: 0;
-  height: 100vh;
-  left: 0;
-  width: 100vw;
-}
-.not-logged-in .footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
 }
 .app {
   background: #ffffff url('Assets/logo/logo-faint.png') no-repeat left top;
@@ -31,7 +19,6 @@
 }
 @media screen and (min-width: 768px) {
   .app {
-    min-height: 70vh;
     background-size: 120%, 120%;
     background-position: top -50px left -100px;
     box-shadow: 1px 1px 7px var(--travelog-light-blue);
@@ -44,7 +31,7 @@
 .auth-wrapper {
   position: absolute;
   top: 0;
-  z-index: 50;
+  z-index: 100;
   background: var(--travelog-dusty-blue);
   width: 100%;
   display: flex;
@@ -54,4 +41,30 @@
 }
 .auth-wrapper .logo {
   height: 5.5rem;
+}
+.chat,
+.journal,
+.journals-list,
+.notes,
+.profile,
+.profile-view,
+.trips,
+.trip-list,
+.view-trip,
+.weather {
+  padding: 0.5rem 1rem 1rem;
+}
+@media screen and (max-width: 767px) {
+  .chat,
+  .journal,
+  .journals-list,
+  .notes,
+  .profile,
+  .profile-view,
+  .trips,
+  .trip-list,
+  .view-trip,
+  .weather {
+    min-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height));
+  }
 }

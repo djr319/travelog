@@ -51,7 +51,7 @@ export default function Journal (): JSX.Element {
 	);
 
 	const deleteJournal = useMutation(({ id }: { id: string }) => {
-		return JournalAPI.deleteJournal(uid, id);
+		return JournalAPI.deleteJournal(id);
 	});
 
 	useEffect(() => {

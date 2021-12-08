@@ -1,0 +1,61 @@
+.trip-wrapper {
+  @book-color: #8B0000;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  // .no-trip {
+  //   position: absolute;
+  //   left: 50%;
+  //   top: 30%;
+  //   transform: translate(-50%, 0);
+  //   margin: 3rem;
+  //   border-radius: 1rem;
+
+  // }
+
+  .book {
+    background-color: @book-color;
+    color: #e2b007;
+    text-align: center;
+  }
+
+  .book, .add-trip {
+    position: relative;
+    height: 12rem;
+    width: 8rem;
+    margin: 1rem;
+    padding: 0.5rem;
+    font-size: 16px;
+    border-bottom-right-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+
+  h2 {
+    margin: 2.5rem 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
+  p {
+    font-size: 0.6rem;
+  }
+}
+
+.add-trip {
+  border: 3px solid fade(@book-color, 20%);
+  background: fade(@book-color, 20%);
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
+.book a {
+  text-decoration: none;
+  color: inherit;
+}
+.book .delete-note {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0;
+}
+}
