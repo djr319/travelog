@@ -103,14 +103,7 @@ function Chat() {
 
   return (
     <div className="chat">
-<<<<<<< HEAD
-      <div className="chat-header">
-        <h2>Live Chat</h2>
-      </div>
-      
-=======
       <h2>Live Chat</h2>
->>>>>>> dev
       <div className="chat-body">
           <SimpleBar style={{ height: '100%' }}>
             {messageList.map((messageContent) => {
@@ -125,19 +118,11 @@ function Chat() {
                   <div className="message-content">
                     <p>{messageContent.message}</p>
                   </div>
-<<<<<<< HEAD
-                  
-              </div>
-            );
-          })}
-        {/* </ScrollToBottom> */}
-=======
                 </div>
               );
             })}
             <div ref={messagesEndRef} />
           </SimpleBar>
->>>>>>> dev
       </div>
 
       <div className="chat-footer">
