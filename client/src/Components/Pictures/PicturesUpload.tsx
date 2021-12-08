@@ -9,11 +9,11 @@ import {
 } from 'firebase/storage';
 
 type PicturesUploadProps = {
-	setPicture: React.Dispatch<React.SetStateAction<string>>;
+	sendUrl: (url: string) => void;
 };
 
 export default function PicturesUpload ({
-	setPicture
+	sendUrl
 }: PicturesUploadProps): JSX.Element {
 	const [ progress, setProgress ] = useState(0);
 
@@ -30,7 +30,7 @@ export default function PicturesUpload ({
 
 	const handleUpload = () => {
 		if (image) {
-			const storageRef = ref(storage, `images/${image}`);
+			const storageRef = ref(storage, `images/${new Date()}`);
 
 			const uploadTask = uploadBytesResumable(storageRef, image);
 
@@ -48,7 +48,7 @@ export default function PicturesUpload ({
 				() => {
 					getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
 						setUrl(url);
-						setPicture(url);
+						sendUrl(url);
 					});
 				}
 			);

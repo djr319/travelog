@@ -51,6 +51,7 @@ const getLogin = async (req: Request, res: Response): Promise<void> => {
 		res.sendStatus(500);
 	}
 };
+
 const addProfile = async (req: Request, res: Response): Promise<void> => {
 	try {
 		const { uid } = req.body;
@@ -152,23 +153,16 @@ const deleteTrip = async (req: Request, res: Response): Promise<void> => {
 	}
 };
 
-const addNewJournal = async (req: Request, res: Response): Promise<void> => {
+const submitJournal = async (req: Request, res: Response): Promise<void> => {
 	try {
-		const { uid } = req.params;
-		const { review, photoURL, tags } = req.body;
-		const trip = await prisma.user.update({
+		const { id } = req.params;
+		const data = req.body;
+		const trip = await prisma.journal.upsert({
 			where: {
-				uid
+				id
 			},
-			data: {
-				journals: {
-					create: {
-						review,
-						photoURL,
-						tags
-					}
-				}
-			}
+			update: data,
+			create: data
 		});
 		res.status(201);
 		res.send(trip);
@@ -189,7 +183,7 @@ const getPersonalJournals = async (
 				uid
 			},
 			select: {
-				journals: true,
+				journals: true
 			}
 		});
 		res.status(200);
@@ -227,51 +221,13 @@ const getMatchingJournals = async (
 	}
 };
 
-const updateJournal = async (req: Request, res: Response): Promise<void> => {
-	try {
-		const { uid, id } = req.params;
-		const { review, photoURL, tags } = req.body;
-		const trip = await prisma.user.update({
-			where: {
-				uid
-			},
-			data: {
-				journals: {
-					update: {
-						where: {
-							id: Number(id)
-						},
-						data: {
-							review,
-							photoURL, 
-							tags
-						}
-					}
-				}
-			}
-		});
-		res.status(200);
-		res.send(trip);
-	} catch (err) {
-		console.error('error', err);
-		res.sendStatus(500);
-	}
-};
-
 const deleteJournal = async (req: Request, res: Response): Promise<void> => {
 	try {
-		const { uid, id } = req.params;
-		await prisma.user.update({
+		const { id } = req.params;
+		await prisma.journal.delete({
 			where: {
-				uid
+				id
 			},
-			data: {
-				journals: {
-					deleteMany: {
-						id: Number(id)
-					}
-				}
-			}
 		});
 		res.sendStatus(204);
 	} catch (err) {
@@ -376,10 +332,9 @@ const controller = {
 	getPersonalTrips,
 	updateTrip,
 	deleteTrip,
-	addNewJournal,
+	submitJournal,
 	getPersonalJournals,
 	getMatchingJournals,
-	updateJournal,
 	deleteJournal,
 	addNewNote,
 	getPersonalNotes,

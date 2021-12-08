@@ -1,5 +1,6 @@
 export type Journal = {
-  id: number;
+  id: string;
+  uid: string;
   review: string;
   tags: string[];
   photoURL: string;

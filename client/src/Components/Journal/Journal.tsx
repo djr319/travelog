@@ -2,33 +2,39 @@ import { useQuery, useMutation } from 'react-query';
 import { Journal as JournalType } from 'Types/index';
 import { useContext, useState, useEffect } from 'react';
 import { UserContext } from 'Context';
-import { JournalProvider } from './journal.context';
 
 import { JournalAPI, TagsAPI } from 'Services/index';
 import { JournalsList } from 'Components';
-import JournalMenu from './JournalMenu/JournalMenu';
-import JournalPage from './JournalPage';
+import { JournalPage, JournalMenu } from './index';
 
 import './Journal.css';
 
-function getFreeJournalId (journals: JournalType[]) {
-	const maxId = Math.max(-1, ...journals.map((journal) => journal.id));
-	return maxId + 1;
+function getFreeJournalId (journals: JournalType[], uid: string) {
+	const nextNum = Math.max(
+		...journals
+			.filter((journal) => journal.id.startsWith(uid))
+			.map((journal) => {
+				const match = journal.id.match(/\d+$/);
+				if (match) return Number(match[0]);
+				return 0;
+			})
+	);
+	return `${uid}_${nextNum + 1}`;
 }
 
 export default function Journal (): JSX.Element {
 	const [ journals, setJournals ] = useState<JournalType[]>([]);
 	const [ matches, setMatches ] = useState<JournalType[]>([]);
 
+	const { uid } = useContext(UserContext);
 	const emptyJournal = {
-		id: getFreeJournalId(journals),
+		id: getFreeJournalId(journals, uid),
+		uid,
 		photoURL: '',
 		review: '',
 		tags: []
 	};
 	const [ selection, setSelection ] = useState<JournalType>(emptyJournal);
-
-	const { uid } = useContext(UserContext);
 
 	// Queries
 	const getJournals = useQuery('getOwnJournals', async () => {
@@ -39,25 +45,13 @@ export default function Journal (): JSX.Element {
 
 	// Mutations
 	const updateJournal = useMutation(
-		({
-			id,
-			uid,
-			review,
-			photoURL,
-			tags
-		}: {
-			id: number;
-			uid: string;
-			review: string;
-			photoURL: string;
-			tags: string[];
-		}) => {
-			return JournalAPI.updateJournal(uid, { review, id, photoURL, tags });
+		({ id, uid, review, photoURL, tags }: JournalType) => {
+			return JournalAPI.submitJournal(uid, { uid, review, id, photoURL, tags });
 		}
 	);
 
-	const deleteJournal = useMutation(({ id }: { id: number }) => {
-		return JournalAPI.deleteJournal(uid, id);
+	const deleteJournal = useMutation(({ id }: { id: string }) => {
+		return JournalAPI.deleteJournal(id);
 	});
 
 	useEffect(() => {
@@ -65,28 +59,7 @@ export default function Journal (): JSX.Element {
 		if (data) setJournals(data);
 	}, []);
 
-	function updateEntry (id: number, review: string, photoURL: string) {
-		const tags = TagsAPI.parseTags(review);
-		TagsAPI.getMatchingJournals(uid, tags).then((matches) =>
-			setMatches(matches)
-		);
-
-		updateJournal.mutate({ id, uid, review, photoURL, tags });
-
-		setJournals((prev) => {
-			return prev.map((journal) => {
-				if (journal.id === id) {
-					const journalCopy = { ...journal };
-					journalCopy.review = review;
-					journalCopy.photoURL = photoURL;
-					return journalCopy;
-				}
-				return journal;
-			});
-		});
-	}
-
-	function deleteEntry (e: React.MouseEvent<HTMLButtonElement>, id: number) {
+	function deleteEntry (e: React.MouseEvent<HTMLButtonElement>, id: string) {
 		e.preventDefault();
 
 		deleteJournal.mutate({ id });
@@ -97,17 +70,30 @@ export default function Journal (): JSX.Element {
 		setSelection({ ...emptyJournal });
 	}
 
-	function handleSubmit (review: string, photoURL: string) {
-		const id = getFreeJournalId(journals);
+	function handleSubmit ({ id, uid, review, photoURL }: JournalType) {
 		const tags = TagsAPI.parseTags(review);
 		TagsAPI.getMatchingJournals(uid, tags).then((matches) =>
 			setMatches(matches)
 		);
 
-		const newJournal = { id, review, photoURL, tags };
-		JournalAPI.addJournal(uid, newJournal);
-		setJournals((prev) => [ ...prev, newJournal ]);
+		const newJournal = { id, uid, review, photoURL, tags };
 		setSelection(newJournal);
+		updateJournal.mutate(newJournal);
+
+		const alreadyInList =
+			journals.findIndex((journal) => journal.id === id) !== -1;
+
+		setJournals((prev) => {
+			if (alreadyInList) {
+				return prev.map((journal) => {
+					if (journal.id === id) {
+						return { ...newJournal };
+					}
+					return journal;
+				});
+			}
+			return [ ...prev, newJournal ];
+		});
 	}
 
 	/**
@@ -116,12 +102,12 @@ export default function Journal (): JSX.Element {
 	function handleNew (e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 		e.preventDefault();
 
-		setSelection({...emptyJournal});
+		setSelection({ ...emptyJournal });
 	}
 
 	function handleClick (
 		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-		id: number
+		id: string
 	) {
 		e.preventDefault();
 		const journal = journals.find(
@@ -136,7 +122,6 @@ export default function Journal (): JSX.Element {
 
 	return (
 		<div className='journal'>
-			<JournalProvider value={{ journals, setJournals }}>
 				<JournalMenu
 					journals={journals}
 					handleClick={handleClick}
@@ -145,11 +130,9 @@ export default function Journal (): JSX.Element {
 				<JournalPage
 					journal={selection}
 					handleSubmit={handleSubmit}
-					updateEntry={updateEntry}
 					deleteEntry={deleteEntry}
 				/>
 				<JournalsList journals={matches} />
-			</JournalProvider>
 		</div>
 	);
 }
