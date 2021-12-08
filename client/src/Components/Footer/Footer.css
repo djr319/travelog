@@ -6,13 +6,12 @@
   height: var(--footer-height);
   justify-content: center;
   align-items: center;
-  font-size: 9px;
+  font-size: 10px;
   text-shadow: 0px 0px 4px white;
-  background: var(--travelog-dusty-blue);
+  background: var(--travelog-green);
 }
 @media screen and (min-width: 768px) {
   .footer {
-    background: var(--travelog-green);
     box-shadow: 1px 1px 7px var(--travelog-light-blue);
   }
 }
