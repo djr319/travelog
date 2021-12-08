@@ -28,6 +28,7 @@ CREATE TABLE "Plan" (
 -- CreateTable
 CREATE TABLE "Journal" (
     "id" SERIAL NOT NULL,
+    "photoURL" TEXT NOT NULL DEFAULT E'',
     "review" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "uid" TEXT NOT NULL,
