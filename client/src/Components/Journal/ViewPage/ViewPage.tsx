@@ -25,6 +25,7 @@ export default function ViewPage({
     <div className="journal__view">
       <div className="journal__view-text">{text}</div>
       <img
+        style={{ height: 200, width: 300 }}
         className="journal-picture"
         src={photoURL}
         alt="journal-picture"

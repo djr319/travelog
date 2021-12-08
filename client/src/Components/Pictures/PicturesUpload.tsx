@@ -54,13 +54,13 @@ export default function PicturesUpload ({
 			);
 		}
 	};
+  
 	return (
 		<div>
 			<div>
 				<progress value={progress} max='100' />
 			</div>
 			<input type='file' onChange={handleChange} />
-
 			<div>
 				<img
 					style={{ height: 300, width: 400 }}

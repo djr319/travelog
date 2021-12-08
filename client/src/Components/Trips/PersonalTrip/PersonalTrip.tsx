@@ -22,7 +22,7 @@ const PersonalTrip = (props: TripProps): JSX.Element => {
       );
     }
   };
-  // <p className="content_date">{moment(topic.published_at).format("MMM Do")}</p>
+
   return (
     <div className="book">
       <Link to={`/trip/${id}`} state={props.trip}>

@@ -14,6 +14,7 @@ const mockProfile = {
   lastName: "",
   interests: "",
 };
+
 export default function ViewProfile(): JSX.Element {
   const [profile, setProfile] = useState<Profile>(mockProfile);
   const { userName, uid, photoURL, email } = useContext(UserContext);
@@ -22,20 +23,20 @@ export default function ViewProfile(): JSX.Element {
 
   const getProfileHandler = async (uid: string) => {
     const profile = await profileService.getProfile(uid);
+
     setProfile(profile);
   };
+
   useEffect(() => {
     getProfileHandler(uid);
   }, []);
-  // const { state } = useLocation();
 
   return (
     <div className="profile-view-container">
       <h2>Profile</h2>
 
       <h4>Profile picture</h4>
-      <img src={photoURL} alt="" />
-
+      <img src={photoURL} alt="profile-picture" />
       <h4>Email address</h4>
       <p>{email}</p>
       <h4>Username</h4>
