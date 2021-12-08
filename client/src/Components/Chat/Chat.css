@@ -7,10 +7,10 @@
   display: flex;
   flex-direction: column;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .chat .chat-wrapper {
     font-size: 60%;
-    width: 20rem;
+    width: 25rem;
     margin: 0rem auto;
     display: flex;
     flex-direction: column;
@@ -56,7 +56,7 @@
   position: relative;
   width: fit-content;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .chat .message-content {
     max-width: 60%;
   }
@@ -68,7 +68,7 @@
   align-self: flex-start;
   background-color: var(--travelog-green);
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .chat .me .message-content {
     margin-left: 1em;
   }
@@ -82,7 +82,7 @@
 .chat .you {
   align-items: flex-end;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .chat .you {
     margin-right: 1em;
   }
