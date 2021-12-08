@@ -15,7 +15,7 @@ const mockProfile = {
   interests: "",
 };
 
-export default function ViewProfile() {
+export default function ViewProfile(): JSX.Element {
   const [profile, setProfile] = useState<Profile>(mockProfile);
   const { userName, uid, photoURL, email } = useContext(UserContext);
 

@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Journal } from "Types";
 import { PicturesUpload } from "Components";
 // NOTE min/max for entry text length
-const MIN_LEN = 10;
-const MAX_LEN = 30;
+const MIN_LEN = 5;
+const MAX_LEN = 300;
 
 type EditPageProps = {
   id: number;
@@ -26,6 +26,7 @@ export default function EditPage({
 }: EditPageProps): JSX.Element {
   const [text, setText] = useState(entryText);
   const [photo, setPhoto] = useState(photoURL);
+  
   function updateReview(e: React.FormEvent<HTMLTextAreaElement>) {
     e.preventDefault();
 

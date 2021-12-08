@@ -1,9 +1,7 @@
 import "./Dashboard.css";
-import { useState, useEffect } from "react";
 import { SliderData } from "./SliderData";
 
 export default function Dashboard(): JSX.Element {
-  const length = SliderData.length;
   const current = Math.floor(Math.random() * SliderData.length);
 
   return (
