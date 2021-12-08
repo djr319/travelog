@@ -95,6 +95,9 @@ body {
   padding: 0.5rem 2rem;
   margin: 0.3rem;
 }
+.wrapper a {
+  text-decoration: none;
+}
 .wrapper a:active {
   transition: 200ms, ease;
 }

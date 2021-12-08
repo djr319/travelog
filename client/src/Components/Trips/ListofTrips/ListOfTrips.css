@@ -4,24 +4,95 @@
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-.trip-wrapper .book {
-  background-color: #8B0000;
+.trip-wrapper .container {
   color: #e2b007;
   text-align: center;
+  z-index: 1;
+  perspective: 300px;
+}
+.trip-wrapper .container .book {
+  position: relative;
+  display: block;
+  width: 8rem;
+  height: 12rem;
+  border-radius: 2px 4px 4px 2px;
+  background: linear-gradient(45deg, #DAD5DC 0%, #f2ebf4 100%);
+  box-shadow: 13px 13px 8px 0px rgba(151, 146, 153, 0.6);
+  font-weight: 400;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+.trip-wrapper .container .book:hover {
+  transform: rotate3d(0, 1, 0, 50deg) scale3d(1.3, 1.3, 1.3);
+}
+.trip-wrapper .container .book > div,
+.trip-wrapper .container .front > div {
+  display: block;
+  position: absolute;
+}
+.trip-wrapper .container .front {
+  transform-style: preserve-3d;
+  transform-origin: 0% 50%;
+  transition: transform 0.5s;
+  transform: translate3d(0, 0, 20px);
+  z-index: 10;
+}
+.trip-wrapper .container .front > div {
+  height: 12rem;
+  width: 8rem;
+  border-radius: 0.2rem 0.5rem 0.5rem 0.2rem;
+  box-shadow: inset 4px 0 10px rgba(0, 0, 0, 0.1);
+}
+.trip-wrapper .container .left-side {
+  width: 40px;
+  left: -20px;
+  height: 12rem;
+  background-color: #8B0000;
+  border-radius: 2px;
+  transform: rotate3d(0, 1, 0, -90deg);
+}
+.trip-wrapper .container .front:after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  left: -1px;
+  width: 1px;
+}
+.trip-wrapper .container .cover:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10px;
+  bottom: 0;
+  width: 3px;
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 0 3px rgba(255, 255, 255, 0.1);
+}
+.trip-wrapper .container h2 {
+  color: inherit;
+}
+.trip-wrapper .cover {
+  background: linear-gradient(45deg, #8B0000 0%, #8B0000 100%);
+}
+.trip-wrapper .left-side h2 {
+  font-size: 0.8rem;
+  margin-top: 6rem;
+  margin-left: -4.4rem;
+  padding-left: 0rem;
+  width: 10rem;
+  height: 1rem;
+  text-align: left;
+  font-weight: 400;
+  transform-origin: 50% 0%;
+  transform: rotate(-90deg);
 }
 .trip-wrapper .book,
 .trip-wrapper .add-trip {
-  position: relative;
-  height: 12rem;
-  width: 8rem;
   margin: 1rem;
-  padding: 0.5rem;
-  font-size: 16px;
-  border-bottom-right-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
 }
-.trip-wrapper .book h2,
-.trip-wrapper .add-trip h2 {
+.trip-wrapper .book .front h2,
+.trip-wrapper .add-trip .front h2 {
   margin: 2.5rem 0.5rem 1rem;
   font-size: 0.8rem;
 }
@@ -30,11 +101,28 @@
   font-size: 0.6rem;
 }
 .trip-wrapper .add-trip {
+  position: relative;
+  height: 12rem;
+  width: 8rem;
   border: 3px solid rgba(139, 0, 0, 0.2);
   background: rgba(139, 0, 0, 0.2);
   display: flex;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
+  transition: transform 0.5s;
+  transition: opacity 1s ease-in-out;
+  transition: background-color 0.5s linear;
+  opacity: 0.8;
+}
+.trip-wrapper .add-trip:hover {
+  border: none;
+  opacity: 1;
+  transform: scale3d(1.1, 1.1, 1.1);
+  background: var(--travelog-green);
+}
+.trip-wrapper .add-trip h2 {
+  margin-top: 0;
+  font-size: 0.8rem;
 }
 .trip-wrapper .book a {
   text-decoration: none;
