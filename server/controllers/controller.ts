@@ -155,7 +155,8 @@ const deleteTrip = async (req: Request, res: Response): Promise<void> => {
 const addNewJournal = async (req: Request, res: Response): Promise<void> => {
   try {
     const { uid } = req.params;
-    const { review } = req.body;
+    const { review, photoURL } = req.body;
+    console.log("photo in backend", photoURL);
     const trip = await prisma.user.update({
       where: {
         uid,
@@ -164,6 +165,7 @@ const addNewJournal = async (req: Request, res: Response): Promise<void> => {
         journals: {
           create: {
             review,
+            photoURL,
           },
         },
       },
@@ -188,8 +190,10 @@ const getPersonalJournals = async (
       },
       select: {
         journals: true,
+        photoURL: true,
       },
     });
+
     res.status(200);
     res.send(user!.journals);
   } catch (err) {
@@ -201,7 +205,8 @@ const getPersonalJournals = async (
 const updateJournal = async (req: Request, res: Response): Promise<void> => {
   try {
     const { uid, id } = req.params;
-    const { review } = req.body;
+    const { review, photoURL } = req.body;
+
     const trip = await prisma.user.update({
       where: {
         uid,
@@ -214,6 +219,7 @@ const updateJournal = async (req: Request, res: Response): Promise<void> => {
             },
             data: {
               review,
+              photoURL,
             },
           },
         },
