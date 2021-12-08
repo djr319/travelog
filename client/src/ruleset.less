@@ -1,7 +1,12 @@
+// @import './ruleset.less';
+
 .large-screen(@rules) {
   @media screen and (min-width: 768px) {@rules();}
 }
 
+.small-screen(@rules) {
+  @media screen and (max-width: 767px) {@rules();}
+}
 // syntax for reference:
 
 // .large-screen ({

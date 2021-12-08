@@ -137,8 +137,7 @@ function Chat() {
         />
         <button onClick={sendMessage}>Send</button>
       </div>
-
-    </div>
+      </div>
   );
 }
 
