@@ -1,6 +1,6 @@
 import { useQuery, useMutation } from 'react-query';
 import { Journal as JournalType } from 'Types/index';
-import { useContext, useState, useEffect, FormEvent } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { UserContext } from 'Context';
 import { JournalProvider } from './journal.context';
 
@@ -92,9 +92,7 @@ export default function Journal (): JSX.Element {
 		deleteJournal.mutate({ id });
 
 		setJournals((prev) => {
-			return prev.filter((journal) => {
-				journal.id !== id;
-			});
+			return prev.filter((journal) => journal.id !== id);
 		});
 		setSelection({ ...emptyJournal });
 	}
@@ -118,7 +116,7 @@ export default function Journal (): JSX.Element {
 	function handleNew (e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 		e.preventDefault();
 
-		setSelection(emptyJournal);
+		setSelection({...emptyJournal});
 	}
 
 	function handleClick (
