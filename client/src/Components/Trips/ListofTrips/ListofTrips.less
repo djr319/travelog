@@ -6,11 +6,10 @@
   justify-content: flex-start;
 
   .container {
-    // background-color: @book-color;
     color: #e2b007;
     text-align: center;
     z-index: 1;
-    perspective:300px;
+    perspective:1000px;
   }
 
   .container .book {
@@ -20,7 +19,7 @@
     height: 12rem;
     border-radius: 2px 4px 4px 2px;
     background: linear-gradient(45deg,  #DAD5DC 0%, #f2ebf4 100%);
-    box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
+    box-shadow: 10px 10px 8px 0px rgba(151, 146, 153,0.6);
     font-weight: 400;
     transform-style: preserve-3d;
     transition: transform .5s;
@@ -52,6 +51,7 @@
   }
 
   .container .left-side {
+    display: none;
     width: 40px;
     left: -20px;
     height: 12rem;
@@ -85,7 +85,7 @@
   }
 
   .cover {
-   background: linear-gradient(45deg, @book-color 0%,  @book-color 100%);
+    background: linear-gradient(165deg, #8B0000, #990000);
   }
 
   .left-side h2 {
@@ -99,9 +99,8 @@
     font-weight: 400;
     transform-origin: 50% 0%;
     transform: rotate(-90deg);
-    //  translateY(12rems);
+    // , translateY(12rems);
   }
-
 
   .book, .add-trip {
     // position: relative;
@@ -110,54 +109,70 @@
     margin: 1rem;
     // padding: 0.5rem;
     // font-size: 16px;
-
+  }
 
   .front h2 {
     margin: 2.5rem 0.5rem 1rem;
     font-size: 0.8rem;
   }
 
-
-  p {
+  .book p {
     font-size: 0.6rem;
   }
-}
 
-.add-trip {
-  position: relative;
-  height: 12rem;
-  width: 8rem;
-  border: 3px solid fade(@book-color, 20%);
-  background: fade(@book-color, 20%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform .5s;
-  transition: opacity 1s ease-in-out;
-  transition: background-color 0.5s linear;
-  opacity: 0.8;
-
-  &:hover {
-    border: none;
-    opacity: 1;
-    transform: scale3d(1.1,1.1,1.1);
-    background: var(--travelog-green);
-
+  .no-trips {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 20rem;
+    transform: translate(-50%, 0);
+    padding: 1rem;
+    background: white;
   }
+
+  .add-trip {
+    position: relative;
+    height: 12rem;
+    width: 8rem;
+    border: 3px solid fade(@book-color, 20%);
+    background: fade(@book-color, 20%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .5s;
+    transition: opacity 1s ease-in-out;
+    transition: background-color 0.5s linear;
+    opacity: 0.8;
+
+    &:hover {
+      border: none;
+      opacity: 1;
+      transform: scale3d(1.1,1.1,1.1);
+      background: var(--travelog-green);
+
+    }
 
   h2 {
     margin-top: 0;
     font-size: 0.8rem;
   }
 }
+  .book a {
+    text-decoration: none;
+    color: inherit;
+  }
 
-.book a {
-  text-decoration: none;
-  color: inherit;
+  .empty-wrapper {
+    position: relative;
+  }
+
+  .empty-wrapper .delete {
+    position: absolute;
+    z-index:100;
+    bottom: 1.5rem;
+    left: 5em;
+    transform: translate(-50%, 0);
+  }
 }
-.book .delete-note {
-  position: absolute;
-  right: 0.5rem;
-  bottom: 0;
-}
-}
+
+

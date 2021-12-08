@@ -8,7 +8,7 @@
   color: #e2b007;
   text-align: center;
   z-index: 1;
-  perspective: 300px;
+  perspective: 1000px;
 }
 .trip-wrapper .container .book {
   position: relative;
@@ -17,7 +17,7 @@
   height: 12rem;
   border-radius: 2px 4px 4px 2px;
   background: linear-gradient(45deg, #DAD5DC 0%, #f2ebf4 100%);
-  box-shadow: 13px 13px 8px 0px rgba(151, 146, 153, 0.6);
+  box-shadow: 10px 10px 8px 0px rgba(151, 146, 153, 0.6);
   font-weight: 400;
   transform-style: preserve-3d;
   transition: transform 0.5s;
@@ -44,6 +44,7 @@
   box-shadow: inset 4px 0 10px rgba(0, 0, 0, 0.1);
 }
 .trip-wrapper .container .left-side {
+  display: none;
   width: 40px;
   left: -20px;
   height: 12rem;
@@ -73,7 +74,7 @@
   color: inherit;
 }
 .trip-wrapper .cover {
-  background: linear-gradient(45deg, #8B0000 0%, #8B0000 100%);
+  background: linear-gradient(165deg, #8B0000, #990000);
 }
 .trip-wrapper .left-side h2 {
   font-size: 0.8rem;
@@ -91,14 +92,21 @@
 .trip-wrapper .add-trip {
   margin: 1rem;
 }
-.trip-wrapper .book .front h2,
-.trip-wrapper .add-trip .front h2 {
+.trip-wrapper .front h2 {
   margin: 2.5rem 0.5rem 1rem;
   font-size: 0.8rem;
 }
-.trip-wrapper .book p,
-.trip-wrapper .add-trip p {
+.trip-wrapper .book p {
   font-size: 0.6rem;
+}
+.trip-wrapper .no-trips {
+  position: absolute;
+  text-align: center;
+  left: 50%;
+  top: 20rem;
+  transform: translate(-50%, 0);
+  padding: 1rem;
+  background: white;
 }
 .trip-wrapper .add-trip {
   position: relative;
@@ -128,8 +136,13 @@
   text-decoration: none;
   color: inherit;
 }
-.trip-wrapper .book .delete-note {
+.trip-wrapper .empty-wrapper {
+  position: relative;
+}
+.trip-wrapper .empty-wrapper .delete {
   position: absolute;
-  right: 0.5rem;
-  bottom: 0;
+  z-index: 100;
+  bottom: 1.5rem;
+  left: 5em;
+  transform: translate(-50%, 0);
 }

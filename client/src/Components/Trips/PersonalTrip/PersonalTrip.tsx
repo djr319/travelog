@@ -24,41 +24,41 @@ const PersonalTrip = (props: TripProps): JSX.Element => {
   };
 
   return (
-<Link to={`/trip/${id}`} state={props.trip}>
-  <div className="container">
-    <div className="book">
-      <div className="front">
-        <div className="cover">
-          <h2>{city}</h2>
-              <p>{moment(dateFrom).format("MMM Do YYYY")}</p>
-              <p>to</p>
-          <p>{moment(dateTo).format("MMM Do YYYY")}</p>
-        </div>
-      </div>
-      <div className="left-side">
+    <div className="empty-wrapper">
+      <Link to={`/trip/${id}`} state={props.trip}>
+        <div className="container">
+          <div className="book">
+            <div className="front">
+              <div className="cover">
+                <h2>{city}</h2>
+                <p>{moment(dateFrom).format("MMM Do YYYY")}</p>
+                <p>to</p>
+                <p>{moment(dateTo).format("MMM Do YYYY")}</p>
+              </div>
+            </div>
+          </div>
+          <div className="left-side">
             <h2>{city}</h2>
-      </div>
+          </div>
+        </div>
+      </Link >
+
+        <button
+          className="delete"
+          onClick={() => {
+            if (window.confirm("Are you sure you wish to delete this trip?"))
+              deleteHandler();
+          }}
+        >
+        ❌
+        </button>
     </div>
-  </div>
-</Link>
   );
 };
 
 export default PersonalTrip;
 
-{/* <div className="trip_delete">
-<button
-  className="delete_btn"
-  onClick={() => {
-    if (window.confirm("Are you sure you wish to delete this trip?"))
-      deleteHandler();
-  }}
->
-  <span role="img" aria-label="delete-button" className="delete-button">
-    ❌
-  </span>
-</button>
-</div>
-</div> */}
+
+
 
 

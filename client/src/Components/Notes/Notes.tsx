@@ -69,7 +69,7 @@ function Notes(): JSX.Element {
             <div className="note-item" key={note.id}>
               <span>{note.note}</span>
               <button
-                className="delete-note"
+                className="delete"
                 onClick={() => handleDeleteNote(note.id)}
               >
                 ✗
