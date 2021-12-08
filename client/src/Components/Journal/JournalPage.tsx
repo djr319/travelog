@@ -1,4 +1,3 @@
-import '../EditPage/EditPage.css';
 import { useState, FormEvent, MouseEvent } from 'react';
 import { PicturesUpload } from 'Components';
 import { Journal } from 'Types';
@@ -11,9 +10,7 @@ type JournalPageProps = {
 	journal: Journal;
 	updateEntry: (
 		e: FormEvent<HTMLFormElement>,
-		id: number,
-		review: string,
-		photoURL: string
+		journal: Journal
 	) => void;
 	deleteEntry: (e: MouseEvent<HTMLButtonElement>, id: number) => void;
 	handleSubmit: (review: string, photoURL: string) => void;

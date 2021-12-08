@@ -67,9 +67,7 @@ export default function Journal (): JSX.Element {
 
 	function updateEntry (
 		e: FormEvent<HTMLFormElement>,
-		id: number,
-		review: string,
-		photoURL: string
+		{ id, review, photoURL }: JournalType
 	) {
 		e.preventDefault();
 
@@ -106,10 +104,7 @@ export default function Journal (): JSX.Element {
 		setSelection({ ...emptyJournal });
 	}
 
-	function handleSubmit (
-		review: string,
-		photoURL: string
-	) {
+	function handleSubmit (review: string, photoURL: string) {
 		const id = getFreeJournalId(journals);
 		const tags = TagsAPI.parseTags(review);
 		TagsAPI.getMatchingJournals(uid, tags).then((matches) =>
