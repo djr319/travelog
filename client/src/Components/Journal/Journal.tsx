@@ -1,170 +1,155 @@
-import { Journal as JournalType } from "Types/index";
-import { useContext, useState, useEffect } from "react";
-import { UserContext } from "Context";
-import { JournalProvider } from "./journal.context";
+import { useQuery, useMutation } from 'react-query';
+import { Journal as JournalType } from 'Types/index';
+import { useContext, useState, useEffect } from 'react';
+import { UserContext } from 'Context';
+import { JournalProvider } from './journal.context';
 
-import { JournalAPI } from "Services/index";
-import { JournalsList } from "Components/index";
-import JournalMenu from "./JournalMenu/JournalMenu";
-import CreatePage from "./CreatePage/CreatePage";
-import EditPage from "./EditPage/EditPage";
-import ViewPage from "./ViewPage/ViewPage";
+import { JournalAPI, TagsAPI } from 'Services/index';
+import { JournalsList } from 'Components';
+import JournalMenu from './JournalMenu/JournalMenu';
+import JournalPage from './JournalPage';
 
-import "./Journal.css";
+import './Journal.css';
 
-function getFreeJournalId(journals: JournalType[]) {
-  const maxId = Math.max(-1, ...journals.map((journal) => journal.id));
-  return maxId + 1;
+function getFreeJournalId (journals: JournalType[]) {
+	const maxId = Math.max(-1, ...journals.map((journal) => journal.id));
+	return maxId + 1;
 }
 
-export default function Journal(): JSX.Element {
-  const [journals, setJournals] = useState<JournalType[]>([]);
+export default function Journal (): JSX.Element {
+	const [ journals, setJournals ] = useState<JournalType[]>([]);
+	const [ matches, setMatches ] = useState<JournalType[]>([]);
 
-  const [page, setPage] = useState(<CreatePage handleSubmit={handleSubmit} />);
-  const { uid } = useContext(UserContext);
+	const emptyJournal = {
+		id: getFreeJournalId(journals),
+		photoURL: '',
+		review: '',
+		tags: []
+	};
+	const [ selection, setSelection ] = useState<JournalType>(emptyJournal);
 
-  useEffect(() => {
-    (async () => {
-      const journals = await JournalAPI.getAllJournals(uid);
-      console.log("journals", journals);
-      setJournals(journals);
-    })();
-  }, []);
+	const { uid } = useContext(UserContext);
 
-  function updateEntry(
-    e: React.FormEvent<HTMLFormElement>,
-    id: number,
-    review: string,
-    photoURL: string
-  ) {
-    e.preventDefault();
+	// Queries
+	const getJournals = useQuery('getOwnJournals', async () => {
+		const data = await JournalAPI.getOwnJournals(uid);
+		setJournals(data);
+		return data;
+	});
 
-    JournalAPI.updateJournal(uid, { id, review, photoURL });
+	// Mutations
+	const updateJournal = useMutation(
+		({
+			id,
+			uid,
+			review,
+			photoURL,
+			tags
+		}: {
+			id: number;
+			uid: string;
+			review: string;
+			photoURL: string;
+			tags: string[];
+		}) => {
+			return JournalAPI.updateJournal(uid, { review, id, photoURL, tags });
+		}
+	);
 
-    setJournals((prev) => {
-      return prev.map((journal) => {
-        if (journal.id === id) {
-          const journalCopy = { ...journal };
-          journalCopy.review = review;
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore:next-line
-          journalCopy.photoURL = URL;
-          return journalCopy;
-        }
-        return journal;
-      });
-    });
+	const deleteJournal = useMutation(({ id }: { id: number }) => {
+		return JournalAPI.deleteJournal(uid, id);
+	});
 
-    setPage(
-      <ViewPage
-        id={id}
-        text={review}
-        photoURL={photoURL}
-        switchEditMode={switchEditMode}
-        deleteEntry={deleteEntry}
-      />
-    );
-  }
+	useEffect(() => {
+		const { data } = getJournals;
+		if (data) setJournals(data);
+	}, []);
 
-  function deleteEntry(e: React.MouseEvent<HTMLButtonElement>, id: number) {
-    e.preventDefault();
+	function updateEntry (id: number, review: string, photoURL: string) {
+		const tags = TagsAPI.parseTags(review);
+		TagsAPI.getMatchingJournals(uid, tags).then((matches) =>
+			setMatches(matches)
+		);
 
-    setPage(<CreatePage handleSubmit={handleSubmit} />);
+		updateJournal.mutate({ id, uid, review, photoURL, tags });
 
-    JournalAPI.deleteJournal(uid, id);
+		setJournals((prev) => {
+			return prev.map((journal) => {
+				if (journal.id === id) {
+					const journalCopy = { ...journal };
+					journalCopy.review = review;
+					journalCopy.photoURL = photoURL;
+					return journalCopy;
+				}
+				return journal;
+			});
+		});
+	}
 
-    setJournals((prev) => {
-      //TODO splice mutates state, dont use it (VIC)
-      const index = prev.findIndex((journal) => journal.id === id);
-      if (index > -1) prev.splice(index, 1);
-      return prev;
-    });
-  }
+	function deleteEntry (e: React.MouseEvent<HTMLButtonElement>, id: number) {
+		e.preventDefault();
 
-  function handleSubmit(
-    e: React.FormEvent<HTMLFormElement>,
-    review: string,
-    photoURL: string
-  ) {
-    e.preventDefault();
+		deleteJournal.mutate({ id });
 
-    const id = getFreeJournalId(journals);
-    console.log("pic in journal", photoURL);
-    JournalAPI.addJournal(uid, { id, review, photoURL });
-    setJournals((prev) => [...prev, { id, review, photoURL }]);
+		setJournals((prev) => {
+			return prev.filter((journal) => journal.id !== id);
+		});
+		setSelection({ ...emptyJournal });
+	}
 
-    setPage(
-      <ViewPage
-        id={id}
-        text={review}
-        photoURL={photoURL}
-        switchEditMode={switchEditMode}
-        deleteEntry={deleteEntry}
-      />
-    );
-  }
+	function handleSubmit (review: string, photoURL: string) {
+		const id = getFreeJournalId(journals);
+		const tags = TagsAPI.parseTags(review);
+		TagsAPI.getMatchingJournals(uid, tags).then((matches) =>
+			setMatches(matches)
+		);
 
-  function switchEditMode(
-    e: React.MouseEvent<HTMLButtonElement>,
-    id: number,
-    text: string,
-    photoURL: string
-  ) {
-    e.preventDefault();
+		const newJournal = { id, review, photoURL, tags };
+		JournalAPI.addJournal(uid, newJournal);
+		setJournals((prev) => [ ...prev, newJournal ]);
+		setSelection(newJournal);
+	}
 
-    setPage(
-      <EditPage
-        id={id}
-        text={text}
-        photoURL={photoURL}
-        updateEntry={updateEntry}
-      />
-    );
-  }
-
-  /**
+	/**
    ** Called on 'New story' menu button
    */
-  function handleNew(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-    e.preventDefault();
+	function handleNew (e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
+		e.preventDefault();
 
-    // FIXME: using journals array index as id is not safe
-    setPage(<CreatePage handleSubmit={handleSubmit} />);
-  }
+		setSelection({...emptyJournal});
+	}
 
-  function handleClick(
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    id: number
-  ) {
-    e.preventDefault();
+	function handleClick (
+		e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+		id: number
+	) {
+		e.preventDefault();
+		const journal = journals.find(
+			(journal) => journal.id === id
+		) as JournalType;
 
-    // FIXME: using journals array index as id is not safe
-    const journal = journals.find((journal) => journal.id === id);
-    if (journal === undefined) return;
+		TagsAPI.getMatchingJournals(uid, journal.tags).then((matches) =>
+			setMatches(matches)
+		);
+		setSelection(journal);
+	}
 
-    setPage(
-      <ViewPage
-        id={journal.id}
-        text={journal.review}
-        photoURL={journal.photoURL}
-        switchEditMode={switchEditMode}
-        deleteEntry={deleteEntry}
-      />
-    );
-    console.log("pic", journal.photoURL);
-  }
-
-  return (
-    <div className="journal">
-      <JournalProvider value={{ journals, setJournals, page, setPage }}>
-        <JournalMenu
-          journals={journals}
-          handleClick={handleClick}
-          handleNew={handleNew}
-        />
-        {page}
-        <JournalsList journals={journals} />
-      </JournalProvider>
-    </div>
-  );
+	return (
+		<div className='journal'>
+			<JournalProvider value={{ journals, setJournals }}>
+				<JournalMenu
+					journals={journals}
+					handleClick={handleClick}
+					handleNew={handleNew}
+				/>
+				<JournalPage
+					journal={selection}
+					handleSubmit={handleSubmit}
+					updateEntry={updateEntry}
+					deleteEntry={deleteEntry}
+				/>
+				<JournalsList journals={matches} />
+			</JournalProvider>
+		</div>
+	);
 }

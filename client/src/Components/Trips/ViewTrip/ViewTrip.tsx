@@ -3,9 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { useContext, useEffect, useState } from "react";
 import { Trip } from "Types";
-
 import { UserContext } from "Context";
-// import { TripsAPI } from "Services";
 
 export default function ViewPersonalTrip(): JSX.Element {
   const [trip, setTrip] = useState<Trip>();

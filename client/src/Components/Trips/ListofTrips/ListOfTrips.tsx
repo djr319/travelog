@@ -6,25 +6,6 @@ import { Trip } from "Types";
 import tripsService from "Services/trips.service";
 import { UserContext } from "Context";
 
-// const mockTrips: Trip[] = [
-//   {
-//     uid: "string",
-//     id: "string",
-//     destination: "Rome",
-//     dateFrom: new Date(),
-//     dateTo: new Date(),
-//     visits: "string",
-//   },
-//   {
-//     uid: "string",
-//     id: "string",
-//     destination: "Rome",
-//     dateFrom: new Date(),
-//     dateTo: new Date(),
-//     visits: "string",
-//   },
-// ];
-
 export default function ListOfTrips(): JSX.Element {
   const [trips, setTrips] = useState<Trip[]>([]);
   const { uid } = useContext(UserContext);

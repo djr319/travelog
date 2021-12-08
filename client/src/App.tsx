@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { UserProvider } from "Context";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 // import { StyledFirebaseAuth } from "react-firebaseui";
@@ -30,6 +31,8 @@ import "./App.css";
 // NOTE loads firebase's authorization service
 
 const { auth, uiConfig } = FirebaseAPI.getConfig();
+
+const queryClient = new QueryClient();
 
 export default function App(): JSX.Element {
   const user = FirebaseAPI.formatUser(auth);
@@ -68,6 +71,7 @@ export default function App(): JSX.Element {
       <div className="app">
         <UserProvider value={user}>
           <BrowserRouter>
+          <QueryClientProvider client={queryClient}>
             <Header />
             <NavBar />
             <Routes>
@@ -100,6 +104,7 @@ export default function App(): JSX.Element {
                 }
               />
             </Routes>
+            </QueryClientProvider>
           </BrowserRouter>
         </UserProvider>
       </div>

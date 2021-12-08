@@ -44,8 +44,7 @@ export default function JournalMenu({
       </div>
       <div className="journal__menu-select-container">
         <div className="journal__menu-select">
-          {journals &&
-            journals.length &&
+          {journals.length &&
             journals.map((entry) => (
               <MenuEntry
                 key={entry.id}

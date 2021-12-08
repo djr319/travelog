@@ -19,7 +19,7 @@ const getCurrentLocation = () => new Promise<Geolocation> ((resolve, reject) => 
   }
 });
 
-function Weather () {
+function Weather (): JSX.Element {
 
   const APIWeatherKey = process.env.REACT_APP_WEATHER_API_KEY;
   const [weatherData, setWeatherData] = useState<WeatherType[]>([]);

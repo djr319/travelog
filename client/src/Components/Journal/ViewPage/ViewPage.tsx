@@ -20,10 +20,12 @@ export default function ViewPage({
   switchEditMode,
   deleteEntry,
 }: InputPageProps): JSX.Element {
+  // console.log(photoURL)
   return (
     <div className="journal__view">
       <div className="journal__view-text">{text}</div>
       <img
+        style={{ height: 200, width: 300 }}
         className="journal-picture"
         src={photoURL}
         alt="journal-picture"

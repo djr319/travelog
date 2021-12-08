@@ -31,6 +31,7 @@ export default function Profile(): JSX.Element {
       const {
         profile: { firstName, lastName, interests },
       } = state;
+
       setFirstname(firstName);
       setLastname(lastName);
       setInterests(interests);
@@ -68,7 +69,7 @@ export default function Profile(): JSX.Element {
       email,
       interests
     );
-    setPhotoURL("");
+
     setEmail("");
     setUsername("");
     setFirstname("");
@@ -90,9 +91,7 @@ export default function Profile(): JSX.Element {
           {/* ---------------------profile picture----------- */}
           <label className="profile-label">Profile Picture</label>
 
-          <img className="profile-img" src={photoURL} alt="" />
-
-          {/* <img className="profile-img" src={picture} alt="user profile picture" /> */}
+          <img className="profile-img" src={photoURL} alt="profile-picture" />
 
           {/* --------------------usename------------------- */}
           <label className="profile-label">Username</label>

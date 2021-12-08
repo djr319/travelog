@@ -1,7 +1,11 @@
 :root {
   --navbar-height: 3rem;
 }
-
+@media screen and (min-width: 768px) {
+  .navbar .nav-select {
+    width: 400px;
+  }
+}
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -62,8 +66,5 @@
   margin: 0.5rem;
   height: 2rem;
 }
-@media screen and (min-width: 450px) {
-  .navbar .nav-select {
-    width: 20rem;
-  }
+@media screen and (min-width: 768px) {
 }

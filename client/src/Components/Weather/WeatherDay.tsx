@@ -5,7 +5,7 @@ interface WeatherDayProps {
   weather: WeatherType;
 }
 
-function WeatherDay ({ weather }: WeatherDayProps) {
+function WeatherDay ({ weather }: WeatherDayProps): JSX.Element {
 
   return (
     <div className="weather-info">
