@@ -66,6 +66,7 @@ function Chat() {
       // @ts-ignore
       setMessageList((list) => [...list, messageData]);
       setCurrentMessage("");
+      document.getElementById('input')?.focus();
     }
   };
 
@@ -125,6 +126,7 @@ function Chat() {
 
       <div className="chat-footer">
         <input
+          id="input"
           type="text"
           placeholder="Message..."
           value={currentMessage}
