@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Journal } from "Types/index";
 import "./JournalsList.css";
 
@@ -17,10 +18,10 @@ export default function JournalsList({
       <div className="journals-list__list">
         {journals.length &&
           journals.map(({ review, photoURL }, i) => (
-            <div key={review + i} className="journals-list__entry">
+            <Link to="/chat" key={review + i} className="journals-list__entry">
               <span>{review}</span>
               <img src={photoURL} />
-            </div>
+            </Link>
           ))}
       </div>
     </div>

@@ -79,7 +79,7 @@ export default function JournalPage ({
 			) : (
           <div className="flex-container">
             <h2>Journal Entry</h2>
-					<PicturesUpload url={photoURL} sendUrl={updatePhoto} />
+					<PicturesUpload givenURL={photoURL} sendUrl={updatePhoto} />
 
 						<textarea
 							className='journal__form-textarea'
