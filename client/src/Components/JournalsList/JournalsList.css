@@ -14,6 +14,9 @@
   justify-content: space-between;
   align-items: center;
 }
+.journals-list .journals-list__list .journals-list__entry:visited {
+  color: black;
+}
 .journals-list .journals-list__list .journals-list__entry img {
   width: 30px;
 }
