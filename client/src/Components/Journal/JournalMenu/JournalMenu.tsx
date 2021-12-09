@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { Journal } from 'Types/index';
-import Arrow from 'Assets/arrow.svg';
 import MenuEntry from './MenuEntry';
+import { GrCatalog } from "react-icons/gr";
+import './JournalMenu.css';
+import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
 
 type JournalMenuProps = {
 	journals: Journal[];
@@ -12,7 +15,9 @@ type JournalMenuProps = {
 	handleNew: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
-const MENU_WIDTH = 150;
+const MENU_WIDTH = 350;
+  Math.min(window.innerWidth * .8, 330);
+console.log("menu-w: ", MENU_WIDTH);
 
 export default function JournalMenu ({
 	journals,
@@ -20,7 +25,6 @@ export default function JournalMenu ({
 	handleNew
 }: JournalMenuProps): JSX.Element {
 	const [ menuPos, setMenuPos ] = useState(-MENU_WIDTH);
-	const [ arrowRot, setArrowRot ] = useState(180);
 
 	function toggleMenu () {
 		setMenuPos((prev) => {
@@ -29,21 +33,14 @@ export default function JournalMenu ({
 			}
 			return 0;
 		});
-		setArrowRot((prev) => 180 - prev);
 	}
 
 	return (
 		<div className='journal__menu' style={{ left: menuPos }}>
-			<div className='journal__menu-button-container'>
-				<img
-					className='journal__menu-button'
-					src={Arrow}
-					onClick={toggleMenu}
-					style={{ transform: `rotate(${arrowRot}deg)` }}
-				/>
-			</div>
-			<div className='journal__menu-select-container'>
+
+      <div className='journal__menu-select-container'>
 				<div className='journal__menu-select'>
+        {/* <SimpleBar style={{ height: '100%' }}> */}
 					{journals.map((entry) => (
 						<MenuEntry
 							key={entry.id}
@@ -56,8 +53,12 @@ export default function JournalMenu ({
 						className={`journal__menu-select-entry last`}
 						onClick={handleNew}>
 						New story
-					</div>
+            </div>
+            {/* </SimpleBar> */}
 				</div>
+      </div>
+      <div className='journal__menu-button-container' onClick={toggleMenu}>
+        <GrCatalog/>
 			</div>
 		</div>
 	);

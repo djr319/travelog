@@ -5,6 +5,23 @@
   max-width:768px;
   margin: 0 auto;
   min-height: 100vh;
+
+  .delete, .delete:hover {
+    height: 1.3rem;
+    min-height: 1.3rem;
+    width: 1.3rem;
+    padding: 0;
+    border-radius: 50%;
+    color: white;
+    background: black;
+    border: none;
+    text-shadow: 0 0 3px black;
+    box-shadow: 2px 2px 4px rgba(33,33,33,.7);
+  }
+
+  .delete:hover {
+    transform: scale3d(1.1,1.1,1.1);
+  }
 }
 
 .not-logged-in {
@@ -49,6 +66,18 @@
   }
 }
 
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  margin: 0.4rem;
+}
+
 .chat,
 .journal,
 .journals-list,
@@ -56,6 +85,7 @@
 .profile,
 .profile-view,
 .trips,
+.trip,
 .trip-list,
 .view-trip,
 .weather {
@@ -63,5 +93,4 @@
   .small-screen({
     min-height: ~"calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height))";
   });
-
 }

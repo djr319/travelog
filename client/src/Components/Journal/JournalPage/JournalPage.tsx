@@ -19,6 +19,7 @@ export default function JournalPage ({
 	deleteEntry
 }: JournalPageProps): JSX.Element {
 	const { id, uid, review, photoURL, tags } = journal;
+	console.log(journal);
 
 	const [ text, setText ] = useState('');
 	const [ photo, setPhoto ] = useState('');
@@ -43,7 +44,10 @@ export default function JournalPage ({
 
 		const text = e.currentTarget.value;
 		setText(text);
-		setPhoto(photo);
+	}
+
+	function updatePhoto (url: string) {
+		setPhoto(url);
 	}
 
 	function sendUpdate (e: MouseEvent<HTMLButtonElement>) {
@@ -54,31 +58,29 @@ export default function JournalPage ({
 		setInViewMode(false);
 	}
 
-	function updatePhoto (url: string) {
-		setPhoto(url);
-	}
-
 	return (
 		<form className='journal__form' onSubmit={sendSubmit}>
-			<p>Pictures</p>
 
 			{inViewMode ? (
-				<div>
+				<div className="journal-group">
 					<img className='journal__photo' src={photoURL} alt='picture' />
-					<div className='journal__view-text'>{text}</div>
-					<button className='journal__view-update' onClick={sendUpdate}>
+          <div className='journal__view-text'>{text}</div>
+          <div className="button-group">
+					<button className='button journal__view-update' onClick={sendUpdate}>
 						Update
 					</button>
 					<button
-						className='journal__view-delete'
+						className='button journal__view-delete'
 						onClick={(e) => deleteEntry(e, id)}>
 						Delete
-					</button>
+            </button>
+            </div>
 				</div>
 			) : (
-				<div>
-					<PicturesUpload sendUrl={updatePhoto} />
-					<div className='journal__form-textarea-container'>
+          <div className="flex-container">
+            <h2>Journal Entry</h2>
+					<PicturesUpload givenURL={photoURL} sendUrl={updatePhoto} />
+
 						<textarea
 							className='journal__form-textarea'
 							placeholder='Enter review description...'
@@ -89,14 +91,14 @@ export default function JournalPage ({
 							value={text}
 							onInput={updateReview}
 						/>
-					</div>
+
 
 					{text.length < MIN_LEN ? (
-						'Insufficient characters.'
+						<p className="warn">Insufficient characters.</p>
 					) : (
-						`${text.length}/${MAX_LEN} characters.`
+						<p>{text.length}/{MAX_LEN} characters</p>
 					)}
-					<button className='journal__form-submit' type='submit'>
+					<button className='button journal__form-submit' type='submit'>
 						Save story
 					</button>
 				</div>

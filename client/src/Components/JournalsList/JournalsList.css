@@ -1,7 +1,3 @@
-.journals-list {
-  margin: 1rem;
-  margin-top: 2rem;
-}
 .journals-list .journals-list__list {
   padding: 0.5rem;
   margin-top: 1rem;
@@ -10,8 +6,17 @@
   padding: 0.5rem 1rem;
   max-width: 25rem;
   line-height: 2rem;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   border-radius: 5px;
   background: white;
   box-shadow: 0 0 0.75rem #42749e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.journals-list .journals-list__list .journals-list__entry:visited {
+  color: black;
+}
+.journals-list .journals-list__list .journals-list__entry img {
+  width: 30px;
 }

@@ -69,20 +69,47 @@ body {
 .wrapper td {
   padding: 0.2rem 3rem 0.2rem 1rem;
 }
+.wrapper label {
+  display: block;
+  margin: 1rem 2rem 0.3rem;
+  font-weight: bold;
+}
+.wrapper input,
+.wrapper textarea {
+  font-size: 1.3rem;
+  font-family: 'Indie Flower', cursive;
+  border: 2px solid #98e27f;
+  border-radius: 1rem;
+  margin: 0.3rem 1rem 1rem 2rem;
+  width: 90%;
+}
+.wrapper textarea {
+  padding: 1rem;
+  margin: 0.5rem 1rem;
+  resize: vertical;
+  min-height: 13rem;
+  text-align: left;
+}
 .wrapper input {
   border: 2px solid #98e27f;
   border-radius: 1rem;
   padding: 0.5rem 2rem;
   margin: 0.3rem 1rem 1rem;
+  text-align: center;
+}
+@media screen and (min-width: 769px) {
+  .wrapper input {
+    text-align: left;
+  }
 }
 .wrapper b {
   font-weight: bold;
 }
-.wrapper button,
-.wrapper button:active,
-.wrapper button:visited,
-.wrapper button:focus,
-.wrapper button:hover {
+.wrapper .button,
+.wrapper .button:active,
+.wrapper .button:visited,
+.wrapper .button:focus,
+.wrapper .button:hover {
   cursor: pointer;
   border: none;
   outline: none;
@@ -94,6 +121,11 @@ body {
   min-height: 2rem;
   padding: 0.5rem 2rem;
   margin: 0.3rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+}
+.wrapper a {
+  text-decoration: none;
 }
 .wrapper a:active {
   transition: 200ms, ease;

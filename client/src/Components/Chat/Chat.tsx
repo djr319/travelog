@@ -138,7 +138,7 @@ function Chat (): JSX.Element {
               event.key === "Enter" && sendMessage();
             }}
           />
-          <button onClick={sendMessage}>Send</button>
+          < button className="button"  onClick={sendMessage}>Send</button>
         </div>
       </div>
     </div>

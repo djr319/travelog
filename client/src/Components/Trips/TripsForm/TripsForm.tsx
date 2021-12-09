@@ -122,38 +122,43 @@ function TripsForm(): JSX.Element {
         {/* ------------------DATES----------------------------------- */}
         <label>Dates</label>
 
-        <div>
+        <div className="date-picker">
           <DateRangePicker
             wrapperClassName="dates"
             open={isOpen}
             toggle={toggle}
             onChange={(range) => setDateRange(range)}
           />
-          <div
-            className="button-dates"
-            aria-label="toggle dates button"
-            onClick={toggle}
-          >
-            {isOpen ? "Close" : "Set Dates"}
+
+          <div className="button-group">
+            <button
+              className="button"
+              aria-label="toggle dates button"
+              onClick={toggle}
+            >
+              {isOpen ? "Close Date-picker" : "Set Dates"}
+            </button>
           </div>
-        </div>
-        {/* --------------TO VISIT------------------ */}
+    </div>
+        {/* --------------TO VISIT------------------ */ }
         <label>Wish List</label>
 
         <textarea
           className="trips_form-textarea"
-          placeholder="Enter review description..."
+          placeholder={city? "What do you want to do on your " + city + " trip?":"Dream here!"}
           required={true}
           name="review"
           value={visit}
           onChange={(event) => setVisits([event.target.value])}
         />
 
-        <button className="sendButton" type="submit">
+        <div className="button-group">
+        <button className="button" type="submit">
           {state ? "Update" : "Upload"}
-        </button>
-      </form>
-    </div>
+          </button>
+          </div>
+      </form >
+    </div >
   );
 }
 

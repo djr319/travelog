@@ -9,16 +9,18 @@ import {
 } from 'firebase/storage';
 
 type PicturesUploadProps = {
+	givenURL: string;
 	sendUrl: (url: string) => void;
 };
 
 export default function PicturesUpload ({
+	givenURL,
 	sendUrl
 }: PicturesUploadProps): JSX.Element {
 	const [ progress, setProgress ] = useState(0);
+	const [ url, setUrl ] = useState(givenURL);
 
 	const [ image, setImage ] = useState<File>();
-	const [ url, setUrl ] = useState('');
 
 	const storage = getStorage();
 
@@ -28,7 +30,9 @@ export default function PicturesUpload ({
 		}
 	};
 
-	const handleUpload = () => {
+	const handleUpload = (e: React.MouseEvent<HTMLButtonElement>) => {
+		e.preventDefault();
+
 		if (image) {
 			const storageRef = ref(storage, `images/${new Date()}`);
 
@@ -54,23 +58,25 @@ export default function PicturesUpload ({
 			);
 		}
 	};
-  
+
 	return (
-		<div>
-			<div>
-				<progress value={progress} max='100' />
-			</div>
-			<input type='file' onChange={handleChange} />
-			<div>
-				<img
-					style={{ height: 300, width: 400 }}
-					className='journal-picture'
-					src={url || 'http://via.placeholder.com/200x200'}
-					alt='firebase-pic'
-				/>
-			</div>
-			<div className='pictures-button' onClick={handleUpload}>
-				Upload Picture
+    <div className='flex-container'>
+
+			<img
+				style={{ width: 200, borderRadius: 5 }}
+				className='journal-picture'
+				src={url || 'http://via.placeholder.com/200x200'}
+				alt='firebase-pic'
+			/>
+      <progress value={progress} max='100' />
+
+			<div className='button-group'>
+			<label htmlFor="file-upload" className="custom-file-upload">
+      <input id="file-upload" type='file' onChange={handleChange} />
+      Choose Pic</label>
+        <button className='button' onClick={handleUpload}>
+					Upload
+				</button>
 			</div>
 		</div>
 	);

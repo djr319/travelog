@@ -10,7 +10,7 @@ import { JournalPage, JournalMenu } from './index';
 import './Journal.css';
 
 function getFreeJournalId (journals: JournalType[], uid: string) {
-	const nextNum = Math.max(
+	const nextNum = Math.max(0, 
 		...journals
 			.filter((journal) => journal.id.startsWith(uid))
 			.map((journal) => {
@@ -46,7 +46,7 @@ export default function Journal (): JSX.Element {
 	// Mutations
 	const updateJournal = useMutation(
 		({ id, uid, review, photoURL, tags }: JournalType) => {
-			return JournalAPI.submitJournal(uid, { uid, review, id, photoURL, tags });
+			return JournalAPI.submitJournal({ uid, review, id, photoURL, tags });
 		}
 	);
 

@@ -37,23 +37,39 @@ export default function ViewPersonalTrip(): JSX.Element {
 
   return (
     <div className="view-trip">
-      <h3>Destination:</h3>
-      <p>{trip?.city}</p>
-      <h3>From:</h3>
-        <p>{moment(trip?.dateFrom).format("MMM Do YY")}</p>
-      <h3>To:</h3>
-        <p>{moment(trip?.dateTo).format("MMM Do YY")}</p>
+      <h2>Trip Summary</h2>
 
-      <h3>Plan:</h3>
-      <div>{trip?.visit}</div>
+      <table>
+        <tr>
+          <td>Destination:</td>
+          <td className="bold">{trip?.city}</td>
+        </tr>
+        <tr>
+          <td>From:</td>
+          <td className="bold">{moment(trip?.dateFrom).format("MMMM Do YYYY")}</td>
+        </tr>
+        <tr>
+          <td>To:</td>
+          <td className="bold">{moment(trip?.dateTo).format("MMMM Do YYYY")}</td>
+        </tr>
+        <tr>
+          <td>Plan:</td><td></td>
+        </tr>
+        <tr>
+          <td className="bold" colSpan={2 }>{trip?.visit}</td>
+        </tr>
 
-      <button onClick={() => navigate("/trips")}>
+    </table>
+
+      <div className="button-group">
+      < button className="button"  onClick={() => navigate("/trips")}>
         Back
       </button>
 
-      <button onClick={() => navigate("/form", { state: { trip } })}>
+      < button className="button"  onClick={() => navigate("/form", { state: { trip } })}>
         Update
-      </button>
+        </button>
+        </div>
     </div>
   );
 }

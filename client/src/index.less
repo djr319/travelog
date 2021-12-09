@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Montserrat:wght@400&display=swap');
 
+@import './ruleset.less';
+
 :root {
   --base-layer: 0;
   --layer-1: 1;
@@ -68,12 +70,29 @@ table {
 td {
   padding: 0.2rem 3rem 0.2rem 1rem;
 }
+
 label {
+  display: block;
+  margin: 1rem 2rem 0.3rem;
+  font-weight: bold;
+}
+
+input, textarea {
+  font-size: 1.3rem;
+  font-family: 'Indie Flower', cursive;
+  border: 2px solid #98e27f;
+  border-radius: 1rem;
+  margin: 0.3rem 1rem 1rem 2rem;
+  width: 90%;
 
 }
 
 textarea {
-
+  padding: 1rem;
+  margin: 0.5rem 1rem;
+  resize: vertical;
+  min-height: 13rem;
+  text-align: left;
 }
 
 input {
@@ -81,17 +100,21 @@ input {
   border-radius: 1rem;
   padding: 0.5rem 2rem;
   margin: 0.3rem 1rem 1rem;
+  text-align: center;
+  .large-screen ({
+    text-align: left;
+  })
 }
 
 b {
   font-weight: bold;
 }
 
-button,
-button:active,
-button:visited,
-button:focus,
-button:hover {
+.button,
+.button:active,
+.button:visited,
+.button:focus,
+.button:hover {
   cursor: pointer;
   border: none;
   outline: none;
@@ -103,6 +126,12 @@ button:hover {
   min-height: 2rem;
   padding: 0.5rem 2rem;
   margin: 0.3rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none;
 }
 
 a:active {
