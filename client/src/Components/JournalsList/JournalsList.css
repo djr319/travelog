@@ -1,8 +1,11 @@
+.journals-list h3 {
+  text-align: center;
+}
 .journals-list .journals-list__list {
   padding: 0.5rem;
-  margin-top: 1rem;
 }
 .journals-list .journals-list__list .journals-list__entry {
+  margin-top: 1rem;
   padding: 0.5rem 1rem;
   max-width: 25rem;
   line-height: 2rem;
