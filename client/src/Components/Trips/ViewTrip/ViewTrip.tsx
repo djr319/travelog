@@ -62,11 +62,11 @@ export default function ViewPersonalTrip(): JSX.Element {
     </table>
 
       <div className="button-group">
-      <button onClick={() => navigate("/trips")}>
+      < button className="button"  onClick={() => navigate("/trips")}>
         Back
       </button>
 
-      <button onClick={() => navigate("/form", { state: { trip } })}>
+      < button className="button"  onClick={() => navigate("/form", { state: { trip } })}>
         Update
         </button>
         </div>

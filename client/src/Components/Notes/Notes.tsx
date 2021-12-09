@@ -60,7 +60,7 @@ function Notes(): JSX.Element {
           value={note}
           onChange={(e) => setNote(e.target.value)}
         />
-        <button>Add</button>
+        < button className="button" >Add</button>
       </form>
       <SimpleBar style={{ height: '100%' }}>
         <div className="notes-list">

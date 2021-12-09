@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Montserrat:wght@400&display=swap');
 
+@import './ruleset.less';
+
 :root {
   --base-layer: 0;
   --layer-1: 1;
@@ -81,31 +83,38 @@ input, textarea {
   border: 2px solid #98e27f;
   border-radius: 1rem;
   margin: 0.3rem 1rem 1rem 2rem;
-  width: 80%;
+  width: 90%;
+
 }
 
 textarea {
   padding: 1rem;
+  margin: 0.5rem 1rem;
   resize: vertical;
-  min-height: 3rem;
+  min-height: 13rem;
+  text-align: left;
 }
 
 input {
   border: 2px solid #98e27f;
   border-radius: 1rem;
   padding: 0.5rem 2rem;
-  margin: 0.3rem 1rem 1rem 2rem;
+  margin: 0.3rem 1rem 1rem;
+  text-align: center;
+  .large-screen ({
+    text-align: left;
+  })
 }
 
 b {
   font-weight: bold;
 }
 
-button,
-button:active,
-button:visited,
-button:focus,
-button:hover {
+button.button,
+button.button:active,
+button.button:visited,
+button.button:focus,
+button.button:hover {
   cursor: pointer;
   border: none;
   outline: none;

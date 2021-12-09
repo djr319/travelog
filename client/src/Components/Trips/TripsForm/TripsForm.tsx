@@ -149,7 +149,7 @@ function TripsForm(): JSX.Element {
           onChange={(event) => setVisits([event.target.value])}
         />
 
-        <button className="sendButton" type="submit">
+        <button className="button sendButton" type="submit">
           {state ? "Update" : "Upload"}
         </button>
       </form>

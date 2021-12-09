@@ -66,11 +66,11 @@ export default function JournalPage ({
 					<img className='journal__photo' src={photoURL} alt='picture' />
           <div className='journal__view-text'>{text}</div>
           <div className="button-group">
-					<button className='journal__view-update' onClick={sendUpdate}>
+					<button className='button journal__view-update' onClick={sendUpdate}>
 						Update
 					</button>
 					<button
-						className='journal__view-delete'
+						className='button journal__view-delete'
 						onClick={(e) => deleteEntry(e, id)}>
 						Delete
             </button>
@@ -98,7 +98,7 @@ export default function JournalPage ({
 					) : (
 						<p>{text.length}/{MAX_LEN} characters</p>
 					)}
-					<button className='journal__form-submit' type='submit'>
+					<button className='button journal__form-submit' type='submit'>
 						Save story
 					</button>
 				</div>

@@ -68,7 +68,7 @@ export default function PicturesUpload({
         />
         <progress value={progress} max='100' />
       <div className="button-group">
-      <button className='pictures-button' onClick={handleUpload}>
+      <button className='button pictures-button' onClick={handleUpload}>
         Upload Picture
         </button>
         </div>
