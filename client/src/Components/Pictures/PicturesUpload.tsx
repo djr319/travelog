@@ -60,18 +60,22 @@ export default function PicturesUpload ({
 	};
 
 	return (
-		<div className='flex-container'>
-			<input type='file' onChange={handleChange} />
+    <div className='flex-container'>
+
 			<img
 				style={{ width: 200, borderRadius: 5 }}
 				className='journal-picture'
 				src={url || 'http://via.placeholder.com/200x200'}
 				alt='firebase-pic'
 			/>
-			<progress value={progress} max='100' />
+      <progress value={progress} max='100' />
+
 			<div className='button-group'>
-				<button className='button' onClick={handleUpload}>
-					Upload Picture
+			<label htmlFor="file-upload" className="custom-file-upload">
+      <input id="file-upload" type='file' onChange={handleChange} />
+      Choose Pic</label>
+        <button className='button' onClick={handleUpload}>
+					Upload
 				</button>
 			</div>
 		</div>

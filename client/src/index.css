@@ -105,11 +105,11 @@ body {
 .wrapper b {
   font-weight: bold;
 }
-.wrapper button.button,
-.wrapper button.button:active,
-.wrapper button.button:visited,
-.wrapper button.button:focus,
-.wrapper button.button:hover {
+.wrapper .button,
+.wrapper .button:active,
+.wrapper .button:visited,
+.wrapper .button:focus,
+.wrapper .button:hover {
   cursor: pointer;
   border: none;
   outline: none;
@@ -121,6 +121,8 @@ body {
   min-height: 2rem;
   padding: 0.5rem 2rem;
   margin: 0.3rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
 }
 .wrapper a {
   text-decoration: none;
