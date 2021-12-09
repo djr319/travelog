@@ -60,7 +60,7 @@ export default function ViewProfile(): JSX.Element {
           <td className="bold" colSpan={2}>{profile.interests}</td>
         </tr>
     </table>
-      <button
+      < button className="button"
         onClick={() =>
           navigate("/updateProfile", {
             state: {
