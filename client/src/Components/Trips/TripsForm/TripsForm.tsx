@@ -142,7 +142,7 @@ function TripsForm(): JSX.Element {
 
         <textarea
           className="trips_form-textarea"
-          placeholder="Enter review description..."
+          placeholder={city? "What do you want to do on your " + city + " trip?":"Dream here!"}
           required={true}
           name="review"
           value={visit}
