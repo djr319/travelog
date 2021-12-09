@@ -3,6 +3,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
+  margin-left: 1.7rem;
 }
 .trip-wrapper .container {
   color: #e2b007;
