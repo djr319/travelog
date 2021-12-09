@@ -19,6 +19,7 @@ export default function JournalPage ({
 	deleteEntry
 }: JournalPageProps): JSX.Element {
 	const { id, uid, review, photoURL, tags } = journal;
+	console.log(journal);
 
 	const [ text, setText ] = useState('');
 	const [ photo, setPhoto ] = useState('');
@@ -43,7 +44,10 @@ export default function JournalPage ({
 
 		const text = e.currentTarget.value;
 		setText(text);
-		setPhoto(photo);
+	}
+
+	function updatePhoto (url: string) {
+		setPhoto(url);
 	}
 
 	function sendUpdate (e: MouseEvent<HTMLButtonElement>) {
@@ -52,10 +56,6 @@ export default function JournalPage ({
 		const journal = {id, uid, review: text, photoURL: photo, tags: tags};
 		handleSubmit(journal);
 		setInViewMode(false);
-	}
-
-	function updatePhoto (url: string) {
-		setPhoto(url);
 	}
 
 	return (
@@ -79,7 +79,7 @@ export default function JournalPage ({
 			) : (
           <div className="flex-container">
             <h2>Journal Entry</h2>
-					<PicturesUpload sendUrl={updatePhoto} />
+					<PicturesUpload givenURL={photoURL} sendUrl={updatePhoto} />
 
 						<textarea
 							className='journal__form-textarea'

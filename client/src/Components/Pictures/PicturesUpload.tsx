@@ -1,77 +1,79 @@
 import { useState } from 'react';
 
 import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-  UploadTaskSnapshot
+	getStorage,
+	ref,
+	uploadBytesResumable,
+	getDownloadURL,
+	UploadTaskSnapshot
 } from 'firebase/storage';
 
 type PicturesUploadProps = {
-  sendUrl: (url: string) => void;
+	givenURL: string;
+	sendUrl: (url: string) => void;
 };
 
-export default function PicturesUpload({
-  sendUrl
+export default function PicturesUpload ({
+	givenURL,
+	sendUrl
 }: PicturesUploadProps): JSX.Element {
-  const [progress, setProgress] = useState(0);
+	const [ progress, setProgress ] = useState(0);
+	const [ url, setUrl ] = useState(givenURL);
 
-  const [image, setImage] = useState<File>();
-  const [url, setUrl] = useState('');
+	const [ image, setImage ] = useState<File>();
 
-  const storage = getStorage();
+	const storage = getStorage();
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      setImage(event.target.files[0]);
-    }
-  };
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (event.target.files && event.target.files[0]) {
+			setImage(event.target.files[0]);
+		}
+	};
 
-  const handleUpload = () => {
-    if (image) {
-      const storageRef = ref(storage, `images/${new Date()}`);
+	const handleUpload = (e: React.MouseEvent<HTMLButtonElement>) => {
+		e.preventDefault();
 
-      const uploadTask = uploadBytesResumable(storageRef, image);
+		if (image) {
+			const storageRef = ref(storage, `images/${new Date()}`);
 
-      uploadTask.on(
-        'state_changed',
-        (snapshot: UploadTaskSnapshot) => {
-          const progress = Math.round(
-            snapshot.bytesTransferred / snapshot.totalBytes * 100
-          );
-          setProgress(progress);
-        },
-        (error: Error) => {
-          console.log(error);
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
-            setUrl(url);
-            sendUrl(url);
-          });
-        }
-      );
-    }
-  };
+			const uploadTask = uploadBytesResumable(storageRef, image);
 
-  return (
-    <div className="flex-container">
+			uploadTask.on(
+				'state_changed',
+				(snapshot: UploadTaskSnapshot) => {
+					const progress = Math.round(
+						snapshot.bytesTransferred / snapshot.totalBytes * 100
+					);
+					setProgress(progress);
+				},
+				(error: Error) => {
+					console.log(error);
+				},
+				() => {
+					getDownloadURL(uploadTask.snapshot.ref).then((url: string) => {
+						setUrl(url);
+						sendUrl(url);
+					});
+				}
+			);
+		}
+	};
 
-      <input type='file' onChange={handleChange} />
-
-        <img
-          style={{ height: 300, width: 400 }}
-          className='journal-picture'
-          src={url || 'http://via.placeholder.com/200x200'}
-          alt='firebase-pic'
-        />
-        <progress value={progress} max='100' />
-      <div className="button-group">
-      <button className='pictures-button' onClick={handleUpload}>
-        Upload Picture
-        </button>
-        </div>
-    </div>
-  );
+	return (
+		<div className='flex-container'>
+			<input type='file' onChange={handleChange} />
+			<div className='button-group'>
+				<button className='pictures-button' onClick={handleUpload}>
+					Upload Picture
+				</button>
+			</div>
+			<progress value={progress} max='100' />
+			<img
+				style={{ width: 200, borderRadius: 5 }}
+				className='journal-picture'
+				src={url || 'http://via.placeholder.com/200x200'}
+				alt='firebase-pic'
+			/>
+		</div>
+	);
 }
