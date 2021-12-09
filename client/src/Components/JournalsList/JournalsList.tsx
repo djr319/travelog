@@ -16,9 +16,10 @@ export default function JournalsList({
       <h3>Journals matching your interests</h3>
       <div className="journals-list__list">
         {journals.length &&
-          journals.map(({ review }, i) => (
+          journals.map(({ review, photoURL }, i) => (
             <div key={review + i} className="journals-list__entry">
               {review}
+              <img src={photoURL} />
             </div>
           ))}
       </div>
