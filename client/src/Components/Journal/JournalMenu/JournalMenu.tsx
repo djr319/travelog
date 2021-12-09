@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Journal } from 'Types/index';
 import Arrow from 'Assets/arrow.svg';
 import MenuEntry from './MenuEntry';
+import { GrCatalog } from "react-icons/gr";
 import './JournalMenu.css';
 
 type JournalMenuProps = {
@@ -13,7 +14,7 @@ type JournalMenuProps = {
 	handleNew: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
-const MENU_WIDTH = 150;
+const MENU_WIDTH = 350;
 
 export default function JournalMenu ({
 	journals,
@@ -35,14 +36,7 @@ export default function JournalMenu ({
 
 	return (
 		<div className='journal__menu' style={{ left: menuPos }}>
-			<div className='journal__menu-button-container'>
-				<img
-					className='journal__menu-button'
-					src={Arrow}
-					onClick={toggleMenu}
-					style={{ transform: `rotate(${arrowRot}deg)` }}
-				/>
-			</div>
+
 			<div className='journal__menu-select-container'>
 				<div className='journal__menu-select'>
 					{journals.map((entry) => (
@@ -59,6 +53,9 @@ export default function JournalMenu ({
 						New story
 					</div>
 				</div>
+      </div>
+      <div className='journal__menu-button-container' onClick={toggleMenu}>
+        <GrCatalog/>
 			</div>
 		</div>
 	);
