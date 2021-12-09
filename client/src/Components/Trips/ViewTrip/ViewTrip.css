@@ -1,3 +1,6 @@
-.view-trip button {
-  margin-top: 2rem;
+.view-trip {
+  padding-left: 3rem;
+}
+.bold {
+  font-weight: bold;
 }

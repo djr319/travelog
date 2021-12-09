@@ -58,6 +58,15 @@
 .auth-wrapper .logo {
   height: 5.5rem;
 }
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.button-group {
+  display: flex;
+  justify-content: center;
+}
 .chat,
 .journal,
 .journals-list,
