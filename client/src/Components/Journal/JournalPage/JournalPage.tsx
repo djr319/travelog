@@ -77,9 +77,10 @@ export default function JournalPage ({
             </div>
 				</div>
 			) : (
-				<div>
+          <div className="flex-container">
+            <h2>Journal Entry</h2>
 					<PicturesUpload sendUrl={updatePhoto} />
-					<div className='journal__form-textarea-container'>
+
 						<textarea
 							className='journal__form-textarea'
 							placeholder='Enter review description...'
@@ -90,12 +91,12 @@ export default function JournalPage ({
 							value={text}
 							onInput={updateReview}
 						/>
-					</div>
+
 
 					{text.length < MIN_LEN ? (
-						'Insufficient characters.'
+						<p className="warn">Insufficient characters.</p>
 					) : (
-						`${text.length}/${MAX_LEN} characters.`
+						<p>{text.length}/{MAX_LEN} characters</p>
 					)}
 					<button className='journal__form-submit' type='submit'>
 						Save story

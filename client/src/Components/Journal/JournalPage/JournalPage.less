@@ -69,28 +69,7 @@
   }
 
 
-  .journal__form-textarea-container {
-    height: 100%;
-    background-color: white;
-    padding: 0.5rem;
-
-    color: rgba(128, 128, 128, 0.561);
-    font-size: 0.75rem;
-    text-align: right;
-    overflow-y: scroll;
-
-    border-radius: 5px;
-
-    & .journal__form-textarea {
-      width: 100%;
-      height: 95%;
-      padding: 0.25rem;
-      resize: none;
-
-      // font-family: @journal-font;
-      font-size: 1.25rem;
-
-      border-radius: 3px;
+    .journal__form-textarea {
 
       // NOTE style displayed when textarea is in invalid state
       // e.g. empty, even though it's required
@@ -100,15 +79,9 @@
         border-color: red;
       }
     }
-  }
 
   & .journal__form-submit {
-    margin-top: 1rem;
-    padding: 0.5rem;
-    border-radius: 10px;
 
-    line-height: 2rem;
-    font-size: 1.5rem;
 
     &:active {
       // background-color: @bg-color;
@@ -160,4 +133,15 @@
       // background-color: @bg-color;
     }
   }
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: pink;
+}
+
+.warn {
+  color: red;
 }

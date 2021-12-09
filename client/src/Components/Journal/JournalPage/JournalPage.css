@@ -26,34 +26,9 @@
 .journal__form .journal__view-delete {
   background-color: #ff4d4d;
 }
-.journal__form .journal__form-textarea-container {
-  height: 100%;
-  background-color: white;
-  padding: 0.5rem;
-  color: rgba(128, 128, 128, 0.561);
-  font-size: 0.75rem;
-  text-align: right;
-  overflow-y: scroll;
-  border-radius: 5px;
-}
-.journal__form .journal__form-textarea-container .journal__form-textarea {
-  width: 100%;
-  height: 95%;
-  padding: 0.25rem;
-  resize: none;
-  font-size: 1.25rem;
-  border-radius: 3px;
-}
-.journal__form .journal__form-textarea-container .journal__form-textarea:invalid {
+.journal__form .journal__form-textarea:invalid {
   background-color: #fff3f3;
   border-color: red;
-}
-.journal__form .journal__form-submit {
-  margin-top: 1rem;
-  padding: 0.5rem;
-  border-radius: 10px;
-  line-height: 2rem;
-  font-size: 1.5rem;
 }
 .journal__view {
   height: 100%;
@@ -87,4 +62,13 @@
   border-radius: 10px;
   line-height: 2rem;
   font-size: 1.5rem;
+}
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: pink;
+}
+.warn {
+  color: red;
 }
