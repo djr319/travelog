@@ -2,7 +2,7 @@
   --journal-font: 'Indie Flower', cursive;
   min-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height));
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .journal {
     min-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height) - 3rem);
   }
