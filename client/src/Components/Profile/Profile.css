@@ -3,21 +3,12 @@
   justify-content: center;
   gap: 3rem;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .profile .profile-flex {
     flex-direction: column;
     text-align: center;
     gap: 0rem;
   }
-}
-.profile .profile-flex input {
-  width: 70%;
-}
-.profile .profile-flex .profile-label {
-  display: block;
-  font-size: 15px;
-  font-weight: 500;
-  padding-top: 15px;
 }
 .profile .profile-flex .profile-img {
   width: 10rem;
@@ -27,8 +18,9 @@
 }
 .profile .center {
   text-align: center;
+  width: 100%;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .profile .center {
     margin-top: 2rem;
   }

@@ -134,14 +134,13 @@ export default function Profile(): JSX.Element {
       <div className="center">
         <label className="profile-label">My Interests</label>
         <p>
-          <input
-            type="text"
-            placeholder="type few words about yourself..."
+          <textarea
+            placeholder="Write a few words about yourself..."
             value={interests}
             onChange={(event) => setInterests(event.target.value)}
-          ></input>
+          ></textarea>
         </p>
-        <button type="submit">
+        < button className="button"  type="submit">
           Save
         </button>
       </div>

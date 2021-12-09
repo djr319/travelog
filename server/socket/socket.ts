@@ -27,7 +27,7 @@ function socket({ io }: { io: Server }) {
       socket.broadcast.emit("to-all", {
         room: '0',
         // from: messageData.from,
-        from: 'Demo User',
+        from: 'Tenzing',
         to: 'all',
         message: messageData.message,
         // photo: messageData.photo,
