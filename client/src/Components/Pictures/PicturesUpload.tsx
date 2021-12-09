@@ -29,7 +29,9 @@ export default function PicturesUpload ({
 		}
 	};
 
-	const handleUpload = () => {
+	const handleUpload = (e: React.MouseEvent<HTMLButtonElement>) => {
+		e.preventDefault();
+
 		if (image) {
 			const storageRef = ref(storage, `images/${new Date()}`);
 
