@@ -18,7 +18,7 @@ export default function JournalsList({
         {journals.length &&
           journals.map(({ review, photoURL }, i) => (
             <div key={review + i} className="journals-list__entry">
-              {review}
+              <span>{review}</span>
               <img src={photoURL} />
             </div>
           ))}
