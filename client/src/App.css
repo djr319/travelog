@@ -4,6 +4,22 @@
   margin: 0 auto;
   min-height: 100vh;
 }
+.wrapper .delete,
+.wrapper .delete:hover {
+  height: 1.3rem;
+  min-height: 1.3rem;
+  width: 1.3rem;
+  padding: 0;
+  border-radius: 50%;
+  color: white;
+  background: black;
+  border: none;
+  text-shadow: 0 0 3px black;
+  box-shadow: 2px 2px 4px rgba(33, 33, 33, 0.7);
+}
+.wrapper .delete:hover {
+  transform: scale3d(1.1, 1.1, 1.1);
+}
 .not-logged-in {
   position: absolute;
   top: 0;
@@ -17,7 +33,7 @@
   background-position: top 0px left -100px;
   min-height: calc( 100vh - var(--footer-height));
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .app {
     background-size: 120%, 120%;
     background-position: top -50px left -100px;
@@ -42,6 +58,15 @@
 .auth-wrapper .logo {
   height: 5.5rem;
 }
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.button-group {
+  display: flex;
+  justify-content: center;
+}
 .chat,
 .journal,
 .journals-list,
@@ -49,12 +74,13 @@
 .profile,
 .profile-view,
 .trips,
+.trip,
 .trip-list,
 .view-trip,
 .weather {
   padding: 0.5rem 1rem 1rem;
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
   .chat,
   .journal,
   .journals-list,
@@ -62,6 +88,7 @@
   .profile,
   .profile-view,
   .trips,
+  .trip,
   .trip-list,
   .view-trip,
   .weather {

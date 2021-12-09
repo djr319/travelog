@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Journal } from 'Types/index';
 import Arrow from 'Assets/arrow.svg';
 import MenuEntry from './MenuEntry';
+import './JournalMenu.css';
 
 type JournalMenuProps = {
 	journals: Journal[];

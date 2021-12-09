@@ -9,8 +9,7 @@
 }
 @media screen and (min-width: 769px) {
   .chat .chat-wrapper {
-    font-size: 60%;
-    width: 25rem;
+    width: 35rem;
     margin: 0rem auto;
     display: flex;
     flex-direction: column;

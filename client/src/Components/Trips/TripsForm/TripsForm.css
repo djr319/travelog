@@ -1,9 +1,4 @@
-.trip {
-  padding: 1rem;
-}
 .trip form {
-  border-radius: 1rem;
-  border: 3px solid var(--travelog-green);
   padding: 1rem 1rem;
   display: flex;
   flex-direction: column;
@@ -12,29 +7,15 @@
   width: 7rem;
   margin: 2rem auto 1rem;
 }
-.trip label {
-  display: block;
-  margin: 1rem 0 0.3rem;
-  font-weight: bold;
-}
-.trip input,
-.trip textarea {
-  font-size: 1.5rem;
-  font-family: 'Indie Flower', cursive;
-  padding: 0.3rem;
-}
-.trip textarea {
-  min-height: 5rem;
-}
-.materialui-daterange-picker-MuiListItem-button-269 {
+.trip .materialui-daterange-picker-MuiListItem-button-269 {
   display: none !important;
   pointer-events: none !important;
   cursor: default !important;
   visibility: hidden !important;
 }
-.button-dates {
+.trip .button-dates {
   background-color: var(--travelog-green);
 }
-.materialui-daterange-picker-MuiGrid-wrap-xs-nowrap-42 {
+.trip .materialui-daterange-picker-MuiGrid-wrap-xs-nowrap-42 {
   flex-wrap: wrap !important;
 }

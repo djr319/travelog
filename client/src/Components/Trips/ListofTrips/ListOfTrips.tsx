@@ -36,13 +36,15 @@ export default function ListOfTrips(): JSX.Element {
             <PersonalTrip trip={trip} setTrips={setTrips} key={trip.id} />
           ))
         ) : (
-          <p>Time to plan your first trip!</p>
+          <p className="no-trips">Time to plan your first trip!</p>
         )}
-        <Link to="/form" className="add-trip">
-          <button>Add trip</button>
-        </Link>
 
+        <Link to="/form" className="add-trip">
+          <h2>Add trip</h2>
+        </Link>
       </div>
     </div>
   );
 }
+
+
