@@ -122,22 +122,25 @@ function TripsForm(): JSX.Element {
         {/* ------------------DATES----------------------------------- */}
         <label>Dates</label>
 
-        <div>
+        <div className="date-picker">
           <DateRangePicker
             wrapperClassName="dates"
             open={isOpen}
             toggle={toggle}
             onChange={(range) => setDateRange(range)}
           />
-          <div
-            className="button-dates"
-            aria-label="toggle dates button"
-            onClick={toggle}
-          >
-            {isOpen ? "Close" : "Set Dates"}
+
+          <div className="button-group">
+            <button
+              className="button"
+              aria-label="toggle dates button"
+              onClick={toggle}
+            >
+              {isOpen ? "Close Date-picker" : "Set Dates"}
+            </button>
           </div>
-        </div>
-        {/* --------------TO VISIT------------------ */}
+    </div>
+        {/* --------------TO VISIT------------------ */ }
         <label>Wish List</label>
 
         <textarea
@@ -149,11 +152,13 @@ function TripsForm(): JSX.Element {
           onChange={(event) => setVisits([event.target.value])}
         />
 
-        <button className="button sendButton" type="submit">
+        <div className="button-group">
+        <button className="button" type="submit">
           {state ? "Update" : "Upload"}
-        </button>
-      </form>
-    </div>
+          </button>
+          </div>
+      </form >
+    </div >
   );
 }
 
