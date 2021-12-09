@@ -10,4 +10,13 @@
   border-radius: 5px;
   background: white;
   box-shadow: 0 0 0.75rem #42749e;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.journals-list .journals-list__list .journals-list__entry:visited {
+  color: black;
+}
+.journals-list .journals-list__list .journals-list__entry img {
+  width: 30px;
 }

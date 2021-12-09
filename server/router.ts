@@ -10,7 +10,7 @@ router.post("/trips", controller.addNewTrip);
 router.get("/trips/:id", controller.getPersonalTrips);
 router.put("/trips/:id", controller.updateTrip);
 router.delete("/trips/:id", controller.deleteTrip);
-router.post("/journals/:id", controller.submitJournal);
+router.post("/journals/submit", controller.submitJournal);
 router.post("/journals/match/:uid", controller.getMatchingJournals);
 router.get("/journals/:uid", controller.getPersonalJournals);
 router.delete("/journals/:id", controller.deleteJournal);
