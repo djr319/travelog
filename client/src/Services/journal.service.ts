@@ -3,8 +3,8 @@ import { Journal } from 'Types/index';
 
 const JOURNALS_URL = '/journals';
 
-export function submitJournal(uid: string, journal: Journal): Promise<Journal> {
-  return fetchRequest(`${JOURNALS_URL}/${uid}`, {
+export function submitJournal(journal: Journal): Promise<Journal> {
+  return fetchRequest(`${JOURNALS_URL}/submit`, {
     method: 'POST',
     mode: 'cors',
     headers: { 'Content-Type': 'application/json' },

@@ -155,11 +155,10 @@ const deleteTrip = async (req: Request, res: Response): Promise<void> => {
 
 const submitJournal = async (req: Request, res: Response): Promise<void> => {
 	try {
-		const { id } = req.params;
 		const data = req.body;
 		const trip = await prisma.journal.upsert({
 			where: {
-				id
+				id: data.id
 			},
 			update: data,
 			create: data
