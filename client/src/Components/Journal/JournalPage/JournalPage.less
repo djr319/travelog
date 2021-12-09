@@ -1,11 +1,73 @@
 .journal__form {
-  height: 100%;
-  margin: 1rem;
-  margin-top: 3rem;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 0 1rem;
+
+  // .makeRandom(@min: 0, @max: @min+1, @int: 0) {
+  //   .checkInt() {
+  //     @getNum: `Math.random() * (@{max} - @{min} + @{int})`;
+  //     @base: unit(`@{int} == 1 ? Math.floor(@{getNum}) : @{getNum}`);
+  //   }
+  //   .checkInt();
+  //   @randNum: @base + @min;
+  // }
+
+  // .rand {
+  //   .makeRandom(10, 20, 1); /* random integer  10 - 20 */
+  //   random-number: @randNum;
+  // }
+
+  .journal-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  .journal__photo {
+    margin: 2rem auto 1rem;
+    width: 90%;
+    position: relative;
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.2);
+    border: 15px solid white;
+    transform: rotate(-0.7deg;);
+    position: relative;
+  }
+
+  // .journal__photo:before {
+  //   content: " ";
+  //   position: absolute;
+  //   top: -1px;
+  //   right: -1px;
+  //   border-width: 0 32px 32px 0;
+  //   border-style: solid;
+  //   border-color: transparent rgba(255,255,255,0.5) transparent rgba(255,255,255,0.5);
+  //   box-shadow: 1px -1px 1px rgba(0,0,0,0.1);
+  // }
+
+  // .journal__photo:after {
+  //   position: absolute;
+  //   bottom: -1px;
+  //   left: -1px;
+  //   border-width: 0 32px 32px 0;
+  //   border-style: solid;
+  //   border-color: rgba(255,255,255,0.8) transparent rgba(255,255,255,0.8) transparent;
+  //   box-shadow: -1px 1px 1px rgba(0,0,0,0.1);
+  // }
+
+  .journal__view-text {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.3rem;
+    margin: 1rem;
+  }
+
+  .button-group {
+    display: flex;
+  }
+
+  .journal__view-delete {
+    background-color: lighten( red, 15%);
+  }
+
 
   .journal__form-textarea-container {
     height: 100%;
@@ -54,10 +116,6 @@
   }
 }
 
-.journal__photo {
-  max-width: 300px;
-}
-
 .journal__view {
   height: 100%;
   margin: 1.5rem;
@@ -72,7 +130,7 @@
     height: 100%;
     padding: 0.5rem;
     resize: none;
-    
+
     background-color: black;
     border: solid 1px black;
     border-radius: 3px;

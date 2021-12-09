@@ -1,10 +1,30 @@
 .journal__form {
-  height: 100%;
-  margin: 1rem;
-  margin-top: 3rem;
+  margin: 0 1rem;
+}
+.journal__form .journal-group {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+}
+.journal__form .journal__photo {
+  margin: 2rem auto 1rem;
+  width: 90%;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+  border: 15px solid white;
+  transform: rotate(-0.7deg);
+  position: relative;
+}
+.journal__form .journal__view-text {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.3rem;
+  margin: 1rem;
+}
+.journal__form .button-group {
+  display: flex;
+}
+.journal__form .journal__view-delete {
+  background-color: #ff4d4d;
 }
 .journal__form .journal__form-textarea-container {
   height: 100%;
@@ -34,9 +54,6 @@
   border-radius: 10px;
   line-height: 2rem;
   font-size: 1.5rem;
-}
-.journal__photo {
-  max-width: 300px;
 }
 .journal__view {
   height: 100%;

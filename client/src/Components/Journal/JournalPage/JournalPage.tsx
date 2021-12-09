@@ -60,12 +60,12 @@ export default function JournalPage ({
 
 	return (
 		<form className='journal__form' onSubmit={sendSubmit}>
-			<p>Pictures</p>
 
 			{inViewMode ? (
-				<div>
+				<div className="journal-group">
 					<img className='journal__photo' src={photoURL} alt='picture' />
-					<div className='journal__view-text'>{text}</div>
+          <div className='journal__view-text'>{text}</div>
+          <div className="button-group">
 					<button className='journal__view-update' onClick={sendUpdate}>
 						Update
 					</button>
@@ -73,7 +73,8 @@ export default function JournalPage ({
 						className='journal__view-delete'
 						onClick={(e) => deleteEntry(e, id)}>
 						Delete
-					</button>
+            </button>
+            </div>
 				</div>
 			) : (
 				<div>
