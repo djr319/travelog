@@ -31,10 +31,9 @@
   .journal__menu {
     position: fixed;
     padding-left: 1rem;
-    left: 0;
+    left: 5rem;
     top: 8rem;
     z-index:101;
-    width: 100vw;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -44,7 +43,8 @@
   }
 
   .journal__menu-select-container {
-    width: ~"calc(100vw - 5rem)";
+    // width: 330px;
+    width: ~"min(80vw, 330px)";
     background: white;
     border: 3px solid var(--travelog-green);
     border-radius: 0.5rem;
@@ -64,7 +64,6 @@
     padding-top: 0.5rem;
     background: var(--travelog-green);
     color: white;
-    z-index: 100;
   }
 
   .journal__menu-select-entry {
