@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Journal } from 'Types/index';
-import Arrow from 'Assets/arrow.svg';
 import MenuEntry from './MenuEntry';
 import { GrCatalog } from "react-icons/gr";
 import './JournalMenu.css';
@@ -22,7 +21,6 @@ export default function JournalMenu ({
 	handleNew
 }: JournalMenuProps): JSX.Element {
 	const [ menuPos, setMenuPos ] = useState(-MENU_WIDTH);
-	const [ arrowRot, setArrowRot ] = useState(180);
 
 	function toggleMenu () {
 		setMenuPos((prev) => {
@@ -31,7 +29,18 @@ export default function JournalMenu ({
 			}
 			return 0;
 		});
-		setArrowRot((prev) => 180 - prev);
+	}
+
+	function sendClick(e: React.MouseEvent<HTMLDivElement>, id: string) {
+		toggleMenu();
+		
+		handleClick(e, id);
+	}
+
+	function sendNew(e: React.MouseEvent<HTMLDivElement>) {
+		toggleMenu();
+		
+		handleNew(e);
 	}
 
 	return (
@@ -44,12 +53,12 @@ export default function JournalMenu ({
 							key={entry.id}
 							id={entry.id}
 							text={entry.review}
-							handleClick={handleClick}
+							handleClick={(e) => sendClick(e, entry.id)}
 						/>
 					))}
 					<div
 						className={`journal__menu-select-entry last`}
-						onClick={handleNew}>
+						onClick={sendNew}>
 						New story
 					</div>
 				</div>
