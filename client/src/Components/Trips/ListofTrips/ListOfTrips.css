@@ -3,6 +3,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
+  margin-left: 1.7rem;
 }
 .trip-wrapper .container {
   color: #e2b007;
@@ -16,7 +17,7 @@
   width: 8rem;
   height: 12rem;
   border-radius: 2px 4px 4px 2px;
-  background: linear-gradient(45deg, #DAD5DC 0%, #f2ebf4 100%);
+  background: linear-gradient(45deg, #dad5dc 0%, #f2ebf4 100%);
   box-shadow: 10px 10px 8px 0px rgba(151, 146, 153, 0.6);
   font-weight: 400;
   transform-style: preserve-3d;
@@ -47,12 +48,12 @@
   width: 40px;
   left: -20px;
   height: 12rem;
-  background-color: #8B0000;
+  background-color: #8b0000;
   border-radius: 2px;
   transform: rotate3d(0, 1, 0, -90deg);
 }
 .trip-wrapper .container .front:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 1px;
   bottom: 1px;
@@ -60,7 +61,7 @@
   width: 1px;
 }
 .trip-wrapper .container .cover:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 10px;
@@ -73,7 +74,7 @@
   color: inherit;
 }
 .trip-wrapper .cover {
-  background: linear-gradient(165deg, #8B0000, #990000);
+  background: linear-gradient(165deg, #8b0000, #990000);
 }
 .trip-wrapper .left-side h2 {
   font-size: 0.8rem;
