@@ -18,7 +18,6 @@ export default function ListOfTrips(): JSX.Element {
       const tripB = new Date(b.dateFrom).getTime();
       return tripB - tripA;
     });
-
     setTrips(sortedTrips);
   };
 
@@ -30,7 +29,6 @@ export default function ListOfTrips(): JSX.Element {
     <div className="trip-list">
       <h2>My Trip Planning</h2>
       <div className="trip-wrapper">
-
         {trips && trips.length ? (
           trips.map((trip) => (
             <PersonalTrip trip={trip} setTrips={setTrips} key={trip.id} />
@@ -38,7 +36,6 @@ export default function ListOfTrips(): JSX.Element {
         ) : (
           <p className="no-trips">Time to plan your first trip!</p>
         )}
-
         <Link to="/form" className="add-trip">
           <h2>Add trip</h2>
         </Link>
@@ -46,5 +43,3 @@ export default function ListOfTrips(): JSX.Element {
     </div>
   );
 }
-
-

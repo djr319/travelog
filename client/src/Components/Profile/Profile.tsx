@@ -11,7 +11,6 @@ export default function Profile(): JSX.Element {
   const [firstName, setFirstname] = useState("");
   const [lastName, setLastname] = useState("");
   const [interests, setInterests] = useState("");
-
   const navigate = useNavigate();
 
   const { state } = useLocation();
@@ -57,6 +56,7 @@ export default function Profile(): JSX.Element {
       interests,
     });
   }
+
   const handleSubmit = (event: SyntheticEvent) => {
     event.preventDefault();
 
@@ -90,9 +90,7 @@ export default function Profile(): JSX.Element {
         <div className="flex-item">
           {/* ---------------------profile picture----------- */}
           <label className="profile-label">Profile Picture</label>
-
           <img className="profile-img" src={photoURL} alt="profile-picture" />
-
           {/* --------------------usename------------------- */}
           <label className="profile-label">Username</label>
           <input
@@ -127,7 +125,6 @@ export default function Profile(): JSX.Element {
             value={lastName}
             onChange={(event) => setLastname(event.target.value)}
           ></input>
-
         </div>
       </div>
       {/* ---------------genenal interests------------------------ */}

@@ -12,6 +12,7 @@ const checkUser = async (req: Request, res: Response): Promise<void> => {
 			photoURL,
 			email
 		};
+
 		let user = await prisma.user.upsert({
 			where: {
 				uid
@@ -104,7 +105,6 @@ const addNewTrip = async (req: Request, res: Response): Promise<void> => {
 const getPersonalTrips = async (req: Request, res: Response): Promise<void> => {
 	try {
 		const { id: uid } = req.params;
-
 		const user = await prisma.user.findUnique({
 			where: {
 				uid
@@ -171,10 +171,7 @@ const submitJournal = async (req: Request, res: Response): Promise<void> => {
 	}
 };
 
-const getPersonalJournals = async (
-	req: Request,
-	res: Response
-): Promise<void> => {
+const getPersonalJournals = async (req: Request, res: Response): Promise<void> => {
 	try {
 		const uid = req.params.uid;
 		const user = await prisma.user.findUnique({
@@ -193,10 +190,7 @@ const getPersonalJournals = async (
 	}
 };
 
-const getMatchingJournals = async (
-	req: Request,
-	res: Response
-): Promise<void> => {
+const getMatchingJournals = async (req: Request, res: Response): Promise<void> => {
 	try {
 		const { uid } = req.params;
 		const { tags } = req.body;
@@ -304,10 +298,7 @@ const deleteNote = async (req: Request, res: Response): Promise<void> => {
 	}
 };
 
-const getPublicJournals = async (
-	req: Request,
-	res: Response
-): Promise<void> => {
+const getPublicJournals = async (req: Request, res: Response): Promise<void> => {
 	try {
 		const user = await prisma.user.findMany({
 			select: {

@@ -48,7 +48,6 @@ export default function JournalMenu ({
 
 	return (
 		<div className='journal__menu' style={{ left: menuPos }}>
-
       <div className='journal__menu-select-container'>
 				<div className='journal__menu-select'>
         {/* <SimpleBar style={{ height: '100%' }}> */}
