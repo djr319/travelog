@@ -4,7 +4,7 @@ Travelog is a React application  for all travelers around the world.
 
 This application helps the user to plan, organize and enjoy, before and while traveling. It Gives you the opportunity to share your experience with other users, to discover new and exciting places by viewing other user's stories and collecting their experience by  directly communicating with them.
 
-<img src="screenshots/travelog1.png" alt="home" width="150"/><img src="screenshots/travelog2.png" alt="home" width="150"/><img src="screenshots/travelog3.png" alt="home" width="150"/>
+<img src="screenshots/travelog1.png" alt="home" width="300"/>
 
 # Getting Started
 
