@@ -3,7 +3,6 @@ import { Journal } from 'Types/index';
 import MenuEntry from './MenuEntry';
 import { GrCatalog } from "react-icons/gr";
 import './JournalMenu.css';
-import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 
 type JournalMenuProps = {
@@ -35,6 +34,18 @@ export default function JournalMenu ({
 		});
 	}
 
+	function sendClick(e: React.MouseEvent<HTMLDivElement>, id: string) {
+		toggleMenu();
+		
+		handleClick(e, id);
+	}
+
+	function sendNew(e: React.MouseEvent<HTMLDivElement>) {
+		toggleMenu();
+		
+		handleNew(e);
+	}
+
 	return (
 		<div className='journal__menu' style={{ left: menuPos }}>
       <div className='journal__menu-select-container'>
@@ -45,12 +56,12 @@ export default function JournalMenu ({
 							key={entry.id}
 							id={entry.id}
 							text={entry.review}
-							handleClick={handleClick}
+							handleClick={(e) => sendClick(e, entry.id)}
 						/>
 					))}
 					<div
 						className={`journal__menu-select-entry last`}
-						onClick={handleNew}>
+						onClick={sendNew}>
 						New story
             </div>
             {/* </SimpleBar> */}
