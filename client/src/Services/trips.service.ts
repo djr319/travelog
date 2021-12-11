@@ -30,7 +30,6 @@ export function getAllPersonalTrips(
 }
 
 export function updateTrip(id: string | number, update: Trip): Promise<Trip> {
-  console.log("id", id);
 
   return fetchRequest(`${TRIPS_URL}/${id}`, {
     method: "PUT",

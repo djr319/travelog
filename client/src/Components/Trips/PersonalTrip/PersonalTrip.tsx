@@ -42,7 +42,6 @@ const PersonalTrip = (props: TripProps): JSX.Element => {
           </div>
         </div>
       </Link >
-
       <button
         className="delete"
         onClick={() => {
@@ -57,8 +56,3 @@ const PersonalTrip = (props: TripProps): JSX.Element => {
 };
 
 export default PersonalTrip;
-
-
-
-
-

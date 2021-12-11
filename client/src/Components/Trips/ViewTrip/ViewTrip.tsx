@@ -38,7 +38,6 @@ export default function ViewPersonalTrip(): JSX.Element {
   return (
     <div className="view-trip">
       <h2>Trip Summary</h2>
-
       <table>
         <tr>
           <td>Destination:</td>
@@ -58,14 +57,11 @@ export default function ViewPersonalTrip(): JSX.Element {
         <tr>
           <td className="bold" colSpan={2 }>{trip?.visit}</td>
         </tr>
-
     </table>
-
       <div className="button-group">
       < button className="button"  onClick={() => navigate("/trips")}>
         Back
       </button>
-
       < button className="button"  onClick={() => navigate("/form", { state: { trip } })}>
         Update
         </button>
