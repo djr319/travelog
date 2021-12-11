@@ -55,3 +55,10 @@ To run front & backend: `npm run dev`.
 <a href="https://www.postgresql.org/">PostgreSQL</a>
 \
 <a href="https://www.postgresql.org/">Socket.io</a>
+
+# Contributors
+
+* [Ivan Car](https://github.com/urisk333)
+* [Anastasia Papaioannou](https://github.com/Natasa410)
+* [Eloy Robillard](https://github.com/eloyrobillard)
+* [David Ryan](https://github.com/djr319)
