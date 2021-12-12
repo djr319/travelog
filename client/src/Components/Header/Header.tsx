@@ -10,7 +10,6 @@ function dropDown() {
   dropdown.classList.toggle("show");
 }
 
-// Close the dropdown menu if the user clicks outside of it
 window.onclick = function (event) {
   const thisTarget = event.target as HTMLElement;
 

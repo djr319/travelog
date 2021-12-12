@@ -1,20 +1,5 @@
 .journal__form {
-
   margin: 0 1rem;
-
-  // .makeRandom(@min: 0, @max: @min+1, @int: 0) {
-  //   .checkInt() {
-  //     @getNum: `Math.random() * (@{max} - @{min} + @{int})`;
-  //     @base: unit(`@{int} == 1 ? Math.floor(@{getNum}) : @{getNum}`);
-  //   }
-  //   .checkInt();
-  //   @randNum: @base + @min;
-  // }
-
-  // .rand {
-  //   .makeRandom(10, 20, 1); /* random integer  10 - 20 */
-  //   random-number: @randNum;
-  // }
 
   .journal-group {
     display: flex;
@@ -33,27 +18,6 @@
     position: relative;
   }
 
-  // .journal__photo:before {
-  //   content: " ";
-  //   position: absolute;
-  //   top: -1px;
-  //   right: -1px;
-  //   border-width: 0 32px 32px 0;
-  //   border-style: solid;
-  //   border-color: transparent rgba(255,255,255,0.5) transparent rgba(255,255,255,0.5);
-  //   box-shadow: 1px -1px 1px rgba(0,0,0,0.1);
-  // }
-
-  // .journal__photo:after {
-  //   position: absolute;
-  //   bottom: -1px;
-  //   left: -1px;
-  //   border-width: 0 32px 32px 0;
-  //   border-style: solid;
-  //   border-color: rgba(255,255,255,0.8) transparent rgba(255,255,255,0.8) transparent;
-  //   box-shadow: -1px 1px 1px rgba(0,0,0,0.1);
-  // }
-
   .journal__view-text {
     font-family: 'Indie Flower', cursive;
     font-size: 1.3rem;
@@ -64,25 +28,12 @@
     background-color: lighten( red, 15%);
   }
 
-
     .journal__form-textarea {
-
-      // NOTE style displayed when textarea is in invalid state
-      // e.g. empty, even though it's required
-      // LINK https://developer.mozilla.org/ja/docs/Web/HTML/Element/textarea
       &:invalid {
         background-color: rgb(255, 243, 243);
         border-color: red;
       }
     }
-
-  & .journal__form-submit {
-
-
-    &:active {
-      // background-color: @bg-color;
-    }
-  }
 }
 
 .journal__view {
@@ -103,8 +54,6 @@
     background-color: black;
     border: solid 1px black;
     border-radius: 3px;
-
-    // font-family: @journal-font;
     font-size: 1.5rem;
     overflow-y: scroll;
   }
@@ -121,13 +70,8 @@
     margin-top: 1rem;
     padding: 0.5rem;
     border-radius: 10px;
-
     line-height: 2rem;
     font-size: 1.5rem;
-
-    &:active {
-      // background-color: @bg-color;
-    }
   }
 }
 

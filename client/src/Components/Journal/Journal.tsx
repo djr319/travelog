@@ -2,15 +2,13 @@ import { useQuery, useMutation } from 'react-query';
 import { Journal as JournalType } from 'Types/index';
 import { useContext, useState, useEffect } from 'react';
 import { UserContext } from 'Context';
-
 import { JournalAPI, TagsAPI } from 'Services/index';
 import { JournalsList } from 'Components';
 import { JournalPage, JournalMenu } from './index';
-
 import './Journal.css';
 
 function getFreeJournalId (journals: JournalType[], uid: string) {
-	const nextNum = Math.max(0, 
+	const nextNum = Math.max(0,
 		...journals
 			.filter((journal) => journal.id.startsWith(uid))
 			.map((journal) => {
@@ -96,9 +94,6 @@ export default function Journal (): JSX.Element {
 		});
 	}
 
-	/**
-   ** Called on 'New story' menu button
-   */
 	function handleNew (e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
 		e.preventDefault();
 
