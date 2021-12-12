@@ -24,23 +24,19 @@ import {
 import logo from "./Assets/logo/logo.jpg";
 import "./App.css";
 
-// NOTE loads firebase's authorization service
-
 const { auth, uiConfig } = FirebaseAPI.getConfig();
 
 const queryClient = new QueryClient();
 
 export default function App(): JSX.Element {
   const user = FirebaseAPI.formatUser(auth);
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
-  const [isSignedIn, setIsSignedIn] = useState(false); // Local signed-in state.
-
-  // Listen to the Firebase Auth state and set the local state.
   useEffect(() => {
     const unregisterAuthObserver = auth.onAuthStateChanged((user) => {
       setIsSignedIn(!!user);
     });
-    return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
+    return () => unregisterAuthObserver();
   }, []);
 
   if (!isSignedIn) {
@@ -59,7 +55,6 @@ export default function App(): JSX.Element {
     );
   }
 
-  // NOTE if login successful, query db to add user if not already listed
   UserAPI.checkUser(user);
 
   return (
