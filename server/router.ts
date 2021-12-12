@@ -1,7 +1,7 @@
 import express from "express";
+import controller from "./controllers/controller";
 
 const router = express.Router();
-import controller from "./controllers/controller";
 
 router.post("/user", controller.checkUser);
 router.post("/profile", controller.addProfile);

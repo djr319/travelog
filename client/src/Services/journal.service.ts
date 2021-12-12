@@ -38,4 +38,4 @@ const JournalAPI = {
   deleteJournal
 }
 
-export default JournalAPI
+export default JournalAPI;

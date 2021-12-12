@@ -10,7 +10,4 @@ const mockUser: User = {
 };
 
 export const UserContext: React.Context<User> = React.createContext(mockUser)
-
 export const UserProvider = UserContext.Provider;
-
-// const { authenticated } = useContext(UserContext);

@@ -18,12 +18,10 @@ const mockProfile = {
 export default function ViewProfile(): JSX.Element {
   const [profile, setProfile] = useState<Profile>(mockProfile);
   const { userName, uid, photoURL, email } = useContext(UserContext);
-
   const navigate = useNavigate();
 
   const getProfileHandler = async (uid: string) => {
     const profile = await profileService.getProfile(uid);
-
     setProfile(profile);
   };
 
@@ -35,7 +33,6 @@ export default function ViewProfile(): JSX.Element {
     <div className="profile">
       <h2>Profile</h2>
       <img src={photoURL} alt="profile-picture" />
-
       <table>
         <tr>
           <td>Username:</td>

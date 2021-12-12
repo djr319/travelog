@@ -19,9 +19,7 @@ export default function PicturesUpload ({
 }: PicturesUploadProps): JSX.Element {
 	const [ progress, setProgress ] = useState(0);
 	const [ url, setUrl ] = useState(givenURL);
-
 	const [ image, setImage ] = useState<File>();
-
 	const storage = getStorage();
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +33,6 @@ export default function PicturesUpload ({
 
 		if (image) {
 			const storageRef = ref(storage, `images/${new Date()}`);
-
 			const uploadTask = uploadBytesResumable(storageRef, image);
 
 			uploadTask.on(
@@ -61,7 +58,6 @@ export default function PicturesUpload ({
 
 	return (
     <div className='flex-container'>
-
 			<img
 				style={{ width: 200, borderRadius: 5 }}
 				className='journal-picture'
@@ -69,7 +65,6 @@ export default function PicturesUpload ({
 				alt='firebase-pic'
 			/>
       <progress value={progress} max='100' />
-
 			<div className='button-group'>
 			<label htmlFor="file-upload" className="custom-file-upload">
       <input id="file-upload" type='file' onChange={handleChange} />

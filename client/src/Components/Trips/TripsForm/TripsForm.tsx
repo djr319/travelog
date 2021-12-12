@@ -5,7 +5,6 @@ import { useLocation } from "react-router";
 import tripsService from "Services/trips.service";
 import "react-quill/dist/quill.snow.css";
 import { DateRangePicker, DateRange } from "materialui-daterange-picker";
-
 import { UserContext } from "Context";
 import { useContext } from "react";
 
@@ -15,7 +14,6 @@ function TripsForm(): JSX.Element {
   const [city, setDestination] = useState("");
   const [dateRange, setDateRange] = useState<DateRange>({});
   const [visit, setVisits] = useState([""]);
-
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
   const { uid, userName } = useContext(UserContext);
@@ -109,7 +107,6 @@ function TripsForm(): JSX.Element {
   return (
     <div className="trip">
       <h2>Add next trip!</h2>
-
       <form className="add-trip-form" onSubmit={handleSubmit}>
         {/* -----------------CITY------------------- */}
         <label>City</label>
@@ -121,7 +118,6 @@ function TripsForm(): JSX.Element {
         ></input>
         {/* ------------------DATES----------------------------------- */}
         <label>Dates</label>
-
         <div className="date-picker">
           <DateRangePicker
             wrapperClassName="dates"
@@ -129,7 +125,6 @@ function TripsForm(): JSX.Element {
             toggle={toggle}
             onChange={(range) => setDateRange(range)}
           />
-
           <div className="button-group">
             <button
               className="button"
@@ -142,7 +137,6 @@ function TripsForm(): JSX.Element {
     </div>
         {/* --------------TO VISIT------------------ */ }
         <label>Wish List</label>
-
         <textarea
           className="trips_form-textarea"
           placeholder={city? "What do you want to do on your " + city + " trip?":"Dream here!"}
@@ -151,7 +145,6 @@ function TripsForm(): JSX.Element {
           value={visit}
           onChange={(event) => setVisits([event.target.value])}
         />
-
         <div className="button-group">
         <button className="button" type="submit">
           {state ? "Update" : "Upload"}

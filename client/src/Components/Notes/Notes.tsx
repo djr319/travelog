@@ -67,7 +67,6 @@ function Notes(): JSX.Element {
       <SimpleBar style={{ height: '100%' }}>
         <div className="notes-list">
           {notes.map((note) => (
-
             <div className="note-item" key={note.id}>
               <span>{note.note}</span>
               <button
@@ -77,11 +76,9 @@ function Notes(): JSX.Element {
                 ✗
               </button>
             </div>
-
           ))}
         </div>
       </SimpleBar>
-
     </div>
   );
 }

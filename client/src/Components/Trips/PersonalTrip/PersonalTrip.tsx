@@ -1,6 +1,6 @@
+import tripsService from "Services/trips.service";
 import { Dispatch, SetStateAction } from "react";
 import { Link } from "react-router-dom";
-import tripsService from "Services/trips.service";
 import { Trip } from "Types";
 import moment from "moment";
 
@@ -41,8 +41,7 @@ const PersonalTrip = (props: TripProps): JSX.Element => {
             </div>
           </div>
         </div>
-      </Link >
-
+      </Link>
       <button
         className="delete"
         onClick={() => {
@@ -57,8 +56,3 @@ const PersonalTrip = (props: TripProps): JSX.Element => {
 };
 
 export default PersonalTrip;
-
-
-
-
-

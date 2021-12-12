@@ -3,9 +3,9 @@
 }
 .journals-list .journals-list__list {
   padding: 0.5rem;
-  margin-top: 1rem;
 }
 .journals-list .journals-list__list .journals-list__entry {
+  margin-top: 1rem;
   padding: 0.5rem 1rem;
   margin: 0.5rem auto;
   max-width: 25rem;

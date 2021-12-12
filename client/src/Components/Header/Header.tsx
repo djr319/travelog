@@ -1,11 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useContext } from "react";
 import { UserContext } from "Context";
-
 import logo from 'Assets/logo/travelog.png';
 import './Header.css';
 import firebase from "@firebase/app-compat";
-
 
 function dropDown() {
   const dropdown = document.getElementById("myDropdown") as HTMLDivElement;
@@ -53,12 +51,10 @@ export default function Header(): JSX.Element {
           />
         </div>
         <div id="myDropdown" className="dropdown-content">
-
           <Link to='/profile'>Profile</Link>
           <a href="#" onClick={signOut}>Logout</a>
         </div>
       </div>
-
       <div className="logo-container">
         <Link to="/">
           <img src={logo} className="logo" alt="Travelog logo" />
