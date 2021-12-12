@@ -4,6 +4,7 @@
 }
 .chat .chat-wrapper {
   height: calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height) - 5rem);
+  max-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height) - 5rem);
   display: flex;
   flex-direction: column;
 }
@@ -17,8 +18,9 @@
 }
 .chat-body {
   position: relative;
+  min-width: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 5rem);
   border-radius: 1rem;
   padding: 0.7rem;
   display: flex;
@@ -120,6 +122,5 @@
   margin: 0;
 }
 .chat-footer button {
-  width: 6rem;
   height: 4rem;
 }

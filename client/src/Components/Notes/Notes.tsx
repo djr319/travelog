@@ -23,6 +23,7 @@ function Notes(): JSX.Element {
   }, []);
 
   async function addNote(uid: string, note: string): Promise<void> {
+    document.getElementById('notes-input')?.focus();
     return NoteAPI.addNote(uid, note).then((newNotes) => {
       setNotes(
         newNotes.sort(
@@ -54,6 +55,7 @@ function Notes(): JSX.Element {
       <h2>My Notes...</h2>
       <form className="notes-add" onSubmit={handleAddNote}>
         <input
+          id="notes-input"
           className="notes-input"
           type="text"
           placeholder="Enter notes..."

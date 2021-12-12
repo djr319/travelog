@@ -3,30 +3,29 @@
 }
 .footer {
   display: flex;
+  gap: 0.5rem;
   height: var(--footer-height);
   justify-content: center;
   align-items: center;
   font-size: 10px;
-  text-shadow: 0px 0px 4px white;
+  text-shadow: 0px 0px 2px white;
   background: var(--travelog-green);
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .footer {
     box-shadow: 1px 1px 7px var(--travelog-light-blue);
   }
 }
 .text {
-  margin-left: 0.5rem;
   text-align: left;
-  display: inline-block;
 }
 footer img {
-  filter: drop-shadow(0px 2px 1px grey);
+  filter: drop-shadow(0px 1px 1px grey);
 }
 .extended {
   display: none;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 769px) {
   .extended {
     display: inline;
   }

@@ -13,6 +13,7 @@
 
   .chat-wrapper{
     height: ~"calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height) - 5rem)";
+    max-height: ~"calc(100vh - var(--header-height) - var(--footer-height) - var(--navbar-height) - 5rem)";
     display: flex;
     flex-direction: column;
 
@@ -26,8 +27,9 @@
 
   &-body {
     position: relative;
+    min-width: 0;
     width: 100%;
-    height: 100%;
+    height: ~"calc(100% - 5rem)";
     border-radius: 1rem;
     padding: 0.7rem;
     display: flex;
@@ -136,7 +138,6 @@
      }
 
     button {
-      width: 6rem;
       height: 4rem;
     }
   }
