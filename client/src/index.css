@@ -52,11 +52,11 @@ body {
   color: var(--travelog-dusty-blue);
 }
 .wrapper h3 {
-  padding-top: 2rem;
+  margin-top: 1rem;
   padding-bottom: 0.5em;
 }
 .wrapper h4 {
-  padding-top: 1.5rem;
+  margin-top: 1rem;
   padding-bottom: 1em;
 }
 .wrapper h5,
